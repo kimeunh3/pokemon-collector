@@ -1,11 +1,13 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
 // import { UserStateContext } from '../../Context';
 
 function NavBar() {
   const navigate = useNavigate();
+  const location = useLocation();
 
+  if (location.pathname === '/login') return null;
   // const userState = useContext(UserStateContext);
   // const dispatch = useContext(DispatchContext);
 
