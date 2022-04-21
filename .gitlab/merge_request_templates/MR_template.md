@@ -1,7 +1,7 @@
 ## 제목 형식
 
 - 커밋 내용 MR 요청
-- 예시) [Add] User MVP 스키마 추가 MR 요청
+- 예시) [Add] User MVP 스키마 추가 MR 요청  
         [Modify] User MVP 스키마 필드 추가 MR 요청
 
 ## merge request 내역
