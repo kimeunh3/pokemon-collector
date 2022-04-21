@@ -1,13 +1,17 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import Nav from 'react-bootstrap/Nav';
 // import { UserStateContext } from '../../Context';
+import {
+  AppBar, Toolbar, IconButton, Button, Grid,
+} from '@material-ui/core';
 
 function NavBar() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // login page에서는 NavBar가 뜨지 않도록 설정
   if (location.pathname === '/login') return null;
+
   // const userState = useContext(UserStateContext);
   // const dispatch = useContext(DispatchContext);
 
@@ -26,64 +30,38 @@ function NavBar() {
 
   return (
     <div>
-      <div
-        style={{
-          backgroundColor: '#D72A1F', padding: 0, position: 'fixed', top: 0, width: '-webkit-fill-available', boxShadow: '0 30px black',
-        }}
-      >
-        <Nav
-          style={{
-            height: 80, alignItems: 'center', justifyContent: 'space-between', marginRight: 80, marginLeft: 30, paddingBottom: 30,
-          }}
-        >
-          <Nav.Item>
-            <Nav.Link>
-              <img alt="" src={require('./logo.png')} width="200px" height="70px" />
-            </Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link>
-              <div className="nav-right" style={{ color: 'white', fontSize: 24 }}>홈</div>
-            </Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link>
-              <div className="nav-right" style={{ color: 'white', fontSize: 24 }}>퀴즈</div>
-            </Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link>
-              <div className="nav-right" style={{ color: 'white', fontSize: 24 }}>포켓몬빵</div>
-            </Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link>
-              <div className="nav-right" style={{ color: 'white', fontSize: 24 }}>통계</div>
-            </Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link>
-              <div className="nav-right" style={{ color: 'white', fontSize: 24 }}>도감</div>
-            </Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link>
-              <div className="nav-right" style={{ color: 'white', fontSize: 24 }}>마이페이지</div>
-            </Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link>
-              <div className="nav-right" role="button" tabIndex={0} onClick={() => navigate('/login')} onKeyDown="" style={{ color: '#2F4F4F', fontSize: 24 }}>로그아웃</div>
-            </Nav.Link>
-          </Nav.Item>
-        </Nav>
-      </div>
-      <div> </div>
+      <AppBar position="fixed" style={{ backgroundColor: '#D72A1F', boxShadow: '0 30px black' }}>
+        <Toolbar>
+          <IconButton edge="start" color="inherit" aria-label="menu" onClick={() => navigate('/login')} style={{ marginRight: '40%' }}>
+            <img alt="" src={require('./logo.png')} width="200px" height="70px" />
+          </IconButton>
+          <Grid container>
+            <Grid item xs={2}>
+              <Button color="inherit" onClick={() => navigate('/login')}>포켓몬빵</Button>
+            </Grid>
+            <Grid item xs={2}>
+              <Button color="inherit" onClick={() => navigate('/login')}>퀴즈</Button>
+            </Grid>
+            <Grid item xs={2}>
+              <Button color="inherit" onClick={() => navigate('/login')}>도감</Button>
+            </Grid>
+            <Grid item xs={2}>
+              <Button color="inherit" onClick={() => navigate('/login')}>통계</Button>
+            </Grid>
+            <Grid item xs={2}>
+              <Button color="inherit" onClick={() => navigate('/login')}>마이페이지</Button>
+            </Grid>
+            <Grid item xs={2}>
+              <Button color="primary" onClick={() => navigate('/login')}>로그아웃</Button>
+            </Grid>
+          </Grid>
+        </Toolbar>
+      </AppBar>
       <div style={{
-        position: 'fixed', top: '45px', width: '100%',
+        position: 'fixed', top: '54px', width: '100%', zIndex: '9999',
       }}
       >
-        <div style={{ left: '50%', marginLeft: '-60px', position: 'absolute' }}>
+        <div style={{ left: '50%', marginLeft: '-55px', position: 'absolute' }}>
           <img alt="" src={require('./nav-icon.png')} width="110px" height="110px" />
         </div>
       </div>
