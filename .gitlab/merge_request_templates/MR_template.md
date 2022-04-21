@@ -1,8 +1,8 @@
 ## 제목 형식
 
-- [포지션] 이슈 이름 MR 요청
-- 예시) [백엔드] User MVP 스키마 구현 MR 요청
-
+- 커밋 내용 MR 요청
+- 예시) [Add] User MVP 스키마 추가 MR 요청
+        [Modify] User MVP 스키마 필드 추가 MR 요청
 
 ## merge request 내역
 
