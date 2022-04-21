@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import * as Api from '../api';
 import { loginReducer } from '../reducer';
 
-import Header from './Header';
+import NavBar from './views/NavBar/NavBar';
 import LoginForm from './user/LoginForm';
 import RegisterForm from './user/RegisterForm';
 import { UserStateContext, DispatchContext } from './Context';
@@ -54,7 +54,7 @@ function App() {
     <DispatchContext.Provider value={dispatch}>
       <UserStateContext.Provider value={userState}>
         <Router>
-          <Header />
+          <NavBar />
           <Routes>
             <Route path="/login" element={<LoginForm />} />
             <Route path="/register" element={<RegisterForm />} />
