@@ -10,6 +10,7 @@ import RegisterForm from './user/RegisterForm';
 import LoginPage from './views/LoginPage/LoginPage';
 import BreadPage from './views/BreadPage/BreadPage';
 import { UserStateContext, DispatchContext } from './Context';
+import './App.css';
 
 function App() {
 	// useReducer 훅을 통해 userState 상태와 dispatch함수를 생성함.
@@ -46,9 +47,17 @@ function App() {
 		fetchCurrentUser();
 	}, []);
 
+<<<<<<< HEAD
 	if (!isFetchCompleted) {
 		return 'loading...';
 	}
+=======
+  if (!isFetchCompleted) {
+    return (
+      <div id="loading"><img id="loading-image" src={require('./loading.gif')} alt="Loading..." /></div>
+    );
+  }
+>>>>>>> c2f6d3167e42c3a98817588dcd124e1b8c8b76bb
 
 	return (
 		<DispatchContext.Provider value={dispatch}>
