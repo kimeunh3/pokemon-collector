@@ -1,6 +1,6 @@
 import is from "@sindresorhus/is";
 import { Router } from "express";
-import { loginRequired } from "../middlewares/loginRequired";
+import { login_required } from "../middlewares/login_required";
 import { userAuthService } from '../services/userService';
 import { User } from '../db';
 
@@ -69,7 +69,7 @@ userAuthRouter.post("/user/login", async function (req, res, next) {
 
 userAuthRouter.get(
   "/user/current",
-  loginRequired,
+  login_required,
   async function (req, res, next) {
     try {
 

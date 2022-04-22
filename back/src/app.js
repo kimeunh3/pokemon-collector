@@ -1,7 +1,7 @@
 import cors from 'cors';
 import express from 'express';
 import { errorMiddleware } from './middlewares/errorMiddleware';
-
+import {userAuthRouter} from './routers/userRouter';
 // const bodyParser = require('body-parser');
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
@@ -57,6 +57,7 @@ app.get('/', (req, res) => {
 });
 
 // 순서 중요 (router 에서 next() 시 아래의 에러 핸들링  middleware로 전달됨)
+app.use(userAuthRouter)
 app.use(errorMiddleware);
 
 // eslint-disable-next-line import/prefer-default-export
