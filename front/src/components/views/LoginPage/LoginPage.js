@@ -30,8 +30,8 @@ function LoginPage() {
 			sx={{
 				height: '100vh',
 				backgroundImage: 'url(/images/loginBackground.png)',
-				backgroundSize: 'cover',
-				backgroundPosition: 'center',
+				backgroundPosition: 'center center',
+				backgroundSize: '105% 120%',
 			}}
 		>
 			<Box
@@ -46,7 +46,7 @@ function LoginPage() {
 					height: '80%',
 					width: '38%',
 					justifyContent: 'center',
-					minWidth: '400px',
+					minWidth: '450px',
 				}}
 				marginRight={10}
 			>
