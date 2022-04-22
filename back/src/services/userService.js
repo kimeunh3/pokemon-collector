@@ -14,14 +14,19 @@ userAuthRouter.post("/user/register", async function (req, res, next) {
       );
     }
 
-    const name = req.body.name;
-    const email = req.body.email;
-    const password = req.body.password;
+    const {nickname, email, password, sex, age, interest, likeType, point, profileImg, stickers} = req.body
 
     const newUser = await userAuthService.addUser({
-      name,
+      nickname,
       email,
       password,
+      sex,
+      age,
+      interest,
+      likeType,
+      point,
+      profileImg,
+      stickers,
     });
 
     if (newUser.errorMessage) {
