@@ -12,9 +12,6 @@ function NavBar() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // login page에서는 NavBar가 뜨지 않도록 설정
-  if (location.pathname === '/login' || location.pathname === '/home') return null;
-
   // const userState = useContext(UserStateContext);
   // const dispatch = useContext(DispatchContext);
 
@@ -69,6 +66,9 @@ function NavBar() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  // login page에서는 NavBar가 뜨지 않도록 설정
+  if (location.pathname === '/login' || location.pathname === '/home') return null;
 
   return (
     <div>
