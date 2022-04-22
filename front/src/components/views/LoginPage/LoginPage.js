@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
-import RegisterPage from './RegisterPage';
+import RegisterForm from './section/RegisterForm';
 
 function LoginPage() {
 	const [Login, setLogin] = useState(true);
@@ -35,7 +35,7 @@ function LoginPage() {
 				marginRight={10}
 			>
 				<Container>
-					<img src='/images/logo.png' alt='Logo' width='330' height='130' />
+					<img src='/images/logo.png' alt='Logo' width='50%' height='18%' />
 					<Typography component='h4' variant='h4' mt={4} marginLeft={5} mb={4}>
 						환영합니다!
 					</Typography>
@@ -84,7 +84,7 @@ function LoginPage() {
 							</Button>
 						</Box>
 					) : (
-						<RegisterPage setLogin={setLogin} />
+						<RegisterForm setLogin={setLogin} />
 					)}
 				</Container>
 			</Box>
