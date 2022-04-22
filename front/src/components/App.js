@@ -8,6 +8,7 @@ import { loginReducer } from '../reducer';
 
 import NavBar from './views/NavBar/NavBar';
 import LoginForm from './user/LoginForm';
+import LandingPage from './views/LandingPage/LandingPage';
 import RegisterForm from './user/RegisterForm';
 import { UserStateContext, DispatchContext } from './Context';
 
@@ -56,6 +57,7 @@ function App() {
         <Router>
           <NavBar />
           <Routes>
+            <Route path="/home" element={<LandingPage />} />
             <Route path="/login" element={<LoginForm />} />
             <Route path="/register" element={<RegisterForm />} />
           </Routes>

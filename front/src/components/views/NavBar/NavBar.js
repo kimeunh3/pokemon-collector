@@ -13,7 +13,7 @@ function NavBar() {
   const location = useLocation();
 
   // login page에서는 NavBar가 뜨지 않도록 설정
-  if (location.pathname === '/login') return null;
+  if (location.pathname === '/login' || location.pathname === '/home') return null;
 
   // const userState = useContext(UserStateContext);
   // const dispatch = useContext(DispatchContext);
@@ -74,10 +74,10 @@ function NavBar() {
     <div>
       <AppBar position="fixed" open={open} style={{ backgroundColor: '#D72A1F', boxShadow: '0 30px black' }}>
         <Toolbar>
-          <IconButton edge="start" color="inherit" aria-label="menu" onClick={() => navigate('/login')} style={{ marginRight: '40%' }}>
-            <img alt="" src={require('./logo.png')} width="200px" height="70px" />
+          <IconButton edge="start" color="inherit" aria-label="menu" onClick={() => navigate('/home')} style={{ marginRight: '40%' }}>
+            <img alt="" src={require('../images/logo.png')} width="200px" height="70px" />
           </IconButton>
-          <Grid container id="menu">
+          <Grid container id="menu" style={{ textAlign: 'center' }}>
             <Grid item xs={2}>
               <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>포켓몬빵</Button>
             </Grid>
@@ -164,7 +164,7 @@ function NavBar() {
       }}
       >
         <div style={{ left: '50%', marginLeft: '-55px', position: 'absolute' }}>
-          <img alt="" src={require('./nav-icon.png')} width="110px" height="110px" />
+          <img alt="" src={require('../images/nav-icon.png')} width="110px" height="110px" />
         </div>
       </div>
     </div>
