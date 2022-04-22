@@ -13,7 +13,7 @@ function LandingPage() {
     <div>
       <AppBar
         id="Header"
-        position="fixed"
+        position="static"
         style={{
           backgroundColor: '#D72A1F', boxShadow: '0 60px black, inset 0px 3px 4px 30px rgba(0, 0, 0, 0.05)', height: '450px', justifyContent: 'center', alignItems: 'center',
         }}
@@ -43,7 +43,7 @@ function LandingPage() {
         <img alt="" src={require('../images/logo.png')} width="600px" height="210px" />
       </AppBar>
       <div style={{
-        position: 'fixed', top: '380px', width: '100%', zIndex: '9999',
+        position: 'absolute', top: '380px', width: '100%', zIndex: '9999',
       }}
       >
         <div style={{ left: '50%', marginLeft: '-100px', position: 'absolute' }}>
@@ -51,6 +51,12 @@ function LandingPage() {
         </div>
       </div>
       <button type="button" id="go-top" onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })}><span className="material-symbols-outlined">arrow_upward</span></button>
+      <div style={{
+        position: 'relative', top: '200px', left: '10%',
+      }}
+      >
+        <img alt="" src={require('../images/poster.png')} style={{ height: '500px' }} />
+      </div>
     </div>
   );
 }
