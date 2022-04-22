@@ -37,22 +37,22 @@ function NavBar() {
           </IconButton>
           <Grid container>
             <Grid item xs={2}>
-              <Button color="inherit" onClick={() => navigate('/login')}>포켓몬빵</Button>
+              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>포켓몬빵</Button>
             </Grid>
             <Grid item xs={2}>
-              <Button color="inherit" onClick={() => navigate('/login')}>퀴즈</Button>
+              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>퀴즈</Button>
             </Grid>
             <Grid item xs={2}>
-              <Button color="inherit" onClick={() => navigate('/login')}>도감</Button>
+              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>도감</Button>
             </Grid>
             <Grid item xs={2}>
-              <Button color="inherit" onClick={() => navigate('/login')}>통계</Button>
+              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>통계</Button>
             </Grid>
             <Grid item xs={2}>
-              <Button color="inherit" onClick={() => navigate('/login')}>마이페이지</Button>
+              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>마이페이지</Button>
             </Grid>
             <Grid item xs={2}>
-              <Button color="primary" onClick={() => navigate('/login')}>로그아웃</Button>
+              <Button color="primary" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>로그아웃</Button>
             </Grid>
           </Grid>
         </Toolbar>
