@@ -50,6 +50,7 @@ function LandingPage() {
           <img alt="" src={require('../images/nav-icon.png')} width="200px" height="200px" />
         </div>
       </div>
+      <button type="button" id="go-top" onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })}><span className="material-symbols-outlined">arrow_upward</span></button>
     </div>
   );
 }
