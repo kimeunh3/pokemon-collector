@@ -46,11 +46,12 @@ function LoginPage() {
 					height: '80%',
 					width: '38%',
 					justifyContent: 'center',
+					minWidth: '400px',
 				}}
 				marginRight={10}
 			>
 				<Container>
-					<img src='/images/logo.png' alt='Logo' width='50%' height='18%' />
+					<img src='/images/logo.png' alt='Logo' width='300px' height='100px' />
 					<Typography component='h4' variant='h4' mt={4} marginLeft={5} mb={4}>
 						환영합니다!
 					</Typography>
