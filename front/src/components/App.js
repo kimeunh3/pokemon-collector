@@ -10,6 +10,7 @@ import Header from './Header';
 import LoginForm from './user/LoginForm';
 import RegisterForm from './user/RegisterForm';
 import { UserStateContext, DispatchContext } from './Context';
+import './App.css';
 
 function App() {
   // useReducer 훅을 통해 userState 상태와 dispatch함수를 생성함.
@@ -47,7 +48,9 @@ function App() {
   }, []);
 
   if (!isFetchCompleted) {
-    return 'loading...';
+    return (
+      <div id="loading"><img id="loading-image" src={require('./loading.gif')} alt="Loading..." /></div>
+    );
   }
 
   return (
