@@ -58,7 +58,7 @@ function RegisterPage({ setLogin }) {
 				가입 하기
 			</Button>
 			<Grid container justifyContent='flex-end'>
-				<Grid item>
+				<Grid>
 					<Button
 						color='primary'
 						onClick={() => {
