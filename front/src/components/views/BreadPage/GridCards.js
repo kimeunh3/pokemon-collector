@@ -1,16 +1,16 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
 
-function GridCards(props) {
-	if (props) {
+function GridCards({ bread, breadImg }) {
+	if (bread) {
 		return (
-			<Grid lg={6} md={8} xs={24}>
+			<Grid item xs={3}>
 				<div style={{ position: 'relative' }}>
-					<a href='/'>
+					<a href='/bread'>
 						<img
-							style={{ width: '100%', height: '320px' }}
-							src={props}
-							alt={props}
+							style={{ width: '280px', height: '300px' }}
+							src={breadImg}
+							alt={bread}
 						/>
 					</a>
 				</div>
