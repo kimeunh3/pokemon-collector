@@ -8,6 +8,7 @@ import { loginReducer } from '../reducer';
 // import LoginForm from './user/LoginForm';
 import RegisterForm from './user/RegisterForm';
 import LoginPage from './views/LoginPage/LoginPage';
+import BreadPage from './views/BreadPage/BreadPage';
 import { UserStateContext, DispatchContext } from './Context';
 
 function App() {
@@ -58,6 +59,7 @@ function App() {
 						{/* <Route path="/login" element={<LoginForm />} /> */}
 						<Route path='/register' element={<RegisterForm />} />
 						<Route path='/login' element={<LoginPage />} />
+						<Route path='/bread' element={<BreadPage />} />
 					</Routes>
 				</Router>
 			</UserStateContext.Provider>
