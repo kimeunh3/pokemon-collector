@@ -77,24 +77,24 @@ function NavBar() {
           <IconButton edge="start" color="inherit" aria-label="menu" onClick={() => navigate('/home')} style={{ marginRight: '40%' }}>
             <img alt="" src={require('../images/logo.png')} width="200px" height="70px" />
           </IconButton>
-          <Grid container id="menu" style={{ textAlign: 'center' }}>
+          <Grid container id="menu" style={{ textAlign: 'center', alignItems: 'center' }}>
             <Grid item xs={2}>
-              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>포켓몬빵</Button>
+              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '1.1vw' }}>포켓몬빵</Button>
             </Grid>
             <Grid item xs={2}>
-              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>퀴즈</Button>
+              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '1.1vw' }}>퀴즈</Button>
             </Grid>
             <Grid item xs={2}>
-              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>도감</Button>
+              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '1.1vw' }}>도감</Button>
             </Grid>
             <Grid item xs={2}>
-              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>통계</Button>
+              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '1.1vw' }}>통계</Button>
             </Grid>
             <Grid item xs={2}>
-              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>마이페이지</Button>
+              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '1.1vw' }}>마이페이지</Button>
             </Grid>
             <Grid item xs={2}>
-              <Button color="primary" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>로그아웃</Button>
+              <Button color="primary" onClick={() => navigate('/login')} style={{ fontSize: '1.1vw' }}>로그아웃</Button>
             </Grid>
           </Grid>
           <IconButton

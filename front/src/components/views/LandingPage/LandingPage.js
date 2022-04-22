@@ -60,25 +60,25 @@ function LandingPage() {
           backgroundColor: '#D72A1F', boxShadow: '0 60px black, inset 0px 3px 4px 30px rgba(0, 0, 0, 0.05)', height: '450px', justifyContent: 'center', alignItems: 'center',
         }}
       >
-        <Toolbar style={{ width: '100%' }}>
+        <Toolbar style={{ width: '100vw' }}>
           <Grid container id="menu" style={{ marginBottom: '80px', textAlign: 'center' }}>
             <Grid item xs={2}>
-              <Button color="inherit" onClick={() => navigate('/')} style={{ fontSize: '30px' }}>포켓몬빵</Button>
+              <Button color="inherit" onClick={() => navigate('/')} style={{ fontSize: '2vw' }}>포켓몬빵</Button>
             </Grid>
             <Grid item xs={2}>
-              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '30px' }}>퀴즈</Button>
+              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '2vw' }}>퀴즈</Button>
             </Grid>
             <Grid item xs={2}>
-              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '30px' }}>도감</Button>
+              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '2vw' }}>도감</Button>
             </Grid>
             <Grid item xs={2}>
-              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '30px' }}>통계</Button>
+              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '2vw' }}>통계</Button>
             </Grid>
             <Grid item xs={2}>
-              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '30px' }}>마이페이지</Button>
+              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '2vw' }}>마이페이지</Button>
             </Grid>
             <Grid item xs={2}>
-              <Button color="primary" onClick={() => navigate('/login')} style={{ fontSize: '30px' }}>로그아웃</Button>
+              <Button color="primary" onClick={() => navigate('/login')} style={{ fontSize: '2vw' }}>로그아웃</Button>
             </Grid>
           </Grid>
           <IconButton
