@@ -56,7 +56,12 @@ const UserSchema = new Schema(
         name: String,
         img: String, 
       }
-    ]
+    ],
+    lastLogin: {
+      type : Date,
+      required : false,
+      default: () => new Date(),
+    }
   },
   {
     timestamps: true,
