@@ -76,7 +76,7 @@ const PokemonSchema = new Schema(
       required: true,
     },
     hp: {
-      type: String,
+      type: Number,
       required: true,
     },
     attack: {
