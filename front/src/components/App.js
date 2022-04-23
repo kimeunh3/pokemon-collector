@@ -5,6 +5,8 @@ import * as Api from '../api';
 import { loginReducer } from '../reducer';
 
 import LoginPage from './views/LoginPage/LoginPage';
+import NavBar from './views/NavBar/NavBar';
+import LandingPage from './views/LandingPage/LandingPage';
 import { UserStateContext, DispatchContext } from './Context';
 import './App.css';
 
@@ -55,17 +57,19 @@ function App() {
 		);
 	}
 
-	return (
-		<DispatchContext.Provider value={dispatch}>
-			<UserStateContext.Provider value={userState}>
-				<Router>
-					<Routes>
-						<Route path='/login' element={<LoginPage />} />
-					</Routes>
-				</Router>
-			</UserStateContext.Provider>
-		</DispatchContext.Provider>
-	);
+  return (
+    <DispatchContext.Provider value={dispatch}>
+      <UserStateContext.Provider value={userState}>
+        <Router>
+          <NavBar />
+          <Routes>
+            <Route path="/home" element={<LandingPage />} />
+            <Route path="/login" element={<LoginPage />} />
+          </Routes>
+        </Router>
+      </UserStateContext.Provider>
+    </DispatchContext.Provider>
+  );
 }
 
 export default App;
