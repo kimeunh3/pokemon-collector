@@ -47,17 +47,17 @@ function App() {
 		fetchCurrentUser();
 	}, []);
 
-<<<<<<< HEAD
 	if (!isFetchCompleted) {
-		return 'loading...';
+		return (
+			<div id='loading'>
+				<img
+					id='loading-image'
+					src={require('./loading.gif')}
+					alt='Loading...'
+				/>
+			</div>
+		);
 	}
-=======
-  if (!isFetchCompleted) {
-    return (
-      <div id="loading"><img id="loading-image" src={require('./loading.gif')} alt="Loading..." /></div>
-    );
-  }
->>>>>>> c2f6d3167e42c3a98817588dcd124e1b8c8b76bb
 
 	return (
 		<DispatchContext.Provider value={dispatch}>
