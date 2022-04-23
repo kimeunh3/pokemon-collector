@@ -1,6 +1,7 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
 import { useNavigate } from 'react-router-dom';
+import './BreadPage.css';
 // import { Link } from 'react-router-dom';
 
 function GridCards({ bread, breadImg }) {
@@ -14,6 +15,7 @@ function GridCards({ bread, breadImg }) {
 		return (
 			<Grid item xs={3}>
 				<div
+					className='bread'
 					style={{ position: 'relative' }}
 					onClick={handleClick}
 					aria-hidden='true'
