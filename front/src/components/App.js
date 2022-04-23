@@ -7,6 +7,7 @@ import { loginReducer } from '../reducer';
 import LoginPage from './views/LoginPage/LoginPage';
 import NavBar from './views/NavBar/NavBar';
 import LandingPage from './views/LandingPage/LandingPage';
+import IllustratedBookPage from './views/IllustratedBookPage/IllustratedBookPage';
 import { UserStateContext, DispatchContext } from './Context';
 import './App.css';
 
@@ -65,6 +66,7 @@ function App() {
           <Routes>
             <Route path="/home" element={<LandingPage />} />
             <Route path="/login" element={<LoginPage />} />
+			<Route path="/IllustratedBook" element={<IllustratedBookPage />} />
           </Routes>
         </Router>
       </UserStateContext.Provider>

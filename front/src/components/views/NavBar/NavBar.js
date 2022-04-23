@@ -85,7 +85,7 @@ function NavBar() {
               <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '1.1vw' }}>퀴즈</Button>
             </Grid>
             <Grid item xs={2}>
-              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '1.1vw' }}>도감</Button>
+              <Button color="inherit" onClick={() => navigate('/IllustratedBook')} style={{ fontSize: '1.1vw' }}>도감</Button>
             </Grid>
             <Grid item xs={2}>
               <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '1.1vw' }}>통계</Button>
@@ -143,7 +143,7 @@ function NavBar() {
           </ListItem>
           <ListItem>
             <span className="material-symbols-outlined">arrow_right</span>
-            <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>도감</Button>
+            <Button color="inherit" onClick={() => navigate('/IllustratedBook')} style={{ fontSize: '18px' }}>도감</Button>
           </ListItem>
           <ListItem>
             <span className="material-symbols-outlined">arrow_right</span>
