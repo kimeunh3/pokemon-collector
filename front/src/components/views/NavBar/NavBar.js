@@ -75,7 +75,7 @@ function NavBar() {
       <AppBar position="fixed" open={open} style={{ backgroundColor: '#D72A1F', boxShadow: '0 30px black' }}>
         <Toolbar>
           <IconButton edge="start" color="inherit" aria-label="menu" onClick={() => navigate('/home')} style={{ marginRight: '40%' }}>
-            <img alt="" src={require('../images/logo.png')} width="200px" height="70px" />
+            <img alt="" src='/images/NavBar/logo.png' width="200px" height="70px" />
           </IconButton>
           <Grid container id="menu" style={{ textAlign: 'center', alignItems: 'center' }}>
             <Grid item xs={2}>
@@ -164,7 +164,7 @@ function NavBar() {
       }}
       >
         <div style={{ left: '50%', marginLeft: '-55px', position: 'absolute' }}>
-          <img alt="" src={require('../images/nav-icon.png')} width="110px" height="110px" />
+          <img alt="" src='/images/NavBar/nav-icon.png' width="110px" height="110px" />
         </div>
       </div>
     </div>

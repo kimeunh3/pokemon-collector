@@ -10,7 +10,7 @@ function DefaultBookCard() {
   return (
     <Card style={{ width: '220px', justifySelf: 'center' }}>
         <CardMedia style={{ textAlign: 'center'}}>
-            <img alt="" src={require("./pokeball.png")} style={{ marginTop: '1rem', width: "140px" }} />
+            <img alt="" src='images/IllustratedBookPage/pokeball.png' style={{ marginTop: '1rem', width: "140px" }} />
         </CardMedia>
         <CardContent>
             <Typography gutterBottom variant="h5" component="div" style={{ textAlign: 'center' }}>

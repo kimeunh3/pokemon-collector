@@ -63,7 +63,7 @@ function IllustratedBookPage() {
         }}
         >
           {pokemonList.map((num) => (
-              Object.keys(userPokemonList).includes(num) ?  <PokemonBookCard name={userPokemonList[num]} type={type} /> : <DefaultBookCard />
+              Object.keys(userPokemonList).includes(num) ?  <PokemonBookCard name={userPokemonList[num]} type={type} num={Number(num)} /> : <DefaultBookCard />
           ))}
         </div>
         <button type="button" id="go-top" onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })}><span className="material-symbols-outlined">arrow_upward</span></button>
