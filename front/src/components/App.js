@@ -4,11 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import * as Api from '../api';
 import { loginReducer } from '../reducer';
 
-// import Header from './Header';
-// import LoginForm from './user/LoginForm';
-import RegisterForm from './user/RegisterForm';
 import LoginPage from './views/LoginPage/LoginPage';
-import BreadPage from './views/BreadPage/BreadPage';
 import { UserStateContext, DispatchContext } from './Context';
 import './App.css';
 
@@ -63,12 +59,8 @@ function App() {
 		<DispatchContext.Provider value={dispatch}>
 			<UserStateContext.Provider value={userState}>
 				<Router>
-					{/* <Header /> */}
 					<Routes>
-						{/* <Route path="/login" element={<LoginForm />} /> */}
-						<Route path='/register' element={<RegisterForm />} />
 						<Route path='/login' element={<LoginPage />} />
-						<Route path='/bread' element={<BreadPage />} />
 					</Routes>
 				</Router>
 			</UserStateContext.Provider>
