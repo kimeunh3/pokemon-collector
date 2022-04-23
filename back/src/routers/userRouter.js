@@ -60,7 +60,7 @@ userAuthRouter.post("/user/login", async function (req, res, next) {
       });
     }
 
-    res.status(200).send(user);
+    res.status(200).json(user);
   } catch (error) {
     next(error);
   }
@@ -83,7 +83,7 @@ userAuthRouter.get(
         throw new Error(currentUserInfo.errorMessage);
       }
 
-      res.status(200).send(currentUserInfo);
+      res.status(200).json(currentUserInfo);
     } catch (error) {
       next(error);
     }
