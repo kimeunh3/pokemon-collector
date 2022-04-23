@@ -90,7 +90,7 @@ function PokemonDetailPage() {
 										sx={{ border: '1px solid black', borderRadius: '5px' }}
 									>
 										공격력
-										<br /> 35pt
+										<br /> 35 pt
 									</Grid>
 									<Grid
 										item
