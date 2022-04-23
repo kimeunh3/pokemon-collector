@@ -5,7 +5,6 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
 function DefaultBookCard() {
-//   const [Login, setLogin] = useState(true);
 
 
   return (
