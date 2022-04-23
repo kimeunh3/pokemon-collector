@@ -2,6 +2,6 @@
     #menu { display: none; }
   }
   
-  @media screen and (min-width: 901px) {
+@media screen and (min-width: 901px) {
     #Hamburger { display: none; }
   }

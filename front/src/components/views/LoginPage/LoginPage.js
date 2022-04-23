@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
-import RegisterForm from './section/RegisterForm';
+import RegisterForm from './RegisterForm';
 
 function LoginPage() {
 	const [Login, setLogin] = useState(true);
@@ -31,7 +31,8 @@ function LoginPage() {
 				height: '100vh',
 				backgroundImage: 'url(/images/loginBackground.png)',
 				backgroundPosition: 'center center',
-				backgroundSize: '105% 120%',
+				backgroundSize: '100% 100%',
+				minHeight: '740px',
 			}}
 		>
 			<Box
@@ -44,7 +45,7 @@ function LoginPage() {
 					opacity: '0.9',
 					borderRadius: '20px',
 					height: '80%',
-					width: '38%',
+					width: '35%',
 					justifyContent: 'center',
 					minWidth: '450px',
 				}}

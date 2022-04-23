@@ -5,8 +5,8 @@ import * as Api from '../api';
 import { loginReducer } from '../reducer';
 
 import NavBar from './views/NavBar/NavBar';
-import RegisterForm from './user/RegisterForm';
 import LoginPage from './views/LoginPage/LoginPage';
+import LandingPage from './views/LandingPage/LandingPage';
 import BreadPage from './views/BreadPage/BreadPage';
 import { UserStateContext, DispatchContext } from './Context';
 import './App.css';
@@ -64,8 +64,8 @@ function App() {
 				<Router>
 					<NavBar />
 					<Routes>
+						<Route path='/home' element={<LandingPage />} />
 						<Route path='/login' element={<LoginPage />} />
-						<Route path='/register' element={<RegisterForm />} />
 						<Route path='/bread' element={<BreadPage />} />
 					</Routes>
 				</Router>
