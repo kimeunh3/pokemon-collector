@@ -4,9 +4,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import * as Api from '../api';
 import { loginReducer } from '../reducer';
 
-import LoginPage from './views/LoginPage/LoginPage';
 import NavBar from './views/NavBar/NavBar';
+import LoginPage from './views/LoginPage/LoginPage';
 import LandingPage from './views/LandingPage/LandingPage';
+import BreadPage from './views/BreadPage/BreadPage';
 import { UserStateContext, DispatchContext } from './Context';
 import './App.css';
 
@@ -57,19 +58,20 @@ function App() {
 		);
 	}
 
-  return (
-    <DispatchContext.Provider value={dispatch}>
-      <UserStateContext.Provider value={userState}>
-        <Router>
-          <NavBar />
-          <Routes>
-            <Route path="/home" element={<LandingPage />} />
-            <Route path="/login" element={<LoginPage />} />
-          </Routes>
-        </Router>
-      </UserStateContext.Provider>
-    </DispatchContext.Provider>
-  );
+	return (
+		<DispatchContext.Provider value={dispatch}>
+			<UserStateContext.Provider value={userState}>
+				<Router>
+					<NavBar />
+					<Routes>
+						<Route path='/home' element={<LandingPage />} />
+						<Route path='/login' element={<LoginPage />} />
+						<Route path='/bread' element={<BreadPage />} />
+					</Routes>
+				</Router>
+			</UserStateContext.Provider>
+		</DispatchContext.Provider>
+	);
 }
 
 export default App;
