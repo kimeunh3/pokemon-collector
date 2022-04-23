@@ -79,13 +79,13 @@ function NavBar() {
           </IconButton>
           <Grid container id="menu" style={{ textAlign: 'center', alignItems: 'center' }}>
             <Grid item xs={2}>
-              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '1.1vw' }}>포켓몬빵</Button>
+              <Button color="inherit" onClick={() => navigate('/bread')} style={{ fontSize: '1.1vw' }}>포켓몬빵</Button>
             </Grid>
             <Grid item xs={2}>
               <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '1.1vw' }}>퀴즈</Button>
             </Grid>
             <Grid item xs={2}>
-              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '1.1vw' }}>도감</Button>
+              <Button color="inherit" onClick={() => navigate('/IllustratedBook')} style={{ fontSize: '1.1vw' }}>도감</Button>
             </Grid>
             <Grid item xs={2}>
               <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '1.1vw' }}>통계</Button>
@@ -135,7 +135,7 @@ function NavBar() {
         <List>
           <ListItem>
             <span className="material-symbols-outlined">arrow_right</span>
-            <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>포켓몬빵</Button>
+            <Button color="inherit" onClick={() => navigate('/bread')} style={{ fontSize: '18px' }}>포켓몬빵</Button>
           </ListItem>
           <ListItem>
             <span className="material-symbols-outlined">arrow_right</span>
@@ -143,7 +143,7 @@ function NavBar() {
           </ListItem>
           <ListItem>
             <span className="material-symbols-outlined">arrow_right</span>
-            <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>도감</Button>
+            <Button color="inherit" onClick={() => navigate('/IllustratedBook')} style={{ fontSize: '18px' }}>도감</Button>
           </ListItem>
           <ListItem>
             <span className="material-symbols-outlined">arrow_right</span>

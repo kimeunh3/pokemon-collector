@@ -63,13 +63,13 @@ function LandingPage() {
         <Toolbar style={{ width: '100vw' }}>
           <Grid container id="menu" style={{ marginBottom: '80px', textAlign: 'center' }}>
             <Grid item xs={2}>
-              <Button color="inherit" onClick={() => navigate('/')} style={{ fontSize: '2vw' }}>포켓몬빵</Button>
+              <Button color="inherit" onClick={() => navigate('/bread')} style={{ fontSize: '2vw' }}>포켓몬빵</Button>
             </Grid>
             <Grid item xs={2}>
               <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '2vw' }}>퀴즈</Button>
             </Grid>
             <Grid item xs={2}>
-              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '2vw' }}>도감</Button>
+              <Button color="inherit" onClick={() => navigate('/IllustratedBook')} style={{ fontSize: '2vw' }}>도감</Button>
             </Grid>
             <Grid item xs={2}>
               <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '2vw' }}>통계</Button>
@@ -128,7 +128,7 @@ function LandingPage() {
         <List>
           <ListItem>
             <span className="material-symbols-outlined">arrow_right</span>
-            <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>포켓몬빵</Button>
+            <Button color="inherit" onClick={() => navigate('/bread')} style={{ fontSize: '18px' }}>포켓몬빵</Button>
           </ListItem>
           <ListItem>
             <span className="material-symbols-outlined">arrow_right</span>
@@ -136,7 +136,7 @@ function LandingPage() {
           </ListItem>
           <ListItem>
             <span className="material-symbols-outlined">arrow_right</span>
-            <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>도감</Button>
+            <Button color="inherit" onClick={() => navigate('/IllustratedBook')} style={{ fontSize: '18px' }}>도감</Button>
           </ListItem>
           <ListItem>
             <span className="material-symbols-outlined">arrow_right</span>
