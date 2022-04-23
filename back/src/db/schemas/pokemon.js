@@ -60,7 +60,7 @@ const PokemonSchema = new Schema(
         "비행",
         "강철",
       ],
-      required: False,
+      required: false,
       default: "없음",
     },
     height: {
