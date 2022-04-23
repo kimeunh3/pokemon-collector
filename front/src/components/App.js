@@ -7,6 +7,7 @@ import { loginReducer } from '../reducer';
 import NavBar from './views/NavBar/NavBar';
 import LoginPage from './views/LoginPage/LoginPage';
 import LandingPage from './views/LandingPage/LandingPage';
+import IllustratedBookPage from './views/IllustratedBookPage/IllustratedBookPage';
 import BreadPage from './views/BreadPage/BreadPage';
 import PokemonDetailPage from './views/PokemonDetailPage/PokemonDetailPage';
 import { UserStateContext, DispatchContext } from './Context';
@@ -69,6 +70,7 @@ function App() {
 						<Route path='/login' element={<LoginPage />} />
 						<Route path='/bread' element={<BreadPage />} />
 						<Route path='/pokemonDetail' element={<PokemonDetailPage />} />
+						<Route path="/IllustratedBook" element={<IllustratedBookPage />} />
 					</Routes>
 				</Router>
 			</UserStateContext.Provider>
