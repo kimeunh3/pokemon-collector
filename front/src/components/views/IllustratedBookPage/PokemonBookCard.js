@@ -11,7 +11,7 @@ function PokemonBookCard({ name }) {
   
   
     return (
-      <Card onClick={() => navigate('/home')} style={{ width: '220px', justifySelf: 'center', cursor: 'pointer', boxShadow: `inset 0px 0px 30px ${bColor}` }}>
+      <Card onClick={() => navigate('/pokemonDetail')} style={{ width: '220px', justifySelf: 'center', cursor: 'pointer', boxShadow: `inset 0px 0px 30px ${bColor}` }}>
           <CardMedia style={{ textAlign: 'center'}}>
               <img alt="" src={require("./pikachu.png")} style={{ marginTop: '1rem', width: "140px" }} />
           </CardMedia>
