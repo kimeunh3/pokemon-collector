@@ -8,9 +8,9 @@ function GridCards({ bread, breadImg }) {
 				<div style={{ position: 'relative' }}>
 					<a href='/bread'>
 						<img
-							style={{ width: '280px', height: '300px' }}
+							style={{ width: '100%', height: '100%' }}
 							src={breadImg}
-							alt={bread}
+							alt={breadImg}
 						/>
 					</a>
 				</div>

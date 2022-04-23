@@ -15,7 +15,7 @@ function BreadPage() {
 		'images/bread/rocketdan.png',
 	];
 	return (
-		<Container fixed>
+		<Container fixed sx={{ marginTop: '135px' }}>
 			<Typography
 				component='h6'
 				variant='h6'
@@ -28,9 +28,11 @@ function BreadPage() {
 			>
 				남은 포인트: 1000
 			</Typography>
-			<Grid container spacing={7}>
+			<Grid container spacing={4}>
 				{breadImgs.map((breadImg) => (
-					<GridCards bread breadImg={breadImg} />
+					<React.Fragment key={breadImg}>
+						<GridCards bread breadImg={breadImg} />
+					</React.Fragment>
 				))}
 			</Grid>
 		</Container>
