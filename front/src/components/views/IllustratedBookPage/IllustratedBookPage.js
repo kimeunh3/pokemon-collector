@@ -106,7 +106,7 @@ function IllustratedBookPage() {
             <img alt="" src='images/IllustratedBookPage/typeColor.png' />
           </DialogContent>
           <DialogActions>
-            <Button variant="contained" color="primary" onClick={handleClose}>
+            <Button variant="contained" color="inherit" onClick={handleClose}>
               닫기
             </Button>
           </DialogActions>
