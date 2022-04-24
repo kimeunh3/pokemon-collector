@@ -58,8 +58,9 @@ const UserSchema = new Schema(
       }
     ],
     attendance: {
-      type: Boolean,
+      type: Date,
       required : false,
+      default: Date.now(),
     },
     isPointGiven: {
         type: Boolean,
