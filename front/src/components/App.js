@@ -70,7 +70,7 @@ function App() {
 						<Route path='/login' element={<LoginPage />} />
 						<Route path='/bread' element={<BreadPage />} />
 						<Route path='/pokemonDetail' element={<PokemonDetailPage />} />
-						<Route path="/IllustratedBook" element={<IllustratedBookPage />} />
+						<Route path='/IllustratedBook' element={<IllustratedBookPage />} />
 					</Routes>
 				</Router>
 			</UserStateContext.Provider>
