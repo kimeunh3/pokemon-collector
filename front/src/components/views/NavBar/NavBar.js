@@ -1,32 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-// import { UserStateContext } from '../../Context';
 import {
   Toolbar, IconButton, styled, useTheme, Drawer, Button,
   List, Divider, ListItem, Grid,
 } from '@material-ui/core';
 import MuiAppBar from '@material-ui/core/AppBar';
 import './NavBar.css';
+import { UserStateContext, DispatchContext } from '../../Context';
 
 function NavBar() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // const userState = useContext(UserStateContext);
-  // const dispatch = useContext(DispatchContext);
+  const userState = useContext(UserStateContext);
+  const dispatch = useContext(DispatchContext);
 
   // 전역상태에서 user가 null이 아니라면 로그인 성공 상태임.
   // const isLogin = !!userState.user;
 
   // 로그아웃 클릭 시 실행되는 함수
-  // const logout = () => {
-  //   // sessionStorage 에 저장했던 JWT 토큰을 삭제함.
-  //   sessionStorage.removeItem('userToken');
-  //   // dispatch 함수를 이용해 로그아웃함.
-  //   dispatch({ type: 'LOGOUT' });
-  //   // 기본 페이지로 돌아감.
-  //   navigate('/login');
-  // };
+  const logout = () => {
+    // sessionStorage 에 저장했던 JWT 토큰을 삭제함.
+    sessionStorage.removeItem('userToken');
+    // dispatch 함수를 이용해 로그아웃함.
+    dispatch({ type: 'LOGOUT' });
+    // 기본 페이지로 돌아감.
+    navigate('/login');
+  };
+
+  console.log('로그인?')
+  console.log(!!userState.user)
 
   const drawerWidth = 240;
 
@@ -94,7 +97,7 @@ function NavBar() {
               <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '1.1vw' }}>마이페이지</Button>
             </Grid>
             <Grid item xs={2}>
-              <Button color="primary" onClick={() => navigate('/login')} style={{ fontSize: '1.1vw' }}>로그아웃</Button>
+              <Button color="primary" onClick={logout} style={{ fontSize: '1.1vw' }}>로그아웃</Button>
             </Grid>
           </Grid>
           <IconButton
@@ -155,7 +158,7 @@ function NavBar() {
           </ListItem>
           <ListItem>
             <span className="material-symbols-outlined">arrow_right</span>
-            <Button color="primary" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>로그아웃</Button>
+            <Button color="primary" onClick={logout} style={{ fontSize: '18px' }}>로그아웃</Button>
           </ListItem>
         </List>
       </Drawer>

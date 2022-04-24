@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 // import { UserStateContext } from '../../Context';
 import {
@@ -7,9 +7,11 @@ import {
 } from '@material-ui/core';
 import MuiAppBar from '@material-ui/core/AppBar';
 import './LandingPage.css';
+import { DispatchContext } from '../../Context';
 
 function LandingPage() {
   const navigate = useNavigate();
+  const dispatch = useContext(DispatchContext);
 
   const drawerWidth = 240;
 
@@ -50,6 +52,16 @@ function LandingPage() {
     setOpen(false);
   };
 
+  // 로그아웃 클릭 시 실행되는 함수
+  const logout = () => {
+    // sessionStorage 에 저장했던 JWT 토큰을 삭제함.
+    sessionStorage.removeItem('userToken');
+    // dispatch 함수를 이용해 로그아웃함.
+    dispatch({ type: 'LOGOUT' });
+    // 기본 페이지로 돌아감.
+    navigate('/login');
+  };
+
   return (
     <div>
       <AppBar
@@ -78,7 +90,7 @@ function LandingPage() {
               <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '2vw' }}>마이페이지</Button>
             </Grid>
             <Grid item xs={2}>
-              <Button color="primary" onClick={() => navigate('/login')} style={{ fontSize: '2vw' }}>로그아웃</Button>
+              <Button color="primary" onClick={logout} style={{ fontSize: '2vw' }}>로그아웃</Button>
             </Grid>
           </Grid>
           <IconButton
@@ -148,7 +160,7 @@ function LandingPage() {
           </ListItem>
           <ListItem>
             <span className="material-symbols-outlined">arrow_right</span>
-            <Button color="primary" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>로그아웃</Button>
+            <Button color="primary" onClick={logout} style={{ fontSize: '18px' }}>로그아웃</Button>
           </ListItem>
         </List>
       </Drawer>
