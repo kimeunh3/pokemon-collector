@@ -57,11 +57,10 @@ const UserSchema = new Schema(
         img: String, 
       }
     ],
-    lastLogin: {
-      type : Date,
+    attendance: {
+      type: Boolean,
       required : false,
-      default: () => new Date(),
-    }
+    },
   },
   {
     timestamps: true,

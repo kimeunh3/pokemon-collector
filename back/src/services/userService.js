@@ -48,7 +48,6 @@ class userAuthService {
     const id = user.id;
     const name = user.name;
     const description = user.description;
-
     const loginUser = {
       token,
       id,

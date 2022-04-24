@@ -3,7 +3,6 @@ import { Router } from "express";
 import { login_required } from "../middlewares/login_required";
 import { userAuthService } from '../services/userService';
 import { User } from '../db';
-
 const userAuthRouter = Router();
 
 
@@ -49,9 +48,7 @@ userAuthRouter.post("/user/login", async function (req, res, next) {
 
     const email = req.body.email;
     const password = req.body.password;
-
     const user = await userAuthService.getUser({ email, password });
-
     if (user.errorMessage) {
    
       return res.status(400).json({
