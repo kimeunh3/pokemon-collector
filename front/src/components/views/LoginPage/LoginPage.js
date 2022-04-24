@@ -4,12 +4,17 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
+
+import { useNavigate } from 'react-router-dom';
+
 import RegisterForm from './RegisterForm';
 
 function LoginPage() {
 	const [Login, setLogin] = useState(true);
 	const [Email, setEmail] = useState('a@a.com');
 	const [Password, setPassword] = useState('1234');
+
+	const navigate = useNavigate();
 
 	const validateEmail = (email) =>
 		email
@@ -105,6 +110,7 @@ function LoginPage() {
 								color='error'
 								sx={{ width: '40%', margin: 'auto', mt: 3, mb: 2 }}
 								disabled={!isFormValid}
+								onClick={() => navigate('/bread')}
 							>
 								로그인
 							</Button>
