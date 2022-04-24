@@ -99,8 +99,14 @@ class userAuthService {
       const newValue = toUpdate.description;
       user = await User.update({ user_id, fieldToUpdate, newValue });
     }
-
+    
     return user;
+  }
+
+  static async userUpdate({user_id}){
+    const fieldToUpdate = "attendance";
+    const newValue = toUpdate.attendance;
+    const user = await User.update({user_id, fieldToUpdate, newValue});
   }
 
   static async getUserInfo({ user_id }) {

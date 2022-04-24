@@ -61,6 +61,10 @@ const UserSchema = new Schema(
       type: Boolean,
       required : false,
     },
+    isPointGiven: {
+        type: Boolean,
+        required : false,
+    }
   },
   {
     timestamps: true,
