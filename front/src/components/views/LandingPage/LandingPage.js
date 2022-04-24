@@ -5,6 +5,7 @@ import {
   List, Divider, ListItem,
 } from '@material-ui/core';
 import MuiAppBar from '@material-ui/core/AppBar';
+import { DialogActions, DialogContent, Dialog, DialogTitle } from '@mui/material';
 import './LandingPage.css';
 import { UserStateContext, DispatchContext } from '../../Context';
 
@@ -62,8 +63,17 @@ function LandingPage() {
     // dispatch 함수를 이용해 로그아웃함.
     dispatch({ type: 'LOGOUT' });
     // 기본 페이지로 돌아감.
-    navigate('/login');
+    navigate('/home');
   };
+
+  const [openDialog, setOpenDialog] = useState(false);
+
+  const handleDialogOpen = () => {
+    setOpenDialog(true);
+  }
+  const handleDialogClose = () => {
+    setOpenDialog(false);
+  }
 
   return (
     <div>
@@ -100,19 +110,19 @@ function LandingPage() {
             ) : (
               <Grid container id="menu" style={{ marginBottom: '80px', textAlign: 'center' }}>
               <Grid item xs={2}>
-                <Button color="inherit" onClick={() => navigate('/bread')} style={{ fontSize: '2vw' }}>포켓몬빵</Button>
+                <Button color="inherit" onClick={handleDialogOpen} style={{ fontSize: '2vw' }}>포켓몬빵</Button>
               </Grid>
               <Grid item xs={2}>
-                <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '2vw' }}>퀴즈</Button>
+                <Button color="inherit" onClick={handleDialogOpen} style={{ fontSize: '2vw' }}>퀴즈</Button>
               </Grid>
               <Grid item xs={2}>
-                <Button color="inherit" onClick={() => navigate('/IllustratedBook')} style={{ fontSize: '2vw' }}>도감</Button>
+                <Button color="inherit" onClick={handleDialogOpen} style={{ fontSize: '2vw' }}>도감</Button>
               </Grid>
               <Grid item xs={2}>
-                <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '2vw' }}>통계</Button>
+                <Button color="inherit" onClick={handleDialogOpen} style={{ fontSize: '2vw' }}>통계</Button>
               </Grid>
               <Grid item xs={2}>
-                <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '2vw' }}>마이페이지</Button>
+                <Button color="inherit" onClick={handleDialogOpen} style={{ fontSize: '2vw' }}>마이페이지</Button>
               </Grid>
               <Grid item xs={2}>
                 <Button color="primary" onClick={() => navigate('/login')} style={{ fontSize: '2vw' }}>로그인</Button>
@@ -194,23 +204,23 @@ function LandingPage() {
           <List>
             <ListItem>
               <span className="material-symbols-outlined">arrow_right</span>
-              <Button color="inherit" onClick={() => navigate('/bread')} style={{ fontSize: '18px' }}>포켓몬빵</Button>
+              <Button color="inherit" onClick={handleDialogOpen} style={{ fontSize: '18px' }}>포켓몬빵</Button>
             </ListItem>
             <ListItem>
               <span className="material-symbols-outlined">arrow_right</span>
-              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>퀴즈</Button>
+              <Button color="inherit" onClick={handleDialogOpen} style={{ fontSize: '18px' }}>퀴즈</Button>
             </ListItem>
             <ListItem>
               <span className="material-symbols-outlined">arrow_right</span>
-              <Button color="inherit" onClick={() => navigate('/IllustratedBook')} style={{ fontSize: '18px' }}>도감</Button>
+              <Button color="inherit" onClick={handleDialogOpen} style={{ fontSize: '18px' }}>도감</Button>
             </ListItem>
             <ListItem>
               <span className="material-symbols-outlined">arrow_right</span>
-              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>통계</Button>
+              <Button color="inherit" onClick={handleDialogOpen} style={{ fontSize: '18px' }}>통계</Button>
             </ListItem>
             <ListItem>
               <span className="material-symbols-outlined">arrow_right</span>
-              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>마이페이지</Button>
+              <Button color="inherit" onClick={handleDialogOpen} style={{ fontSize: '18px' }}>마이페이지</Button>
             </ListItem>
             <ListItem>
               <span className="material-symbols-outlined">arrow_right</span>
@@ -226,6 +236,17 @@ function LandingPage() {
       >
         <img alt="" src={require('../images/poster.png')} style={{ height: '500px' }} />
       </div>
+      <Dialog open={openDialog} onClose={handleDialogClose} style={{ zIndex: '10000' }}>
+        <DialogTitle>pokemon-collector</DialogTitle>
+        <DialogContent>
+          로그인 후 이용가능한 서비스입니다!
+        </DialogContent>
+        <DialogActions>
+          <Button variant="contained" color="inherit" onClick={handleDialogClose}>
+            닫기
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }
