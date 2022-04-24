@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -10,9 +11,45 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 
+
+import * as Api from "../../../api";
+
 function RegisterPage({ setLogin }) {
+	// const navigate = useNavigate();
+
+	// useState로 nickname 상태를 생성함.
+	const [nickname, setNickname] = useState("");
+	// useState로 email 상태를 생성함.
+	const [email, setEmail] = useState("");
+	// useState로 password 상태를 생성함.
+	const [password, setPassword] = useState("");
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+	
+		try {
+		  // "user/register" 엔드포인트로 post요청함.
+		  await Api.post("user/register", {
+			email,
+			password,
+			nickname,
+			'sex': 'Female',
+			'age': 25,
+			'interest': 5,
+			'likeType': '물'
+		  });
+	
+		  // 로그인 페이지로 이동함.
+		//   navigate("/login");
+		} catch (err) {
+		  console.log("회원가입에 실패하였습니다.", err);
+		}
+	  };
+	
+  
+
 	return (
-		<Box component='form' sx={{ display: 'flex', flexDirection: 'column' }}>
+		<Box component='form' sx={{ display: 'flex', flexDirection: 'column' }} onSubmit={handleSubmit}>
 			<TextField
 				margin='normal'
 				required
@@ -20,6 +57,7 @@ function RegisterPage({ setLogin }) {
 				label='닉네임'
 				name='nickname'
 				autoComplete='nickname'
+				onChange={(e) => setNickname(e.target.value)}
 				autoFocus
 				sx={{ width: '70%', margin: 'auto', marginBottom: '4%' }}
 			/>
@@ -37,6 +75,7 @@ function RegisterPage({ setLogin }) {
 				label='이메일'
 				name='email'
 				autoComplete='email'
+				onChange={(e) => setEmail(e.target.value)}
 				sx={{ width: '70%', margin: 'auto', marginBottom: '4%' }}
 			/>
 			<TextField
@@ -47,6 +86,7 @@ function RegisterPage({ setLogin }) {
 				type='password'
 				id='password'
 				autoComplete='current-password'
+				onChange={(e) => setPassword(e.target.value)}
 				sx={{ width: '70%', margin: 'auto' }}
 			/>
 			<Button
