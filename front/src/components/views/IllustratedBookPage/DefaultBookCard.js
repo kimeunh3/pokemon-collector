@@ -4,8 +4,11 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
-function DefaultBookCard() {
+function DefaultBookCard({ selectType1, selectType2, searchName }) {
 
+  if (selectType1 !== '10' ) return null;
+  if (selectType2 !== '10' ) return null;
+  if (searchName) return null;
 
   return (
     <Card style={{ width: '220px', justifySelf: 'center' }}>
