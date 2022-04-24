@@ -1,20 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
-
 import { useNavigate } from 'react-router-dom';
+
+import * as Api from "../../../api";
+import { DispatchContext } from "../../Context";
 
 import RegisterForm from './RegisterForm';
 
 function LoginPage() {
 	const [Login, setLogin] = useState(true);
-	const [Email, setEmail] = useState('a@a.com');
-	const [Password, setPassword] = useState('1234');
+	const [email, setEmail] = useState('a@a.com');
+	const [password, setPassword] = useState('1234');
 
 	const navigate = useNavigate();
+	const dispatch = useContext(DispatchContext);
 
 	const validateEmail = (email) =>
 		email
@@ -22,11 +25,40 @@ function LoginPage() {
 			.match(
 				/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 			);
-	const isEmailValid = validateEmail(Email);
+	const isEmailValid = validateEmail(email);
 	// 비밀번호가 4글자 이상인지 여부를 확인함.
-	const isPasswordValid = Password.length >= 4;
+	const isPasswordValid = password.length >= 4;
 	// 이메일과 비밀번호 조건이 동시에 만족되는지 확인함.
 	const isFormValid = isEmailValid && isPasswordValid;
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+	
+		try {
+		  // "user/login" 엔드포인트로 post요청함.
+		  const res = await Api.post("user/login", {
+			email,
+			password
+		  });
+		  // 유저 정보는 response의 data임.
+		  const user = res.data;
+		  // JWT 토큰은 유저 정보의 token임.
+		  const jwtToken = user.token;
+		  // sessionStorage에 "userToken"이라는 키로 JWT 토큰을 저장함.
+		  sessionStorage.setItem("userToken", jwtToken);
+		  // dispatch 함수를 이용해 로그인 성공 상태로 만듦.
+		  dispatch({
+			type: "LOGIN_SUCCESS",
+			payload: user,
+		  });
+	
+		  // 기본 페이지로 이동함.
+		  navigate("/home", { replace: true });
+		} catch (err) {
+		  console.log("로그인에 실패하였습니다.\n", err);
+		}
+	  };
+	
 
 	return (
 		<Container
@@ -110,7 +142,7 @@ function LoginPage() {
 								color='error'
 								sx={{ width: '40%', margin: 'auto', mt: 3, mb: 2 }}
 								disabled={!isFormValid}
-								onClick={() => navigate('/bread')}
+								onClick={handleSubmit}
 							>
 								로그인
 							</Button>
