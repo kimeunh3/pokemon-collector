@@ -16,7 +16,7 @@ function NavBar() {
   const dispatch = useContext(DispatchContext);
 
   // 전역상태에서 user가 null이 아니라면 로그인 성공 상태임.
-  // const isLogin = !!userState.user;
+  const isLogin = !!userState.user;
 
   // 로그아웃 클릭 시 실행되는 함수
   const logout = () => {
@@ -29,7 +29,7 @@ function NavBar() {
   };
 
   console.log('로그인?')
-  console.log(!!userState.user)
+  console.log(isLogin)
 
   const drawerWidth = 240;
 
@@ -70,7 +70,7 @@ function NavBar() {
     setOpen(false);
   };
 
-  // login page에서는 NavBar가 뜨지 않도록 설정
+  // login page와 home에서는 NavBar가 뜨지 않도록 설정
   if (location.pathname === '/login' || location.pathname === '/home') return null;
 
   return (
@@ -80,26 +80,49 @@ function NavBar() {
           <IconButton edge="start" color="inherit" aria-label="menu" onClick={() => navigate('/home')} style={{ marginRight: '40%' }}>
             <img alt="" src={require('../images/logo.png')} width="200px" height="70px" />
           </IconButton>
-          <Grid container id="menu" style={{ textAlign: 'center', alignItems: 'center' }}>
-            <Grid item xs={2}>
-              <Button color="inherit" onClick={() => navigate('/bread')} style={{ fontSize: '1.1vw' }}>포켓몬빵</Button>
+          {isLogin ? (
+            <Grid container id="menu" style={{ textAlign: 'center', alignItems: 'center' }}>
+              <Grid item xs={2}>
+                <Button color="inherit" onClick={() => navigate('/bread')} style={{ fontSize: '1.1vw' }}>포켓몬빵</Button>
+              </Grid>
+              <Grid item xs={2}>
+                <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '1.1vw' }}>퀴즈</Button>
+              </Grid>
+              <Grid item xs={2}>
+                <Button color="inherit" onClick={() => navigate('/IllustratedBook')} style={{ fontSize: '1.1vw' }}>도감</Button>
+              </Grid>
+              <Grid item xs={2}>
+                <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '1.1vw' }}>통계</Button>
+              </Grid>
+              <Grid item xs={2}>
+                <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '1.1vw' }}>마이페이지</Button>
+              </Grid>
+              <Grid item xs={2}>
+                <Button color="primary" onClick={logout} style={{ fontSize: '1.1vw' }}>로그아웃</Button>
+              </Grid>
             </Grid>
-            <Grid item xs={2}>
-              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '1.1vw' }}>퀴즈</Button>
+          ) : (
+            <Grid container id="menu" style={{ textAlign: 'center', alignItems: 'center' }}>
+              <Grid item xs={2}>
+                <Button color="inherit" onClick={() => navigate('/bread')} style={{ fontSize: '1.1vw' }}>포켓몬빵</Button>
+              </Grid>
+              <Grid item xs={2}>
+                <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '1.1vw' }}>퀴즈</Button>
+              </Grid>
+              <Grid item xs={2}>
+                <Button color="inherit" onClick={() => navigate('/IllustratedBook')} style={{ fontSize: '1.1vw' }}>도감</Button>
+              </Grid>
+              <Grid item xs={2}>
+                <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '1.1vw' }}>통계</Button>
+              </Grid>
+              <Grid item xs={2}>
+                <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '1.1vw' }}>마이페이지</Button>
+              </Grid>
+              <Grid item xs={2}>
+                <Button color="primary" onClick={() => navigate('/login')} style={{ fontSize: '1.1vw' }}>로그인</Button>
+              </Grid>
             </Grid>
-            <Grid item xs={2}>
-              <Button color="inherit" onClick={() => navigate('/IllustratedBook')} style={{ fontSize: '1.1vw' }}>도감</Button>
-            </Grid>
-            <Grid item xs={2}>
-              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '1.1vw' }}>통계</Button>
-            </Grid>
-            <Grid item xs={2}>
-              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '1.1vw' }}>마이페이지</Button>
-            </Grid>
-            <Grid item xs={2}>
-              <Button color="primary" onClick={logout} style={{ fontSize: '1.1vw' }}>로그아웃</Button>
-            </Grid>
-          </Grid>
+          )}
           <IconButton
             id="Hamburger"
             color="info"
@@ -135,32 +158,61 @@ function NavBar() {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <List>
-          <ListItem>
-            <span className="material-symbols-outlined">arrow_right</span>
-            <Button color="inherit" onClick={() => navigate('/bread')} style={{ fontSize: '18px' }}>포켓몬빵</Button>
-          </ListItem>
-          <ListItem>
-            <span className="material-symbols-outlined">arrow_right</span>
-            <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>퀴즈</Button>
-          </ListItem>
-          <ListItem>
-            <span className="material-symbols-outlined">arrow_right</span>
-            <Button color="inherit" onClick={() => navigate('/IllustratedBook')} style={{ fontSize: '18px' }}>도감</Button>
-          </ListItem>
-          <ListItem>
-            <span className="material-symbols-outlined">arrow_right</span>
-            <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>통계</Button>
-          </ListItem>
-          <ListItem>
-            <span className="material-symbols-outlined">arrow_right</span>
-            <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>마이페이지</Button>
-          </ListItem>
-          <ListItem>
-            <span className="material-symbols-outlined">arrow_right</span>
-            <Button color="primary" onClick={logout} style={{ fontSize: '18px' }}>로그아웃</Button>
-          </ListItem>
-        </List>
+        {isLogin ? (
+          <List>
+            <ListItem>
+              <span className="material-symbols-outlined">arrow_right</span>
+              <Button color="inherit" onClick={() => navigate('/bread')} style={{ fontSize: '18px' }}>포켓몬빵</Button>
+            </ListItem>
+            <ListItem>
+              <span className="material-symbols-outlined">arrow_right</span>
+              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>퀴즈</Button>
+            </ListItem>
+            <ListItem>
+              <span className="material-symbols-outlined">arrow_right</span>
+              <Button color="inherit" onClick={() => navigate('/IllustratedBook')} style={{ fontSize: '18px' }}>도감</Button>
+            </ListItem>
+            <ListItem>
+              <span className="material-symbols-outlined">arrow_right</span>
+              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>통계</Button>
+            </ListItem>
+            <ListItem>
+              <span className="material-symbols-outlined">arrow_right</span>
+              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>마이페이지</Button>
+            </ListItem>
+            <ListItem>
+              <span className="material-symbols-outlined">arrow_right</span>
+              <Button color="primary" onClick={logout} style={{ fontSize: '18px' }}>로그아웃</Button>
+            </ListItem>
+          </List>
+        ) : (
+          <List>
+            <ListItem>
+              <span className="material-symbols-outlined">arrow_right</span>
+              <Button color="inherit" onClick={() => navigate('/bread')} style={{ fontSize: '18px' }}>포켓몬빵</Button>
+            </ListItem>
+            <ListItem>
+              <span className="material-symbols-outlined">arrow_right</span>
+              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>퀴즈</Button>
+            </ListItem>
+            <ListItem>
+              <span className="material-symbols-outlined">arrow_right</span>
+              <Button color="inherit" onClick={() => navigate('/IllustratedBook')} style={{ fontSize: '18px' }}>도감</Button>
+            </ListItem>
+            <ListItem>
+              <span className="material-symbols-outlined">arrow_right</span>
+              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>통계</Button>
+            </ListItem>
+            <ListItem>
+              <span className="material-symbols-outlined">arrow_right</span>
+              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>마이페이지</Button>
+            </ListItem>
+            <ListItem>
+              <span className="material-symbols-outlined">arrow_right</span>
+              <Button color="primary" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>로그인</Button>
+            </ListItem>
+          </List>
+        )}
       </Drawer>
       <div style={{
         position: 'fixed', top: '54px', width: '100%', zIndex: '9999',
