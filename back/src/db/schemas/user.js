@@ -64,6 +64,7 @@ const UserSchema = new Schema(
     isPointGiven: {
         type: Boolean,
         required : false,
+        default: false,
     }
   },
   {
