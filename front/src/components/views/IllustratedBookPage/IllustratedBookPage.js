@@ -12,7 +12,34 @@ function IllustratedBookPage() {
   const [selectType2, setSelectType2] = useState(10);
   const [searchName, setSearchName] = useState();
   const [isOpen, setIsOpen] = useState(false);
-  const userPokemonList = { 1: "이상해씨", 10 : "캐터피", 11 : "단데기", 22: "깨비드릴조", 25 : "피카츄" };
+  const userPokemonList = [
+    {
+      id: 1,
+      name: "이상해씨"
+    },
+    {
+      id: 10,
+      name: "캐터피"
+    },
+    {
+      id: 11,
+      name: "단데기"
+    },
+    {
+      id: 22,
+      name: "깨비드릴조"
+    },
+    {
+      id: 25,
+      name: "피카츄"
+    }
+  ]
+
+  const userPokemonObj = {};
+  userPokemonList .forEach(value => {
+    userPokemonObj[value.id] = value.name
+  });
+
   const pokemonNumber = Object.keys(userPokemonList).length;
 
   const pokemonList = [];
@@ -123,7 +150,7 @@ function IllustratedBookPage() {
         }}
         >
           {pokemonList.map((num) => (
-              Object.keys(userPokemonList).includes(num) ?  <PokemonBookCard name={userPokemonList[num]} selectType1={String(selectType1)} selectType2={String(selectType2)} searchName={searchName} num={Number(num)} /> : <DefaultBookCard selectType1={String(selectType1)} selectType2={String(selectType2)} searchName={searchName} />
+              Object.keys(userPokemonObj).includes(num) ?  <PokemonBookCard name={userPokemonObj[num]} selectType1={String(selectType1)} selectType2={String(selectType2)} searchName={searchName} num={Number(num)} /> : <DefaultBookCard selectType1={String(selectType1)} selectType2={String(selectType2)} searchName={searchName} />
           ))}
         </div>
         <button type="button" id="go-top" onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })}><span className="material-symbols-outlined">arrow_upward</span></button>
