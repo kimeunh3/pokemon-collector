@@ -96,8 +96,8 @@ userAuthRouter.put(
   async function (req, res, next) {
     try {
       const user_id = req.params.id;
-
-      const attendance = new Date();
+      
+      const attendance = new Date().toLocaleString();
 
       const toUpdate = {attendance};
 
