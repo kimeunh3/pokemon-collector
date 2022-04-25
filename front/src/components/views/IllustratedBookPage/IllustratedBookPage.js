@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
@@ -7,33 +7,22 @@ import { DialogActions, DialogContent, Button, Dialog, DialogTitle, TextField } 
 import DefaultBookCard from './DefaultBookCard';
 import PokemonBookCard from './PokemonBookCard';
 
+import * as Api from "../../../api";
+
 function IllustratedBookPage() {
   const [selectType1, setSelectType1] = useState(10);
   const [selectType2, setSelectType2] = useState(10);
   const [searchName, setSearchName] = useState();
   const [isOpen, setIsOpen] = useState(false);
-  const userPokemonList = [
-    {
-      id: 1,
-      name: "이상해씨"
-    },
-    {
-      id: 10,
-      name: "캐터피"
-    },
-    {
-      id: 11,
-      name: "단데기"
-    },
-    {
-      id: 22,
-      name: "깨비드릴조"
-    },
-    {
-      id: 25,
-      name: "피카츄"
-    }
-  ]
+  const [userPokemonList, setUserPokemonList] = useState([]);
+
+  useEffect(() => {
+    Api
+      .get("user/current")
+      .then(res => {
+        setUserPokemonList(res.data.stickers)});
+  }, []);
+    
 
   const userPokemonObj = {};
   userPokemonList .forEach(value => {
