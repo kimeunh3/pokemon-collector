@@ -6,8 +6,8 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import { useNavigate } from 'react-router-dom';
 
-import * as Api from "../../../api";
-import { DispatchContext } from "../../Context";
+import * as Api from '../../../api';
+import { DispatchContext } from '../../Context';
 
 import RegisterForm from './RegisterForm';
 
@@ -33,32 +33,31 @@ function LoginPage() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-	
+
 		try {
-		  // "user/login" 엔드포인트로 post요청함.
-		  const res = await Api.post("user/login", {
-			email,
-			password
-		  });
-		  // 유저 정보는 response의 data임.
-		  const user = res.data;
-		  // JWT 토큰은 유저 정보의 token임.
-		  const jwtToken = user.token;
-		  // sessionStorage에 "userToken"이라는 키로 JWT 토큰을 저장함.
-		  sessionStorage.setItem("userToken", jwtToken);
-		  // dispatch 함수를 이용해 로그인 성공 상태로 만듦.
-		  dispatch({
-			type: "LOGIN_SUCCESS",
-			payload: user,
-		  });
-	
-		  // 기본 페이지로 이동함.
-		  navigate("/home", { replace: true });
+			// "user/login" 엔드포인트로 post요청함.
+			const res = await Api.post('user/login', {
+				email,
+				password,
+			});
+			// 유저 정보는 response의 data임.
+			const user = res.data;
+			// JWT 토큰은 유저 정보의 token임.
+			const jwtToken = user.token;
+			// sessionStorage에 "userToken"이라는 키로 JWT 토큰을 저장함.
+			sessionStorage.setItem('userToken', jwtToken);
+			// dispatch 함수를 이용해 로그인 성공 상태로 만듦.
+			dispatch({
+				type: 'LOGIN_SUCCESS',
+				payload: user,
+			});
+
+			// 기본 페이지로 이동함.
+			navigate('/home', { replace: true });
 		} catch (err) {
-		  console.log("로그인에 실패하였습니다.\n", err);
+			console.log('로그인에 실패하였습니다.\n', err);
 		}
-	  };
-	
+	};
 
 	return (
 		<Container
