@@ -62,11 +62,13 @@ function LoginPage() {
 	return (
 		<Container
 			component='main'
-			maxWidth='xl'
+			maxWidth='Infinity'
 			sx={{
 				height: '100vh',
+				// width: '100%',
+				// height: 'auto',
 				backgroundImage: 'url(/images/loginBackground.png)',
-				backgroundPosition: 'center center',
+				backgroundPosition: 'center',
 				backgroundSize: '100% 100%',
 				minHeight: '740px',
 			}}
@@ -83,7 +85,7 @@ function LoginPage() {
 					height: '80%',
 					width: '35%',
 					justifyContent: 'center',
-					minWidth: '450px',
+					// minWidth: '450px',
 				}}
 				marginRight={10}
 			>
