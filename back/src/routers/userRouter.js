@@ -49,6 +49,9 @@ userAuthRouter.post("/user/login", async function (req, res, next) {
     const email = req.body.email;
     const password = req.body.password;
     const user = await userAuthService.getUser({ email, password });
+    if (user.attendance ){
+
+    }
     if (user.errorMessage) {
    
       return res.status(400).json({
@@ -87,6 +90,28 @@ userAuthRouter.get(
   }
 );
 
+userAuthRouter.put(
+  "/users/:id",
+  login_required,
+  async function (req, res, next) {
+    try {
+      const user_id = req.params.id;
+
+      const attendance = new Date();
+
+      const toUpdate = {attendance};
+
+      const updatedUser = await userAuthService.setUser({user_id, toUpdate});
+
+      if (updatedUser.errorMessgae){
+        throw new Error(updatedUser.errorMessage);
+      }
+      res.status(200).json(updatedUser);
+    } catch(error){
+      next(error);
+    }
+  }
+);
 
 
 
