@@ -6,10 +6,10 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import { useNavigate } from 'react-router-dom';
 
-import * as Api from '../../../api';
+import * as Api from '../../api';
 import { DispatchContext } from '../../Context';
 
-import RegisterForm from './RegisterForm';
+import RegisterForm from './components/ResiterForm/RegisterForm';
 
 function LoginPage() {
 	const [Login, setLogin] = useState(true);
@@ -65,7 +65,8 @@ function LoginPage() {
 			maxWidth='Infinity'
 			sx={{
 				height: '100vh',
-				backgroundImage: 'url(/images/loginBackground.png)',
+				backgroundImage:
+					'url(https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/front/loginBackground.png)',
 				backgroundPosition: 'center',
 				backgroundSize: '100% 100%',
 				minHeight: '740px',

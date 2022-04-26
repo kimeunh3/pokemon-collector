@@ -10,7 +10,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 
-import * as Api from '../../../api';
+import * as Api from '../../../../api';
 
 function RegisterPage({ setLogin }) {
 	// const navigate = useNavigate();

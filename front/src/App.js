@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useReducer } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import * as Api from '../api';
-import { loginReducer } from '../reducer';
+import * as Api from './api';
+import { loginReducer } from './reducer';
 
-import NavBar from './views/NavBar/NavBar';
-import LoginPage from './views/LoginPage/LoginPage';
-import LandingPage from './views/LandingPage/LandingPage';
-import IllustratedBookPage from './views/IllustratedBookPage/IllustratedBookPage';
-import BreadPage from './views/BreadPage/BreadPage';
-import PokemonDetailPage from './views/PokemonDetailPage/PokemonDetailPage';
+import NavBar from './pages/NavBar/NavBar';
+import LoginPage from './pages/LoginPage/LoginPage';
+import LandingPage from './pages/LandingPage/LandingPage';
+import IllustratedBookPage from './pages/IllustratedBookPage/IllustratedBookPage';
+import BreadPage from './pages/BreadPage/BreadPage';
+import PokemonDetailPage from './pages/PokemonDetailPage/PokemonDetailPage';
 import { UserStateContext, DispatchContext } from './Context';
 import './App.css';
 
