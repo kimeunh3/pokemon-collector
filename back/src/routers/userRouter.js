@@ -91,11 +91,11 @@ userAuthRouter.get(
 );
 
 userAuthRouter.put(
-  "/users/:id",
+  "/user/current",
   login_required,
   async function (req, res, next) {
     try {
-      const user_id = req.params.id;
+      const user_id = req.currentUserId;
       
       const attendance = new Date().toLocaleString();
 
