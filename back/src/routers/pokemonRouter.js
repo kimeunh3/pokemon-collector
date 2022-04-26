@@ -45,4 +45,19 @@ pokemonAuthRouter.get("/pokemon/:id/name", async (req, res, next) => {
   }
 });
 
+pokemonAuthRouter.get("/drawPokemon", async (req, res, next) => {
+  try {
+    //pokemon 이름 가져오기
+    const pokemonName = await PokemonAuthService.getDrewPokemonName();
+
+    if (pokemonName.errorMessage) {
+      throw new Error(pokemonName.errorMessage);
+    }
+
+    res.status(200).json(pokemonName);
+  } catch (error) {
+    next(error);
+  }
+});
+
 export { pokemonAuthRouter };

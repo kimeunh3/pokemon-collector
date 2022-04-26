@@ -1,4 +1,5 @@
 import { Pokemon } from "../db";
+import {draw} from "../util/draw";
 
 class PokemonAuthService {
   static async getPokemon({ id }) {
@@ -25,6 +26,22 @@ class PokemonAuthService {
     }
 
     return pokemonName;
+  }
+
+  static async getDrewPokemonName(){
+    
+    const id = await draw.drawPokemonid()
+    const pokemonName = await Pokemon.findNameById({ id });
+    
+    console.log(pokemonName)
+
+    if (!pokemonName) {
+      const errorMessage =
+        "해당 번호를 가진 포켓몬이 없습니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+
+    return pokemonName
   }
 }
 
