@@ -100,7 +100,12 @@ function LoginPage() {
 				marginRight={10}
 			>
 				<Container>
-					<img src='/images/logo.png' alt='Logo' width='300px' height='100px' />
+					<img
+						src='https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/front/logo.png'
+						alt='Logo'
+						width='300px'
+						height='100px'
+					/>
 					<Typography component='h4' variant='h4' mt={4} marginLeft={5} mb={4}>
 						환영합니다!
 					</Typography>

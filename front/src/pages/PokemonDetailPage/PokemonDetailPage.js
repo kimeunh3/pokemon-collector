@@ -32,7 +32,7 @@ function PokemonDetailPage() {
 							</Box>
 							<CardMedia
 								component='img'
-								image='images/pokemon/25.png'
+								image='https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/pokemons/25.png'
 								alt='pokemon'
 								sx={{ width: '100%', height: '100%', padding: '20px' }}
 							/>
