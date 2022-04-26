@@ -3,6 +3,8 @@ import {
 	Button,
 } from '@mui/material';
 
+import './StatisticsButton.css';
+
 function StatisticsButton({ imageSrc, text, bColor }) {
 
     const styles = {
@@ -27,7 +29,7 @@ function StatisticsButton({ imageSrc, text, bColor }) {
             className="mouse"
             style={styles.paperContainer}
         >
-            <div style={{ backgroundColor: bColor, borderRadius: '5px' }}>{text}</div>
+            <div className="text" style={{ backgroundColor: bColor, borderRadius: '5px' }}>{text}</div>
         </Button>
 	);
 }
