@@ -11,6 +11,8 @@ function GridCards({ bread, breadImg }) {
 		navigate('/pokemonDetail');
 	};
 
+	const breadImgSrc = `https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/front/bread/${breadImg}.png`;
+
 	if (bread) {
 		return (
 			<Grid item xs={3}>
@@ -22,7 +24,7 @@ function GridCards({ bread, breadImg }) {
 				>
 					<img
 						style={{ width: '100%', height: '100%' }}
-						src={breadImg}
+						src={breadImgSrc}
 						alt={breadImg}
 					/>
 				</div>

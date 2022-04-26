@@ -6,13 +6,13 @@ import GridCards from './components/BreadGridCard/BreadGridCards';
 
 function BreadPage() {
 	const breadImgs = [
-		'images/bread/digda.png',
-		'images/bread/ggobugi.png',
-		'images/bread/gouos.png',
-		'images/bread/pairi.png',
-		'images/bread/pikachu.png',
-		'images/bread/purin.png',
-		'images/bread/rocketdan.png',
+		'digda',
+		'ggobugi',
+		'gouos',
+		'pairi',
+		'pikachu',
+		'purin',
+		'rocketdan',
 	];
 	return (
 		<Container fixed sx={{ marginTop: '135px' }}>
