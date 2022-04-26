@@ -4,52 +4,52 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
-import PropTypes from 'prop-types';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 
-
-import * as Api from "../../../api";
+import * as Api from '../../../api';
 
 function RegisterPage({ setLogin }) {
 	// const navigate = useNavigate();
 
 	// useState로 nickname 상태를 생성함.
-	const [nickname, setNickname] = useState("");
+	const [nickname, setNickname] = useState('');
 	// useState로 email 상태를 생성함.
-	const [email, setEmail] = useState("");
+	const [email, setEmail] = useState('');
 	// useState로 password 상태를 생성함.
-	const [password, setPassword] = useState("");
+	const [password, setPassword] = useState('');
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-	
+
 		try {
-		  // "user/register" 엔드포인트로 post요청함.
-		  await Api.post("user/register", {
-			email,
-			password,
-			nickname,
-			'sex': 'Female',
-			'age': 25,
-			'interest': 5,
-			'likeType': '물'
-		  });
-	
-		  // 로그인 페이지로 이동함.
-		  setLogin(true);
+			// "user/register" 엔드포인트로 post요청함.
+			await Api.post('user/register', {
+				email,
+				password,
+				nickname,
+				sex: 'Female',
+				age: 25,
+				interest: 5,
+				likeType: '물',
+			});
+
+			// 로그인 페이지로 이동함.
+			setLogin(true);
 		} catch (err) {
-		  console.log("회원가입에 실패하였습니다.", err);
+			console.log('회원가입에 실패하였습니다.', err);
 		}
-	  };
-	
-  
+	};
 
 	return (
-		<Box component='form' sx={{ display: 'flex', flexDirection: 'column' }} onSubmit={handleSubmit}>
+		<Box
+			component='form'
+			sx={{ display: 'flex', flexDirection: 'column' }}
+			onSubmit={handleSubmit}
+		>
 			<TextField
 				margin='normal'
 				required
@@ -112,9 +112,5 @@ function RegisterPage({ setLogin }) {
 		</Box>
 	);
 }
-
-RegisterPage.propTypes = {
-	setLogin: PropTypes.node.isRequired,
-};
 
 export default RegisterPage;
