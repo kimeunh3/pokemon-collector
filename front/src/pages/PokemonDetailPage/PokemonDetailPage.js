@@ -8,13 +8,11 @@ function PokemonDetailPage() {
 
 	useEffect(() => {
 		const fetchPokemon = async () => {
-			const response = await Api.get('pokemon', 40);
+			const response = await Api.get('pokemon', 149);
 			setPokemon(response.data);
 		};
 		fetchPokemon();
 	}, []);
-
-	console.log(pokemon);
 
 	return <PokemonCard pokemon={pokemon} />;
 }

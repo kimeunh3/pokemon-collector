@@ -237,7 +237,7 @@ function RegisterPage({ setLogin }) {
 							<MenuItem value='비행'>
 								<Air /> <span> &nbsp; 비행</span>
 							</MenuItem>
-							<MenuItem value='에스파'>
+							<MenuItem value='에스퍼'>
 								<Storm /> <span> &nbsp; 에스파</span>
 							</MenuItem>
 							<MenuItem value='벌레'>
