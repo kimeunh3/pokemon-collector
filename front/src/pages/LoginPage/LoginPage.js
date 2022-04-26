@@ -81,7 +81,7 @@ function LoginPage() {
 					bgcolor: '#FFFFFF',
 					opacity: '0.9',
 					borderRadius: '20px',
-					height: '80%',
+					height: '86%',
 					width: '35%',
 					justifyContent: 'center',
 					minWidth: '450px',
