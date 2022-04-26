@@ -65,8 +65,6 @@ function LoginPage() {
 			maxWidth='Infinity'
 			sx={{
 				height: '100vh',
-				// width: '100%',
-				// height: 'auto',
 				backgroundImage: 'url(/images/loginBackground.png)',
 				backgroundPosition: 'center',
 				backgroundSize: '100% 100%',
@@ -85,7 +83,7 @@ function LoginPage() {
 					height: '80%',
 					width: '35%',
 					justifyContent: 'center',
-					// minWidth: '450px',
+					minWidth: '450px',
 				}}
 				marginRight={10}
 			>
