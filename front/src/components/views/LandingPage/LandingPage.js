@@ -145,14 +145,14 @@ function LandingPage() {
             </span>
           </IconButton>
         </Toolbar>
-        <img alt="" src={require('../images/logo.png')} width="600px" height="210px" />
+        <img alt="" src='/images/NavBar/logo.png' width="600px" height="210px" />
       </AppBar>
       <div style={{
         position: 'absolute', top: '380px', width: '100%', zIndex: '9999',
       }}
       >
         <div style={{ left: '50%', marginLeft: '-100px', position: 'absolute' }}>
-          <img alt="" src={require('../images/nav-icon.png')} width="200px" height="200px" />
+          <img alt="" src='/images/NavBar/nav-icon.png' width="200px" height="200px" />
         </div>
       </div>
       <Drawer
@@ -234,7 +234,7 @@ function LandingPage() {
         position: 'relative', top: '200px', left: '10%',
       }}
       >
-        <img alt="" src={require('../images/poster.png')} style={{ height: '500px' }} />
+        <img alt="" src='/images/landingPage/poster.png' style={{ height: '500px' }} />
       </div>
       <Dialog open={openDialog} onClose={handleDialogClose} style={{ zIndex: '10000' }}>
         <DialogTitle>pokemon-collector</DialogTitle>
