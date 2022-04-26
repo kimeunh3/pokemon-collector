@@ -7,14 +7,27 @@ import TextField from '@mui/material/TextField';
 import { useNavigate } from 'react-router-dom';
 
 import * as Api from '../../api';
+import LoginModal from './components/LoginFailModal/LoginFailModal';
 import { DispatchContext } from '../../Context';
 
-import RegisterForm from './components/ResiterForm/RegisterForm';
+import RegisterForm from './components/RegisterForm/RegisterForm';
 
 function LoginPage() {
 	const [Login, setLogin] = useState(true);
-	const [email, setEmail] = useState('a@a.com');
-	const [password, setPassword] = useState('1234');
+	const [loginFailModal, setLoginFailModal] = useState(false);
+
+	const [inputs, setInputs] = useState({
+		email: '1@1.com',
+		password: '1111',
+	});
+
+	const onChange = (e) => {
+		const { name, value } = e.target;
+		setInputs({
+			...inputs,
+			[name]: value,
+		});
+	};
 
 	const navigate = useNavigate();
 	const dispatch = useContext(DispatchContext);
@@ -25,9 +38,9 @@ function LoginPage() {
 			.match(
 				/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 			);
-	const isEmailValid = validateEmail(email);
+	const isEmailValid = validateEmail(inputs.email);
 	// 비밀번호가 4글자 이상인지 여부를 확인함.
-	const isPasswordValid = password.length >= 4;
+	const isPasswordValid = inputs.password.length >= 4;
 	// 이메일과 비밀번호 조건이 동시에 만족되는지 확인함.
 	const isFormValid = isEmailValid && isPasswordValid;
 
@@ -36,10 +49,7 @@ function LoginPage() {
 
 		try {
 			// "user/login" 엔드포인트로 post요청함.
-			const res = await Api.post('user/login', {
-				email,
-				password,
-			});
+			const res = await Api.post('user/login', inputs);
 			// 유저 정보는 response의 data임.
 			const user = res.data;
 			// JWT 토큰은 유저 정보의 token임.
@@ -55,6 +65,7 @@ function LoginPage() {
 			// 기본 페이지로 이동함.
 			navigate('/home', { replace: true });
 		} catch (err) {
+			setLoginFailModal(true);
 			console.log('로그인에 실패하였습니다.\n', err);
 		}
 	};
@@ -81,7 +92,7 @@ function LoginPage() {
 					bgcolor: '#FFFFFF',
 					opacity: '0.9',
 					borderRadius: '20px',
-					height: '80%',
+					height: '88%',
 					width: '35%',
 					justifyContent: 'center',
 					minWidth: '450px',
@@ -111,7 +122,7 @@ function LoginPage() {
 								name='email'
 								autoComplete='email'
 								autoFocus
-								onChange={(e) => setEmail(e.target.value)}
+								onChange={onChange}
 								sx={{ width: '70%', margin: 'auto', marginBottom: '2%' }}
 							/>
 							{!isEmailValid && (
@@ -129,7 +140,7 @@ function LoginPage() {
 								label='비밀번호'
 								type='password'
 								id='password'
-								onChange={(e) => setPassword(e.target.value)}
+								onChange={onChange}
 								autoComplete='current-password'
 								sx={{ width: '70%', margin: 'auto' }}
 							/>
@@ -167,6 +178,12 @@ function LoginPage() {
 					)}
 				</Container>
 			</Box>
+			{loginFailModal && (
+				<LoginModal
+					openModal={loginFailModal}
+					setOpenModal={setLoginFailModal}
+				/>
+			)}
 		</Container>
 	);
 }
