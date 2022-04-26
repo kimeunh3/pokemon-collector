@@ -10,6 +10,7 @@ import LandingPage from './pages/LandingPage/LandingPage';
 import IllustratedBookPage from './pages/IllustratedBookPage/IllustratedBookPage';
 import BreadPage from './pages/BreadPage/BreadPage';
 import PokemonDetailPage from './pages/PokemonDetailPage/PokemonDetailPage';
+import StatisticsPage from './pages/StatisticsPage/StatisticsPage';
 import { UserStateContext, DispatchContext } from './Context';
 import './App.css';
 
@@ -71,6 +72,7 @@ function App() {
 						<Route path='/bread' element={<BreadPage />} />
 						<Route path='/pokemonDetail' element={<PokemonDetailPage />} />
 						<Route path='/IllustratedBook' element={<IllustratedBookPage />} />
+						<Route path='/StatisticsPage' element={<StatisticsPage />} />
 					</Routes>
 				</Router>
 			</UserStateContext.Provider>

@@ -155,7 +155,7 @@ function NavBar() {
 							<Grid item xs={2}>
 								<Button
 									color='inherit'
-									onClick={() => navigate('/login')}
+									onClick={() => navigate('/StatisticsPage')}
 									style={{ fontSize: '1.1vw' }}
 								>
 									통계
@@ -316,7 +316,7 @@ function NavBar() {
 							<span className='material-symbols-outlined'>arrow_right</span>
 							<Button
 								color='inherit'
-								onClick={() => navigate('/login')}
+								onClick={() => navigate('/StatisticsPage')}
 								style={{ fontSize: '18px' }}
 							>
 								통계

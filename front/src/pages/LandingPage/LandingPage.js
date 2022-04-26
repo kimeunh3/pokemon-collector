@@ -98,7 +98,7 @@ function LandingPage() {
                 <Button color="inherit" onClick={() => navigate('/IllustratedBook')} style={{ fontSize: '2vw' }}>도감</Button>
               </Grid>
               <Grid item xs={2}>
-                <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '2vw' }}>통계</Button>
+                <Button color="inherit" onClick={() => navigate('/StatisticsPage')} style={{ fontSize: '2vw' }}>통계</Button>
               </Grid>
               <Grid item xs={2}>
                 <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '2vw' }}>마이페이지</Button>
@@ -189,7 +189,7 @@ function LandingPage() {
             </ListItem>
             <ListItem>
               <span className="material-symbols-outlined">arrow_right</span>
-              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>통계</Button>
+              <Button color="inherit" onClick={() => navigate('/StatisticsPage')} style={{ fontSize: '18px' }}>통계</Button>
             </ListItem>
             <ListItem>
               <span className="material-symbols-outlined">arrow_right</span>
