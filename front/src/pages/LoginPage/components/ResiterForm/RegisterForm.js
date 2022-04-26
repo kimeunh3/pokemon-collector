@@ -151,7 +151,13 @@ function RegisterPage({ setLogin }) {
 				<Grid item xs={6} sm={6}>
 					<FormControl sx={{ margin: 'auto' }} required>
 						<FormLabel>성별</FormLabel>
-						<RadioGroup row defaultValue='male' name='sex' onChange={onChange}>
+						<RadioGroup
+							row
+							defaultValue='male'
+							name='sex'
+							onChange={onChange}
+							sx={{ minWidth: '30px' }}
+						>
 							<FormControlLabel value='male' control={<Radio />} label='남성' />
 							<FormControlLabel
 								value='female'
