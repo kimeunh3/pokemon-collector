@@ -33,6 +33,17 @@ class User {
     );
     return updatedUser;
   }
+
+  static async updateStickers({user_id, id, name}){
+  
+    const sticker = {id, name};
+    const {stickers} = await UserModel.findOneAndUpdate(
+      {id : user_id},
+      { $push: {stickers: sticker}},
+      {new: true}
+    );
+    return stickers;
+  }
 }
 
 export { User };

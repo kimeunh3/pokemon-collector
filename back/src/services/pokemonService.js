@@ -1,4 +1,5 @@
 import { Pokemon } from "../db";
+import { User } from "../db";
 import {draw} from "../util/draw";
 
 class PokemonAuthService {
@@ -28,20 +29,22 @@ class PokemonAuthService {
     return pokemonName;
   }
 
-  static async getDrewPokemonName(){
+  static async getDrewPokemonIdAndName({user_id}){
     
+    // 확률에 따라 포켓몬 id 반환
     const id = await draw.drawPokemonid()
-    const pokemonName = await Pokemon.findNameById({ id });
-    
-    console.log(pokemonName)
+    const {name} = await Pokemon.findNameById({ id });
 
-    if (!pokemonName) {
+    // 뽑힌 포켓몬을 user 스키마의 stickers에 update
+    const stickers = await User.updateStickers({user_id, id, name});
+
+    if (!stickers) {
       const errorMessage =
-        "해당 번호를 가진 포켓몬이 없습니다. 다시 한 번 확인해 주세요.";
+        "stikers update에 실패했습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 
-    return pokemonName
+    return {id, name, updateState : true}
   }
 }
 
