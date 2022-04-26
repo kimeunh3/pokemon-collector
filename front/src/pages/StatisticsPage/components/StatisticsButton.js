@@ -6,12 +6,12 @@ import {
 
 import './StatisticsButton.css';
 
-function StatisticsButton({ imageSrc, text, bColor, type }) {
+function StatisticsButton({ imgSrc, text, bColor, type }) {
     const navigate = useNavigate();
 
     const styles = {
         paperContainer: {
-            backgroundImage: `url(${imageSrc})`,
+            backgroundImage: `url(https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/${imgSrc}.png)`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundBlendMode: 'multiply',
