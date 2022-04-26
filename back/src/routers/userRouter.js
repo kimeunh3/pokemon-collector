@@ -97,19 +97,29 @@ userAuthRouter.put(
     try {
       const user_id = req.currentUserId;
       
-      const attendance = new Date().toLocaleString();
+      const attendance = new Date();
 
-      const toUpdate = {attendance};
+      const lapse = (1000 * 60 * 60) % 24;
 
-      const updatedUser = await userAuthService.setUser({user_id, toUpdate});
+      if (attendance - lapse > 0){
+        const krAttendance = attendance.toLocaleString();
 
+        const toUpdate = {krAttendance};
+
+        const updatedUser = await userAuthService.setUser({user_id, toUpdate});
+
+        let isPointGiven = true;
+
+        
       if (updatedUser.errorMessgae){
         throw new Error(updatedUser.errorMessage);
       }
       res.status(200).json(updatedUser);
-    } catch(error){
-      next(error);
     }
+      }
+      catch(error){
+        next(error);
+      }
   }
 );
 
