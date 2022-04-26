@@ -13,7 +13,7 @@ function DefaultBookCard({ selectType1, selectType2, searchName }) {
   return (
     <Card style={{ width: '220px', justifySelf: 'center' }}>
         <CardMedia style={{ textAlign: 'center'}}>
-            <img alt="" src='images/IllustratedBookPage/pokeball.png' style={{ marginTop: '1rem', width: "140px" }} />
+            <img alt="" src='https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/pokemons/pokeball.png' style={{ marginTop: '1rem', width: "140px" }} />
         </CardMedia>
         <CardContent>
             <Typography gutterBottom variant="h5" component="div" style={{ textAlign: 'center' }}>

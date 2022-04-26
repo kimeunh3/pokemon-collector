@@ -419,7 +419,7 @@ function NavBar() {
 				<div style={{ left: '50%', marginLeft: '-55px', position: 'absolute' }}>
 					<img
 						alt=''
-						src='/images/NavBar/nav-icon.png'
+						src="https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/front/nav-icon.png"
 						width='110px'
 						height='110px'
 					/>

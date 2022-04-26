@@ -53,7 +53,7 @@ function App() {
 			<div id='loading'>
 				<img
 					id='loading-image'
-					src={require('./loading.gif')}
+					src="https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/front/loading.gif"
 					alt='Loading...'
 				/>
 			</div>
