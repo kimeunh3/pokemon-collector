@@ -56,7 +56,6 @@ function RegisterPage({ setLogin }) {
 		});
 	};
 
-	console.log(inputs);
 	const validateEmail = (email) =>
 		email
 			.toLowerCase()
@@ -156,7 +155,7 @@ function RegisterPage({ setLogin }) {
 							defaultValue='male'
 							name='sex'
 							onChange={onChange}
-							sx={{ minWidth: '30px' }}
+							sx={{ minWidth: '300px' }}
 						>
 							<FormControlLabel value='male' control={<Radio />} label='남성' />
 							<FormControlLabel
