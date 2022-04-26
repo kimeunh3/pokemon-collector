@@ -1,11 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
 	Button,
 } from '@mui/material';
 
 import './StatisticsButton.css';
 
-function StatisticsButton({ imageSrc, text, bColor }) {
+function StatisticsButton({ imageSrc, text, bColor, type }) {
+    const navigate = useNavigate();
 
     const styles = {
         paperContainer: {
@@ -28,6 +30,9 @@ function StatisticsButton({ imageSrc, text, bColor }) {
             color="inherit"
             className="mouse"
             style={styles.paperContainer}
+            onClick={() => {
+                navigate(`/StatisticsPage/TypeStatisticsPage/${type}`);
+            }}
         >
             <div className="text" style={{ backgroundColor: bColor, borderRadius: '5px' }}>{text}</div>
         </Button>
