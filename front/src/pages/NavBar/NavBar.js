@@ -42,9 +42,6 @@ function NavBar() {
 		navigate('/home');
 	};
 
-	console.log('로그인?');
-	console.log(isLogin);
-
 	const drawerWidth = 240;
 
 	const AppBar = styled(MuiAppBar, {
