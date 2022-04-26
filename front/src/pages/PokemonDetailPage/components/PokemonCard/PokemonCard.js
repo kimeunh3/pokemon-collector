@@ -83,8 +83,9 @@ function pokemonCard({ pokemon }) {
 										{typeTwo === '없음' ? '' : typeTwo}
 									</>
 								}
+								sx={{ paddingBottom: 0 }}
 							/>
-							<Box sx={{ width: '90%', margin: 'auto' }}>
+							<Box sx={{ width: '90%', margin: '0' }}>
 								<hr />
 							</Box>
 							<CardMedia

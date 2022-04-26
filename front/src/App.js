@@ -53,7 +53,7 @@ function App() {
 			<div id='loading'>
 				<img
 					id='loading-image'
-					src="https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/front/loading.gif"
+					src='https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/front/loading.gif'
 					alt='Loading...'
 				/>
 			</div>
@@ -69,7 +69,10 @@ function App() {
 						<Route path='/home' element={<LandingPage />} />
 						<Route path='/login' element={<LoginPage />} />
 						<Route path='/bread' element={<BreadPage />} />
-						<Route path='/pokemonDetail' element={<PokemonDetailPage />} />
+						<Route
+							path='/pokemonDetail/:pokemonId'
+							element={<PokemonDetailPage />}
+						/>
 						<Route path='/IllustratedBook' element={<IllustratedBookPage />} />
 					</Routes>
 				</Router>

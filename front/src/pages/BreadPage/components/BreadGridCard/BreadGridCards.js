@@ -5,10 +5,12 @@ import '../../BreadPage.css';
 // import { Link } from 'react-router-dom';
 
 function GridCards({ bread, breadImg }) {
+	const randNum = Math.floor(Math.random() * 151 + 1);
+
 	const navigate = useNavigate();
 	const handleClick = () => {
-		alert('피카츄! 너로 정했다!');
-		navigate('/pokemonDetail');
+		alert(randNum);
+		navigate(`/pokemonDetail/${randNum}`);
 	};
 
 	const breadImgSrc = `https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/front/bread/${breadImg}.png`;
