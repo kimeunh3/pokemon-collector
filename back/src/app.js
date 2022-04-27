@@ -3,9 +3,10 @@ import express from 'express';
 import { errorMiddleware } from './middlewares/errorMiddleware';
 import {userAuthRouter} from './routers/userRouter';
 
+const { swaggerUi, specs } = require('./modules/swagger');
 const app = express();
 
-
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs, {explorer: true }));
 // CORS 에러 방지
 app.use(cors());
 
