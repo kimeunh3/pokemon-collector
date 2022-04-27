@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const attendanceSchema = mongoose.Schema({
-    student: {type : mongoose.Schema.ObjectId, ref : 'user'},
+    student: {type : mongoose.Schema.ObjectId, ref : 'User'},
     date: {
         type: Date,
         // required: true
