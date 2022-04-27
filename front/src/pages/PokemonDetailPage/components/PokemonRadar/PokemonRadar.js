@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import { Container } from '@mui/material';
 import { Chart, registerables } from 'chart.js';
 import { Radar } from 'react-chartjs-2';
 
@@ -8,9 +8,9 @@ Chart.register(...registerables);
 function PokemonRadar({ pokemon }) {
 	const {
 		name,
-		height,
-		weight,
-		totalPoints,
+		// height,
+		// weight,
+		// totalPoints,
 		hp,
 		attack,
 		defense,
@@ -20,9 +20,9 @@ function PokemonRadar({ pokemon }) {
 	} = pokemon;
 	const data = {
 		labels: [
-			'키(m)',
-			'몸무게(kg)',
-			'총 능력치',
+			// '키(m)',
+			// '몸무게(kg)',
+			// '총 능력치',
 			'HP',
 			'공격력',
 			'방어력',
@@ -33,17 +33,7 @@ function PokemonRadar({ pokemon }) {
 		datasets: [
 			{
 				label: `${name}`,
-				data: [
-					height,
-					weight,
-					totalPoints,
-					hp,
-					attack,
-					defense,
-					spAttack,
-					spDefense,
-					speed,
-				],
+				data: [hp, attack, defense, spAttack, spDefense, speed],
 				backgroundColor: [
 					'rgba(255, 99, 132, 0.2)',
 					'rgba(255, 159, 64, 0.2)',
@@ -70,8 +60,15 @@ function PokemonRadar({ pokemon }) {
 	const options = {
 		maintainAspectRatio: false, // 가로세로 비율 설정
 		scales: {
-			y: {
-				beginAtZero: true,
+			r: {
+				ticks: {
+					display: true,
+					beginAtZero: true,
+					stepSize: 30,
+					fontSize: 14,
+				},
+				suggestedMin: 0,
+				suggestedMax: 100,
 			},
 		},
 		legend: {
@@ -81,9 +78,9 @@ function PokemonRadar({ pokemon }) {
 		},
 	};
 	return (
-		<Box>
+		<Container sx={{ backgroundColor: '#FFFFFF' }}>
 			<Radar data={data} options={options} height={400} />
-		</Box>
+		</Container>
 	);
 }
 
