@@ -183,7 +183,8 @@ function RegisterPage({ setLogin }) {
 
 				<Grid item xs={6} sm={6}>
 					<Typography component='legend'>
-						<CatchingPokemon /> <span> 포켓몬 관심도</span>
+						<CatchingPokemon />
+						<span> 포켓몬 관심도</span>
 					</Typography>
 					<Rating
 						type='number'
@@ -204,60 +205,64 @@ function RegisterPage({ setLogin }) {
 							onChange={onChange}
 						>
 							<MenuItem value='노말'>
-								<Adjust /> <span> &nbsp; 노말</span>
+								<Adjust sx={{ color: '#A8A878' }} /> <span> &nbsp; 노말</span>
 							</MenuItem>
 							<MenuItem value='불꽃'>
-								<LocalFireDepartment /> <span> &nbsp; 불꽃</span>
+								<LocalFireDepartment sx={{ color: '#F08030' }} />{' '}
+								<span> &nbsp; 불꽃</span>
 							</MenuItem>
 							<MenuItem value='물'>
-								<Opacity />
+								<Opacity Opacity sx={{ color: '#6890F0' }} />
 								<span> &nbsp; 물</span>
 							</MenuItem>
 							<MenuItem value='풀'>
-								<Grass />
+								<Grass sx={{ color: '#78C850' }} />
 								<span> &nbsp; 풀</span>
 							</MenuItem>
 							<MenuItem value='전기'>
-								<Bolt />
+								<Bolt sx={{ color: '#F8D030' }} />
 								<span> &nbsp; 전기</span>
 							</MenuItem>
 							<MenuItem value='얼음'>
-								<AcUnit />
+								<AcUnit sx={{ color: '#98D8D8' }} />
 								<span> &nbsp; 얼음</span>
 							</MenuItem>
 							<MenuItem value='격투'>
-								<SportsMma /> <span> &nbsp; 격투</span>
+								<SportsMma sx={{ color: '#C03028' }} />{' '}
+								<span> &nbsp; 격투</span>
 							</MenuItem>
 							<MenuItem value='독'>
-								<Coronavirus /> <span> &nbsp; 독</span>
+								<Coronavirus sx={{ color: '#A040A0' }} />{' '}
+								<span> &nbsp; 독</span>
 							</MenuItem>
 							<MenuItem value='땅'>
-								<Landscape /> <span> &nbsp; 땅</span>
+								<Landscape sx={{ color: '#E0C068' }} /> <span> &nbsp; 땅</span>
 							</MenuItem>
 							<MenuItem value='비행'>
-								<Air /> <span> &nbsp; 비행</span>
+								<Air sx={{ color: '#A890F0' }} /> <span> &nbsp; 비행</span>
 							</MenuItem>
 							<MenuItem value='에스퍼'>
-								<Storm /> <span> &nbsp; 에스파</span>
+								<Storm sx={{ color: '#F85888' }} /> <span> &nbsp; 에스파</span>
 							</MenuItem>
 							<MenuItem value='벌레'>
-								<BugReport />
+								<BugReport sx={{ color: '#A8B820' }} />
 								<span> &nbsp; 벌레</span>
 							</MenuItem>
 							<MenuItem value='바위'>
-								<Castle /> <span> &nbsp; 바위</span>
+								<Castle sx={{ color: '#B8A038' }} /> <span> &nbsp; 바위</span>
 							</MenuItem>
 							<MenuItem value='고스트'>
-								<DarkMode /> <span> &nbsp; 고스트</span>
+								<DarkMode sx={{ color: '#705898' }} />{' '}
+								<span> &nbsp; 고스트</span>
 							</MenuItem>
 							<MenuItem value='드래곤'>
-								<Adb /> <span> &nbsp; 드래곤</span>
+								<Adb sx={{ color: '#7038F8' }} /> <span> &nbsp; 드래곤</span>
 							</MenuItem>
 							<MenuItem value='강철'>
-								<Hardware /> <span> &nbsp; 강철</span>
+								<Hardware sx={{ color: '#B8B8D0' }} /> <span> &nbsp; 강철</span>
 							</MenuItem>
 							<MenuItem value='페어리'>
-								<Reddit /> <span> &nbsp; 페어리</span>
+								<Reddit sx={{ color: '#EE99AC' }} /> <span> &nbsp; 페어리</span>
 							</MenuItem>
 						</Select>
 					</FormControl>

@@ -7,6 +7,8 @@ import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import Avatar from '@mui/material/Avatar';
 import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import { red } from '@mui/material/colors';
 
 import {
 	Adjust,
@@ -45,27 +47,24 @@ function pokemonCard({ pokemon }) {
 	const imgSrc = `https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/pokemons/${id}.png`;
 
 	const IconObj = {
-		노말: <Adjust />,
-		불꽃: <LocalFireDepartment />,
-		물: <Opacity />,
-		풀: <Grass />,
-		전기: <Bolt />,
-		얼음: <AcUnit />,
-		격투: <SportsMma />,
-		독: <Coronavirus />,
-		땅: <Landscape />,
-		비행: <Air />,
-		에스퍼: <Storm />,
-		벌레: <BugReport />,
-		바위: <Castle />,
-		고스트: <DarkMode />,
-		드래곤: <Adb />,
-		강철: <Hardware />,
-		페어리: <Reddit />,
+		노말: <Adjust sx={{ color: '#A8A878' }} />,
+		불꽃: <LocalFireDepartment sx={{ color: '#F08030' }} />,
+		물: <Opacity sx={{ color: '#6890F0' }} />,
+		풀: <Grass sx={{ color: '#78C850' }} />,
+		전기: <Bolt sx={{ color: '#F8D030' }} />,
+		얼음: <AcUnit sx={{ color: '#98D8D8' }} />,
+		격투: <SportsMma sx={{ color: '#C03028' }} />,
+		독: <Coronavirus sx={{ color: '#A040A0' }} />,
+		땅: <Landscape sx={{ color: '#E0C068' }} />,
+		비행: <Air sx={{ color: '#A890F0' }} />,
+		에스퍼: <Storm sx={{ color: '#F85888' }} />,
+		벌레: <BugReport sx={{ color: '#A8B820' }} />,
+		바위: <Castle sx={{ color: '#B8A038' }} />,
+		고스트: <DarkMode sx={{ color: '#705898' }} />,
+		드래곤: <Adb sx={{ color: '#7038F8' }} />,
+		강철: <Hardware sx={{ color: '#B8B8D0' }} />,
+		페어리: <Reddit sx={{ color: '#EE99AC' }} />,
 	};
-
-	const typeOneIcon = IconObj[typeOne];
-	const typeTwoIcon = typeTwo ? IconObj[typeTwo] : '';
 
 	return (
 		<Container fixed sx={{ marginTop: '165px' }}>
@@ -74,14 +73,30 @@ function pokemonCard({ pokemon }) {
 					<Grid item xs={6} md={6}>
 						<Card sx={{ maxWidth: 280, minHeight: 400, marginLeft: 9 }}>
 							<CardHeader
-								avatar={<Avatar aria-label='number'>{id}</Avatar>}
+								avatar={
+									<Avatar sx={{ bgcolor: red[500] }} aria-label='number'>
+										<Typography fontWeight='bold'>{id}</Typography>
+									</Avatar>
+								}
 								title={name}
 								subheader={
-									<>
-										{typeOneIcon}
-										{typeOne} {typeTwo === '없음' ? '' : typeTwoIcon}{' '}
-										{typeTwo === '없음' ? '' : typeTwo}
-									</>
+									<Grid container spacing={-5}>
+										<Grid item xs={6}>
+											<Typography>
+												{IconObj[typeOne]}
+												{typeOne}
+											</Typography>
+										</Grid>
+										<Grid item xs={6}>
+											{typeTwo !== '없음' ? (
+												<Typography>
+													{IconObj[typeTwo]} {typeTwo}
+												</Typography>
+											) : (
+												''
+											)}
+										</Grid>
+									</Grid>
 								}
 								sx={{ paddingBottom: 0 }}
 							/>

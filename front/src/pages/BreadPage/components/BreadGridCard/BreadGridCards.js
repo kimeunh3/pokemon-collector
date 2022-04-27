@@ -1,8 +1,8 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 import { useNavigate } from 'react-router-dom';
 import '../../BreadPage.css';
-// import { Link } from 'react-router-dom';
 
 function GridCards({ bread, breadImg }) {
 	const randNum = Math.floor(Math.random() * 151 + 1);
@@ -18,7 +18,7 @@ function GridCards({ bread, breadImg }) {
 	if (bread) {
 		return (
 			<Grid item xs={3}>
-				<div
+				<Box
 					className='bread'
 					style={{ position: 'relative' }}
 					onClick={handleClick}
@@ -29,7 +29,7 @@ function GridCards({ bread, breadImg }) {
 						src={breadImgSrc}
 						alt={breadImg}
 					/>
-				</div>
+				</Box>
 			</Grid>
 		);
 	}
