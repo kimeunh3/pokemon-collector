@@ -53,8 +53,7 @@ const UserSchema = new Schema(
     stickers: [
       {
         id: String,
-        name: String,
-        img: String, 
+        name: String
       }
     ],
     lastLogin: {
