@@ -1,22 +1,15 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import {
-	Toolbar,
-	IconButton,
-	styled,
-	Button,
-	Grid,
-} from '@material-ui/core';
-import MuiAppBar from '@material-ui/core/AppBar';
+import { Button } from '@material-ui/core';
 import {
 	DialogActions,
 	DialogContent,
 	Dialog,
 	DialogTitle,
 } from '@mui/material';
-import './NavBar.css';
 import { UserStateContext, DispatchContext } from '../../Context';
-import DrawerComponents from '../../components/commons/DrawerComponents';
+import NavBarHeader from './components/NavBarHeader';
+import DrawerComponents from './components/DrawerComponents';
 
 function NavBar() {
 	const navigate = useNavigate();
@@ -38,28 +31,7 @@ function NavBar() {
 		navigate('/home');
 	};
 
-	const AppBar = styled(MuiAppBar, {
-		shouldForwardProp: (prop) => prop !== 'open',
-	})(({ theme, open }) => ({
-		transition: theme.transitions.create(['margin', 'width'], {
-			easing: theme.transitions.easing.sharp,
-			duration: theme.transitions.duration.leavingScreen,
-		}),
-		...(open && {
-			width: '100%',
-			transition: theme.transitions.create(['margin', 'width'], {
-				easing: theme.transitions.easing.easeOut,
-				duration: theme.transitions.duration.enteringScreen,
-			}),
-			marginRight: 0,
-		}),
-	}));
-
 	const [open, setOpen] = useState(false);
-
-	const handleDrawerOpen = () => {
-		setOpen(true);
-	};
 
 	const [openDialog, setOpenDialog] = useState(false);
 
@@ -76,172 +48,14 @@ function NavBar() {
 
 	return (
 		<div>
-			<AppBar
-				position='fixed'
-				open={open}
-				style={{ backgroundColor: '#D72A1F', boxShadow: '0 30px black' }}
-			>
-				<Toolbar>
-					<IconButton
-						edge='start'
-						color='inherit'
-						aria-label='menu'
-						onClick={() => navigate('/home')}
-						style={{ marginRight: '40%' }}
-					>
-						<img
-							alt=''
-							src='https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/front/logo.png'
-							width='200px'
-							height='70px'
-						/>
-					</IconButton>
-					{isLogin ? (
-						<Grid
-							container
-							id='menu'
-							style={{ textAlign: 'center', alignItems: 'center' }}
-						>
-							<Grid item xs={2}>
-								<Button
-									color='inherit'
-									onClick={() => navigate('/bread')}
-									style={{ fontSize: '1.1vw' }}
-								>
-									포켓몬빵
-								</Button>
-							</Grid>
-							<Grid item xs={2}>
-								<Button
-									color='inherit'
-									onClick={() => navigate('/login')}
-									style={{ fontSize: '1.1vw' }}
-								>
-									퀴즈
-								</Button>
-							</Grid>
-							<Grid item xs={2}>
-								<Button
-									color='inherit'
-									onClick={() => navigate('/IllustratedBook')}
-									style={{ fontSize: '1.1vw' }}
-								>
-									도감
-								</Button>
-							</Grid>
-							<Grid item xs={2}>
-								<Button
-									color='inherit'
-									onClick={() => navigate('/StatisticsPage')}
-									style={{ fontSize: '1.1vw' }}
-								>
-									통계
-								</Button>
-							</Grid>
-							<Grid item xs={2}>
-								<Button
-									color='inherit'
-									onClick={() => navigate('/login')}
-									style={{ fontSize: '1.1vw' }}
-								>
-									마이페이지
-								</Button>
-							</Grid>
-							<Grid item xs={2}>
-								<Button
-									color='primary'
-									onClick={logout}
-									style={{ fontSize: '1.1vw' }}
-								>
-									로그아웃
-								</Button>
-							</Grid>
-						</Grid>
-					) : (
-						<Grid
-							container
-							id='menu'
-							style={{ textAlign: 'center', alignItems: 'center' }}
-						>
-							<Grid item xs={2}>
-								<Button
-									color='inherit'
-									onClick={handleDialogOpen}
-									style={{ fontSize: '1.1vw' }}
-								>
-									포켓몬빵
-								</Button>
-							</Grid>
-							<Grid item xs={2}>
-								<Button
-									color='inherit'
-									onClick={handleDialogOpen}
-									style={{ fontSize: '1.1vw' }}
-								>
-									퀴즈
-								</Button>
-							</Grid>
-							<Grid item xs={2}>
-								<Button
-									color='inherit'
-									onClick={handleDialogOpen}
-									style={{ fontSize: '1.1vw' }}
-								>
-									도감
-								</Button>
-							</Grid>
-							<Grid item xs={2}>
-								<Button
-									color='inherit'
-									onClick={handleDialogOpen}
-									style={{ fontSize: '1.1vw' }}
-								>
-									통계
-								</Button>
-							</Grid>
-							<Grid item xs={2}>
-								<Button
-									color='inherit'
-									onClick={handleDialogOpen}
-									style={{ fontSize: '1.1vw' }}
-								>
-									마이페이지
-								</Button>
-							</Grid>
-							<Grid item xs={2}>
-								<Button
-									color='primary'
-									onClick={() => navigate('/login')}
-									style={{ fontSize: '1.1vw' }}
-								>
-									로그인
-								</Button>
-							</Grid>
-						</Grid>
-					)}
-					<IconButton
-						id='Hamburger'
-						color='info'
-						aria-label='open drawer'
-						edge='end'
-						onClick={handleDrawerOpen}
-						sx={{ ...(open && { display: 'none' }) }}
-						style={{
-							marginRight: '5%',
-							marginLeft: 'auto',
-						}}
-					>
-						<span className='material-symbols-outlined'>menu</span>
-					</IconButton>
-				</Toolbar>
-			</AppBar>
+			<NavBarHeader open={open} setOpen={setOpen} isLogin={isLogin} handleDialogOpen={handleDialogOpen} logout={logout} />
 			<DrawerComponents open={open} setOpen={setOpen} isLogin={isLogin} handleDialogOpen={handleDialogOpen} logout={logout} />
 			<div
 				style={{
 					position: 'fixed',
 					top: '54px',
 					width: '100%',
-					zIndex: '9999',
+					zIndex: '1100',
 				}}
 			>
 				<div style={{ left: '50vw', transform: 'translateX(-50%)', position: 'absolute' }}>
@@ -256,7 +70,7 @@ function NavBar() {
 			<Dialog
 				open={openDialog}
 				onClose={handleDialogClose}
-				style={{ zIndex: '10000' }}
+				style={{ zIndex: '1300' }}
 			>
 				<DialogTitle>pokemon-collector</DialogTitle>
 				<DialogContent>로그인 후 이용가능한 서비스입니다!</DialogContent>
