@@ -1,13 +1,13 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  Toolbar, IconButton, styled, useTheme, Drawer, Button, Grid,
-  List, Divider, ListItem,
+  Toolbar, IconButton, styled, Button, Grid,
 } from '@material-ui/core';
 import MuiAppBar from '@material-ui/core/AppBar';
 import { DialogActions, DialogContent, Dialog, DialogTitle } from '@mui/material';
 import './LandingPage.css';
 import { UserStateContext, DispatchContext } from '../../Context';
+import DrawerComponents from '../../components/commons/DrawerComponents';
 
 function LandingPage() {
   const navigate = useNavigate();
@@ -16,8 +16,6 @@ function LandingPage() {
 
   // 전역상태에서 user가 null이 아니라면 로그인 성공 상태임.
   const isLogin = !!userState.user;
-
-  const drawerWidth = 240;
 
   const AppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== 'open',
@@ -36,29 +34,10 @@ function LandingPage() {
     }),
   }));
 
-  const DrawerHeader = styled('div')(({ theme }) => ({
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-    justifyContent: 'flex-start',
-    width: drawerWidth,
-    flexShrink: 0,
-    '& .MuiDrawer-paper': {
-      width: drawerWidth,
-    },
-  }));
-
-  const theme = useTheme();
   const [open, setOpen] = useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
   };
 
   // 로그아웃 클릭 시 실행되는 함수
@@ -160,73 +139,7 @@ function LandingPage() {
           <img alt="" src='https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/front/nav-icon.png' width="200px" height="200px" />
         </div>
       </div>
-      <Drawer
-        variant="persistent"
-        anchor="right"
-        open={open}
-      >
-        <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <span className="material-symbols-outlined">menu</span> : <span className="material-symbols-outlined">close</span>}
-          </IconButton>
-        </DrawerHeader>
-        <Divider />
-        {isLogin ? (
-          <List>
-            <ListItem>
-              <span className="material-symbols-outlined">arrow_right</span>
-              <Button color="inherit" onClick={() => navigate('/bread')} style={{ fontSize: '18px' }}>포켓몬빵</Button>
-            </ListItem>
-            <ListItem>
-              <span className="material-symbols-outlined">arrow_right</span>
-              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>퀴즈</Button>
-            </ListItem>
-            <ListItem>
-              <span className="material-symbols-outlined">arrow_right</span>
-              <Button color="inherit" onClick={() => navigate('/IllustratedBook')} style={{ fontSize: '18px' }}>도감</Button>
-            </ListItem>
-            <ListItem>
-              <span className="material-symbols-outlined">arrow_right</span>
-              <Button color="inherit" onClick={() => navigate('/StatisticsPage')} style={{ fontSize: '18px' }}>통계</Button>
-            </ListItem>
-            <ListItem>
-              <span className="material-symbols-outlined">arrow_right</span>
-              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>마이페이지</Button>
-            </ListItem>
-            <ListItem>
-              <span className="material-symbols-outlined">arrow_right</span>
-              <Button color="primary" onClick={logout} style={{ fontSize: '18px' }}>로그아웃</Button>
-            </ListItem>
-          </List>
-        ) : (
-          <List>
-            <ListItem>
-              <span className="material-symbols-outlined">arrow_right</span>
-              <Button color="inherit" onClick={handleDialogOpen} style={{ fontSize: '18px' }}>포켓몬빵</Button>
-            </ListItem>
-            <ListItem>
-              <span className="material-symbols-outlined">arrow_right</span>
-              <Button color="inherit" onClick={handleDialogOpen} style={{ fontSize: '18px' }}>퀴즈</Button>
-            </ListItem>
-            <ListItem>
-              <span className="material-symbols-outlined">arrow_right</span>
-              <Button color="inherit" onClick={handleDialogOpen} style={{ fontSize: '18px' }}>도감</Button>
-            </ListItem>
-            <ListItem>
-              <span className="material-symbols-outlined">arrow_right</span>
-              <Button color="inherit" onClick={handleDialogOpen} style={{ fontSize: '18px' }}>통계</Button>
-            </ListItem>
-            <ListItem>
-              <span className="material-symbols-outlined">arrow_right</span>
-              <Button color="inherit" onClick={handleDialogOpen} style={{ fontSize: '18px' }}>마이페이지</Button>
-            </ListItem>
-            <ListItem>
-              <span className="material-symbols-outlined">arrow_right</span>
-              <Button color="primary" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>로그인</Button>
-            </ListItem>
-          </List>
-        )}
-      </Drawer>
+      <DrawerComponents open={open} setOpen={setOpen} isLogin={isLogin} handleDialogOpen={handleDialogOpen} logout={logout} />
       <button type="button" id="go-top" onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })}><span className="material-symbols-outlined">arrow_upward</span></button>
       <div style={{
         position: 'relative', top: '200px', left: '10%',

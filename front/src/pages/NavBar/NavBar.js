@@ -4,12 +4,7 @@ import {
 	Toolbar,
 	IconButton,
 	styled,
-	useTheme,
-	Drawer,
 	Button,
-	List,
-	Divider,
-	ListItem,
 	Grid,
 } from '@material-ui/core';
 import MuiAppBar from '@material-ui/core/AppBar';
@@ -21,6 +16,7 @@ import {
 } from '@mui/material';
 import './NavBar.css';
 import { UserStateContext, DispatchContext } from '../../Context';
+import DrawerComponents from '../../components/commons/DrawerComponents';
 
 function NavBar() {
 	const navigate = useNavigate();
@@ -42,8 +38,6 @@ function NavBar() {
 		navigate('/home');
 	};
 
-	const drawerWidth = 240;
-
 	const AppBar = styled(MuiAppBar, {
 		shouldForwardProp: (prop) => prop !== 'open',
 	})(({ theme, open }) => ({
@@ -61,29 +55,10 @@ function NavBar() {
 		}),
 	}));
 
-	const DrawerHeader = styled('div')(({ theme }) => ({
-		display: 'flex',
-		alignItems: 'center',
-		padding: theme.spacing(0, 1),
-		// necessary for content to be below app bar
-		...theme.mixins.toolbar,
-		justifyContent: 'flex-start',
-		width: drawerWidth,
-		flexShrink: 0,
-		'& .MuiDrawer-paper': {
-			width: drawerWidth,
-		},
-	}));
-
-	const theme = useTheme();
 	const [open, setOpen] = useState(false);
 
 	const handleDrawerOpen = () => {
 		setOpen(true);
-	};
-
-	const handleDrawerClose = () => {
-		setOpen(false);
 	};
 
 	const [openDialog, setOpenDialog] = useState(false);
@@ -260,149 +235,7 @@ function NavBar() {
 					</IconButton>
 				</Toolbar>
 			</AppBar>
-			<Drawer
-				variant='persistent'
-				anchor='right'
-				open={open}
-			>
-				<DrawerHeader>
-					<IconButton onClick={handleDrawerClose}>
-						{theme.direction === 'rtl' ? (
-							<span className='material-symbols-outlined'>menu</span>
-						) : (
-							<span className='material-symbols-outlined'>close</span>
-						)}
-					</IconButton>
-				</DrawerHeader>
-				<Divider />
-				{isLogin ? (
-					<List>
-						<ListItem>
-							<span className='material-symbols-outlined'>arrow_right</span>
-							<Button
-								color='inherit'
-								onClick={() => navigate('/bread')}
-								style={{ fontSize: '18px' }}
-							>
-								포켓몬빵
-							</Button>
-						</ListItem>
-						<ListItem>
-							<span className='material-symbols-outlined'>arrow_right</span>
-							<Button
-								color='inherit'
-								onClick={() => navigate('/login')}
-								style={{ fontSize: '18px' }}
-							>
-								퀴즈
-							</Button>
-						</ListItem>
-						<ListItem>
-							<span className='material-symbols-outlined'>arrow_right</span>
-							<Button
-								color='inherit'
-								onClick={() => navigate('/IllustratedBook')}
-								style={{ fontSize: '18px' }}
-							>
-								도감
-							</Button>
-						</ListItem>
-						<ListItem>
-							<span className='material-symbols-outlined'>arrow_right</span>
-							<Button
-								color='inherit'
-								onClick={() => navigate('/StatisticsPage')}
-								style={{ fontSize: '18px' }}
-							>
-								통계
-							</Button>
-						</ListItem>
-						<ListItem>
-							<span className='material-symbols-outlined'>arrow_right</span>
-							<Button
-								color='inherit'
-								onClick={() => navigate('/login')}
-								style={{ fontSize: '18px' }}
-							>
-								마이페이지
-							</Button>
-						</ListItem>
-						<ListItem>
-							<span className='material-symbols-outlined'>arrow_right</span>
-							<Button
-								color='primary'
-								onClick={logout}
-								style={{ fontSize: '18px' }}
-							>
-								로그아웃
-							</Button>
-						</ListItem>
-					</List>
-				) : (
-					<List>
-						<ListItem>
-							<span className='material-symbols-outlined'>arrow_right</span>
-							<Button
-								color='inherit'
-								onClick={handleDialogOpen}
-								style={{ fontSize: '18px' }}
-							>
-								포켓몬빵
-							</Button>
-						</ListItem>
-						<ListItem>
-							<span className='material-symbols-outlined'>arrow_right</span>
-							<Button
-								color='inherit'
-								onClick={handleDialogOpen}
-								style={{ fontSize: '18px' }}
-							>
-								퀴즈
-							</Button>
-						</ListItem>
-						<ListItem>
-							<span className='material-symbols-outlined'>arrow_right</span>
-							<Button
-								color='inherit'
-								onClick={handleDialogOpen}
-								style={{ fontSize: '18px' }}
-							>
-								도감
-							</Button>
-						</ListItem>
-						<ListItem>
-							<span className='material-symbols-outlined'>arrow_right</span>
-							<Button
-								color='inherit'
-								onClick={handleDialogOpen}
-								style={{ fontSize: '18px' }}
-							>
-								통계
-							</Button>
-						</ListItem>
-						<ListItem>
-							<span className='material-symbols-outlined'>arrow_right</span>
-							<Button
-								color='inherit'
-								onClick={handleDialogOpen}
-								style={{ fontSize: '18px' }}
-							>
-								마이페이지
-							</Button>
-						</ListItem>
-						<ListItem>
-							<span className='material-symbols-outlined'>arrow_right</span>
-							<Button
-								color='primary'
-								onClick={() => navigate('/login')}
-								style={{ fontSize: '18px' }}
-							>
-								로그인
-							</Button>
-						</ListItem>
-					</List>
-				)}
-			</Drawer>
+			<DrawerComponents open={open} setOpen={setOpen} isLogin={isLogin} handleDialogOpen={handleDialogOpen} logout={logout} />
 			<div
 				style={{
 					position: 'fixed',
