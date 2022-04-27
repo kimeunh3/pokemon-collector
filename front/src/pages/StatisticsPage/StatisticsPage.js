@@ -109,7 +109,7 @@ function StatisticsPage() {
                         <StatisticsButton imgSrc='pokemons/101' text='스피드' bColor='rgba(193, 131, 193, 0.8)' />
                         <StatisticsButton imgSrc='pokemons/95' text='키' bColor='rgba(161, 57, 89, 0.8)' />
                         <StatisticsButton imgSrc='pokemons/143' text='몸무게' bColor='rgba(68, 94, 156, 0.8)' />
-                        <StatisticsButton imgSrc='front/logo' text='종합 점수' bColor='rgba(128, 128, 128, 0.8)' />
+                        <StatisticsButton imgSrc='front/logo' text='종합점수' bColor='rgba(128, 128, 128, 0.8)' />
                     </>
                 )}
             </div>

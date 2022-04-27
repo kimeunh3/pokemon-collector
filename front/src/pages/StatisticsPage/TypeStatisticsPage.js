@@ -23,7 +23,7 @@ ChartJS.register(
   Legend
 );
 
-export const options = {
+export const options1 = {
   responsive: true,
   plugins: {
     legend: {
@@ -31,7 +31,42 @@ export const options = {
     },
     title: {
       display: true,
-      text: 'Chart.js Bar Chart',
+      text: '바위 포켓몬 능력치',
+    },
+  },
+};
+
+export const options2 = {
+  responsive: true,
+  plugins: {
+    legend: {
+      position: 'top',
+    },
+    title: {
+      display: true,
+      text: '바위 포켓몬 키/몸무게',
+    },
+  },
+};
+
+export const options3 = {
+  plugins: {
+    title: {
+      display: true,
+      text: '종합 능력치',
+    },
+  },
+  responsive: true,
+  interaction: {
+    mode: 'index',
+    intersect: false,
+  },
+  scales: {
+    x: {
+      stacked: true,
+    },
+    y: {
+      stacked: true,
     },
   },
 };
@@ -44,10 +79,6 @@ function typeStatisticsPage() {
   // useEffect(() => {
   //   setPokemons([])
   // }, []);
-
-  const x = [];
-  const yAttack = [];
-  const yDefense = [];
 
   const pokemons = [{'attack': 80,
   'defense': 100,
@@ -185,13 +216,31 @@ function typeStatisticsPage() {
   'type_number': 2,
   'weight_kg': 59.0}];
 
+  const x = [];
+  const yAttack = [];
+  const yDefense = [];
+  const yHp = [];
+  const ySpAttack = [];
+  const ySpDefense = [];
+  const ySpeed = [];
+  const yHeight = [];
+  const yWeight = [];
+  const yTotalPoints = [];
+
   pokemons.forEach(pokemon => {
     x.push(pokemon.name);
     yAttack.push(pokemon.attack);
     yDefense.push(pokemon.defense);
+    yHp.push(pokemon.hp);
+    ySpAttack.push(pokemon.sp_attack);
+    ySpDefense.push(pokemon.sp_defense);
+    ySpeed.push(pokemon.speed);
+    yHeight.push(pokemon.height_m);
+    yWeight.push(pokemon.weight_kg);
+    yTotalPoints.push(pokemon.total_points);
   })
 
-  const data = {
+  const data1 = {
     labels: x,
     datasets: [
       {
@@ -204,14 +253,115 @@ function typeStatisticsPage() {
         data: yDefense,
         backgroundColor: 'rgba(248, 208, 48, 0.5)',
       },
+      {
+        label: '바위 속성 Hp',
+        data: yHp,
+        backgroundColor: 'rgba(255, 0, 0, 0.5)',
+      },
+      {
+        label: '바위 속성 특수공격력',
+        data: ySpAttack,
+        backgroundColor: 'rgba(104, 144, 240, 0.5)',
+      },
+      {
+        label: '바위 속성 특수방어력',
+        data: ySpDefense,
+        backgroundColor: 'rgba(120, 200, 80, 0.5)',
+      },
+      {
+        label: '바위 속성 스피드',
+        data: ySpeed,
+        backgroundColor: 'rgba(193, 131, 193, 0.5)',
+      },
+      // {
+      //   label: '바위 속성 키',
+      //   data: yHeight,
+      //   backgroundColor: 'rgba(193, 131, 193, 0.5)',
+      // },
+      // {
+      //   label: '바위 속성 몸무게',
+      //   data: yWeight,
+      //   backgroundColor: 'rgba(193, 131, 193, 0.5)',
+      // },
+      // {
+      //   label: '바위 속성 종합점수',
+      //   data: yTotalPoints,
+      //   backgroundColor: 'rgba(128, 128, 128, 0.5)',
+      // },
+    ],
+  };
+
+  const data2 = {
+    labels: x,
+    datasets: [
+      {
+        label: '바위 속성 키',
+        data: yHeight,
+        backgroundColor: 'rgba(161, 57, 89, 0.5)',
+      },
+      {
+        label: '바위 속성 몸무게',
+        data: yWeight,
+        backgroundColor: 'rgba(68, 94, 156, 0.5)',
+      },
+    ],
+  };
+
+  const data3 = {
+    labels: x,
+    datasets: [
+      {
+        label: '바위 속성 공격력',
+        data: yAttack,
+        backgroundColor: 'rgba(240, 128, 48, 0.5)',
+        stack: 'Stack 0',
+      },
+      {
+        label: '바위 속성 방어력',
+        data: yDefense,
+        backgroundColor: 'rgba(248, 208, 48, 0.5)',
+        stack: 'Stack 0',
+      },
+      {
+        label: '바위 속성 Hp',
+        data: yHp,
+        backgroundColor: 'rgba(255, 0, 0, 0.5)',
+        stack: 'Stack 0',
+      },
+      {
+        label: '바위 속성 특수공격력',
+        data: ySpAttack,
+        backgroundColor: 'rgba(104, 144, 240, 0.5)',
+        stack: 'Stack 0',
+      },
+      {
+        label: '바위 속성 특수방어력',
+        data: ySpDefense,
+        backgroundColor: 'rgba(120, 200, 80, 0.5)',
+        stack: 'Stack 0',
+      },
+      {
+        label: '바위 속성 스피드',
+        data: ySpeed,
+        backgroundColor: 'rgba(193, 131, 193, 0.5)',
+        stack: 'Stack 0',
+      },
+      {
+        label: '바위 속성 종합점수',
+        data: yTotalPoints,
+        backgroundColor: 'rgba(128, 128, 128, 0.5)',
+        stack: 'Stack 1',
+      },
     ],
   };
 
 	return (
-        <div style={{ paddingTop: '180px', paddingBottom: '50px' }}>
+        <div style={{ paddingTop: '180px', paddingBottom: '50px', marginLeft: '3vw' }}>
           {type} 통계페이지
           <Container>
-            <Bar options={options} data={data} />
+            <Bar options={options1} data={data1} />
+            <Bar options={options2} data={data2} />
+            <Bar options={options3} data={data3} />
           </Container>
         </div>
 	);
@@ -219,7 +369,7 @@ function typeStatisticsPage() {
 
 const Container = styled.div`
   width: 90vw;
-  max-width: 900px;
+  max-width: 1200px;
 `;
 
 export default typeStatisticsPage;
