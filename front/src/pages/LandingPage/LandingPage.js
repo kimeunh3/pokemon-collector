@@ -135,7 +135,7 @@ function LandingPage() {
         position: 'absolute', top: '380px', width: '100%', zIndex: '9999',
       }}
       >
-        <div style={{ left: '50%', marginLeft: '-100px', position: 'absolute' }}>
+        <div style={{ left: '50vw', transform: 'translateX(-50%)', position: 'absolute' }}>
           <img alt="" src='https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/front/nav-icon.png' width="200px" height="200px" />
         </div>
       </div>

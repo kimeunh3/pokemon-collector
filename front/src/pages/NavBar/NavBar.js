@@ -244,7 +244,7 @@ function NavBar() {
 					zIndex: '9999',
 				}}
 			>
-				<div style={{ left: '50%', marginLeft: '-55px', position: 'absolute' }}>
+				<div style={{ left: '50vw', transform: 'translateX(-50%)', position: 'absolute' }}>
 					<img
 						alt=''
 						src="https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/front/nav-icon.png"
