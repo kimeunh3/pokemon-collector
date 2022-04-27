@@ -1,71 +1,225 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useParams } from "react-router-dom";
+import { Bar } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import styled from 'styled-components';
 
-import * as Api from '../../api';
+// import * as Api from '../../api';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
+
+export const options = {
+  responsive: true,
+  plugins: {
+    legend: {
+      position: 'top',
+    },
+    title: {
+      display: true,
+      text: 'Chart.js Bar Chart',
+    },
+  },
+};
 
 function typeStatisticsPage() {
-    const params = useParams();
-    const { type } = params;
-    let type1Pokemons = [];
-    const [pokemons, setPokemons] = useState([]);
+  const params = useParams();
+  const { type } = params;
+  // const [pokemons, setPokemons] = useState([]);
 
-    const type1List = {
-        // normal
-        '노말': [ 16, 17, 18, 19, 20, 21, 22, 39, 40, 52, 53, 83, 84, 85, 108, 113, 115, 128, 132, 133, 137, 143 ],
-        // fire
-        '불꽃': [ 4, 5, 6, 37, 38, 58, 59, 77, 78, 126, 136, 146 ],
-        // water
-        '물': [ 7, 8, 9, 54, 55, 60, 61, 62, 72, 73, 79, 80, 86, 87, 90, 91, 98, 99, 116, 117, 118, 119, 120, 121, 129, 130, 131, 134 ],
-        // grass
-        '풀': [ 1, 2, 3, 43, 44, 45, 69, 70, 71, 102, 103, 114 ],
-        // electric
-        '전기': [ 25, 26, 81, 82, 100, 101, 125, 135, 145 ],
-        // ice
-        '얼음': [ 124, 144 ],
-        // fighting
-        '격투': [ 56, 57, 66, 67, 68, 106, 107 ],
-        // poison
-        '독': [ 23, 24, 29, 30, 31, 32, 33, 34, 41, 42, 88, 89, 109, 110 ],
-        // ground
-        '땅': [ 27, 28, 50, 51, 104, 105, 111, 112 ],
-        // psychic
-        '에스퍼': [ 63, 64, 65, 96, 97, 122, 150, 151 ],
-        // bug
-        '벌레': [ 10, 11, 12, 13, 14, 15, 46, 47, 48, 49, 123, 127 ],
-        // rock
-        '바위': [ 74, 75, 76, 95, 138, 139, 140, 141, 142 ],
-        // ghost
-        '고스트': [ 92, 93, 94 ],
-        // dragon
-        '드래곤': [ 147, 148, 149 ],
-        // fairy
-        '페어리': [ 35, 36 ]
-      };
+  // useEffect(() => {
+  //   setPokemons([])
+  // }, []);
 
-    useEffect(() => {
-        Object.keys(type1List).forEach(key => {
-            if (key===type){
-              type1Pokemons = type1List[key];
-            }
-          });
-        console.log(type1Pokemons)
-        type1Pokemons.forEach(key => {
-            Api.get(`pokemon/${key}`)
-            .then((res) => setPokemons(() => {
-                const newPokemons = pokemons;
-                newPokemons.append(res.data);
-                return newPokemons;
-            }));
-        })
-      }, []);
+  const x = [];
+  const yAttack = [];
+  const yDefense = [];
 
-      console.log(pokemons);
+  const pokemons = [{'attack': 80,
+  'defense': 100,
+  'height_m': 0.4,
+  'hp': 40,
+  'name': '꼬마돌',
+  'pokedex_number': 74,
+  'sp_attack': 30,
+  'sp_defense': 30,
+  'speed': 20,
+  'status': '노말',
+  'total_points': 300,
+  'type_1': '바위',
+  'type_2': '땅',
+  'type_number': 2,
+  'weight_kg': 20.0},
+ {'attack': 95,
+  'defense': 115,
+  'height_m': 1.0,
+  'hp': 55,
+  'name': '데구리',
+  'pokedex_number': 75,
+  'sp_attack': 45,
+  'sp_defense': 45,
+  'speed': 35,
+  'status': '노말',
+  'total_points': 390,
+  'type_1': '바위',
+  'type_2': '땅',
+  'type_number': 2,
+  'weight_kg': 105.0},
+ {'attack': 120,
+  'defense': 130,
+  'height_m': 1.4,
+  'hp': 80,
+  'name': '딱구리',
+  'pokedex_number': 76,
+  'sp_attack': 55,
+  'sp_defense': 65,
+  'speed': 45,
+  'status': '노말',
+  'total_points': 495,
+  'type_1': '바위',
+  'type_2': '땅',
+  'type_number': 2,
+  'weight_kg': 300.0},
+ {'attack': 45,
+  'defense': 160,
+  'height_m': 8.8,
+  'hp': 35,
+  'name': '롱스톤',
+  'pokedex_number': 95,
+  'sp_attack': 30,
+  'sp_defense': 45,
+  'speed': 70,
+  'status': '노말',
+  'total_points': 385,
+  'type_1': '바위',
+  'type_2': '땅',
+  'type_number': 2,
+  'weight_kg': 210.0},
+ {'attack': 40,
+  'defense': 100,
+  'height_m': 0.4,
+  'hp': 35,
+  'name': '암나이트',
+  'pokedex_number': 138,
+  'sp_attack': 90,
+  'sp_defense': 55,
+  'speed': 35,
+  'status': '노말',
+  'total_points': 355,
+  'type_1': '바위',
+  'type_2': '물',
+  'type_number': 2,
+  'weight_kg': 7.5},
+ {'attack': 60,
+  'defense': 125,
+  'height_m': 1.0,
+  'hp': 70,
+  'name': '암스타',
+  'pokedex_number': 139,
+  'sp_attack': 115,
+  'sp_defense': 70,
+  'speed': 55,
+  'status': '노말',
+  'total_points': 495,
+  'type_1': '바위',
+  'type_2': '물',
+  'type_number': 2,
+  'weight_kg': 35.0},
+ {'attack': 80,
+  'defense': 90,
+  'height_m': 0.5,
+  'hp': 30,
+  'name': '투구',
+  'pokedex_number': 140,
+  'sp_attack': 55,
+  'sp_defense': 45,
+  'speed': 55,
+  'status': '노말',
+  'total_points': 355,
+  'type_1': '바위',
+  'type_2': '물',
+  'type_number': 2,
+  'weight_kg': 11.5},
+ {'attack': 115,
+  'defense': 105,
+  'height_m': 1.3,
+  'hp': 60,
+  'name': '투구푸스',
+  'pokedex_number': 141,
+  'sp_attack': 65,
+  'sp_defense': 70,
+  'speed': 80,
+  'status': '노말',
+  'total_points': 495,
+  'type_1': '바위',
+  'type_2': '물',
+  'type_number': 2,
+  'weight_kg': 40.5},
+ {'attack': 105,
+  'defense': 65,
+  'height_m': 1.8,
+  'hp': 80,
+  'name': '프테라',
+  'pokedex_number': 142,
+  'sp_attack': 60,
+  'sp_defense': 75,
+  'speed': 130,
+  'status': '노말',
+  'total_points': 515,
+  'type_1': '바위',
+  'type_2': '비행',
+  'type_number': 2,
+  'weight_kg': 59.0}];
+
+  pokemons.forEach(pokemon => {
+    x.push(pokemon.name);
+    yAttack.push(pokemon.attack);
+    yDefense.push(pokemon.defense);
+  })
+
+  const data = {
+    labels: x,
+    datasets: [
+      {
+        label: '바위 속성 공격력',
+        data: yAttack,
+        backgroundColor: 'rgba(240, 128, 48, 0.5)',
+      },
+      {
+        label: '바위 속성 방어력',
+        data: yDefense,
+        backgroundColor: 'rgba(248, 208, 48, 0.5)',
+      },
+    ],
+  };
 
 	return (
         <div style={{ paddingTop: '180px', paddingBottom: '50px' }}>
-            통계페이지 {params.type}
+          {type} 통계페이지
+          <Container>
+            <Bar options={options} data={data} />
+          </Container>
         </div>
 	);
 }
+
+const Container = styled.div`
+  width: 90vw;
+  max-width: 900px;
+`;
 
 export default typeStatisticsPage;
