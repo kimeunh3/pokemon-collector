@@ -95,27 +95,34 @@ userAuthRouter.put(
   login_required,
   async function (req, res, next) {
     try {
-      const user_id = req.currentUserId;
-      
+      const user = await User.findById(req.params.id);
+
+      let hours = 0;
+
+      if (user.attendance.length > 0){
+        user.attendance.reverse();
+        user.attendance.map(a =>{
+          if(a.entry && a.exit.time){
+            hours = hours + calculateHours(a.entry.getTime(),a.exit.time.getTime());
+          }
+        })
+        hours = parseFloat(hours/(3600*1000)).toFixed(4);
+        
       const attendance = new Date();
 
-      const lapse = (1000 * 60 * 60) % 24;
+      const toUpdate = {attendance};
 
-      if (attendance - lapse > 0){
-        const krAttendance = attendance.toLocaleString();
+      const updatedUser = await userAuthService.setUser({user_id, toUpdate});
 
-        const toUpdate = {krAttendance};
-
-        const updatedUser = await userAuthService.setUser({user_id, toUpdate});
-
-        let isPointGiven = true;
 
         
       if (updatedUser.errorMessgae){
         throw new Error(updatedUser.errorMessage);
       }
       res.status(200).json(updatedUser);
-    }
+    
+      }
+      
       }
       catch(error){
         next(error);
