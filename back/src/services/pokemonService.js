@@ -30,11 +30,17 @@ class PokemonAuthService {
   }
 
   static async getDrewPokemonIdAndName({user_id}){
-    
-    // 확률에 따라 포켓몬 id 반환
-    const id = await draw.drawPokemonid()
-    const {name} = await Pokemon.findNameById({ id });
 
+    const point = await User.findPointById({user_id});
+
+    // 포인트 확인
+    if (!draw.pointCheck(point)){
+      const message = "포인트 부족"
+      return { status:false, message, userPoint:point };
+    };
+    // 확률에 따라 포켓몬 id 반환
+    const id = await draw.drawPokemonid();
+    const {name} = await Pokemon.findNameById({ id });
     // 뽑힌 포켓몬을 user 스키마의 stickers에 update
     const stickers = await User.updateStickers({user_id, id, name});
 
@@ -44,7 +50,11 @@ class PokemonAuthService {
       return { errorMessage };
     }
 
-    return {id, name, updateState : true}
+    // 포인트 삭감
+    const changedPoint = point - 1000;
+    const appliedPoint = await User.updatePoint({user_id, changedPoint});
+
+    return {id, name, status : true, userPoint:appliedPoint};
   }
 }
 
