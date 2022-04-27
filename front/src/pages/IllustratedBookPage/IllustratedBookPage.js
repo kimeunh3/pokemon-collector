@@ -159,7 +159,7 @@ function IllustratedBookPage() {
 				style={{
 					display: 'grid',
 					gridTemplateRows: '1fr ',
-					gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr',
+					gridTemplateColumns: '1fr '.repeat(5),
 					gap: '2em 1em',
 					marginTop: '50px',
 				}}
