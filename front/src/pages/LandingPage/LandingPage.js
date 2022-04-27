@@ -43,6 +43,11 @@ function LandingPage() {
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
     justifyContent: 'flex-start',
+    width: drawerWidth,
+    flexShrink: 0,
+    '& .MuiDrawer-paper': {
+      width: drawerWidth,
+    },
   }));
 
   const theme = useTheme();
@@ -156,13 +161,6 @@ function LandingPage() {
         </div>
       </div>
       <Drawer
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          '& .MuiDrawer-paper': {
-            width: drawerWidth,
-          },
-        }}
         variant="persistent"
         anchor="right"
         open={open}
