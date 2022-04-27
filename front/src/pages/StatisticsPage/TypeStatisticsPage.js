@@ -356,7 +356,7 @@ function typeStatisticsPage() {
   };
 
 	return (
-        <div style={{ paddingTop: '180px', paddingBottom: '50px', marginLeft: '3vw' }}>
+        <div style={{ paddingBottom: '50px', marginLeft: '3vw' }}>
           {type} 통계페이지
           <Container>
             <Bar options={options1} data={data1} />
