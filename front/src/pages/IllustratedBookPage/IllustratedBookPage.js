@@ -22,6 +22,7 @@ function IllustratedBookPage() {
 	const [searchName, setSearchName] = useState();
 	const [isOpen, setIsOpen] = useState(false);
 	const [userPokemonList, setUserPokemonList] = useState([]);
+	const [pokemonList, setPokemonList]= useState([]);
 
 	useEffect(() => {
 		Api.get('user/current').then((res) => {
@@ -36,10 +37,13 @@ function IllustratedBookPage() {
 
 	const pokemonNumber = Object.keys(userPokemonList).length;
 
-	const pokemonList = [];
-	for (let i = 1; i < 152; i += 1) {
-		pokemonList.push(String(i));
-	}
+	useEffect(() => {
+		const newPokemonList = [];
+		for (let i = 1; i < 152; i += 1) {
+			newPokemonList.push(i.toString());
+		}
+		setPokemonList(newPokemonList)
+	}, [])
 
 	const handleChangeType1 = (e) => {
 		setSelectType1(e.target.value);
@@ -155,7 +159,7 @@ function IllustratedBookPage() {
 				style={{
 					display: 'grid',
 					gridTemplateRows: '1fr ',
-					gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr',
+					gridTemplateColumns: '1fr '.repeat(5),
 					gap: '2em 1em',
 					marginTop: '50px',
 				}}
