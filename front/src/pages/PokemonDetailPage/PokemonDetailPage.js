@@ -10,6 +10,7 @@ import * as Api from '../../api';
 function PokemonDetailPage() {
 	const [pokemon, setPokemon] = useState([]);
 	const params = useParams();
+
 	useEffect(() => {
 		const fetchPokemonOne = async () => {
 			const response = await Api.get('pokemon', params.pokemonId);
@@ -17,7 +18,6 @@ function PokemonDetailPage() {
 		};
 		fetchPokemonOne();
 	}, []);
-	console.log(pokemon);
 	return (
 		<Container sx={{ marginTop: '165px' }}>
 			<Grid container>
