@@ -67,7 +67,7 @@ function pokemonCard({ pokemon }) {
 	};
 
 	return (
-		<Container fixed sx={{ marginTop: '165px' }}>
+		<Container fixed sx={{ minWidth: 800 }}>
 			<Box sx={{ flexGrow: 1 }}>
 				<Grid container spacing={0}>
 					<Grid item xs={6} md={6}>
