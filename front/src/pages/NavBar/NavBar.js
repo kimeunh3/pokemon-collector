@@ -1,12 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import {
-	Toolbar,
-	IconButton,
-	styled,
-	Button,
-	Grid,
-} from '@material-ui/core';
+import { Toolbar, IconButton, styled, Button, Grid } from '@material-ui/core';
 import MuiAppBar from '@material-ui/core/AppBar';
 import {
 	DialogActions,
@@ -71,7 +65,11 @@ function NavBar() {
 	};
 
 	// login page와 home에서는 NavBar가 뜨지 않도록 설정
-	if (location.pathname === '/login' || location.pathname === '/home' || location.pathname.includes('/StatisticsPage/TypeStatisticsPage/'))
+	if (
+		location.pathname === '/login' ||
+		location.pathname === '/home' ||
+		location.pathname.includes('/StatisticsPage/TypeStatisticsPage/')
+	)
 		return null;
 
 	return (
@@ -141,7 +139,7 @@ function NavBar() {
 							<Grid item xs={2}>
 								<Button
 									color='inherit'
-									onClick={() => navigate('/login')}
+									onClick={() => navigate('/MyPage')}
 									style={{ fontSize: '1.1vw' }}
 								>
 									마이페이지
@@ -235,7 +233,13 @@ function NavBar() {
 					</IconButton>
 				</Toolbar>
 			</AppBar>
-			<DrawerComponents open={open} setOpen={setOpen} isLogin={isLogin} handleDialogOpen={handleDialogOpen} logout={logout} />
+			<DrawerComponents
+				open={open}
+				setOpen={setOpen}
+				isLogin={isLogin}
+				handleDialogOpen={handleDialogOpen}
+				logout={logout}
+			/>
 			<div
 				style={{
 					position: 'fixed',
@@ -247,7 +251,7 @@ function NavBar() {
 				<div style={{ left: '50%', marginLeft: '-55px', position: 'absolute' }}>
 					<img
 						alt=''
-						src="https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/front/nav-icon.png"
+						src='https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/front/nav-icon.png'
 						width='110px'
 						height='110px'
 					/>
