@@ -24,6 +24,7 @@ import {
 
 import PokemonCard from './components/PokemonCard/PokemonCard';
 import PokemonRadar from './components/PokemonRadar/PokemonRadar';
+import PokemonMultiLine from './components/PokemonMultiLine/PokemonMultiLine';
 
 import * as Api from '../../api';
 
@@ -133,6 +134,7 @@ function PokemonDetailPage() {
 					<PokemonRadar pokemon={pokemon} typeOneColor={typeOneColor} />
 				</Grid>
 			</Grid>
+			<PokemonMultiLine />
 		</Container>
 	);
 }
