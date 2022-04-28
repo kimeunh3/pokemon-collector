@@ -88,24 +88,13 @@ userAuthRouter.get(
 );
 
 userAuthRouter.put(
-  "/user/current",
+  "/users/:id",
   login_required,
   async function (req, res, next) {
     try {
-      const user = await User.findById(req.params.id);
-
-      let hours = 0;
-
-      if (user.attendance.length > 0){
-        user.attendance.reverse();
-        user.attendance.map(a =>{
-          if(a.entry && a.exit.time){
-            hours = hours + calculateHours(a.entry.getTime(),a.exit.time.getTime());
-          }
-        })
-        hours = parseFloat(hours/(3600*1000)).toFixed(4);
-        
-      const attendance = new Date();
+      const user_id = req.params.id;
+      
+      const attendance = new Date().toLocaleString();
 
       const toUpdate = {attendance};
 
@@ -118,8 +107,6 @@ userAuthRouter.put(
       }
       res.status(200).json(updatedUser);
     
-      }
-      
       }
       catch(error){
         next(error);
