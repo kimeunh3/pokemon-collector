@@ -14,8 +14,6 @@ function NavBarHeader({ open, setOpen, isLogin, handleDialogOpen, logout }) {
     const navigate = useNavigate();
     const isMobile = useMediaQuery("(max-width: 900px)");
 
-    console.log(isMobile ? '모바일입니다.' : 'pc입니다.')
-
     const AppBar = styled(MuiAppBar, {
 		shouldForwardProp: (prop) => prop !== 'open',
 	})(({ theme, open }) => ({
