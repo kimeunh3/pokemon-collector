@@ -34,7 +34,18 @@ class User {
     return updatedUser;
   }
 
-  static async timeDiffernce()
+  // static async updateAttendance({user_id}) {
+  //   const filter = {id: user_id};
+  //   const update = { attendance: newValue };
+  //   const option = {returnOriginal: false};
+
+  //   const updatedAttendance = await attendanceModel.findOneAndUpdate(
+  //     filter,
+  //     update,
+  //     option,
+  //   );
+  //   return updatedAttendance;
+  // }
 }
 
 export { User };

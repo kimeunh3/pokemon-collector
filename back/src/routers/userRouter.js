@@ -93,11 +93,11 @@ userAuthRouter.put(
   async function (req, res, next) {
     try {
       const user_id = req.currentUserId;
-
       const currentUserInfo = await userAuthService.getUserInfo({user_id,});
-      
-
-      
+      const attendance = currentUserInfo.attendance;
+      const isPointGiven = currentUserInfo.isPointGiven;
+      const toUpdate = {attendance, isPointGiven};
+      const updatedUser = await userAuthService.setUser({user_id, toUpdate});
 
       if (updatedUser.errorMessgae){
         throw new Error(updatedUser.errorMessage);

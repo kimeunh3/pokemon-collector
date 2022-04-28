@@ -1,9 +1,3 @@
-/*
- * <user 정보 Schema 정의>
- * 작성자 : 김보현
- * 작성일 : 2022.04.21
- */
-
 import { Schema, model } from 'mongoose';
 
 const UserSchema = new Schema(
