@@ -88,7 +88,7 @@ userAuthRouter.get(
 );
 
 userAuthRouter.put(
-  "/users/current",
+  "/user/current",
   login_required,
   async function (req, res, next) {
     try {
