@@ -9,7 +9,7 @@ function PokemonBookCard({ name, selectType1, selectType2, searchName, num }) {
 	const navigate = useNavigate();
 	let type1 = '10';
 	let type2 = '10';
-	const imgSrc = `https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/pokemons/${num}.png`;
+	const imgSrc = `https://d31z0g5vo6ghmg.cloudfront.net/pokemons/${num}.png`;
 	const type1List = {
 		// normal
 		20: [

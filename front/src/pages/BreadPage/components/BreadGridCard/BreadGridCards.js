@@ -15,7 +15,7 @@ function GridCards({ bread, breadImg, drawPokemon }) {
 		navigate(`/pokemonDetail/${drawPokemon.id}`);
 	};
 
-	const breadImgSrc = `https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/front/bread/${breadImg}.png`;
+	const breadImgSrc = `https://d31z0g5vo6ghmg.cloudfront.net/front/bread/${breadImg}.png`;
 
 	if (bread) {
 		return (

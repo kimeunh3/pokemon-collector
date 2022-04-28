@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
+
 import {
 	Adjust,
 	LocalFireDepartment,
@@ -119,7 +120,7 @@ function PokemonDetailPage() {
 	const typeTwoColor = IconObj[typeTwo] ? IconObj[typeTwo].Color : '';
 
 	return (
-		<Container sx={{ marginTop: '165px' }}>
+		<Container sx={{ marginTop: '165px', width: '100%' }}>
 			<Grid container>
 				<Grid item xs={6} md={6}>
 					<PokemonCard

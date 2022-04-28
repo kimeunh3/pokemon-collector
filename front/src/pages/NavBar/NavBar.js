@@ -89,7 +89,7 @@ function NavBar() {
 					>
 						<img
 							alt=''
-							src='https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/front/logo.png'
+							src='https://d31z0g5vo6ghmg.cloudfront.net/front/logo.png'
 							width='200px'
 							height='70px'
 						/>
@@ -251,7 +251,7 @@ function NavBar() {
 				<div style={{ left: '50%', marginLeft: '-55px', position: 'absolute' }}>
 					<img
 						alt=''
-						src='https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/front/nav-icon.png'
+						src='https://d31z0g5vo6ghmg.cloudfront.net/front/nav-icon.png'
 						width='110px'
 						height='110px'
 					/>

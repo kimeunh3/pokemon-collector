@@ -29,7 +29,7 @@ function pokemonCard({
 		defense,
 	} = pokemon;
 
-	const imgSrc = `https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/pokemons/${id}.png`;
+	const imgSrc = `https://d31z0g5vo6ghmg.cloudfront.net/pokemons/${id}.png`;
 
 	return (
 		<Container fixed sx={{ minWidth: 800 }}>

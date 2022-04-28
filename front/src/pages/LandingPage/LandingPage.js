@@ -217,7 +217,7 @@ function LandingPage() {
 				</Toolbar>
 				<img
 					alt=''
-					src='https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/front/logo.png'
+					src='https://d31z0g5vo6ghmg.cloudfront.net/front/logo.png'
 					width='600px'
 					height='210px'
 				/>
@@ -235,7 +235,7 @@ function LandingPage() {
 				>
 					<img
 						alt=''
-						src='https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/front/nav-icon.png'
+						src='https://d31z0g5vo6ghmg.cloudfront.net/front/nav-icon.png'
 						width='200px'
 						height='200px'
 					/>
@@ -264,7 +264,7 @@ function LandingPage() {
 			>
 				<img
 					alt=''
-					src='https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/front/poster.png'
+					src='https://d31z0g5vo6ghmg.cloudfront.net/front/poster.png'
 					style={{ height: '500px' }}
 				/>
 			</div>

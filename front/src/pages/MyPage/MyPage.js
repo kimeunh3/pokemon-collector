@@ -16,7 +16,7 @@ import { Favorite, Share } from '@mui/icons-material';
 function MyPage({ userState }) {
 	const { email } = userState.user;
 	console.log(userState);
-	const profileImg = `https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/pokemons/pokeball.png`;
+	const profileImg = `https://d31z0g5vo6ghmg.cloudfront.net/pokeball.png`;
 
 	return (
 		<Container sx={{ marginTop: '165px' }}>
