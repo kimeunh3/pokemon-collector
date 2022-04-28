@@ -4,13 +4,11 @@ import Box from '@mui/material/Box';
 import { useNavigate } from 'react-router-dom';
 import '../../BreadPage.css';
 
-function GridCards({ bread, breadImg }) {
-	const randNum = Math.floor(Math.random() * 151 + 1);
-
+function GridCards({ bread, breadImg, drawPokemonId }) {
 	const navigate = useNavigate();
 	const handleClick = () => {
-		alert(randNum);
-		navigate(`/pokemonDetail/${randNum}`);
+		alert(drawPokemonId);
+		navigate(`/pokemonDetail/${drawPokemonId}`);
 	};
 
 	const breadImgSrc = `https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/front/bread/${breadImg}.png`;

@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import GridCards from './components/BreadGridCard/BreadGridCards';
 
+import * as Api from '../../api';
+
 function BreadPage() {
+	const [drawPokemonId, setDrawPokemonId] = useState();
 	const breadImgs = [
 		'digda',
 		'ggobugi',
@@ -14,6 +17,15 @@ function BreadPage() {
 		'purin',
 		'rocketdan',
 	];
+
+	useEffect(() => {
+		const fetchDrawPokemon = async () => {
+			const response = await Api.get('drawPokemon');
+			setDrawPokemonId(response.data.id);
+		};
+		fetchDrawPokemon();
+	}, []);
+
 	return (
 		<Container fixed sx={{ marginTop: '135px' }}>
 			<Typography
@@ -31,7 +43,11 @@ function BreadPage() {
 			<Grid container spacing={4}>
 				{breadImgs.map((breadImg) => (
 					<React.Fragment key={breadImg}>
-						<GridCards bread breadImg={breadImg} />
+						<GridCards
+							bread
+							breadImg={breadImg}
+							drawPokemonId={drawPokemonId}
+						/>
 					</React.Fragment>
 				))}
 			</Grid>
