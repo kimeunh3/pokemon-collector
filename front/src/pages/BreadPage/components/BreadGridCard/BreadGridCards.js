@@ -1,14 +1,18 @@
 import React from 'react';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import { useNavigate } from 'react-router-dom';
-import '../../BreadPage.css';
+import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
 
-function GridCards({ bread, breadImg, drawPokemonId }) {
+import { useNavigate } from 'react-router-dom';
+// import '../../BreadPage.css';
+
+function GridCards({ bread, breadImg, drawPokemon }) {
 	const navigate = useNavigate();
 	const handleClick = () => {
-		alert(drawPokemonId);
-		navigate(`/pokemonDetail/${drawPokemonId}`);
+		alert(drawPokemon.name);
+		navigate(`/pokemonDetail/${drawPokemon.id}`);
 	};
 
 	const breadImgSrc = `https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/front/bread/${breadImg}.png`;
@@ -18,15 +22,32 @@ function GridCards({ bread, breadImg, drawPokemonId }) {
 			<Grid item xs={3}>
 				<Box
 					className='bread'
-					style={{ position: 'relative' }}
+					sx={{ position: 'relative' }}
 					onClick={handleClick}
-					aria-hidden='true'
 				>
-					<img
-						style={{ width: '100%', height: '100%' }}
-						src={breadImgSrc}
-						alt={breadImg}
-					/>
+					<Button
+						className='btn'
+						sx={{
+							display: 'none',
+							position: 'absolute',
+							top: '40%',
+							left: '31%',
+						}}
+					>
+						빵 구매
+					</Button>
+					<Card>
+						<CardMedia
+							sx={{
+								width: '100%',
+								height: '100%',
+								'&:hover': { '& .btn': { display: 'block' } },
+							}}
+							component='img'
+							image={breadImgSrc}
+							alt={breadImg}
+						/>
+					</Card>
 				</Box>
 			</Grid>
 		);

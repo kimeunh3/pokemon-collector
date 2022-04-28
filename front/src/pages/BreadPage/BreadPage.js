@@ -7,7 +7,7 @@ import GridCards from './components/BreadGridCard/BreadGridCards';
 import * as Api from '../../api';
 
 function BreadPage() {
-	const [drawPokemonId, setDrawPokemonId] = useState();
+	const [drawPokemon, setDrawPokemon] = useState();
 	const breadImgs = [
 		'digda',
 		'ggobugi',
@@ -21,7 +21,7 @@ function BreadPage() {
 	useEffect(() => {
 		const fetchDrawPokemon = async () => {
 			const response = await Api.get('drawPokemon');
-			setDrawPokemonId(response.data.id);
+			setDrawPokemon(response.data);
 		};
 		fetchDrawPokemon();
 	}, []);
@@ -43,11 +43,7 @@ function BreadPage() {
 			<Grid container spacing={4}>
 				{breadImgs.map((breadImg) => (
 					<React.Fragment key={breadImg}>
-						<GridCards
-							bread
-							breadImg={breadImg}
-							drawPokemonId={drawPokemonId}
-						/>
+						<GridCards bread breadImg={breadImg} drawPokemon={drawPokemon} />
 					</React.Fragment>
 				))}
 			</Grid>

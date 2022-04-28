@@ -36,7 +36,14 @@ function pokemonCard({
 			<Box sx={{ flexGrow: 1 }}>
 				<Grid container spacing={0}>
 					<Grid item xs={6} md={6}>
-						<Card sx={{ maxWidth: 300, minHeight: 400, marginLeft: 9 }}>
+						<Card
+							sx={{
+								maxWidth: 300,
+								minHeight: 400,
+								marginLeft: 9,
+								boxShadow: `inset 0px 0px 30px ${typeOneColor}`,
+							}}
+						>
 							<CardHeader
 								avatar={
 									<Avatar sx={{ bgcolor: typeOneColor }} aria-label='number'>
