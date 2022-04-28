@@ -4,8 +4,13 @@ import { errorMiddleware } from "./middlewares/errorMiddleware";
 import { userAuthRouter } from "./routers/userRouter";
 import { pokemonAuthRouter } from "./routers/pokemonRouter";
 
+const { swaggerUi, specs } = require('./modules/swagger');
 const app = express();
 
+<<<<<<< HEAD
+=======
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs, {explorer: true }));
+>>>>>>> 32e713dd9979cf8d6acb048ffd224eb140c0a0b4
 // CORS 에러 방지
 app.use(cors());
 
