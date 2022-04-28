@@ -123,6 +123,12 @@ class userAuthService {
       user = await User.update({user_id, fieldToUpdate, newValue});
     }
 
+    if (toUpdate.isPointGiven) {
+      const fieldToUpdate = "isPointGiven";
+      const newValue = !(toUpdate.attendance);
+      user = await User.update({user_id, fieldToUpdate, newValue});
+    }
+
     return user;
   }
 
@@ -138,6 +144,7 @@ class userAuthService {
 
     return user;
   }
+
 }
 
 export { userAuthService };

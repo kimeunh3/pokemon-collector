@@ -93,21 +93,29 @@ userAuthRouter.put(
   async function (req, res, next) {
     try {
       const user_id = req.currentUserId;
+
+      const attendance = new Date().getTime();
       
-      const attendance = new Date().toISOString();
+      //24시간 경과된 출석 시간
+      const updatedAttendance = new Date(24 * 3600 * 1000).getTime();
+      
+      const isPointGiven = !(user_id.isPointGiven);
 
-      const toUpdate = {attendance};
+      if(attendance - updatedAttendance > 24 * 3600 * 1000){
+      
+        const toUpdate = {attendance, isPointGiven};
 
-      const updatedUser = await userAuthService.setUser({user_id, toUpdate});
+        const updatedUser = await userAuthService.setUser({user_id, toUpdate});
 
+        if (updatedUser.errorMessgae){
+          throw new Error(updatedUser.errorMessage);
+        }
+        res.status(200).json(updatedUser);
+      
+        }
 
-        
-      if (updatedUser.errorMessgae){
-        throw new Error(updatedUser.errorMessage);
       }
-      res.status(200).json(updatedUser);
-    
-      }
+     
       catch(error){
         next(error);
       }
