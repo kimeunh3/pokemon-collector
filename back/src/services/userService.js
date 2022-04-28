@@ -54,7 +54,7 @@ class userAuthService {
     const point = user.point;
     const profileImg = user.profileImg;
     const stickers = user.stickers;
-    const attendance = user.attendacness;
+    const attendance = user.attendance;
     const isPointGiven = user.isPointGiven;
     const loginUser = {
       token,
