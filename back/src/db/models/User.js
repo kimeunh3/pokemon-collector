@@ -33,6 +33,30 @@ class User {
     );
     return updatedUser;
   }
+
+  static async findPointById({ user_id }) {
+    const {point} = await UserModel.findOne({ id:user_id }, {point:1});
+    return point;
+  }
+
+  static async updateStickers({user_id, id, name}){
+    const sticker = {id, name};
+    const {stickers} = await UserModel.findOneAndUpdate(
+      {id : user_id},
+      { $push: {stickers: sticker}},
+      {new: true}
+    );
+    return stickers;
+  }
+
+  static async updatePoint({user_id, changedPoint}){
+    const {point} = await UserModel.findOneAndUpdate(
+      { id:user_id },
+      { $set: { point: changedPoint } },
+      {new: true}
+    );
+    return point;
+  }
 }
 
 export { User };
