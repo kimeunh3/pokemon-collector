@@ -55,7 +55,7 @@ function App() {
 			<div id='loading'>
 				<img
 					id='loading-image'
-					src="https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/front/loading.gif"
+					src="https://d31z0g5vo6ghmg.cloudfront.net/front/loading.gif"
 					alt='Loading...'
 				/>
 			</div>
