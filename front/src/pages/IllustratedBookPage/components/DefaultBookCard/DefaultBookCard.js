@@ -14,7 +14,7 @@ function DefaultBookCard({ selectType1, selectType2, searchName }) {
 			<CardMedia style={{ textAlign: 'center' }}>
 				<img
 					alt=''
-					src='https://d31z0g5vo6ghmg.cloudfront.net//pokemons/pokeball.png'
+					src='https://d31z0g5vo6ghmg.cloudfront.net/pokemons/pokeball.png'
 					style={{ marginTop: '1rem', width: '140px' }}
 				/>
 			</CardMedia>

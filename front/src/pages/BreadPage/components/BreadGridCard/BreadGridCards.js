@@ -41,7 +41,7 @@ function GridCards({ bread, breadImg, drawPokemon }) {
 							sx={{
 								width: '100%',
 								height: '100%',
-								'&:hover': { '& .btn': { display: 'block' } },
+								'&:hover': { '&:.btn': { display: 'block' } },
 							}}
 							component='img'
 							image={breadImgSrc}
