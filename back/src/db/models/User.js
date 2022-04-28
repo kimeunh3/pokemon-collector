@@ -21,6 +21,12 @@ class User {
     return users;
   }
 
+  static async findStickerListById({user_id}){
+    const userStickers = await UserModel.findOne({ id: user_id },{stickers:1});
+    const stickerList = userStickers.stickers.map(sticker=>sticker.id);
+    return stickerList;
+  }
+
   static async update({ user_id, fieldToUpdate, newValue }) {
     const filter = { id: user_id };
     const update = { [fieldToUpdate]: newValue };

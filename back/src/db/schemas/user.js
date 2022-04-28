@@ -60,7 +60,11 @@ const UserSchema = new Schema(
       type : Date,
       required : false,
       default: () => new Date(),
-    }
+    },
+    achievements:[{
+      type: Schema.Types.ObjectId,
+      ref: 'AchievementsModel'
+    }]
   },
   {
     timestamps: true,
