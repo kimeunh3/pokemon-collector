@@ -46,14 +46,31 @@ class userAuthService {
     const token = jwt.sign({ user_id: user.id }, secretKey);
 
     const id = user.id;
-    const name = user.name;
-    const description = user.description;
+    const nickname = user.nickname;
+    const sex = user.sex;
+    const age = user.age;
+    const interest = user.interest;
+    const likeType = user.likeType;
+    const point = user.point;
+    const profileImg = user.profileImg;
+    const stickers = user.stickers;
+    const attendance = user.attendacness;
+    const isPointGiven = user.isPointGiven;
     const loginUser = {
       token,
       id,
+      nickname,
       email,
-      name,
-      description,
+      password,
+      sex,
+      age,
+      interest,
+      likeType,
+      point,
+      profileImg,
+      stickers,
+      attendance,
+      isPointGiven,
       errorMessage: null,
     };
 

@@ -5,7 +5,6 @@ import { userAuthService } from '../services/userService';
 import { User } from '../db';
 const userAuthRouter = Router();
 
-
 userAuthRouter.post("/user/register", async function (req, res, next) {
   try {
     if (is.emptyObject(req.body)) {
@@ -49,9 +48,7 @@ userAuthRouter.post("/user/login", async function (req, res, next) {
     const email = req.body.email;
     const password = req.body.password;
     const user = await userAuthService.getUser({ email, password });
-    if (user.attendance ){
-
-    }
+    
     if (user.errorMessage) {
    
       return res.status(400).json({
