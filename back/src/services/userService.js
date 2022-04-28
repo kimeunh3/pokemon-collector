@@ -145,27 +145,7 @@ class userAuthService {
     return user;
   }
 
-  // static async updateAttendance({ user_id }){
-  //   const req_JSON_attendance = req.body;
-  //   if (!req_JSON_attendance.indexNo ||
-  //     !req_JSON_attendance.isEntered ||
-  //     !req_JSON_attendance.timestamp) {
-  //       const errorMessage = '출석 사항을 다시 한 번 확인해 주세요.';
-  //       return {errorMessage};
-  //     }
-  //   const user = await User.findOne( {indexNo: req_JSON_attendance.indexNo});
-    
-  //   const attendance = new Attendance({
-  //     user : user.user_id,
-  //     indexNo : req_JSON_attendance.indexNo,
-  //     date: req_JSON_attendance.date,
-  //     time: req_JSON_attendance.time,
-  //     timestamp: req_JSON_attendance.timestamp,
-  //     isEntered: req_JSON_attendance.isEntered
-  //   });
-    
 
-  // }
 }
 
 export { userAuthService };
