@@ -98,7 +98,7 @@ userAuthRouter.put(
       const savedAttendance = currentUserInfo.attendance;
       var timeDiff = (attendance - savedAttendance);
 
-      if(timeDiff >= 24){
+      if(timeDiff >= 24*1000*60*60){
         const isPointGiven = !(currentUserInfo.isPointGiven);
         const toUpdate = {attendance, isPointGiven};
         const updatedUser = await userAuthService.setUser({user_id, toUpdate});
@@ -106,7 +106,7 @@ userAuthRouter.put(
           throw new Error(updatedUser.errorMessage);
         }
         res.status(200).json(updatedUser);
-      } console.log(attendance, savedAttendance, timeDiff/1000/60);
+      } console.log(attendance, savedAttendance, timeDiff);
       
     }catch(error){
         next(error);
