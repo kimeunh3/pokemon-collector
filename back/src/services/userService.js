@@ -68,7 +68,7 @@ class userAuthService {
   static async setUser({ user_id, toUpdate }) {
 
     let user = await User.findById({ user_id });
-
+    
 
     if (!user) {
       const errorMessage =

@@ -97,7 +97,7 @@ userAuthRouter.put(
     try {
       const user_id = req.currentUserId;
       
-      const attendance = new Date();
+      const attendance = new Date().toISOString();
 
       const toUpdate = {attendance};
 
