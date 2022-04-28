@@ -29,6 +29,21 @@ class PokemonAuthService {
     return pokemonName;
   }
 
+  static getPokemons(){
+    return Pokemon.findAll();
+  }
+  
+  static async getPokemons({ type }){
+    const pokemons = await Pokemon.findPokemonsByType({type});
+    // db에서 찾지 못한 경우, 에러 메시지 반환
+    if (pokemons.length <= 0) {
+      const errorMessage =
+        "해당 속성의 포켓몬이 없습니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+    return pokemons
+  }
+
   static async getDrewPokemonIdAndName({user_id}){
 
     const point = await User.findPointById({user_id});
