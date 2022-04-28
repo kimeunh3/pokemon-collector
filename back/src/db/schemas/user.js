@@ -52,7 +52,7 @@ const UserSchema = new Schema(
       }
     ],
     attendance: {
-      type: String,
+      type: Date,
       required : false,
       default: Date.now(),
     },
