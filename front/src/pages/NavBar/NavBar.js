@@ -61,7 +61,7 @@ function NavBar() {
 				<div style={{ left: '50vw', transform: 'translateX(-50%)', position: 'absolute' }}>
 					<img
 						alt=''
-						src="https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/front/nav-icon.png"
+						src="https://d31z0g5vo6ghmg.cloudfront.net/front/nav-icon.png"
 						width='110px'
 						height='110px'
 					/>

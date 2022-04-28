@@ -6,6 +6,7 @@ import {
 	Grid,
 } from '@material-ui/core';
 import StatisticsButton from './components/StatisticsButton';
+import ScrollUpButton from '../../components/commons/ScrollUpButton';
 
 function StatisticsPage() {
     const [isAll, setIsAll] = useState(true);
@@ -113,7 +114,7 @@ function StatisticsPage() {
                     </>
                 )}
             </div>
-            <button type="button" id="go-top" onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })}><span className="material-symbols-outlined">arrow_upward</span></button>
+            <ScrollUpButton />
 		</div>
 	);
 }

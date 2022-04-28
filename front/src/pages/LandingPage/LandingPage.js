@@ -44,7 +44,7 @@ function LandingPage() {
       }}
       >
         <div style={{ left: '50vw', transform: 'translateX(-50%)', position: 'absolute' }}>
-          <img alt="" src='https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/front/nav-icon.png' width="200px" height="200px" />
+          <img alt="" src='https://d31z0g5vo6ghmg.cloudfront.net/front/nav-icon.png' width="200px" height="200px" />
         </div>
       </div>
       <DrawerComponents open={open} setOpen={setOpen} isLogin={isLogin} handleDialogOpen={handleDialogOpen} logout={logout} />
@@ -53,7 +53,7 @@ function LandingPage() {
         position: 'relative', top: '200px', left: '10%',
       }}
       >
-        <img alt="" src="https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/front/poster.png" style={{ height: '500px' }} />
+        <img alt="" src="https://d31z0g5vo6ghmg.cloudfront.net/front/poster.png" style={{ height: '500px' }} />
       </div>
       <Dialog open={openDialog} onClose={handleDialogClose} style={{ zIndex: '1300' }}>
         <DialogTitle>pokemon-collector</DialogTitle>

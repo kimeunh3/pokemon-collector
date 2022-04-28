@@ -11,7 +11,7 @@ function StatisticsButton({ imgSrc, text, bColor, type }) {
 
     const styles = {
         paperContainer: {
-            backgroundImage: `url(https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/${imgSrc}.png)`,
+            backgroundImage: `url(https://d31z0g5vo6ghmg.cloudfront.net/${imgSrc}.png)`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundBlendMode: 'multiply',
