@@ -11,8 +11,8 @@ import {
 	ListItem,
 } from '@material-ui/core';
 
-function DrawerComponents({typeColor, isBarStats, isDoughnutType, isPolarAreaType, isBarWeightHeight, isBarTotal, isPieStatus, setIsBarStats, setIsDoughnutType, setIsPolarAreaType, setIsBarWeightHeight, setIsBarTotal, setIsPieStatus}) {
-    const drawerWidth = 240;
+function DrawerComponents({typeColor, isBarStats, isDoughnutType, isBarWeightHeight, isBarTotal, setIsBarStats, setIsDoughnutType, setIsBarWeightHeight, setIsBarTotal }) {
+    const drawerWidth = 300;
     const theme = useTheme();
     const navigate = useNavigate();
 
@@ -52,10 +52,8 @@ function DrawerComponents({typeColor, isBarStats, isDoughnutType, isPolarAreaTyp
               onClick={() => {
                 setIsBarStats(true);
                 setIsDoughnutType(false);
-                setIsPolarAreaType(false);
                 setIsBarWeightHeight(false);
                 setIsBarTotal(false);
-                setIsPieStatus(false);
               }}  
             >능력치 통계</Button>
           </ListItem>
@@ -67,27 +65,10 @@ function DrawerComponents({typeColor, isBarStats, isDoughnutType, isPolarAreaTyp
               onClick={() => {
                 setIsBarStats(false);
                 setIsDoughnutType(true);
-                setIsPolarAreaType(false);
                 setIsBarWeightHeight(false);
                 setIsBarTotal(false);
-                setIsPieStatus(false);
               }}  
             >속성 통계</Button>
-          </ListItem>
-          <ListItem style={isPolarAreaType ? { backgroundColor: typeColor } : {}}>
-            <span className="material-symbols-outlined">arrow_right</span>
-            <Button
-              color="inherit"
-              style={{ fontSize: '18px' }}
-              onClick={() => {
-                setIsBarStats(false);
-                setIsDoughnutType(false);
-                setIsPolarAreaType(true);
-                setIsBarWeightHeight(false);
-                setIsBarTotal(false);
-                setIsPieStatus(false);
-              }}
-            >속성 개수 통계</Button>
           </ListItem>
           <ListItem style={isBarWeightHeight ? { backgroundColor: typeColor } : {}}>
             <span className="material-symbols-outlined">arrow_right</span>
@@ -97,10 +78,8 @@ function DrawerComponents({typeColor, isBarStats, isDoughnutType, isPolarAreaTyp
               onClick={() => {
                 setIsBarStats(false);
                 setIsDoughnutType(false);
-                setIsPolarAreaType(false);
                 setIsBarWeightHeight(true);
                 setIsBarTotal(false);
-                setIsPieStatus(false);
               }}
             >키/몸무게 통계</Button>
           </ListItem>
@@ -112,27 +91,10 @@ function DrawerComponents({typeColor, isBarStats, isDoughnutType, isPolarAreaTyp
               onClick={() => {
                 setIsBarStats(false);
                 setIsDoughnutType(false);
-                setIsPolarAreaType(false);
                 setIsBarWeightHeight(false);
                 setIsBarTotal(true);
-                setIsPieStatus(false);
               }}
             >종합 능력치 통계</Button>
-          </ListItem>
-          <ListItem style={isPieStatus ? { backgroundColor: typeColor } : {}}>
-            <span className="material-symbols-outlined">arrow_right</span>
-            <Button
-              color="inherit"
-              style={{ fontSize: '18px' }}
-              onClick={() => {
-                setIsBarStats(false);
-                setIsDoughnutType(false);
-                setIsPolarAreaType(false);
-                setIsBarWeightHeight(false);
-                setIsBarTotal(false);
-                setIsPieStatus(true);
-              }}
-            >포켓몬 종류 통계</Button>
           </ListItem>
         </List>
       </Drawer>

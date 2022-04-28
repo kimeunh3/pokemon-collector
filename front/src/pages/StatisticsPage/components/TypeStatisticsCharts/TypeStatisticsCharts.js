@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bar, Pie, Doughnut, PolarArea } from 'react-chartjs-2';
+import { Bar, Doughnut } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -148,6 +148,7 @@ export function DoughnutType({ y }) {
               'rgba(162, 125, 250, 0.5)',
               'rgba(209, 209, 224, 0.5)',
               'rgba(244, 189, 201, 0.5)',
+              'rgba(0, 0, 0, 0.5)',
             ],
             borderColor: [
               'rgba(198, 198, 167, 1)',
@@ -167,6 +168,7 @@ export function DoughnutType({ y }) {
               'rgba(162, 125, 250, 1)',
               'rgba(209, 209, 224, 1)',
               'rgba(244, 189, 201, 1)',
+              'rgba(0, 0, 0, 1)',
             ],
             borderWidth: 1,
           },
@@ -181,38 +183,6 @@ export function DoughnutType({ y }) {
             marginLeft: '250px',
           }}>
             <Doughnut data={dataDoughnutType} />
-          </div>
-    )
-}
-
-export function PolarAreaType({ y }) {
-    const dataPolarAreaType = {
-        labels: [ '속성 1개', '속성 2개' ],
-        datasets: [
-          {
-            label: '# of Votes',
-            data: Object.values(y.typeNumber),
-            backgroundColor: [
-              'rgba(198, 198, 167, 0.5)',
-              'rgba(245, 172, 120, 0.5)',
-            ],
-            borderColor: [
-              'rgba(198, 198, 167, 1)',
-              'rgba(245, 172, 120, 1)',
-            ],
-            borderWidth: 1,
-          },
-        ],
-    };
-
-    return (
-        <div style={{
-            backgroundColor: 'rgba(255, 255, 255, 0.5)',
-            borderRadius: '10px',
-            maxWidth: '600px',
-            marginLeft: '250px',
-          }}>
-            <PolarArea data={dataPolarAreaType} />
           </div>
     )
 }
@@ -300,40 +270,6 @@ export function BarTotal({ x, y }) {
             borderRadius: '10px',
           }}>
             <Bar options={optionBarTotal} data={dataBarTotal} />
-          </div>
-    )
-}
-
-export function PieStatus({ y }) {
-    const dataPieStatus = {
-        labels: [ '노말', '전설', '환상' ],
-        datasets: [
-          {
-            label: '# of Votes',
-            data: Object.values(y.status),
-            backgroundColor: [
-              'rgba(198, 198, 167, 0.5)',
-              'rgba(245, 172, 120, 0.5)',
-              'rgba(209, 209, 224, 0.5)',
-            ],
-            borderColor: [
-              'rgba(198, 198, 167, 1)',
-              'rgba(245, 172, 120, 1)',
-              'rgba(209, 209, 224, 1)',
-            ],
-            borderWidth: 1,
-          },
-        ],
-    };
-    
-    return (
-        <div style={{
-            backgroundColor: 'rgba(255, 255, 255, 0.5)',
-            borderRadius: '10px',
-            maxWidth: '600px',
-            marginLeft: '250px',
-          }}>
-            <Pie data={dataPieStatus} />
           </div>
     )
 }
