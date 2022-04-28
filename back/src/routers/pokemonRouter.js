@@ -45,6 +45,30 @@ pokemonAuthRouter.get("/pokemon/:id/name", async (req, res, next) => {
   }
 });
 
+pokemonAuthRouter.get("/pokemonList", async (req, res, next) => {
+  try {
+    const pokemons = await PokemonAuthService.getPokemons();
+    res.status(200).json(pokemons);
+  } catch (error) {
+    next(error);
+  }
+});
+
+pokemonAuthRouter.get("/pokemonList/:type", async (req, res, next) => {
+  try {
+    const type = req.params.type;
+    const pokemons = await PokemonAuthService.getPokemons({ type });
+
+    if (pokemons.errorMessage) {
+      throw new Error(pokemons.errorMessage);
+    }
+
+    res.status(200).json(pokemons);
+  } catch (error) {
+    next(error);
+  }
+});
+
 pokemonAuthRouter.get("/drawPokemon", async (req, res, next) => {
   try {
     // header에서 user id 받아오기
