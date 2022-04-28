@@ -11,10 +11,11 @@ import {
 	ListItem,
 } from '@material-ui/core';
 
-function DrawerComponents({typeColor, isBarStats, isDoughnutType, isBarWeightHeight, isBarTotal, setIsBarStats, setIsDoughnutType, setIsBarWeightHeight, setIsBarTotal }) {
-    const drawerWidth = 300;
+function DrawerComponents({type, typeColor, isBarStats, isDoughnutType, isBarWeightHeight, isBarTotal, setIsBarStats, setIsDoughnutType, setIsBarWeightHeight, setIsBarTotal }) {
+    const drawerWidth = '23vw';
     const theme = useTheme();
     const navigate = useNavigate();
+    const open = true;
 
     const DrawerHeader = styled('div')(({ theme }) => ({
 		display: 'flex',
@@ -24,17 +25,13 @@ function DrawerComponents({typeColor, isBarStats, isDoughnutType, isBarWeightHei
 		...theme.mixins.toolbar,
 		justifyContent: 'flex-start',
 		width: drawerWidth,
-		flexShrink: 0,
-		'& .MuiDrawer-paper': {
-			width: drawerWidth,
-		},
 	}));
 
     return (
       <Drawer
         variant="persistent"
         anchor="left"
-        open="true"
+        open={open}
         style={{ zIndex: '1200' }}
       >
         <DrawerHeader>
@@ -44,11 +41,15 @@ function DrawerComponents({typeColor, isBarStats, isDoughnutType, isBarWeightHei
         </DrawerHeader>
         <Divider />
         <List>
-          <ListItem style={isBarStats ? { backgroundColor: typeColor } : {}}>
+          <ListItem>
             <span className="material-symbols-outlined">arrow_right</span>
+            <div style={{ fontSize: '20px', fontWeight: 'bold' }}>{type} 속성 통계</div>
+          </ListItem>
+          <ListItem style={isBarStats ? { backgroundColor: typeColor } : {}}>
+            <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>arrow_right</span>
             <Button
               color="inherit"
-              style={{ fontSize: '18px' }}
+              style={{ fontSize: '12px' }}
               onClick={() => {
                 setIsBarStats(true);
                 setIsDoughnutType(false);
@@ -58,10 +59,10 @@ function DrawerComponents({typeColor, isBarStats, isDoughnutType, isBarWeightHei
             >능력치 통계</Button>
           </ListItem>
           <ListItem style={isDoughnutType ? { backgroundColor: typeColor } : {}}>
-            <span className="material-symbols-outlined">arrow_right</span>
+            <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>arrow_right</span>
             <Button
               color="inherit"
-              style={{ fontSize: '18px' }}
+              style={{ fontSize: '12px' }}
               onClick={() => {
                 setIsBarStats(false);
                 setIsDoughnutType(true);
@@ -71,10 +72,10 @@ function DrawerComponents({typeColor, isBarStats, isDoughnutType, isBarWeightHei
             >속성 통계</Button>
           </ListItem>
           <ListItem style={isBarWeightHeight ? { backgroundColor: typeColor } : {}}>
-            <span className="material-symbols-outlined">arrow_right</span>
+            <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>arrow_right</span>
             <Button
               color="inherit"
-              style={{ fontSize: '18px' }}
+              style={{ fontSize: '12px' }}
               onClick={() => {
                 setIsBarStats(false);
                 setIsDoughnutType(false);
@@ -84,10 +85,10 @@ function DrawerComponents({typeColor, isBarStats, isDoughnutType, isBarWeightHei
             >키/몸무게 통계</Button>
           </ListItem>
           <ListItem style={isBarTotal ? { backgroundColor: typeColor } : {}}>
-            <span className="material-symbols-outlined">arrow_right</span>
+            <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>arrow_right</span>
             <Button
               color="inherit"
-              style={{ fontSize: '18px' }}
+              style={{ fontSize: '12px' }}
               onClick={() => {
                 setIsBarStats(false);
                 setIsDoughnutType(false);
