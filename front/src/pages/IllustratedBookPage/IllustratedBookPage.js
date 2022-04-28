@@ -137,7 +137,7 @@ function IllustratedBookPage() {
 			<Dialog open={isOpen} onClose={handleClose} style={{ zIndex: '10000' }}>
 				<DialogTitle>포켓몬 속성 색상표</DialogTitle>
 				<DialogContent>
-					<img alt='' src='images/IllustratedBookPage/typeColor.png' />
+					<img alt='' src='https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/front/typeColor.png' />
 				</DialogContent>
 				<DialogActions>
 					<Button variant='contained' color='inherit' onClick={handleClose}>
