@@ -1,79 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from "react-router-dom";
-import { Bar } from 'react-chartjs-2';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from 'chart.js';
-import styled from 'styled-components';
+import { BarStats, DoughnutType, PolarAreaType, BarWeightHeight, BarTotal, PieStatus } from './components/TypeStatisticsCharts/TypeStatisticsCharts';
+import DrawerComponents from './components/DrawerComponents';
 
 // import * as Api from '../../api';
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-);
-
-export const options1 = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: 'top',
-    },
-    title: {
-      display: true,
-      text: '바위 포켓몬 능력치',
-    },
-  },
-};
-
-export const options2 = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: 'top',
-    },
-    title: {
-      display: true,
-      text: '바위 포켓몬 키/몸무게',
-    },
-  },
-};
-
-export const options3 = {
-  plugins: {
-    title: {
-      display: true,
-      text: '종합 능력치',
-    },
-  },
-  responsive: true,
-  interaction: {
-    mode: 'index',
-    intersect: false,
-  },
-  scales: {
-    x: {
-      stacked: true,
-    },
-    y: {
-      stacked: true,
-    },
-  },
-};
-
-function typeStatisticsPage() {
+function TypeStatisticsPage() {
   const params = useParams();
   const { type } = params;
+  const [isBarStats, setIsBarStats] = useState(true);
+  const [isDoughnutType, setIsDoughnutType] = useState(false);
+  const [isPolarAreaType, setIsPolarAreaType] = useState(false);
+  const [isBarWeightHeight, setIsBarWeightHeight] = useState(false);
+  const [isBarTotal, setIsBarTotal] = useState(false);
+  const [isPieStatus, setIsPieStatus] = useState(false);
   // const [pokemons, setPokemons] = useState([]);
 
   // useEffect(() => {
@@ -217,159 +157,70 @@ function typeStatisticsPage() {
   'weight_kg': 59.0}];
 
   const x = [];
-  const yAttack = [];
-  const yDefense = [];
-  const yHp = [];
-  const ySpAttack = [];
-  const ySpDefense = [];
-  const ySpeed = [];
-  const yHeight = [];
-  const yWeight = [];
-  const yTotalPoints = [];
+  const y = {
+    attack: [],
+    defense: [],
+    hp: [],
+    spAttack: [],
+    spDefense: [],
+    speed: [],
+    height: [],
+    weight: [],
+    totalPoints: [],
+    typesCnt: { '노말': 0, '불꽃': 0, '물': 0, '풀': 0, '전기': 0, '얼음': 0, '격투': 0, '독': 0, '땅': 0, '비행': 0, '에스퍼': 0, '벌레': 0, '바위': 0, '고스트': 0, '드래곤': 0, '강철': 0, '페어리': 0, 'NaN': 0 },
+    typeNumber: [0, 0],
+    status: {'노말':0,'전설':0,'환상':0},
+  }
+
+  const typeColorList = { '노말': '#A8A878', '불꽃': '#F08030', '물': '#6890F0', '풀': '#78C850', '전기': '#F8D030', '얼음': '#98D8D8', '격투': '#C03028', '독': '#A040A0', '땅': '#E0C068', '비행': '#A890F0', '에스퍼': '#F85888', '벌레': '#A8B820', '바위': '#B8A038', '고스트': '#705898', '드래곤': '#7038F8', '강철': '#B8B8D0', '페어리': '#EE99AC' };
 
   pokemons.forEach(pokemon => {
     x.push(pokemon.name);
-    yAttack.push(pokemon.attack);
-    yDefense.push(pokemon.defense);
-    yHp.push(pokemon.hp);
-    ySpAttack.push(pokemon.sp_attack);
-    ySpDefense.push(pokemon.sp_defense);
-    ySpeed.push(pokemon.speed);
-    yHeight.push(pokemon.height_m);
-    yWeight.push(pokemon.weight_kg);
-    yTotalPoints.push(pokemon.total_points);
+    y.attack.push(pokemon.attack);
+    y.defense.push(pokemon.defense);
+    y.hp.push(pokemon.hp);
+    y.spAttack.push(pokemon.sp_attack);
+    y.spDefense.push(pokemon.sp_defense);
+    y.speed.push(pokemon.speed);
+    y.height.push(pokemon.height_m);
+    y.weight.push(pokemon.weight_kg);
+    y.totalPoints.push(pokemon.total_points);
+    y.typesCnt[pokemon.type_1] += 1;
+    y.typesCnt[pokemon.type_2] += 1;
+    y.typeNumber[pokemon.type_number-1] += 1;
+    y.status[pokemon.status]+=1;
   })
 
-  const data1 = {
-    labels: x,
-    datasets: [
-      {
-        label: '바위 속성 공격력',
-        data: yAttack,
-        backgroundColor: 'rgba(240, 128, 48, 0.5)',
-      },
-      {
-        label: '바위 속성 방어력',
-        data: yDefense,
-        backgroundColor: 'rgba(248, 208, 48, 0.5)',
-      },
-      {
-        label: '바위 속성 Hp',
-        data: yHp,
-        backgroundColor: 'rgba(255, 0, 0, 0.5)',
-      },
-      {
-        label: '바위 속성 특수공격력',
-        data: ySpAttack,
-        backgroundColor: 'rgba(104, 144, 240, 0.5)',
-      },
-      {
-        label: '바위 속성 특수방어력',
-        data: ySpDefense,
-        backgroundColor: 'rgba(120, 200, 80, 0.5)',
-      },
-      {
-        label: '바위 속성 스피드',
-        data: ySpeed,
-        backgroundColor: 'rgba(193, 131, 193, 0.5)',
-      },
-      // {
-      //   label: '바위 속성 키',
-      //   data: yHeight,
-      //   backgroundColor: 'rgba(193, 131, 193, 0.5)',
-      // },
-      // {
-      //   label: '바위 속성 몸무게',
-      //   data: yWeight,
-      //   backgroundColor: 'rgba(193, 131, 193, 0.5)',
-      // },
-      // {
-      //   label: '바위 속성 종합점수',
-      //   data: yTotalPoints,
-      //   backgroundColor: 'rgba(128, 128, 128, 0.5)',
-      // },
-    ],
-  };
-
-  const data2 = {
-    labels: x,
-    datasets: [
-      {
-        label: '바위 속성 키',
-        data: yHeight,
-        backgroundColor: 'rgba(161, 57, 89, 0.5)',
-      },
-      {
-        label: '바위 속성 몸무게',
-        data: yWeight,
-        backgroundColor: 'rgba(68, 94, 156, 0.5)',
-      },
-    ],
-  };
-
-  const data3 = {
-    labels: x,
-    datasets: [
-      {
-        label: '바위 속성 공격력',
-        data: yAttack,
-        backgroundColor: 'rgba(240, 128, 48, 0.5)',
-        stack: 'Stack 0',
-      },
-      {
-        label: '바위 속성 방어력',
-        data: yDefense,
-        backgroundColor: 'rgba(248, 208, 48, 0.5)',
-        stack: 'Stack 0',
-      },
-      {
-        label: '바위 속성 Hp',
-        data: yHp,
-        backgroundColor: 'rgba(255, 0, 0, 0.5)',
-        stack: 'Stack 0',
-      },
-      {
-        label: '바위 속성 특수공격력',
-        data: ySpAttack,
-        backgroundColor: 'rgba(104, 144, 240, 0.5)',
-        stack: 'Stack 0',
-      },
-      {
-        label: '바위 속성 특수방어력',
-        data: ySpDefense,
-        backgroundColor: 'rgba(120, 200, 80, 0.5)',
-        stack: 'Stack 0',
-      },
-      {
-        label: '바위 속성 스피드',
-        data: ySpeed,
-        backgroundColor: 'rgba(193, 131, 193, 0.5)',
-        stack: 'Stack 0',
-      },
-      {
-        label: '바위 속성 종합점수',
-        data: yTotalPoints,
-        backgroundColor: 'rgba(128, 128, 128, 0.5)',
-        stack: 'Stack 1',
-      },
-    ],
-  };
+  y.typesCnt[type] = 0
+  delete y.typesCnt.NaN;
 
 	return (
-        <div style={{ paddingBottom: '50px', marginLeft: '3vw' }}>
-          {type} 통계페이지
-          <Container>
-            <Bar options={options1} data={data1} />
-            <Bar options={options2} data={data2} />
-            <Bar options={options3} data={data3} />
-          </Container>
-        </div>
+    <div>
+      <DrawerComponents
+        typeColor={typeColorList[type]}
+        isBarStats={isBarStats}
+        isDoughnutType={isDoughnutType}
+        isPolarAreaType={isPolarAreaType}
+        isBarWeightHeight={isBarWeightHeight}
+        isBarTotal={isBarTotal}
+        isPieStatus={isPieStatus}
+        setIsBarStats={setIsBarStats}
+        setIsDoughnutType={setIsDoughnutType}
+        setIsPolarAreaType={setIsPolarAreaType}
+        setIsBarWeightHeight={setIsBarWeightHeight}
+        setIsBarTotal={setIsBarTotal}
+        setIsPieStatus={setIsPieStatus}
+      />
+      <div style={{ margin: '80px 50px auto 320px' }}>
+          {isBarStats && <BarStats x={x} y={y} />}
+          {isDoughnutType && <DoughnutType y={y} />}
+          {isPolarAreaType && <PolarAreaType y={y} />}
+          {isBarWeightHeight && <BarWeightHeight x={x} y={y} />}
+          {isBarTotal && <BarTotal x={x} y={y} />}
+          {isPieStatus && <PieStatus y={y} />}
+      </div>
+    </div>
 	);
 }
 
-const Container = styled.div`
-  width: 90vw;
-  max-width: 1200px;
-`;
-
-export default typeStatisticsPage;
+export default TypeStatisticsPage;
