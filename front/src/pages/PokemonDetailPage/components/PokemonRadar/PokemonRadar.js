@@ -5,12 +5,12 @@ import { Radar } from 'react-chartjs-2';
 
 Chart.register(...registerables);
 
-function PokemonRadar({ pokemon }) {
+function PokemonRadar({ pokemon, typeOneColor }) {
 	const {
 		name,
-		// height,
-		// weight,
-		// totalPoints,
+		height,
+		weight,
+		totalPoints,
 		hp,
 		attack,
 		defense,
@@ -18,31 +18,46 @@ function PokemonRadar({ pokemon }) {
 		spDefense,
 		speed,
 	} = pokemon;
+
+	const perTotal = Math.ceil((totalPoints / 1000) * 100);
+	const perWeight = Math.ceil((weight / 500) * 100);
+	const perHeight = Math.ceil((height / 5) * 100);
+	const perHp = Math.ceil((hp / 100) * 100);
+	const perAttack = Math.ceil((attack / 150) * 100);
+	const perDefense = Math.ceil((defense / 150) * 100);
+	const perSpAttack = Math.ceil((spAttack / 150) * 100);
+	const perSpDefense = Math.ceil((spDefense / 150) * 100);
+	const perSpeed = Math.ceil((speed / 150) * 100);
+
+	const radarColor = typeOneColor && `${typeOneColor}4D`;
+
 	const data = {
 		labels: [
-			// '키(m)',
-			// '몸무게(kg)',
-			// '총 능력치',
+			'총 능력치',
+			'키(m)',
+			'몸무게(kg)',
 			'HP',
 			'공격력',
 			'방어력',
 			'특수 공격력',
 			'특수 방어력',
-			'민첩성',
+			'스피드',
 		],
 		datasets: [
 			{
 				label: `${name}`,
-				data: [hp, attack, defense, spAttack, spDefense, speed],
-				backgroundColor: [
-					'rgba(255, 99, 132, 0.2)',
-					'rgba(255, 159, 64, 0.2)',
-					'rgba(255, 205, 86, 0.2)',
-					'rgba(75, 192, 192, 0.2)',
-					'rgba(54, 162, 235, 0.2)',
-					'rgba(153, 102, 255, 0.2)',
-					'rgba(201, 203, 207, 0.2)',
+				data: [
+					perTotal,
+					perHeight,
+					perWeight,
+					perHp,
+					perAttack,
+					perDefense,
+					perSpAttack,
+					perSpDefense,
+					perSpeed,
 				],
+				backgroundColor: [radarColor],
 				borderColor: [
 					'rgb(255, 99, 132)',
 					'rgb(255, 159, 64)',
@@ -59,21 +74,29 @@ function PokemonRadar({ pokemon }) {
 
 	const options = {
 		maintainAspectRatio: false, // 가로세로 비율 설정
+		plugins: {
+			legend: {
+				display: true,
+
+				labels: {
+					boxWidth: 10,
+					boxHeight: 10,
+					font: {
+						size: 20,
+					},
+				},
+			},
+		},
+
 		scales: {
 			r: {
 				ticks: {
 					display: true,
 					beginAtZero: true,
-					stepSize: 30,
-					fontSize: 14,
+					stepSize: 20,
+					max: 100,
 				},
-				suggestedMin: 0,
-				suggestedMax: 100,
-			},
-		},
-		legend: {
-			labels: {
-				fontSize: 26,
+				suggestMax: 100,
 			},
 		},
 	};
