@@ -1,5 +1,5 @@
 import { UserModel } from "../schemas/user";
-
+import { attendanceModel } from '../schemas/attendance';
 class User {
   static async create({ newUser }) {
     const createdNewUser = await UserModel.create(newUser);
@@ -33,6 +33,8 @@ class User {
     );
     return updatedUser;
   }
+
+  static async timeDiffernce()
 }
 
 export { User };

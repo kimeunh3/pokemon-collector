@@ -94,29 +94,16 @@ userAuthRouter.put(
     try {
       const user_id = req.currentUserId;
 
-      const attendance = new Date().getTime();
+      const currentUserInfo = await userAuthService.getUserInfo({user_id,});
       
-      //24시간 경과된 출석 시간
-      const updatedAttendance = new Date(24 * 3600 * 1000).getTime();
+
       
-      const isPointGiven = !(user_id.isPointGiven);
 
-      if(attendance - updatedAttendance > 24 * 3600 * 1000){
-      
-        const toUpdate = {attendance, isPointGiven};
-
-        const updatedUser = await userAuthService.setUser({user_id, toUpdate});
-
-        if (updatedUser.errorMessgae){
-          throw new Error(updatedUser.errorMessage);
-        }
-        res.status(200).json(updatedUser);
-      
-        }
-
+      if (updatedUser.errorMessgae){
+        throw new Error(updatedUser.errorMessage);
       }
-     
-      catch(error){
+      res.status(200).json(updatedUser);
+    }catch(error){
         next(error);
       }
   }

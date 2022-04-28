@@ -1,7 +1,7 @@
-import mongoose from 'mongoose';
+import {Schema, model} from 'mongoose';
 
-const attendanceSchema = mongoose.Schema({
-    student: {type : mongoose.Schema.ObjectId, ref : 'User'},
+const attendanceSchema = new Schema({
+    user: {type : mongoose.Schema.ObjectId, ref : 'User'},
     date: {
         type: Date,
         // required: true
@@ -22,4 +22,6 @@ const attendanceSchema = mongoose.Schema({
     timestamps: true
 });
 
-module.exports = mongoose.model('attendance', attendanceSchema);
+const attendanceModel = model('attendance', attendanceSchema);
+
+export {attendanceModel};
