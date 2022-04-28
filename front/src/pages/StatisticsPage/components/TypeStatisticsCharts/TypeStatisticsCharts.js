@@ -35,7 +35,7 @@ export const optionBarStats = {
     },
     title: {
       display: true,
-      text: '바위 포켓몬 능력치',
+      text: '능력치',
     },
   },
 };
@@ -48,9 +48,33 @@ export const optionBarWeightHeight = {
     },
     title: {
       display: true,
-      text: '바위 포켓몬 키/몸무게',
-    },
+      text: '키/몸무게',
+    }
   },
+  scales: {
+    'height': {
+      type: 'linear',
+      position: 'left',
+      title: {
+          display: true,
+          text: '키 (m)'
+      },
+      grid: {
+          display: false
+      }
+    },
+    'weight': {
+      type: 'linear',
+      position: 'right',
+      title: {
+          display: true,
+          text: '무게 (kg)'
+      },
+      grid: {
+          display: false
+      }
+    },
+  }
 };
 
 export const optionBarTotal = {
@@ -80,32 +104,32 @@ export function BarStats({ x, y }) {
         labels: x,
         datasets: [
             {
-            label: '바위 속성 공격력',
+            label: '공격력',
             data: y.attack,
             backgroundColor: 'rgba(240, 128, 48, 0.5)',
             },
             {
-            label: '바위 속성 방어력',
+            label: '방어력',
             data: y.defense,
             backgroundColor: 'rgba(248, 208, 48, 0.5)',
             },
             {
-            label: '바위 속성 Hp',
+            label: 'Hp',
             data: y.hp,
             backgroundColor: 'rgba(255, 0, 0, 0.5)',
             },
             {
-            label: '바위 속성 특수공격력',
+            label: '특수공격력',
             data: y.spAttack,
             backgroundColor: 'rgba(104, 144, 240, 0.5)',
             },
             {
-            label: '바위 속성 특수방어력',
+            label: '특수방어력',
             data: y.spDefense,
             backgroundColor: 'rgba(120, 200, 80, 0.5)',
             },
             {
-            label: '바위 속성 스피드',
+            label: '스피드',
             data: y.speed,
             backgroundColor: 'rgba(193, 131, 193, 0.5)',
             },
@@ -179,8 +203,8 @@ export function DoughnutType({ y }) {
         <div style={{
             backgroundColor: 'rgba(255, 255, 255, 0.5)',
             borderRadius: '10px',
-            maxWidth: '600px',
-            marginLeft: '250px',
+            maxWidth: '40vw',
+            marginLeft: '18vw',
           }}>
             <Doughnut data={dataDoughnutType} />
           </div>
@@ -192,14 +216,16 @@ export function BarWeightHeight({ x, y }) {
         labels: x,
         datasets: [
           {
-            label: '바위 속성 키',
+            label: '키',
             data: y.height,
             backgroundColor: 'rgba(161, 57, 89, 0.5)',
+            yAxisID: 'height',
           },
           {
-            label: '바위 속성 몸무게',
+            label: '몸무게',
             data: y.weight,
             backgroundColor: 'rgba(68, 94, 156, 0.5)',
+            yAxisID: 'weight',
           },
         ],
     };
@@ -219,44 +245,44 @@ export function BarTotal({ x, y }) {
         labels: x,
         datasets: [
           {
-            label: '바위 속성 공격력',
+            label: '공격력',
             data: y.attack,
             backgroundColor: 'rgba(240, 128, 48, 0.5)',
             stack: 'Stack 0',
           },
           {
-            label: '바위 속성 방어력',
+            label: '방어력',
             data: y.defense,
             backgroundColor: 'rgba(248, 208, 48, 0.5)',
             stack: 'Stack 0',
           },
           {
-            label: '바위 속성 Hp',
+            label: 'Hp',
             data: y.hp,
             backgroundColor: 'rgba(255, 0, 0, 0.5)',
             stack: 'Stack 0',
           },
           {
-            label: '바위 속성 특수공격력',
+            label: '특수공격력',
             data: y.spAttack,
             backgroundColor: 'rgba(104, 144, 240, 0.5)',
             stack: 'Stack 0',
           },
           {
-            label: '바위 속성 특수방어력',
+            label: '특수방어력',
             data: y.spDefense,
             backgroundColor: 'rgba(120, 200, 80, 0.5)',
             stack: 'Stack 0',
           },
           {
-            label: '바위 속성 스피드',
+            label: '스피드',
             data: y.speed,
             backgroundColor: 'rgba(193, 131, 193, 0.5)',
             stack: 'Stack 0',
           },
           {
             type: 'line',
-            label: '바위 속성 종합점수',
+            label: '종합점수',
             data: y.totalPoints,
             backgroundColor: 'black',
             stack: 'Stack 1',
