@@ -103,7 +103,7 @@ function LandingPageHeader({ open, setOpen, isLogin, handleDialogOpen, logout })
                 </span>
             </IconButton>
             </Toolbar>
-            <img alt="" src='https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/front/logo.png' width="600px" height="210px" />
+            <img alt="" src='https://d31z0g5vo6ghmg.cloudfront.net/front/logo.png' width="600px" height="210px" />
         </AppBar>
     )
 }

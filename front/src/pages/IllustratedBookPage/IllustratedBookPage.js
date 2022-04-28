@@ -13,6 +13,7 @@ import {
 } from '@mui/material';
 import DefaultBookCard from './components/DefaultBookCard/DefaultBookCard';
 import PokemonBookCard from './components/PokemonBookCard/PokemonBookCard';
+import ScrollUpButton from '../../components/commons/ScrollUpButton';
 
 import * as Api from '../../api';
 
@@ -137,7 +138,7 @@ function IllustratedBookPage() {
 			<Dialog open={isOpen} onClose={handleClose} style={{ zIndex: '10000' }}>
 				<DialogTitle>포켓몬 속성 색상표</DialogTitle>
 				<DialogContent>
-					<img alt='' src='https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/front/typeColor.png' />
+					<img alt='' src='https://d31z0g5vo6ghmg.cloudfront.net/front/typeColor.png' />
 				</DialogContent>
 				<DialogActions>
 					<Button variant='contained' color='inherit' onClick={handleClose}>
@@ -182,13 +183,7 @@ function IllustratedBookPage() {
 					)
 				)}
 			</div>
-			<button
-				type='button'
-				id='go-top'
-				onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })}
-			>
-				<span className='material-symbols-outlined'>arrow_upward</span>
-			</button>
+			<ScrollUpButton />
 		</div>
 	);
 }
