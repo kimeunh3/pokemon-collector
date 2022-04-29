@@ -119,7 +119,7 @@ userAuthRouter.put(
         const isPointGiven = !(currentUserInfo.isPointGiven);
         const toUpdate = {attendance, isPointGiven};
         currentUserInfo = await userAuthService.setUser({user_id, toUpdate});
-        if (currentUserInfo.errorMessgae){
+        if (currentUserInfo.errorMessage){
           throw new Error(currentUserInfo.errorMessage);
         }
       }
@@ -140,36 +140,23 @@ userAuthRouter.put(
     try {
       const user_id = req.currentUserId;
       let currentUserInfo = await userAuthService.getUserInfo({user_id,});
+    
+      const point = currentUserInfo.point+1000;
       const attendance = new Date();
-      const savedAttendance = currentUserInfo.attendance;
-      var timeDiff = (attendance - savedAttendance);
-
-      if(timeDiff >= 24*60*60*1000){
-        const isPointGiven = !(currentUserInfo.isPointGiven);
-        const toUpdate = {attendance, isPointGiven};
-        currentUserInfo = await userAuthService.setUser({user_id, toUpdate});
-        if (currentUserInfo.errorMessgae){
-          throw new Error(currentUserInfo.errorMessage);
-        }
+      const isPointGiven = !(currentUserInfo.isPointGiven);
+      const toUpdate = {point,attendance,isPointGiven};
+      currentUserInfo = await userAuthService.setUser({user_id, toUpdate});
+      if (currentUserInfo.errorMessage){
+        throw new Error(currentUserInfo.errorMessage);
       }
-
-      res.status(200).json(currentUserInfo);
-      console.log(attendance, savedAttendance, timeDiff);
+    res.status(200).json(currentUserInfo.point);
       
     }catch(error){
         next(error);
       }
   }
 );
-// 새로운 API
-// if(currentUserInfo.isPointGiven === true){
-//   const point = currentUserInfo.point+1000;
-//   const toUpdate = {point};
-//   currentUserInfo = await userAuthService.setUser({user_id, toUpdate});
-//   if (currentUserInfo.errorMessgae){
-//     throw new Error(currentUserInfo.errorMessage);
-//   }
-// }
+
 
 
 
