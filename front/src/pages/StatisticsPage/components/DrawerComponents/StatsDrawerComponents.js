@@ -13,6 +13,7 @@ import {
 } from '@material-ui/core';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import IconObj from '../../../../core/Icon';
 
 function StatsDrawerComponents({stats, statsColor, statsInfo, isBarStats, isBarTypeTop5, isBarTypeLow5, isBarPokemonTop15, isBarPokemonLow15, setIsBarStats, setIsBarTypeTop5, setIsBarTypeLow5, setIsBarPokemonTop15, setIsBarPokemonLow15 }) {
     const drawerWidth = '24vw';
@@ -45,8 +46,8 @@ function StatsDrawerComponents({stats, statsColor, statsInfo, isBarStats, isBarT
         <Divider />
         <List>
           <ListItem>
-            <span className="material-symbols-outlined">arrow_right</span>
-            <div style={{ fontSize: '20px', fontWeight: 'bold' }}>{stats} 통계</div>
+            {IconObj[stats].Icon}
+            <div style={{ fontSize: '20px', fontWeight: 'bold' }}>&nbsp;{stats} 통계</div>
           </ListItem>
           <ListItem style={isBarStats ? { backgroundColor: statsColor } : {}}>
             <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>arrow_right</span>
