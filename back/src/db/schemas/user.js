@@ -36,7 +36,7 @@ const UserSchema = new Schema(
     },
     point:{
       type: Number,
-      default: 0,
+      default: 1000,
       required: false,
     },
     profileImg: {
@@ -59,7 +59,7 @@ const UserSchema = new Schema(
     isPointGiven: {
         type: Boolean,
         required : false,
-        default: false,
+        default: true,
     }
   },
   {
