@@ -52,7 +52,7 @@ const UserSchema = new Schema(
     },
     stickers: [
       {
-        id: String,
+        id: Number,
         name: String,
         count: Number 
       }

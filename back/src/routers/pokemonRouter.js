@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { login_required } from "../middlewares/login_required";
 import { PokemonAuthService } from "../services/pokemonService";
+import { achievementsService } from "../services/achievementsService";
 
 const pokemonAuthRouter = Router();
 pokemonAuthRouter.use(login_required);
@@ -79,6 +80,8 @@ pokemonAuthRouter.get("/drawPokemon", async (req, res, next) => {
     if (pokemonIdAndName.errorMessage) {
       throw new Error(pokemonIdAndName.errorMessage);
     }
+    // 업적 업데이트
+    await achievementsService.updateAchievements({user_id, id:pokemonIdAndName.id})
 
     res.status(200).json(pokemonIdAndName);
   } catch (error) {

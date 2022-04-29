@@ -28,8 +28,12 @@ class User {
   }
 
   static async findAchievementsListById({user_id}){
-    const achievementsList = await UserModel.findOne({ id: user_id, 'achievements.id':{$lt:100} },{achievements:1});
-    console.log(achievementsList)
+    const achievementsList = await UserModel.findOne({ id: user_id },{_id:0, achievements:1});
+    let achievementsNotSucc = []
+    await achievementsList.achievements.forEach(x=>{if(x.status < 100){
+      achievementsNotSucc.push(x.id)
+    }})
+    return achievementsNotSucc
   }
 
   static async update({ user_id, fieldToUpdate, newValue }) {
@@ -77,6 +81,14 @@ class User {
       {new: true}
     );
     return point;
+  }
+
+  static async updateAchievements({user_id, id, status}){
+    return await UserModel.findOneAndUpdate(
+      {id : user_id,'achievements.id':id},
+      { $set: {'achievements.$.status': status}},
+      {new: true}
+    );
   }
 }
 
