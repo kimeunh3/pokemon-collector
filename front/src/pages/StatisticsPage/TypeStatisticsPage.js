@@ -72,11 +72,27 @@ function TypeStatisticsPage() {
 
   y.typesCnt[type] = 0
 
+  const average = arr => arr.reduce((p, c) => p + c, 0) / arr.length;
+
+  const pokemonInfo = {
+    pokemonCnt: x.length,
+    attackMean: average(y.attack).toFixed(1),
+    defenseMean: average(y.defense).toFixed(1),
+    hpMean: average(y.hp).toFixed(1),
+    spAttackMean: average(y.spAttack).toFixed(1),
+    spDefenseMean: average(y.spDefense).toFixed(1),
+    speedMean: average(y.speed).toFixed(1),
+    heightMean: average(y.height).toFixed(1),
+    weightMean: average(y.weight).toFixed(1),
+    totalPointsMean: average(y.totalPoints).toFixed(1),
+  }
+
 	return (
     <div>
       <DrawerComponents
         type={type}
         typeColor={typeColorList[type]}
+        pokemonInfo={pokemonInfo}
         isBarStats={isBarStats}
         isDoughnutType={isDoughnutType}
         isBarWeightHeight={isBarWeightHeight}
@@ -86,7 +102,7 @@ function TypeStatisticsPage() {
         setIsBarWeightHeight={setIsBarWeightHeight}
         setIsBarTotal={setIsBarTotal}
       />
-      <div style={{ margin: '12vh 3vw auto 25vw' }}>
+      <div style={{ margin: '10vh 3vw auto 25vw' }}>
           {isBarStats && <BarStats x={x} y={y} />}
           {isDoughnutType && <DoughnutType y={y} />}
           {isBarWeightHeight && <BarWeightHeight x={x} y={y} />}

@@ -40,6 +40,19 @@ export const optionBarStats = {
   },
 };
 
+export const optionDoughnutType = {
+  // responsive: true,
+  plugins: {
+    // legend: {
+    //   position: 'top',
+    // },
+    title: {
+      display: true,
+      text: '보유한 다른 속성',
+    },
+  },
+};
+
 export const optionBarWeightHeight = {
   responsive: true,
   plugins: {
@@ -68,7 +81,7 @@ export const optionBarWeightHeight = {
       position: 'right',
       title: {
           display: true,
-          text: '무게 (kg)'
+          text: '몸무게 (kg)'
       },
       grid: {
           display: false
@@ -206,7 +219,7 @@ export function DoughnutType({ y }) {
             maxWidth: '40vw',
             marginLeft: '18vw',
           }}>
-            <Doughnut data={dataDoughnutType} />
+            <Doughnut options={optionDoughnutType} data={dataDoughnutType} />
           </div>
     )
 }
