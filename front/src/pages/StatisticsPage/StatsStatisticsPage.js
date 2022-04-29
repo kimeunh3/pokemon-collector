@@ -23,15 +23,7 @@ function StatsStatisticsPage() {
 
   const x = [];
   const y = {
-    attack: [],
-    defense: [],
-    hp: [],
-    spAttack: [],
-    spDefense: [],
-    speed: [],
-    height: [],
-    weight: [],
-    totalPoints: [],
+    yStats: [],
     typesCnt: { '노말': 0, '불꽃': 0, '물': 0, '풀': 0, '전기': 0, '얼음': 0, '격투': 0, '독': 0, '땅': 0, '비행': 0, '에스퍼': 0, '벌레': 0, '바위': 0, '고스트': 0, '드래곤': 0, '강철': 0, '페어리': 0, "없음": 0 },
   }
 
@@ -49,15 +41,7 @@ function StatsStatisticsPage() {
 
   pokemons.forEach(pokemon => {
     x.push(pokemon.name);
-    y.attack.push(pokemon.attack);
-    y.defense.push(pokemon.defense);
-    y.hp.push(pokemon.hp);
-    y.spAttack.push(pokemon.spAttack);
-    y.spDefense.push(pokemon.spDefense);
-    y.speed.push(pokemon.speed);
-    y.height.push(pokemon.height);
-    y.weight.push(pokemon.weight);
-    y.totalPoints.push(pokemon.totalPoints);
+    y.yStats.push(pokemon.stats);
     y.typesCnt[pokemon.typeOne] += 1;
     y.typesCnt[pokemon.typeTwo] += 1;
   })
@@ -66,15 +50,7 @@ function StatsStatisticsPage() {
 
   const pokemonInfo = {
     pokemonCnt: x.length,
-    attackMean: average(y.attack).toFixed(1),
-    defenseMean: average(y.defense).toFixed(1),
-    hpMean: average(y.hp).toFixed(1),
-    spAttackMean: average(y.spAttack).toFixed(1),
-    spDefenseMean: average(y.spDefense).toFixed(1),
-    speedMean: average(y.speed).toFixed(1),
-    heightMean: average(y.height).toFixed(1),
-    weightMean: average(y.weight).toFixed(1),
-    totalPointsMean: average(y.totalPoints).toFixed(1),
+    statsMean: average(y.yStats).toFixed(1),
   }
 
 	return (
