@@ -15,26 +15,9 @@ import {
 	Rating,
 	FormLabel,
 } from '@mui/material';
-import {
-	Adjust,
-	LocalFireDepartment,
-	Opacity,
-	Grass,
-	Bolt,
-	BugReport,
-	CatchingPokemon,
-	AcUnit,
-	SportsMma,
-	Coronavirus,
-	Landscape,
-	Air,
-	Storm,
-	Castle,
-	DarkMode,
-	Adb,
-	Hardware,
-	Reddit,
-} from '@mui/icons-material';
+import { CatchingPokemon } from '@mui/icons-material';
+import IconObj from '../../../../core/Icon';
+
 import * as Api from '../../../../api';
 
 function RegisterPage({ setLogin }) {
@@ -47,6 +30,25 @@ function RegisterPage({ setLogin }) {
 		interest: 3,
 		likeType: '',
 	});
+	const types = [
+		'노말',
+		'불꽃',
+		'물',
+		'풀',
+		'전기',
+		'얼음',
+		'격투',
+		'독',
+		'땅',
+		'비행',
+		'에스퍼',
+		'벌레',
+		'바위',
+		'고스트',
+		'드래곤',
+		'강철',
+		'페어리',
+	];
 
 	const onChange = (e) => {
 		const { name, value } = e.target;
@@ -183,7 +185,8 @@ function RegisterPage({ setLogin }) {
 
 				<Grid item xs={6} sm={6}>
 					<Typography component='legend'>
-						<CatchingPokemon /> <span> 포켓몬 관심도</span>
+						<CatchingPokemon />
+						<span> 포켓몬 관심도</span>
 					</Typography>
 					<Rating
 						type='number'
@@ -203,62 +206,13 @@ function RegisterPage({ setLogin }) {
 							label='favAtt'
 							onChange={onChange}
 						>
-							<MenuItem value='노말'>
-								<Adjust /> <span> &nbsp; 노말</span>
-							</MenuItem>
-							<MenuItem value='불꽃'>
-								<LocalFireDepartment /> <span> &nbsp; 불꽃</span>
-							</MenuItem>
-							<MenuItem value='물'>
-								<Opacity />
-								<span> &nbsp; 물</span>
-							</MenuItem>
-							<MenuItem value='풀'>
-								<Grass />
-								<span> &nbsp; 풀</span>
-							</MenuItem>
-							<MenuItem value='전기'>
-								<Bolt />
-								<span> &nbsp; 전기</span>
-							</MenuItem>
-							<MenuItem value='얼음'>
-								<AcUnit />
-								<span> &nbsp; 얼음</span>
-							</MenuItem>
-							<MenuItem value='격투'>
-								<SportsMma /> <span> &nbsp; 격투</span>
-							</MenuItem>
-							<MenuItem value='독'>
-								<Coronavirus /> <span> &nbsp; 독</span>
-							</MenuItem>
-							<MenuItem value='땅'>
-								<Landscape /> <span> &nbsp; 땅</span>
-							</MenuItem>
-							<MenuItem value='비행'>
-								<Air /> <span> &nbsp; 비행</span>
-							</MenuItem>
-							<MenuItem value='에스파'>
-								<Storm /> <span> &nbsp; 에스파</span>
-							</MenuItem>
-							<MenuItem value='벌레'>
-								<BugReport />
-								<span> &nbsp; 벌레</span>
-							</MenuItem>
-							<MenuItem value='바위'>
-								<Castle /> <span> &nbsp; 바위</span>
-							</MenuItem>
-							<MenuItem value='고스트'>
-								<DarkMode /> <span> &nbsp; 고스트</span>
-							</MenuItem>
-							<MenuItem value='드래곤'>
-								<Adb /> <span> &nbsp; 드래곤</span>
-							</MenuItem>
-							<MenuItem value='강철'>
-								<Hardware /> <span> &nbsp; 강철</span>
-							</MenuItem>
-							<MenuItem value='페어리'>
-								<Reddit /> <span> &nbsp; 페어리</span>
-							</MenuItem>
+							{types.map((type) => (
+								<MenuItem value={type}>
+									<Typography sx={IconObj[type].Color}>
+										{IconObj[type].Icon} {type}
+									</Typography>
+								</MenuItem>
+							))}
 						</Select>
 					</FormControl>
 				</Grid>

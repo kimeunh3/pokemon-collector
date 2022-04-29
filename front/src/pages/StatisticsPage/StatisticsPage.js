@@ -81,36 +81,36 @@ function StatisticsPage() {
                 )}
                 {isType && (
                     <>
-                        <StatisticsButton imgSrc='pokemons/19' text='노말 속성' bColor='rgba(198, 198, 167, 0.8)' type='노말' />
-                        <StatisticsButton imgSrc='pokemons/4' text='불꽃 속성' bColor='rgba(245, 172, 120, 0.8)' type='불꽃' />
-                        <StatisticsButton imgSrc='pokemons/7' text='물 속성' bColor='rgba(157, 183, 245, 0.8)' type='물' />
-                        <StatisticsButton imgSrc='pokemons/1' text='풀 속성' bColor='rgba(167, 219, 141, 0.8)' type='풀' />
-                        <StatisticsButton imgSrc='pokemons/25' text='전기 속성' bColor='rgba(250, 224, 120, 0.8)' type='전기' />
-                        <StatisticsButton imgSrc='pokemons/124' text='얼음 속성' bColor='rgba(188, 230, 230, 0.8)' type='얼음' />
-                        <StatisticsButton imgSrc='pokemons/66' text='격투 속성' bColor='rgba(214, 120, 115, 0.8)' type='격투' />
-                        <StatisticsButton imgSrc='pokemons/109' text='독 속성' bColor='rgba(193, 131, 193, 0.8)' type='독' />
-                        <StatisticsButton imgSrc='pokemons/50' text='땅 속성' bColor='rgba(235, 214, 157, 0.8)' type='땅' />
-                        <StatisticsButton imgSrc='pokemons/16' text='비행 속성' bColor='rgba(198, 183, 245, 0.8)' type='비행' />
-                        <StatisticsButton imgSrc='pokemons/63' text='에스퍼 속성' bColor='rgba(250, 146, 178, 0.8)' type='에스퍼' />
-                        <StatisticsButton imgSrc='pokemons/10' text='벌레 속성' bColor='rgba(198, 209, 110, 0.8)' type='벌레' />
-                        <StatisticsButton imgSrc='pokemons/74' text='바위 속성' bColor='rgba(209, 193, 125, 0.8)' type='바위' />
-                        <StatisticsButton imgSrc='pokemons/92' text='고스트 속성' bColor='rgba(162, 146, 188, 0.8)' type='고스트' />
-                        <StatisticsButton imgSrc='pokemons/147' text='드래곤 속성' bColor='rgba(162, 125, 250, 0.8)' type='드래곤' />
-                        <StatisticsButton imgSrc='pokemons/81' text='강철 속성' bColor='rgba(209, 209, 224, 0.8)' type='강철' />
-                        <StatisticsButton imgSrc='pokemons/35' text='페어리 속성' bColor='rgba(244, 189, 201, 0.8)' type='페어리' />
+                        <StatisticsButton imgSrc='pokemons/19' text='노말 속성' bColor='rgba(198, 198, 167, 0.8)' kind='type' type='노말' />
+                        <StatisticsButton imgSrc='pokemons/4' text='불꽃 속성' bColor='rgba(245, 172, 120, 0.8)' kind='type' type='불꽃' />
+                        <StatisticsButton imgSrc='pokemons/7' text='물 속성' bColor='rgba(157, 183, 245, 0.8)' kind='type' type='물' />
+                        <StatisticsButton imgSrc='pokemons/1' text='풀 속성' bColor='rgba(167, 219, 141, 0.8)' kind='type' type='풀' />
+                        <StatisticsButton imgSrc='pokemons/25' text='전기 속성' bColor='rgba(250, 224, 120, 0.8)' kind='type' type='전기' />
+                        <StatisticsButton imgSrc='pokemons/124' text='얼음 속성' bColor='rgba(188, 230, 230, 0.8)' kind='type' type='얼음' />
+                        <StatisticsButton imgSrc='pokemons/66' text='격투 속성' bColor='rgba(214, 120, 115, 0.8)' kind='type' type='격투' />
+                        <StatisticsButton imgSrc='pokemons/109' text='독 속성' bColor='rgba(193, 131, 193, 0.8)' kind='type' type='독' />
+                        <StatisticsButton imgSrc='pokemons/50' text='땅 속성' bColor='rgba(235, 214, 157, 0.8)' kind='type' type='땅' />
+                        <StatisticsButton imgSrc='pokemons/16' text='비행 속성' bColor='rgba(198, 183, 245, 0.8)' kind='type' type='비행' />
+                        <StatisticsButton imgSrc='pokemons/63' text='에스퍼 속성' bColor='rgba(250, 146, 178, 0.8)' kind='type' type='에스퍼' />
+                        <StatisticsButton imgSrc='pokemons/10' text='벌레 속성' bColor='rgba(198, 209, 110, 0.8)' kind='type' type='벌레' />
+                        <StatisticsButton imgSrc='pokemons/74' text='바위 속성' bColor='rgba(209, 193, 125, 0.8)' kind='type' type='바위' />
+                        <StatisticsButton imgSrc='pokemons/92' text='고스트 속성' bColor='rgba(162, 146, 188, 0.8)' kind='type' type='고스트' />
+                        <StatisticsButton imgSrc='pokemons/147' text='드래곤 속성' bColor='rgba(162, 125, 250, 0.8)' kind='type' type='드래곤' />
+                        <StatisticsButton imgSrc='pokemons/81' text='강철 속성' bColor='rgba(209, 209, 224, 0.8)' kind='type' type='강철' />
+                        <StatisticsButton imgSrc='pokemons/35' text='페어리 속성' bColor='rgba(244, 189, 201, 0.8)' kind='type' type='페어리' />
                     </>
                 )}
                 {isStats && (
                     <>
-                        <StatisticsButton imgSrc='pokemons/149' text='공격' bColor='rgba(240, 128, 48, 0.8)' />
-                        <StatisticsButton imgSrc='pokemons/91' text='방어' bColor='rgba(248, 208, 48, 0.8)' />
-                        <StatisticsButton imgSrc='pokemons/113' text='Hp' bColor='rgba(255, 0, 0, 0.8)' />
-                        <StatisticsButton imgSrc='pokemons/150' text='특수공격' bColor='rgba(104, 144, 240, 0.8)' />
-                        <StatisticsButton imgSrc='pokemons/144' text='특수방어' bColor='rgba(120, 200, 80, 0.8)' />
-                        <StatisticsButton imgSrc='pokemons/101' text='스피드' bColor='rgba(193, 131, 193, 0.8)' />
-                        <StatisticsButton imgSrc='pokemons/95' text='키' bColor='rgba(161, 57, 89, 0.8)' />
-                        <StatisticsButton imgSrc='pokemons/143' text='몸무게' bColor='rgba(68, 94, 156, 0.8)' />
-                        <StatisticsButton imgSrc='front/logo' text='종합점수' bColor='rgba(128, 128, 128, 0.8)' />
+                        <StatisticsButton imgSrc='pokemons/149' text='공격력' bColor='rgba(240, 128, 48, 0.8)' stats='공격력' />
+                        <StatisticsButton imgSrc='pokemons/91' text='방어력' bColor='rgba(248, 208, 48, 0.8)' stats='방어력' />
+                        <StatisticsButton imgSrc='pokemons/113' text='Hp' bColor='rgba(255, 0, 0, 0.8)' stats='Hp' />
+                        <StatisticsButton imgSrc='pokemons/150' text='특수공격력' bColor='rgba(104, 144, 240, 0.8)' stats='특수공격력' />
+                        <StatisticsButton imgSrc='pokemons/144' text='특수방어력' bColor='rgba(120, 200, 80, 0.8)' stats='특수방어력' />
+                        <StatisticsButton imgSrc='pokemons/101' text='스피드' bColor='rgba(193, 131, 193, 0.8)' stats='스피드' />
+                        <StatisticsButton imgSrc='pokemons/95' text='키' bColor='rgba(161, 57, 89, 0.8)' stats='키' />
+                        <StatisticsButton imgSrc='pokemons/143' text='몸무게' bColor='rgba(68, 94, 156, 0.8)' stats='몸무게' />
+                        <StatisticsButton imgSrc='front/logo' text='종합점수' bColor='rgba(128, 128, 128, 0.8)' stats='종합점수' />
                     </>
                 )}
             </div>

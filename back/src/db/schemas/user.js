@@ -57,10 +57,15 @@ const UserSchema = new Schema(
         count: Number 
       }
     ],
-    lastLogin: {
-      type : Date,
+    attendance: {
+      type: String,
       required : false,
-      default: () => new Date(),
+      default: Date.now(),
+    },
+    isPointGiven: {
+        type: Boolean,
+        required : false,
+        default: false,
     }
   },
   {

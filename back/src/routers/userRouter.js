@@ -3,9 +3,7 @@ import { Router } from "express";
 import { login_required } from "../middlewares/login_required";
 import { userAuthService } from '../services/userService';
 import { User } from '../db';
-
 const userAuthRouter = Router();
-
 
 userAuthRouter.post("/user/register", async function (req, res, next) {
   try {
@@ -49,9 +47,8 @@ userAuthRouter.post("/user/login", async function (req, res, next) {
 
     const email = req.body.email;
     const password = req.body.password;
-
     const user = await userAuthService.getUser({ email, password });
-
+    
     if (user.errorMessage) {
    
       return res.status(400).json({
@@ -90,6 +87,45 @@ userAuthRouter.get(
   }
 );
 
+userAuthRouter.put(
+  "/user/current",
+  login_required,
+  async function (req, res, next) {
+    try {
+      const user = await User.findById(req.params.id);
+
+      let hours = 0;
+
+      if (user.attendance.length > 0){
+        user.attendance.reverse();
+        user.attendance.map(a =>{
+          if(a.entry && a.exit.time){
+            hours = hours + calculateHours(a.entry.getTime(),a.exit.time.getTime());
+          }
+        })
+        hours = parseFloat(hours/(3600*1000)).toFixed(4);
+        
+      const attendance = new Date();
+
+      const toUpdate = {attendance};
+
+      const updatedUser = await userAuthService.setUser({user_id, toUpdate});
+
+
+        
+      if (updatedUser.errorMessgae){
+        throw new Error(updatedUser.errorMessage);
+      }
+      res.status(200).json(updatedUser);
+    
+      }
+      
+      }
+      catch(error){
+        next(error);
+      }
+  }
+);
 
 
 
