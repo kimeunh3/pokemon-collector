@@ -1,5 +1,6 @@
 import { Pokemon } from "../db";
 import { User } from "../db";
+import { Achievements } from "../db";
 import {draw} from "../util/draw";
 
 class PokemonAuthService {
@@ -64,6 +65,11 @@ class PokemonAuthService {
         "stikers update에 실패했습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
+
+    const userStickerIds = await User.findStickerListById({user_id});
+    const achievements = await Achievements.findAchievementsByType({type: "collected"})
+
+    
 
     // 포인트 삭감
     const changedPoint = point - 1000;

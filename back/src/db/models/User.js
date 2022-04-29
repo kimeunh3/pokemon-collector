@@ -22,9 +22,9 @@ class User {
   }
 
   static async findStickerListById({user_id}){
-    const userStickers = await UserModel.findOne({ id: user_id },{stickers:1});
-    const stickerList = userStickers.stickers.map(sticker=>sticker.id);
-    return stickerList;
+    const userStickers = await UserModel.findOne({ id: user_id });  
+    const userStickerIds = userStickers.stickers.map(sticker=>sticker.id);
+    return userStickerIds;
   }
 
   static async update({ user_id, fieldToUpdate, newValue }) {
@@ -52,6 +52,12 @@ class User {
       { $push: {stickers: sticker}},
       {new: true}
     );
+    const data = await UserModel.findOneAndUpdate(
+      {id : user_id},
+      { $push: {achievements: 1}},
+      {new: true}
+    );
+    console.log(data)
     return stickers;
   }
 

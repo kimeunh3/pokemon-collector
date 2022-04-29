@@ -62,8 +62,7 @@ const UserSchema = new Schema(
       default: () => new Date(),
     },
     achievements:[{
-      type: Schema.Types.ObjectId,
-      ref: 'AchievementsModel'
+      id: Number
     }]
   },
   {
