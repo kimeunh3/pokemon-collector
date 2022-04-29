@@ -88,9 +88,9 @@ userAuthRouter.get(
   async function (req, res, next) {
     try {
       // jwt토큰에서 추출된 사용자 id를 가지고 db에서 사용자 정보를 찾음.
-      const user_id = req.currentUserId;
+      const userId = req.currentUserId;
       const currentUserInfo = await userAuthService.getUserInfo({
-        user_id,
+        userId,
       });
 
       if (currentUserInfo.errorMessage) {
@@ -109,8 +109,8 @@ userAuthRouter.put(
   login_required,
   async function (req, res, next) {
     try {
-      const user_id = req.currentUserId;
-      let currentUserInfo = await userAuthService.getUserInfo({user_id,});
+      const userId = req.currentUserId;
+      let currentUserInfo = await userAuthService.getUserInfo({userId,});
       const attendance = new Date();
       const savedAttendance = currentUserInfo.attendance;
       var timeDiff = (attendance - savedAttendance);
@@ -118,7 +118,7 @@ userAuthRouter.put(
       if(timeDiff >= 24*60*60*1000){
         const isPointGiven = !(currentUserInfo.isPointGiven);
         const toUpdate = {attendance, isPointGiven};
-        currentUserInfo = await userAuthService.setUser({user_id, toUpdate});
+        currentUserInfo = await userAuthService.setUser({userId, toUpdate});
         if (currentUserInfo.errorMessage){
           throw new Error(currentUserInfo.errorMessage);
         }
@@ -138,14 +138,14 @@ userAuthRouter.put(
   login_required,
   async function (req, res, next) {
     try {
-      const user_id = req.currentUserId;
-      let currentUserInfo = await userAuthService.getUserInfo({user_id,});
+      const userId = req.currentUserId;
+      let currentUserInfo = await userAuthService.getUserInfo({userId,});
     
       const point = currentUserInfo.point+1000;
       const attendance = new Date();
       const isPointGiven = !(currentUserInfo.isPointGiven);
       const toUpdate = {point,attendance,isPointGiven};
-      currentUserInfo = await userAuthService.setUser({user_id, toUpdate});
+      currentUserInfo = await userAuthService.setUser({userId, toUpdate});
       if (currentUserInfo.errorMessage){
         throw new Error(currentUserInfo.errorMessage);
       }
