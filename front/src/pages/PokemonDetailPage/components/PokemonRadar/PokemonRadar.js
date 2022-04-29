@@ -29,8 +29,6 @@ function PokemonRadar({ pokemon, typeOneColor }) {
 	const perSpDefense = Math.ceil((spDefense / 150) * 100);
 	const perSpeed = Math.ceil((speed / 150) * 100);
 
-	const radarColor = typeOneColor && `${typeOneColor}4D`;
-
 	const data = {
 		labels: [
 			'총 능력치',
@@ -57,7 +55,7 @@ function PokemonRadar({ pokemon, typeOneColor }) {
 					perSpDefense,
 					perSpeed,
 				],
-				backgroundColor: [radarColor],
+				backgroundColor: [`${typeOneColor}4D`],
 				borderColor: [
 					'rgb(255, 99, 132)',
 					'rgb(255, 159, 64)',
