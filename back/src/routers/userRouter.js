@@ -93,20 +93,21 @@ userAuthRouter.put(
   async function (req, res, next) {
     try {
       const user_id = req.currentUserId;
-      const currentUserInfo = await userAuthService.getUserInfo({user_id,});
+      let currentUserInfo = await userAuthService.getUserInfo({user_id,});
       const attendance = new Date();
       const savedAttendance = currentUserInfo.attendance;
       var timeDiff = (attendance - savedAttendance);
 
-      if(timeDiff >= 24*1000*60*60){
+      if(timeDiff >= 24*60*60*1000){
         const isPointGiven = !(currentUserInfo.isPointGiven);
         const toUpdate = {attendance, isPointGiven};
-        const updatedUser = await userAuthService.setUser({user_id, toUpdate});
-        if (updatedUser.errorMessgae){
-          throw new Error(updatedUser.errorMessage);
+        currentUserInfo = await userAuthService.setUser({user_id, toUpdate});
+        if (currentUserInfo.errorMessgae){
+          throw new Error(currentUserInfo.errorMessage);
         }
-        res.status(200).json(updatedUser);
-      } console.log(attendance, savedAttendance, timeDiff);
+      }
+      res.status(200).json(currentUserInfo);
+      console.log(attendance, savedAttendance, timeDiff);
       
     }catch(error){
         next(error);
