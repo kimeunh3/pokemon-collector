@@ -14,7 +14,7 @@ import {
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 
-function StatsDrawerComponents({stats, statsColor, statsInfo, isBarStats, isDoughnutType, isBarWeightHeight, isBarTotal, setIsBarStats, setIsDoughnutType, setIsBarWeightHeight, setIsBarTotal }) {
+function StatsDrawerComponents({stats, statsColor, statsInfo, isBarStats, isBarTypeTop5, isBarTypeLow5, isBarTotal, setIsBarStats, setIsBarTypeTop5, setIsBarTypeLow5, setIsBarTotal }) {
     const drawerWidth = '24vw';
     const theme = useTheme();
     const navigate = useNavigate();
@@ -55,34 +55,47 @@ function StatsDrawerComponents({stats, statsColor, statsInfo, isBarStats, isDoug
               style={{ fontSize: '12px' }}
               onClick={() => {
                 setIsBarStats(true);
-                setIsDoughnutType(false);
-                setIsBarWeightHeight(false);
+                setIsBarTypeTop5(false);
+                setIsBarTypeLow5(false);
                 setIsBarTotal(false);
               }}  
             >속성별 통계</Button>
           </ListItem>
-          <ListItem style={isDoughnutType ? { backgroundColor: statsColor } : {}}>
+          <ListItem style={isBarTypeTop5 ? { backgroundColor: statsColor } : {}}>
             <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>arrow_right</span>
             <Button
               color="inherit"
               style={{ fontSize: '12px' }}
               onClick={() => {
                 setIsBarStats(false);
-                setIsDoughnutType(true);
-                setIsBarWeightHeight(false);
+                setIsBarTypeTop5(true);
+                setIsBarTypeLow5(false);
                 setIsBarTotal(false);
               }}  
-            >속성 순위 (상하위 30%)</Button>
+            >속성 순위 (상위 30%)</Button>
           </ListItem>
-          <ListItem style={isBarWeightHeight ? { backgroundColor: statsColor } : {}}>
+          <ListItem style={isBarTypeLow5 ? { backgroundColor: statsColor } : {}}>
             <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>arrow_right</span>
             <Button
               color="inherit"
               style={{ fontSize: '12px' }}
               onClick={() => {
                 setIsBarStats(false);
-                setIsDoughnutType(false);
-                setIsBarWeightHeight(true);
+                setIsBarTypeTop5(false);
+                setIsBarTypeLow5(true);
+                setIsBarTotal(false);
+              }}  
+            >속성 순위 (하위 30%)</Button>
+          </ListItem>
+          <ListItem style={isBarTotal ? { backgroundColor: statsColor } : {}}>
+            <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>arrow_right</span>
+            <Button
+              color="inherit"
+              style={{ fontSize: '12px' }}
+              onClick={() => {
+                setIsBarStats(false);
+                setIsBarTypeTop5(false);
+                setIsBarTypeLow5(true);
                 setIsBarTotal(false);
               }}
             >포켓몬 순위 (상위 10%)</Button>
@@ -94,8 +107,8 @@ function StatsDrawerComponents({stats, statsColor, statsInfo, isBarStats, isDoug
               style={{ fontSize: '12px' }}
               onClick={() => {
                 setIsBarStats(false);
-                setIsDoughnutType(false);
-                setIsBarWeightHeight(false);
+                setIsBarTypeTop5(false);
+                setIsBarTypeLow5(false);
                 setIsBarTotal(true);
               }}
             >포켓몬 순위 (하위 10%)</Button>

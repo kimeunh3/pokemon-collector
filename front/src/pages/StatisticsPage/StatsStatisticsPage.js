@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
-import { BarTypeStats } from './components/StatisticsCharts/StatsStatisticsCharts';
+import { BarTypeStats, BarTypeTop5, BarTypeLow5 } from './components/StatisticsCharts/StatsStatisticsCharts';
 import StatsDrawerComponents from './components/DrawerComponents/StatsDrawerComponents';
 
 import * as Api from '../../api';
@@ -9,6 +9,8 @@ function StatsStatisticsPage() {
   const params = useParams();
   const { stats } = params;
   const [isBarTypeStats, setIsBarTypeStats] = useState(true);
+  const [isBarTypeTop5, setIsBarTypeTop5] = useState(false);
+  const [isBarTypeLow5, setIsBarTypeLow5] = useState(false);
 
   const korengStatsList = {'공격력':'attack', '방어력':'defense', 'Hp':'hp', '특수공격력':'spAttack', '특수방어력':'spDefense', '스피드':'speed', '키':'height', '몸무게': 'weight', '종합점수':'totalPoints'}
   const engStats = korengStatsList[stats];
@@ -83,13 +85,38 @@ function StatsStatisticsPage() {
   const average = arr => arr.reduce((p, c) => p + c, 0) / arr.length;
 
   const sortTypeMeans = Object.keys(y.typesMeans).sort((a,b) => y.typesMeans[b]-y.typesMeans[a]);
-  // const typesMeansTop5 = sortTypeMeans.slice(0,5);
+  const typesMeansTop5 = sortTypeMeans.slice(0,5);
+  const typesMeanslow5 = sortTypeMeans.slice(-5);
+  
+  const typesMeansTop5List = [];
+  const typesMeanslow5List = [];
+  const typesMeansTop5Colors = [];
+  const typesMeanslow5Colors = [];
+
+  typesMeansTop5.forEach(pokemonType => {
+    typesMeansTop5List.push(y.typesMeans[pokemonType]);
+    typesMeansTop5Colors.push(typeColorList[pokemonType]);
+  })
+
+  typesMeanslow5.forEach(pokemonType => {
+    typesMeanslow5List.push(y.typesMeans[pokemonType]);
+    typesMeanslow5Colors.push(typeColorList[pokemonType]);
+  })
 
   const sortPokemonsStats = Object.keys(y.pokemonsStats).sort((a,b) => y.pokemonsStats[b]-y.pokemonsStats[a]);
 
+  const statsMean = Number(average(Object.values(y.pokemonsStats)).toFixed(1));
+
+  typesMeansTop5.push('평균');
+  typesMeanslow5.unshift('평균');
+  typesMeansTop5List.push(statsMean);
+  typesMeanslow5List.unshift(statsMean);
+  typesMeansTop5Colors.push('rgba(0, 0, 0, 0.5)');
+  typesMeanslow5Colors.unshift('rgba(0, 0, 0, 0.5)');
+
   const statsInfo = {
     pokemonCnt: x.length,
-    statsMean: average(Object.values(y.pokemonsStats)).toFixed(1),
+    statsMean,
     typesStatsMean: average(Object.values(y.typesMeans)).toFixed(1),
     statsMax: sortTypeMeans[0],
     statsMin: sortTypeMeans[16],
@@ -104,10 +131,16 @@ function StatsStatisticsPage() {
         statsColor={statsColorList[stats]}
         statsInfo={statsInfo}
         isBarStats={isBarTypeStats}
+        isBarTypeTop5={isBarTypeTop5}
+        isBarTypeLow5={isBarTypeLow5}
         setIsBarStats={setIsBarTypeStats}
+        setIsBarTypeTop5={setIsBarTypeTop5}
+        setIsBarTypeLow5={setIsBarTypeLow5}
       />
       <div style={{ margin: '10vh 3vw auto 25vw' }}>
-          {isBarTypeStats && <BarTypeStats y={y.typesMeans} colors={typeColors} />}
+          {isBarTypeStats && <BarTypeStats y={y.typesMeans} colors={typeColors} stats={stats} />}
+          {isBarTypeTop5 && <BarTypeTop5 x={typesMeansTop5} y={typesMeansTop5List} colors={typesMeansTop5Colors} stats={stats} />}
+          {isBarTypeLow5 && <BarTypeLow5 x={typesMeanslow5} y={typesMeanslow5List} colors={typesMeanslow5Colors} stats={stats} />}
       </div>
     </div>
 	);
