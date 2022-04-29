@@ -13,6 +13,7 @@ import {
 } from '@material-ui/core';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import IconObj from '../../../../core/Icon';
 
 function TypeDrawerComponents({type, typeColor, pokemonInfo,isBarStats, isDoughnutType, isBarWeightHeight, isBarTotal, setIsBarStats, setIsDoughnutType, setIsBarWeightHeight, setIsBarTotal }) {
     const drawerWidth = '24vw';
@@ -45,8 +46,8 @@ function TypeDrawerComponents({type, typeColor, pokemonInfo,isBarStats, isDoughn
         <Divider />
         <List>
           <ListItem>
-            <span className="material-symbols-outlined">arrow_right</span>
-            <div style={{ fontSize: '20px', fontWeight: 'bold' }}>{type} 속성 통계</div>
+            {IconObj[type].Icon}
+            <div style={{ fontSize: '20px', fontWeight: 'bold' }}>&nbsp;{type} 속성 통계</div>
           </ListItem>
           <ListItem style={isBarStats ? { backgroundColor: typeColor } : {}}>
             <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>arrow_right</span>
