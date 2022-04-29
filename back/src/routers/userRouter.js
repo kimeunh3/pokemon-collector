@@ -1,9 +1,26 @@
+/**
+ * @swagger
+ * /user/register:
+ *   post:
+ *     summary: 회원가입
+ *     description: User의 회원가입 API
+ *     tags: register
+ *     responses:
+ *       '200':
+ *        description: User의 회원가입
+ *        content: 
+ *         application/json:
+ *           schema:
+ *             type: Object
+ */
+
 import is from "@sindresorhus/is";
 import { Router } from "express";
 import { login_required } from "../middlewares/login_required";
 import { userAuthService } from '../services/userService';
 import { User } from '../db';
 const userAuthRouter = Router();
+
 
 userAuthRouter.post("/user/register", async function (req, res, next) {
   try {
