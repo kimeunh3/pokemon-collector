@@ -39,14 +39,24 @@ class User {
     return point;
   }
 
-  static async updateStickers({user_id, id, name}){
-    const sticker = {id, name};
-    const {stickers} = await UserModel.findOneAndUpdate(
-      {id : user_id},
-      { $push: {stickers: sticker}},
-      {new: true}
-    );
-    return stickers;
+  static async updateStickers({user_id, id, name}){  
+    const userStickers = await UserModel.findOne(
+      { id: user_id, 'stickers.id':id},
+      {_id:0, 'stickers.$':1}
+      );
+    if(userStickers){
+        return await UserModel.findOneAndUpdate(
+        {id : user_id,'stickers.id':id},
+        { $set: {'stickers.$.count': userStickers.stickers[0].count+1}},
+        {new: true}
+      );
+    }else{
+      return await UserModel.findOneAndUpdate(
+        {id : user_id},
+        { $push: {stickers:{id, name, count:1}}},
+        {new: true}
+      );
+    }
   }
 
   static async updatePoint({user_id, changedPoint}){
