@@ -124,6 +124,35 @@ userAuthRouter.put(
         }
       }
 
+      res.status(200).json(currentUserInfo.isPointGiven);
+      console.log(attendance, savedAttendance, timeDiff);
+      
+    }catch(error){
+        next(error);
+      }
+  }
+);
+
+userAuthRouter.put(
+  "/user/checkIn",
+  login_required,
+  async function (req, res, next) {
+    try {
+      const user_id = req.currentUserId;
+      let currentUserInfo = await userAuthService.getUserInfo({user_id,});
+      const attendance = new Date();
+      const savedAttendance = currentUserInfo.attendance;
+      var timeDiff = (attendance - savedAttendance);
+
+      if(timeDiff >= 24*60*60*1000){
+        const isPointGiven = !(currentUserInfo.isPointGiven);
+        const toUpdate = {attendance, isPointGiven};
+        currentUserInfo = await userAuthService.setUser({user_id, toUpdate});
+        if (currentUserInfo.errorMessgae){
+          throw new Error(currentUserInfo.errorMessage);
+        }
+      }
+
       res.status(200).json(currentUserInfo);
       console.log(attendance, savedAttendance, timeDiff);
       
