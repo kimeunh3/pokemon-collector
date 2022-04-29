@@ -88,7 +88,7 @@ userAuthRouter.get(
 );
 
 userAuthRouter.put(
-  "/user/current",
+  "/user/attendanceCheck",
   login_required,
   async function (req, res, next) {
     try {
@@ -106,14 +106,7 @@ userAuthRouter.put(
           throw new Error(currentUserInfo.errorMessage);
         }
       }
-      if(currentUserInfo.isPointGiven === true){
-        const point = currentUserInfo.point+1000;
-        const toUpdate = {point};
-        currentUserInfo = await userAuthService.setUser({user_id, toUpdate});
-        if (currentUserInfo.errorMessgae){
-          throw new Error(currentUserInfo.errorMessage);
-        }
-      }
+
       res.status(200).json(currentUserInfo);
       console.log(attendance, savedAttendance, timeDiff);
       
@@ -122,6 +115,15 @@ userAuthRouter.put(
       }
   }
 );
+// 새로운 API
+// if(currentUserInfo.isPointGiven === true){
+//   const point = currentUserInfo.point+1000;
+//   const toUpdate = {point};
+//   currentUserInfo = await userAuthService.setUser({user_id, toUpdate});
+//   if (currentUserInfo.errorMessgae){
+//     throw new Error(currentUserInfo.errorMessage);
+//   }
+// }
 
 
 
