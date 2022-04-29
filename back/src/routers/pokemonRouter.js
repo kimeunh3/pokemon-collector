@@ -47,7 +47,7 @@ pokemonAuthRouter.get("/pokemon/:id/name", async (req, res, next) => {
 
 pokemonAuthRouter.get("/pokemonList", async (req, res, next) => {
   try {
-    const pokemons = await PokemonAuthService.getPokemons();
+    const pokemons = await PokemonAuthService.getAllPokemons();
     res.status(200).json(pokemons);
   } catch (error) {
     next(error);
