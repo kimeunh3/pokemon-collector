@@ -109,7 +109,8 @@ function StatsDrawerComponents({stats, statsColor, statsInfo, isBarStats, isDoug
             <Typography variant="body2">
               전체 포켓몬 수: 151<br />
               전체 속성 수: 17<br />
-              전체 {stats} 평균: {statsInfo.statsMean}<br />
+              전체 포켓몬 {stats} 평균: {statsInfo.statsMean}<br />
+              전체 속성 {stats} 평균: {statsInfo.defenseMean}<br />
               최고 {stats} 속성: {statsInfo.defenseMean}<br />
               최저 {stats} 속성 {statsInfo.hpMean}<br />
               최고 {stats} 포켓몬: {statsInfo.spAttackMean}<br />

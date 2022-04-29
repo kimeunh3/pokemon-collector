@@ -222,6 +222,7 @@ function StatsStatisticsPage() {
 
   const average = arr => arr.reduce((p, c) => p + c, 0) / arr.length;
 
+  console.log(y.pokemonsStats)
   const statsInfo = {
     pokemonCnt: x.length,
     statsMean: average(y.pokemonsStats).toFixed(1),
