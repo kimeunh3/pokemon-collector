@@ -1,5 +1,0 @@
-.bread :hover {
-	cursor: pointer;
-	transform: scale(1.08);
-	transition: all 200ms ease-in;
-}

@@ -48,8 +48,20 @@ function NavBar() {
 
 	return (
 		<div>
-			<NavBarHeader open={open} setOpen={setOpen} isLogin={isLogin} handleDialogOpen={handleDialogOpen} logout={logout} />
-			<DrawerComponents open={open} setOpen={setOpen} isLogin={isLogin} handleDialogOpen={handleDialogOpen} logout={logout} />
+			<NavBarHeader
+				open={open}
+				setOpen={setOpen}
+				isLogin={isLogin}
+				handleDialogOpen={handleDialogOpen}
+				logout={logout}
+			/>
+			<DrawerComponents
+				open={open}
+				setOpen={setOpen}
+				isLogin={isLogin}
+				handleDialogOpen={handleDialogOpen}
+				logout={logout}
+			/>
 			<div
 				style={{
 					position: 'fixed',
@@ -58,10 +70,16 @@ function NavBar() {
 					zIndex: '1100',
 				}}
 			>
-				<div style={{ left: '50vw', transform: 'translateX(-50%)', position: 'absolute' }}>
+				<div
+					style={{
+						left: '50vw',
+						transform: 'translateX(-50%)',
+						position: 'absolute',
+					}}
+				>
 					<img
 						alt=''
-						src="https://d31z0g5vo6ghmg.cloudfront.net/front/nav-icon.png"
+						src='https://d31z0g5vo6ghmg.cloudfront.net/front/nav-icon.png'
 						width='110px'
 						height='110px'
 					/>

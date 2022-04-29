@@ -13,6 +13,8 @@ import PokemonDetailPage from './pages/PokemonDetailPage/PokemonDetailPage';
 import StatisticsPage from './pages/StatisticsPage/StatisticsPage';
 import TypeStatisticsPage from './pages/StatisticsPage/TypeStatisticsPage';
 import StatsStatisticsPage from './pages/StatisticsPage/StatsStatisticsPage';
+import MyPage from './pages/MyPage/MyPage';
+
 import { UserStateContext, DispatchContext } from './Context';
 import './App.css';
 
@@ -56,7 +58,7 @@ function App() {
 			<div id='loading'>
 				<img
 					id='loading-image'
-					src="https://d31z0g5vo6ghmg.cloudfront.net/front/loading.gif"
+					src='https://d31z0g5vo6ghmg.cloudfront.net/front/loading.gif'
 					alt='Loading...'
 				/>
 			</div>
@@ -71,12 +73,19 @@ function App() {
 					<Routes>
 						<Route path='/home' element={<LandingPage />} />
 						<Route path='/login' element={<LoginPage />} />
-						<Route path='/bread' element={<BreadPage />} />
-						<Route path='/pokemonDetail' element={<PokemonDetailPage />} />
+						<Route
+							path='/bread'
+							element={<BreadPage userState={userState} />}
+						/>
+						<Route
+							path='/pokemonDetail/:pokemonId'
+							element={<PokemonDetailPage />}
+						/>
 						<Route path='/IllustratedBook' element={<IllustratedBookPage />} />
 						<Route path='/StatisticsPage' element={<StatisticsPage />} />
 						<Route path='/StatisticsPage/TypeStatisticsPage/:type' element={<TypeStatisticsPage />} />
 						<Route path='/StatisticsPage/StatsStatisticsPage/:stats' element={<StatsStatisticsPage />} />
+						<Route path='/MyPage' element={<MyPage userState={userState} />} />
 					</Routes>
 				</Router>
 			</UserStateContext.Provider>
