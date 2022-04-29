@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
-import { BarTypeStats, BarTypeTop5, BarTypeLow5 } from './components/StatisticsCharts/StatsStatisticsCharts';
+import { BarTypeStats, BarTypeTop5, BarTypeLow5, BarPokemonTop15, BarPokemonLow15 } from './components/StatisticsCharts/StatsStatisticsCharts';
 import StatsDrawerComponents from './components/DrawerComponents/StatsDrawerComponents';
 
 import * as Api from '../../api';
@@ -11,6 +11,8 @@ function StatsStatisticsPage() {
   const [isBarTypeStats, setIsBarTypeStats] = useState(true);
   const [isBarTypeTop5, setIsBarTypeTop5] = useState(false);
   const [isBarTypeLow5, setIsBarTypeLow5] = useState(false);
+  const [isBarPokemonTop15, setIsBarPokemonTop15] = useState(false);
+  const [isBarPokemonLow15, setIsBarPokemonLow15] = useState(false);
 
   const korengStatsList = {'공격력':'attack', '방어력':'defense', 'Hp':'hp', '특수공격력':'spAttack', '특수방어력':'spDefense', '스피드':'speed', '키':'height', '몸무게': 'weight', '종합점수':'totalPoints'}
   const engStats = korengStatsList[stats];
@@ -82,42 +84,78 @@ function StatsStatisticsPage() {
     y.typesMeans[pokemonType] = Number(typemean.toFixed(1));
   })
 
+  // 평균값 구하는 함수
   const average = arr => arr.reduce((p, c) => p + c, 0) / arr.length;
 
+  // 상위 30%, 하위 30% 속성 순위 차트에 입력할 데이터 생성
   const sortTypeMeans = Object.keys(y.typesMeans).sort((a,b) => y.typesMeans[b]-y.typesMeans[a]);
   const typesMeansTop5 = sortTypeMeans.slice(0,5);
-  const typesMeanslow5 = sortTypeMeans.slice(-5);
+  const typesMeansLow5 = sortTypeMeans.slice(-5);
   
   const typesMeansTop5List = [];
-  const typesMeanslow5List = [];
+  const typesMeansLow5List = [];
   const typesMeansTop5Colors = [];
-  const typesMeanslow5Colors = [];
+  const typesMeansLow5Colors = [];
 
   typesMeansTop5.forEach(pokemonType => {
     typesMeansTop5List.push(y.typesMeans[pokemonType]);
     typesMeansTop5Colors.push(typeColorList[pokemonType]);
   })
 
-  typesMeanslow5.forEach(pokemonType => {
-    typesMeanslow5List.push(y.typesMeans[pokemonType]);
-    typesMeanslow5Colors.push(typeColorList[pokemonType]);
+  typesMeansLow5.forEach(pokemonType => {
+    typesMeansLow5List.push(y.typesMeans[pokemonType]);
+    typesMeansLow5Colors.push(typeColorList[pokemonType]);
   })
 
+  // 상위 10%, 하위 10% 포켓몬 순위 차트에 입력할 데이터 생성
   const sortPokemonsStats = Object.keys(y.pokemonsStats).sort((a,b) => y.pokemonsStats[b]-y.pokemonsStats[a]);
+  const pokemonsStatsTop15 = sortPokemonsStats.slice(0,15);
+  const pokemonsStatsLow15 = sortPokemonsStats.slice(-15);
+  
+  const pokemonsStatsTop15List = [];
+  const pokemonsStatsLow15List = [];
+  const pokemonsStatsTop15Colors = [];
+  const pokemonsStatsLow15Colors = [];
 
+  let i = 0;
+  pokemonsStatsTop15.forEach(pokemon => {
+    pokemonsStatsTop15List.push(y.pokemonsStats[pokemon]);
+    pokemonsStatsTop15Colors.push(typeColors[i]);
+    i += 1;
+  })
+
+  i = 16;
+  pokemonsStatsLow15.forEach(pokemon => {
+    pokemonsStatsLow15List.push(y.pokemonsStats[pokemon]);
+    pokemonsStatsLow15Colors.push(typeColors[i]);
+    i -= 1;
+  })
+
+  // 상위 30%, 하위 30% 속성 순위 차트에 평균값 넣기
   const statsMean = Number(average(Object.values(y.pokemonsStats)).toFixed(1));
 
   typesMeansTop5.push('평균');
-  typesMeanslow5.unshift('평균');
+  typesMeansLow5.unshift('평균');
   typesMeansTop5List.push(statsMean);
-  typesMeanslow5List.unshift(statsMean);
+  typesMeansLow5List.unshift(statsMean);
   typesMeansTop5Colors.push('rgba(0, 0, 0, 0.5)');
-  typesMeanslow5Colors.unshift('rgba(0, 0, 0, 0.5)');
+  typesMeansLow5Colors.unshift('rgba(0, 0, 0, 0.5)');
 
+  // 상위 10%, 하위 10% 포켓몬 순위 차트에 평균값 넣기
+  const typesStatsMean = Number(average(Object.values(y.typesMeans)).toFixed(1));
+
+  pokemonsStatsTop15.push('평균');
+  pokemonsStatsLow15.unshift('평균');
+  pokemonsStatsTop15List.push(statsMean);
+  pokemonsStatsLow15List.unshift(statsMean);
+  pokemonsStatsTop15Colors.push('rgba(0, 0, 0, 0.5)');
+  pokemonsStatsLow15Colors.unshift('rgba(0, 0, 0, 0.5)');
+
+  // 통계 개요에 들어갈 값
   const statsInfo = {
     pokemonCnt: x.length,
     statsMean,
-    typesStatsMean: average(Object.values(y.typesMeans)).toFixed(1),
+    typesStatsMean,
     statsMax: sortTypeMeans[0],
     statsMin: sortTypeMeans[16],
     pokemonMax: sortPokemonsStats[0],
@@ -133,14 +171,20 @@ function StatsStatisticsPage() {
         isBarStats={isBarTypeStats}
         isBarTypeTop5={isBarTypeTop5}
         isBarTypeLow5={isBarTypeLow5}
+        isBarPokemonTop15={isBarPokemonTop15}
+        isBarPokemonLow15={isBarPokemonLow15}
         setIsBarStats={setIsBarTypeStats}
         setIsBarTypeTop5={setIsBarTypeTop5}
         setIsBarTypeLow5={setIsBarTypeLow5}
+        setIsBarPokemonTop15={setIsBarPokemonTop15}
+        setIsBarPokemonLow15={setIsBarPokemonLow15}
       />
       <div style={{ margin: '10vh 3vw auto 25vw' }}>
           {isBarTypeStats && <BarTypeStats y={y.typesMeans} colors={typeColors} stats={stats} />}
           {isBarTypeTop5 && <BarTypeTop5 x={typesMeansTop5} y={typesMeansTop5List} colors={typesMeansTop5Colors} stats={stats} />}
-          {isBarTypeLow5 && <BarTypeLow5 x={typesMeanslow5} y={typesMeanslow5List} colors={typesMeanslow5Colors} stats={stats} />}
+          {isBarTypeLow5 && <BarTypeLow5 x={typesMeansLow5} y={typesMeansLow5List} colors={typesMeansLow5Colors} stats={stats} />}
+          {isBarPokemonTop15 && <BarPokemonTop15 x={pokemonsStatsTop15} y={pokemonsStatsTop15List} colors={pokemonsStatsTop15Colors} stats={stats} />}
+          {isBarPokemonLow15 && <BarPokemonLow15 x={pokemonsStatsLow15} y={pokemonsStatsLow15List} colors={pokemonsStatsLow15Colors} stats={stats} />}
       </div>
     </div>
 	);

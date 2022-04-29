@@ -14,7 +14,7 @@ import {
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 
-function StatsDrawerComponents({stats, statsColor, statsInfo, isBarStats, isBarTypeTop5, isBarTypeLow5, isBarTotal, setIsBarStats, setIsBarTypeTop5, setIsBarTypeLow5, setIsBarTotal }) {
+function StatsDrawerComponents({stats, statsColor, statsInfo, isBarStats, isBarTypeTop5, isBarTypeLow5, isBarPokemonTop15, isBarPokemonLow15, setIsBarStats, setIsBarTypeTop5, setIsBarTypeLow5, setIsBarPokemonTop15, setIsBarPokemonLow15 }) {
     const drawerWidth = '24vw';
     const theme = useTheme();
     const navigate = useNavigate();
@@ -57,7 +57,8 @@ function StatsDrawerComponents({stats, statsColor, statsInfo, isBarStats, isBarT
                 setIsBarStats(true);
                 setIsBarTypeTop5(false);
                 setIsBarTypeLow5(false);
-                setIsBarTotal(false);
+                setIsBarPokemonTop15(false);
+                setIsBarPokemonLow15(false);
               }}  
             >속성별 통계</Button>
           </ListItem>
@@ -70,7 +71,8 @@ function StatsDrawerComponents({stats, statsColor, statsInfo, isBarStats, isBarT
                 setIsBarStats(false);
                 setIsBarTypeTop5(true);
                 setIsBarTypeLow5(false);
-                setIsBarTotal(false);
+                setIsBarPokemonTop15(false);
+                setIsBarPokemonLow15(false);
               }}  
             >속성 순위 (상위 30%)</Button>
           </ListItem>
@@ -83,24 +85,12 @@ function StatsDrawerComponents({stats, statsColor, statsInfo, isBarStats, isBarT
                 setIsBarStats(false);
                 setIsBarTypeTop5(false);
                 setIsBarTypeLow5(true);
-                setIsBarTotal(false);
+                setIsBarPokemonTop15(false);
+                setIsBarPokemonLow15(false);
               }}  
             >속성 순위 (하위 30%)</Button>
           </ListItem>
-          <ListItem style={isBarTotal ? { backgroundColor: statsColor } : {}}>
-            <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>arrow_right</span>
-            <Button
-              color="inherit"
-              style={{ fontSize: '12px' }}
-              onClick={() => {
-                setIsBarStats(false);
-                setIsBarTypeTop5(false);
-                setIsBarTypeLow5(true);
-                setIsBarTotal(false);
-              }}
-            >포켓몬 순위 (상위 10%)</Button>
-          </ListItem>
-          <ListItem style={isBarTotal ? { backgroundColor: statsColor } : {}}>
+          <ListItem style={isBarPokemonTop15 ? { backgroundColor: statsColor } : {}}>
             <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>arrow_right</span>
             <Button
               color="inherit"
@@ -109,7 +99,22 @@ function StatsDrawerComponents({stats, statsColor, statsInfo, isBarStats, isBarT
                 setIsBarStats(false);
                 setIsBarTypeTop5(false);
                 setIsBarTypeLow5(false);
-                setIsBarTotal(true);
+                setIsBarPokemonTop15(true);
+                setIsBarPokemonLow15(false);
+              }}
+            >포켓몬 순위 (상위 10%)</Button>
+          </ListItem>
+          <ListItem style={isBarPokemonLow15 ? { backgroundColor: statsColor } : {}}>
+            <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>arrow_right</span>
+            <Button
+              color="inherit"
+              style={{ fontSize: '12px' }}
+              onClick={() => {
+                setIsBarStats(false);
+                setIsBarTypeTop5(false);
+                setIsBarTypeLow5(false);
+                setIsBarPokemonTop15(false);
+                setIsBarPokemonLow15(true);
               }}
             >포켓몬 순위 (하위 10%)</Button>
           </ListItem>
