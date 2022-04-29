@@ -1,9 +1,3 @@
-/*
- * <user 정보 Schema 정의>
- * 작성자 : 김보현
- * 작성일 : 2022.04.21
- */
-
 import { Schema, model } from 'mongoose';
 
 const UserSchema = new Schema(
@@ -42,7 +36,7 @@ const UserSchema = new Schema(
     },
     point:{
       type: Number,
-      default: 0,
+      default: 1000,
       required: false,
     },
     profileImg: {
@@ -58,14 +52,14 @@ const UserSchema = new Schema(
       }
     ],
     attendance: {
-      type: String,
+      type: Date,
       required : false,
       default: Date.now(),
     },
     isPointGiven: {
         type: Boolean,
         required : false,
-        default: false,
+        default: true,
     }
   },
   {

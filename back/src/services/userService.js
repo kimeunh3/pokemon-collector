@@ -43,7 +43,7 @@ class userAuthService {
     }
 
     const secretKey = process.env.JWT_SECRET_KEY || "jwt-secret-key";
-    const token = jwt.sign({ user_id: user.id }, secretKey);
+    const token = jwt.sign({ userId: user.id }, secretKey);
 
     const id = user.id;
     const nickname = user.nickname;
@@ -82,10 +82,10 @@ class userAuthService {
     return users;
   }
 
-  static async setUser({ user_id, toUpdate }) {
+  static async setUser({ userId, toUpdate }) {
 
-    let user = await User.findById({ user_id });
-
+    let user = await User.findById({ userId });
+    
 
     if (!user) {
       const errorMessage =
@@ -96,39 +96,51 @@ class userAuthService {
     if (toUpdate.name) {
       const fieldToUpdate = "name";
       const newValue = toUpdate.name;
-      user = await User.update({ user_id, fieldToUpdate, newValue });
+      user = await User.update({ userId, fieldToUpdate, newValue });
     }
 
     if (toUpdate.email) {
       const fieldToUpdate = "email";
       const newValue = toUpdate.email;
-      user = await User.update({ user_id, fieldToUpdate, newValue });
+      user = await User.update({ userId, fieldToUpdate, newValue });
     }
 
     if (toUpdate.password) {
       const fieldToUpdate = "password";
       const newValue = toUpdate.password;
-      user = await User.update({ user_id, fieldToUpdate, newValue });
+      user = await User.update({ userId, fieldToUpdate, newValue });
     }
 
     if (toUpdate.description) {
       const fieldToUpdate = "description";
       const newValue = toUpdate.description;
-      user = await User.update({ user_id, fieldToUpdate, newValue });
+      user = await User.update({ userId, fieldToUpdate, newValue });
     }
     
     if (toUpdate.attendance) {
       const fieldToUpdate = "attendance";
       const newValue = toUpdate.attendance;
-      user = await User.update({user_id, fieldToUpdate, newValue});
+      user = await User.update({userId, fieldToUpdate, newValue});
+    }
+
+    if (toUpdate.isPointGiven) {
+      const fieldToUpdate = "isPointGiven";
+      const newValue = toUpdate.isPointGiven;
+      user = await User.update({userId, fieldToUpdate, newValue});
+    }
+
+    if (toUpdate.point) {
+      const fieldToUpdate = "point";
+      const newValue = toUpdate.point;
+      user = await User.update({userId, fieldToUpdate, newValue});
     }
 
     return user;
   }
 
 
-  static async getUserInfo({ user_id }) {
-    const user = await User.findById({ user_id });
+  static async getUserInfo({ userId }) {
+    const user = await User.findById({ userId });
 
     if (!user) {
       const errorMessage =
@@ -138,6 +150,8 @@ class userAuthService {
 
     return user;
   }
+
+
 }
 
 export { userAuthService };
