@@ -106,6 +106,14 @@ userAuthRouter.put(
           throw new Error(currentUserInfo.errorMessage);
         }
       }
+      if(currentUserInfo.isPointGiven === true){
+        const point = currentUserInfo.point+1000;
+        const toUpdate = {point};
+        currentUserInfo = await userAuthService.setUser({user_id, toUpdate});
+        if (currentUserInfo.errorMessgae){
+          throw new Error(currentUserInfo.errorMessage);
+        }
+      }
       res.status(200).json(currentUserInfo);
       console.log(attendance, savedAttendance, timeDiff);
       
