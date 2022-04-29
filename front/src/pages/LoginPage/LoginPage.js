@@ -77,7 +77,7 @@ function LoginPage() {
 			sx={{
 				height: '100vh',
 				backgroundImage:
-					'url(https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/front/loginBackground.png)',
+					'url(https://d31z0g5vo6ghmg.cloudfront.net/front/loginBackground.png)',
 				backgroundPosition: 'center',
 				backgroundSize: '100% 100%',
 				minHeight: '740px',
@@ -101,7 +101,7 @@ function LoginPage() {
 			>
 				<Container>
 					<img
-						src='https://pokemon-collector.s3.ap-northeast-2.amazonaws.com/front/logo.png'
+						src='https://d31z0g5vo6ghmg.cloudfront.net/front/logo.png'
 						alt='Logo'
 						width='300px'
 						height='100px'
