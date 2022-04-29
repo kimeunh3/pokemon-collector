@@ -125,7 +125,7 @@ userAuthRouter.put(
         }
       }
 
-      res.status(200).json(currentUserInfo.isPointGiven);
+      res.status(200).json({isPointGiven:currentUserInfo.isPointGiven});
       
     }catch(error){
         next(error);
@@ -149,7 +149,7 @@ userAuthRouter.put(
       if (currentUserInfo.errorMessage){
         throw new Error(currentUserInfo.errorMessage);
       }
-    res.status(200).json(currentUserInfo.point);
+    res.status(200).json({point:currentUserInfo.point});
     }catch(error){
         next(error);
       }
