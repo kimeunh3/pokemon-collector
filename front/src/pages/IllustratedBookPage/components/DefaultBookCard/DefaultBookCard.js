@@ -9,6 +9,10 @@ function DefaultBookCard({ selectType1, selectType2, searchName }) {
 	if (selectType2 !== '10') return null;
 	if (searchName) return null;
 
+	if (selectType1 !== '10') return null;
+	if (selectType2 !== '10') return null;
+	if (searchName) return null;
+
 	return (
 		<Card style={{ width: '220px', justifySelf: 'center' }}>
 			<CardMedia style={{ textAlign: 'center' }}>

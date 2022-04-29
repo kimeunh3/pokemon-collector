@@ -35,10 +35,11 @@ function DrawerComponents({ open, setOpen, isLogin, handleDialogOpen, logout }) 
 	};
 
     return (
-        <Drawer
+      <Drawer
         variant="persistent"
         anchor="right"
         open={open}
+        style={{ zIndex: '1200' }}
       >
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>

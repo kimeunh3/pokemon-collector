@@ -6,6 +6,7 @@ import {
 	Grid,
 } from '@material-ui/core';
 import StatisticsButton from './components/StatisticsButton';
+import ScrollUpButton from '../../components/commons/ScrollUpButton';
 
 function StatisticsPage() {
     const [isAll, setIsAll] = useState(true);
@@ -83,7 +84,7 @@ function StatisticsPage() {
                         <StatisticsButton imgSrc='pokemons/19' text='노말 속성' bColor='rgba(198, 198, 167, 0.8)' type='노말' />
                         <StatisticsButton imgSrc='pokemons/4' text='불꽃 속성' bColor='rgba(245, 172, 120, 0.8)' type='불꽃' />
                         <StatisticsButton imgSrc='pokemons/7' text='물 속성' bColor='rgba(157, 183, 245, 0.8)' type='물' />
-                        <StatisticsButton imgSrc='pokemons/1' text='풀 속성' bColor='rgba(167, 219, 141, 0.8)' type='땅' />
+                        <StatisticsButton imgSrc='pokemons/1' text='풀 속성' bColor='rgba(167, 219, 141, 0.8)' type='풀' />
                         <StatisticsButton imgSrc='pokemons/25' text='전기 속성' bColor='rgba(250, 224, 120, 0.8)' type='전기' />
                         <StatisticsButton imgSrc='pokemons/124' text='얼음 속성' bColor='rgba(188, 230, 230, 0.8)' type='얼음' />
                         <StatisticsButton imgSrc='pokemons/66' text='격투 속성' bColor='rgba(214, 120, 115, 0.8)' type='격투' />
@@ -113,7 +114,7 @@ function StatisticsPage() {
                     </>
                 )}
             </div>
-            <button type="button" id="go-top" onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })}><span className="material-symbols-outlined">arrow_upward</span></button>
+            <ScrollUpButton />
 		</div>
 	);
 }
