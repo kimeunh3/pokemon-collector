@@ -2,12 +2,19 @@ import React, { useState, useEffect } from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import { CatchingPokemon } from '@mui/icons-material';
 import GridCards from './components/BreadGridCard/BreadGridCards';
 
 import * as Api from '../../api';
 
 function BreadPage() {
-	const [drawPokemon, setDrawPokemon] = useState();
+	const [point, setPoint] = useState();
+
+	useEffect(async () => {
+		const res = await Api.get('user/current');
+		setPoint(res.data.point);
+	}, []);
+
 	const breadImgs = [
 		'digda',
 		'ggobugi',
@@ -17,14 +24,6 @@ function BreadPage() {
 		'purin',
 		'rocketdan',
 	];
-
-	useEffect(() => {
-		const fetchDrawPokemon = async () => {
-			const response = await Api.get('drawPokemon');
-			setDrawPokemon(response.data);
-		};
-		fetchDrawPokemon();
-	}, []);
 
 	return (
 		<Container fixed sx={{ marginTop: '135px' }}>
@@ -38,12 +37,12 @@ function BreadPage() {
 					marginTop: '10px',
 				}}
 			>
-				남은 포인트: 1000
+				남은 포인트: {point} &nbsp; <CatchingPokemon />
 			</Typography>
 			<Grid container spacing={4}>
 				{breadImgs.map((breadImg) => (
 					<React.Fragment key={breadImg}>
-						<GridCards bread breadImg={breadImg} drawPokemon={drawPokemon} />
+						<GridCards bread breadImg={breadImg} setPoint={setPoint} />
 					</React.Fragment>
 				))}
 			</Grid>

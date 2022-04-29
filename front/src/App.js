@@ -72,7 +72,10 @@ function App() {
 					<Routes>
 						<Route path='/home' element={<LandingPage />} />
 						<Route path='/login' element={<LoginPage />} />
-						<Route path='/bread' element={<BreadPage />} />
+						<Route
+							path='/bread'
+							element={<BreadPage userState={userState} />}
+						/>
 						<Route
 							path='/pokemonDetail/:pokemonId'
 							element={<PokemonDetailPage />}

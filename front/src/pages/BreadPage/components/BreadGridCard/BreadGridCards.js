@@ -4,50 +4,72 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
 
 import { useNavigate } from 'react-router-dom';
-// import '../../BreadPage.css';
+import * as Api from '../../../../api';
 
-function GridCards({ bread, breadImg, drawPokemon }) {
+function GridCards({ bread, breadImg, setPoint }) {
 	const navigate = useNavigate();
-	const handleClick = () => {
-		alert(drawPokemon.name);
-		navigate(`/pokemonDetail/${drawPokemon.id}`);
+
+	const handleClick = async () => {
+		const response = await Api.get('drawPokemon');
+
+		alert(`${response.data.name}`);
+		await setPoint(response.userPoint);
+		navigate(`/pokemonDetail/${response.data.id}`);
 	};
 
 	const breadImgSrc = `https://d31z0g5vo6ghmg.cloudfront.net/front/bread/${breadImg}.png`;
 
 	if (bread) {
 		return (
-			<Grid item xs={3}>
+			<Grid
+				item
+				xs={3}
+				sx={{
+					'&: hover': {
+						'& .btn': {
+							display: 'block',
+						},
+						'& .bread': {
+							opacity: '0.7',
+							transition: 'all 0.5s ease',
+						},
+					},
+				}}
+			>
 				<Box
 					className='bread'
-					sx={{ position: 'relative' }}
-					onClick={handleClick}
+					sx={{ position: 'relative', width: '100%', height: '100%' }}
 				>
-					<Button
-						className='btn'
+					<Card
 						sx={{
-							display: 'none',
-							position: 'absolute',
-							top: '40%',
-							left: '31%',
+							backgroundColor: 'transparent',
+							boxShadow: 'none',
 						}}
 					>
-						빵 구매
-					</Button>
-					<Card>
 						<CardMedia
-							sx={{
-								width: '100%',
-								height: '100%',
-								'&:hover': { '&:.btn': { display: 'block' } },
-							}}
+							sx={{}}
 							component='img'
 							image={breadImgSrc}
 							alt={breadImg}
 						/>
 					</Card>
+					<Button
+						className='btn'
+						variant='contained'
+						color='success'
+						onClick={handleClick}
+						sx={{
+							display: 'none',
+							position: 'absolute',
+							top: '40%',
+							right: '33%',
+						}}
+					>
+						<Typography>빵 구매</Typography>
+					</Button>
 				</Box>
 			</Grid>
 		);
