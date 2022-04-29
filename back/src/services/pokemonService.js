@@ -57,14 +57,13 @@ class PokemonAuthService {
     const id = await draw.drawPokemonid();
     const {name} = await Pokemon.findNameById({ id });
     // 뽑힌 포켓몬을 user 스키마의 stickers에 update
-    const stickers = await User.updateStickers({user_id, id, name});
-
+    const {stickers} = await User.updateStickers({user_id, id, name});
+    
     if (!stickers) {
       const errorMessage =
         "stikers update에 실패했습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
-
     // 포인트 삭감
     const changedPoint = point - 1000;
     const appliedPoint = await User.updatePoint({user_id, changedPoint});
