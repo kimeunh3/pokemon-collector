@@ -34,6 +34,42 @@ class User {
     return updatedUser;
   }
 
+<<<<<<< HEAD
+=======
+  static async findPointById({ user_id }) {
+    const {point} = await UserModel.findOne({ id:user_id }, {point:1});
+    return point;
+  }
+
+  static async updateStickers({user_id, id, name}){  
+    const userStickers = await UserModel.findOne(
+      { id: user_id, 'stickers.id':id},
+      {_id:0, 'stickers.$':1}
+      );
+    if(userStickers){
+        return await UserModel.findOneAndUpdate(
+        {id : user_id,'stickers.id':id},
+        { $set: {'stickers.$.count': userStickers.stickers[0].count+1}},
+        {new: true}
+      );
+    }else{
+      return await UserModel.findOneAndUpdate(
+        {id : user_id},
+        { $push: {stickers:{id, name, count:1}}},
+        {new: true}
+      );
+    }
+  }
+
+  static async updatePoint({user_id, changedPoint}){
+    const {point} = await UserModel.findOneAndUpdate(
+      { id:user_id },
+      { $set: { point: changedPoint } },
+      {new: true}
+    );
+    return point;
+  }
+>>>>>>> cb6f4e8a32be78568a32d62df4cfbfa452dc16b2
 }
 
 export { User };

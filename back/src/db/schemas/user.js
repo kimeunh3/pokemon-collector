@@ -48,7 +48,7 @@ const UserSchema = new Schema(
       {
         id: String,
         name: String,
-        img: String, 
+        count: Number 
       }
     ],
     attendance: {
