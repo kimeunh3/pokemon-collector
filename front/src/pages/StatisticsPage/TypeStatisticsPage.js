@@ -1,375 +1,115 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
-import { Bar } from 'react-chartjs-2';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from 'chart.js';
-import styled from 'styled-components';
+import { BarStats, DoughnutType, BarWeightHeight, BarTotal } from './components/StatisticsCharts/TypeStatisticsCharts';
+import TypeDrawerComponents from './components/DrawerComponents/TypeDrawerComponents';
 
-// import * as Api from '../../api';
+import * as Api from '../../api';
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-);
-
-export const options1 = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: 'top',
-    },
-    title: {
-      display: true,
-      text: '바위 포켓몬 능력치',
-    },
-  },
-};
-
-export const options2 = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: 'top',
-    },
-    title: {
-      display: true,
-      text: '바위 포켓몬 키/몸무게',
-    },
-  },
-};
-
-export const options3 = {
-  plugins: {
-    title: {
-      display: true,
-      text: '종합 능력치',
-    },
-  },
-  responsive: true,
-  interaction: {
-    mode: 'index',
-    intersect: false,
-  },
-  scales: {
-    x: {
-      stacked: true,
-    },
-    y: {
-      stacked: true,
-    },
-  },
-};
-
-function typeStatisticsPage() {
+function TypeStatisticsPage() {
   const params = useParams();
   const { type } = params;
-  // const [pokemons, setPokemons] = useState([]);
+  const [isBarStats, setIsBarStats] = useState(true);
+  const [isDoughnutType, setIsDoughnutType] = useState(false);
+  const [isBarWeightHeight, setIsBarWeightHeight] = useState(false);
+  const [isBarTotal, setIsBarTotal] = useState(false);
+  const [pokemons, setPokemons] = useState([]);
 
-  // useEffect(() => {
-  //   setPokemons([])
-  // }, []);
-
-  const pokemons = [{'attack': 80,
-  'defense': 100,
-  'height_m': 0.4,
-  'hp': 40,
-  'name': '꼬마돌',
-  'pokedex_number': 74,
-  'sp_attack': 30,
-  'sp_defense': 30,
-  'speed': 20,
-  'status': '노말',
-  'total_points': 300,
-  'type_1': '바위',
-  'type_2': '땅',
-  'type_number': 2,
-  'weight_kg': 20.0},
- {'attack': 95,
-  'defense': 115,
-  'height_m': 1.0,
-  'hp': 55,
-  'name': '데구리',
-  'pokedex_number': 75,
-  'sp_attack': 45,
-  'sp_defense': 45,
-  'speed': 35,
-  'status': '노말',
-  'total_points': 390,
-  'type_1': '바위',
-  'type_2': '땅',
-  'type_number': 2,
-  'weight_kg': 105.0},
- {'attack': 120,
-  'defense': 130,
-  'height_m': 1.4,
-  'hp': 80,
-  'name': '딱구리',
-  'pokedex_number': 76,
-  'sp_attack': 55,
-  'sp_defense': 65,
-  'speed': 45,
-  'status': '노말',
-  'total_points': 495,
-  'type_1': '바위',
-  'type_2': '땅',
-  'type_number': 2,
-  'weight_kg': 300.0},
- {'attack': 45,
-  'defense': 160,
-  'height_m': 8.8,
-  'hp': 35,
-  'name': '롱스톤',
-  'pokedex_number': 95,
-  'sp_attack': 30,
-  'sp_defense': 45,
-  'speed': 70,
-  'status': '노말',
-  'total_points': 385,
-  'type_1': '바위',
-  'type_2': '땅',
-  'type_number': 2,
-  'weight_kg': 210.0},
- {'attack': 40,
-  'defense': 100,
-  'height_m': 0.4,
-  'hp': 35,
-  'name': '암나이트',
-  'pokedex_number': 138,
-  'sp_attack': 90,
-  'sp_defense': 55,
-  'speed': 35,
-  'status': '노말',
-  'total_points': 355,
-  'type_1': '바위',
-  'type_2': '물',
-  'type_number': 2,
-  'weight_kg': 7.5},
- {'attack': 60,
-  'defense': 125,
-  'height_m': 1.0,
-  'hp': 70,
-  'name': '암스타',
-  'pokedex_number': 139,
-  'sp_attack': 115,
-  'sp_defense': 70,
-  'speed': 55,
-  'status': '노말',
-  'total_points': 495,
-  'type_1': '바위',
-  'type_2': '물',
-  'type_number': 2,
-  'weight_kg': 35.0},
- {'attack': 80,
-  'defense': 90,
-  'height_m': 0.5,
-  'hp': 30,
-  'name': '투구',
-  'pokedex_number': 140,
-  'sp_attack': 55,
-  'sp_defense': 45,
-  'speed': 55,
-  'status': '노말',
-  'total_points': 355,
-  'type_1': '바위',
-  'type_2': '물',
-  'type_number': 2,
-  'weight_kg': 11.5},
- {'attack': 115,
-  'defense': 105,
-  'height_m': 1.3,
-  'hp': 60,
-  'name': '투구푸스',
-  'pokedex_number': 141,
-  'sp_attack': 65,
-  'sp_defense': 70,
-  'speed': 80,
-  'status': '노말',
-  'total_points': 495,
-  'type_1': '바위',
-  'type_2': '물',
-  'type_number': 2,
-  'weight_kg': 40.5},
- {'attack': 105,
-  'defense': 65,
-  'height_m': 1.8,
-  'hp': 80,
-  'name': '프테라',
-  'pokedex_number': 142,
-  'sp_attack': 60,
-  'sp_defense': 75,
-  'speed': 130,
-  'status': '노말',
-  'total_points': 515,
-  'type_1': '바위',
-  'type_2': '비행',
-  'type_number': 2,
-  'weight_kg': 59.0}];
+  useEffect(() => {
+    Api.get(`pokemonList/${type}`)
+      .then((res) => {
+        setPokemons(res.data);
+      })
+  }, []);
 
   const x = [];
-  const yAttack = [];
-  const yDefense = [];
-  const yHp = [];
-  const ySpAttack = [];
-  const ySpDefense = [];
-  const ySpeed = [];
-  const yHeight = [];
-  const yWeight = [];
-  const yTotalPoints = [];
+  const y = {
+    attack: [],
+    defense: [],
+    hp: [],
+    spAttack: [],
+    spDefense: [],
+    speed: [],
+    height: [],
+    weight: [],
+    totalPoints: [],
+    typesCnt: { '노말': 0, '불꽃': 0, '물': 0, '풀': 0, '전기': 0, '얼음': 0, '격투': 0, '독': 0, '땅': 0, '비행': 0, '에스퍼': 0, '벌레': 0, '바위': 0, '고스트': 0, '드래곤': 0, '강철': 0, '페어리': 0, "없음": 0 },
+  }
+
+  const typeColorList = {
+    '노말': 'rgba(198, 198, 167, 0.8)',
+    '불꽃': 'rgba(245, 172, 120, 0.8)',
+    '물': 'rgba(157, 183, 245, 0.8)',
+    '풀': 'rgba(167, 219, 141, 0.8)',
+    '전기': 'rgba(250, 224, 120, 0.8)',
+    '얼음': 'rgba(188, 230, 230, 0.8)',
+    '격투': 'rgba(214, 120, 115, 0.8)',
+    '독': 'rgba(193, 131, 193, 0.8)',
+    '땅': 'rgba(235, 214, 157, 0.8)',
+    '비행': 'rgba(198, 183, 245, 0.8)',
+    '에스퍼': 'rgba(250, 146, 178, 0.8)',
+    '벌레': 'rgba(198, 209, 110, 0.8)',
+    '바위': 'rgba(209, 193, 125, 0.8)',
+    '고스트': 'rgba(162, 146, 188, 0.8)',
+    '드래곤': 'rgba(162, 125, 250, 0.8)',
+    '강철': 'rgba(209, 209, 224, 0.8)',
+    '페어리': 'rgba(244, 189, 201, 0.8)'
+  };
 
   pokemons.forEach(pokemon => {
     x.push(pokemon.name);
-    yAttack.push(pokemon.attack);
-    yDefense.push(pokemon.defense);
-    yHp.push(pokemon.hp);
-    ySpAttack.push(pokemon.sp_attack);
-    ySpDefense.push(pokemon.sp_defense);
-    ySpeed.push(pokemon.speed);
-    yHeight.push(pokemon.height_m);
-    yWeight.push(pokemon.weight_kg);
-    yTotalPoints.push(pokemon.total_points);
+    y.attack.push(pokemon.attack);
+    y.defense.push(pokemon.defense);
+    y.hp.push(pokemon.hp);
+    y.spAttack.push(pokemon.spAttack);
+    y.spDefense.push(pokemon.spDefense);
+    y.speed.push(pokemon.speed);
+    y.height.push(pokemon.height);
+    y.weight.push(pokemon.weight);
+    y.totalPoints.push(pokemon.totalPoints);
+    y.typesCnt[pokemon.typeOne] += 1;
+    y.typesCnt[pokemon.typeTwo] += 1;
   })
 
-  const data1 = {
-    labels: x,
-    datasets: [
-      {
-        label: '바위 속성 공격력',
-        data: yAttack,
-        backgroundColor: 'rgba(240, 128, 48, 0.5)',
-      },
-      {
-        label: '바위 속성 방어력',
-        data: yDefense,
-        backgroundColor: 'rgba(248, 208, 48, 0.5)',
-      },
-      {
-        label: '바위 속성 Hp',
-        data: yHp,
-        backgroundColor: 'rgba(255, 0, 0, 0.5)',
-      },
-      {
-        label: '바위 속성 특수공격력',
-        data: ySpAttack,
-        backgroundColor: 'rgba(104, 144, 240, 0.5)',
-      },
-      {
-        label: '바위 속성 특수방어력',
-        data: ySpDefense,
-        backgroundColor: 'rgba(120, 200, 80, 0.5)',
-      },
-      {
-        label: '바위 속성 스피드',
-        data: ySpeed,
-        backgroundColor: 'rgba(193, 131, 193, 0.5)',
-      },
-      // {
-      //   label: '바위 속성 키',
-      //   data: yHeight,
-      //   backgroundColor: 'rgba(193, 131, 193, 0.5)',
-      // },
-      // {
-      //   label: '바위 속성 몸무게',
-      //   data: yWeight,
-      //   backgroundColor: 'rgba(193, 131, 193, 0.5)',
-      // },
-      // {
-      //   label: '바위 속성 종합점수',
-      //   data: yTotalPoints,
-      //   backgroundColor: 'rgba(128, 128, 128, 0.5)',
-      // },
-    ],
-  };
+  y.typesCnt[type] = 0
 
-  const data2 = {
-    labels: x,
-    datasets: [
-      {
-        label: '바위 속성 키',
-        data: yHeight,
-        backgroundColor: 'rgba(161, 57, 89, 0.5)',
-      },
-      {
-        label: '바위 속성 몸무게',
-        data: yWeight,
-        backgroundColor: 'rgba(68, 94, 156, 0.5)',
-      },
-    ],
-  };
+  const average = arr => arr.reduce((p, c) => p + c, 0) / arr.length;
 
-  const data3 = {
-    labels: x,
-    datasets: [
-      {
-        label: '바위 속성 공격력',
-        data: yAttack,
-        backgroundColor: 'rgba(240, 128, 48, 0.5)',
-        stack: 'Stack 0',
-      },
-      {
-        label: '바위 속성 방어력',
-        data: yDefense,
-        backgroundColor: 'rgba(248, 208, 48, 0.5)',
-        stack: 'Stack 0',
-      },
-      {
-        label: '바위 속성 Hp',
-        data: yHp,
-        backgroundColor: 'rgba(255, 0, 0, 0.5)',
-        stack: 'Stack 0',
-      },
-      {
-        label: '바위 속성 특수공격력',
-        data: ySpAttack,
-        backgroundColor: 'rgba(104, 144, 240, 0.5)',
-        stack: 'Stack 0',
-      },
-      {
-        label: '바위 속성 특수방어력',
-        data: ySpDefense,
-        backgroundColor: 'rgba(120, 200, 80, 0.5)',
-        stack: 'Stack 0',
-      },
-      {
-        label: '바위 속성 스피드',
-        data: ySpeed,
-        backgroundColor: 'rgba(193, 131, 193, 0.5)',
-        stack: 'Stack 0',
-      },
-      {
-        label: '바위 속성 종합점수',
-        data: yTotalPoints,
-        backgroundColor: 'rgba(128, 128, 128, 0.5)',
-        stack: 'Stack 1',
-      },
-    ],
-  };
+  const pokemonInfo = {
+    pokemonCnt: x.length,
+    attackMean: average(y.attack).toFixed(1),
+    defenseMean: average(y.defense).toFixed(1),
+    hpMean: average(y.hp).toFixed(1),
+    spAttackMean: average(y.spAttack).toFixed(1),
+    spDefenseMean: average(y.spDefense).toFixed(1),
+    speedMean: average(y.speed).toFixed(1),
+    heightMean: average(y.height).toFixed(1),
+    weightMean: average(y.weight).toFixed(1),
+    totalPointsMean: average(y.totalPoints).toFixed(1),
+  }
 
 	return (
-        <div style={{ paddingBottom: '50px', marginLeft: '3vw' }}>
-          {type} 통계페이지
-          <Container>
-            <Bar options={options1} data={data1} />
-            <Bar options={options2} data={data2} />
-            <Bar options={options3} data={data3} />
-          </Container>
-        </div>
+    <div>
+      <TypeDrawerComponents
+        type={type}
+        typeColor={typeColorList[type]}
+        pokemonInfo={pokemonInfo}
+        isBarStats={isBarStats}
+        isDoughnutType={isDoughnutType}
+        isBarWeightHeight={isBarWeightHeight}
+        isBarTotal={isBarTotal}
+        setIsBarStats={setIsBarStats}
+        setIsDoughnutType={setIsDoughnutType}
+        setIsBarWeightHeight={setIsBarWeightHeight}
+        setIsBarTotal={setIsBarTotal}
+      />
+      <div style={{ margin: '10vh 3vw auto 25vw' }}>
+          {isBarStats && <BarStats x={x} y={y} />}
+          {isDoughnutType && <DoughnutType y={y} />}
+          {isBarWeightHeight && <BarWeightHeight x={x} y={y} />}
+          {isBarTotal && <BarTotal x={x} y={y} />}
+      </div>
+    </div>
 	);
 }
 
-const Container = styled.div`
-  width: 90vw;
-  max-width: 1200px;
-`;
-
-export default typeStatisticsPage;
+export default TypeStatisticsPage;

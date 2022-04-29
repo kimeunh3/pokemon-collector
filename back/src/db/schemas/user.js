@@ -53,13 +53,14 @@ const UserSchema = new Schema(
     stickers: [
       {
         id: String,
-        name: String
+        name: String,
+        count: Number 
       }
     ],
-    lastLogin: {
-      type : Date,
+    attendance: {
+      type: String,
       required : false,
-      default: () => new Date(),
+      default: Date.now(),
     },
     achievements:{
       type:Array,
@@ -141,6 +142,11 @@ const UserSchema = new Schema(
           status:0
         }
       ]
+    },
+    isPointGiven: {
+        type: Boolean,
+        required : false,
+        default: false,
     }
   },
   {
