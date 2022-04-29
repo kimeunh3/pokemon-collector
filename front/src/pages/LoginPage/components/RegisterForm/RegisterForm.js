@@ -15,26 +15,9 @@ import {
 	Rating,
 	FormLabel,
 } from '@mui/material';
-import {
-	Adjust,
-	LocalFireDepartment,
-	Opacity,
-	Grass,
-	Bolt,
-	BugReport,
-	CatchingPokemon,
-	AcUnit,
-	SportsMma,
-	Coronavirus,
-	Landscape,
-	Air,
-	Storm,
-	Castle,
-	DarkMode,
-	Adb,
-	Hardware,
-	Reddit,
-} from '@mui/icons-material';
+import { CatchingPokemon } from '@mui/icons-material';
+import Icon from '../../../../core/Icon';
+
 import * as Api from '../../../../api';
 
 function RegisterPage({ setLogin }) {
@@ -47,6 +30,25 @@ function RegisterPage({ setLogin }) {
 		interest: 3,
 		likeType: '',
 	});
+	const types = [
+		'노말',
+		'불꽃',
+		'물',
+		'풀',
+		'전기',
+		'얼음',
+		'격투',
+		'독',
+		'땅',
+		'비행',
+		'에스퍼',
+		'벌레',
+		'바위',
+		'고스트',
+		'드래곤',
+		'강철',
+		'페어리',
+	];
 
 	const onChange = (e) => {
 		const { name, value } = e.target;
@@ -204,66 +206,13 @@ function RegisterPage({ setLogin }) {
 							label='favAtt'
 							onChange={onChange}
 						>
-							<MenuItem value='노말'>
-								<Adjust sx={{ color: '#A8A878' }} /> <span> &nbsp; 노말</span>
-							</MenuItem>
-							<MenuItem value='불꽃'>
-								<LocalFireDepartment sx={{ color: '#F08030' }} />{' '}
-								<span> &nbsp; 불꽃</span>
-							</MenuItem>
-							<MenuItem value='물'>
-								<Opacity Opacity sx={{ color: '#6890F0' }} />
-								<span> &nbsp; 물</span>
-							</MenuItem>
-							<MenuItem value='풀'>
-								<Grass sx={{ color: '#78C850' }} />
-								<span> &nbsp; 풀</span>
-							</MenuItem>
-							<MenuItem value='전기'>
-								<Bolt sx={{ color: '#F8D030' }} />
-								<span> &nbsp; 전기</span>
-							</MenuItem>
-							<MenuItem value='얼음'>
-								<AcUnit sx={{ color: '#98D8D8' }} />
-								<span> &nbsp; 얼음</span>
-							</MenuItem>
-							<MenuItem value='격투'>
-								<SportsMma sx={{ color: '#C03028' }} />{' '}
-								<span> &nbsp; 격투</span>
-							</MenuItem>
-							<MenuItem value='독'>
-								<Coronavirus sx={{ color: '#A040A0' }} />{' '}
-								<span> &nbsp; 독</span>
-							</MenuItem>
-							<MenuItem value='땅'>
-								<Landscape sx={{ color: '#E0C068' }} /> <span> &nbsp; 땅</span>
-							</MenuItem>
-							<MenuItem value='비행'>
-								<Air sx={{ color: '#A890F0' }} /> <span> &nbsp; 비행</span>
-							</MenuItem>
-							<MenuItem value='에스퍼'>
-								<Storm sx={{ color: '#F85888' }} /> <span> &nbsp; 에스파</span>
-							</MenuItem>
-							<MenuItem value='벌레'>
-								<BugReport sx={{ color: '#A8B820' }} />
-								<span> &nbsp; 벌레</span>
-							</MenuItem>
-							<MenuItem value='바위'>
-								<Castle sx={{ color: '#B8A038' }} /> <span> &nbsp; 바위</span>
-							</MenuItem>
-							<MenuItem value='고스트'>
-								<DarkMode sx={{ color: '#705898' }} />{' '}
-								<span> &nbsp; 고스트</span>
-							</MenuItem>
-							<MenuItem value='드래곤'>
-								<Adb sx={{ color: '#7038F8' }} /> <span> &nbsp; 드래곤</span>
-							</MenuItem>
-							<MenuItem value='강철'>
-								<Hardware sx={{ color: '#B8B8D0' }} /> <span> &nbsp; 강철</span>
-							</MenuItem>
-							<MenuItem value='페어리'>
-								<Reddit sx={{ color: '#EE99AC' }} /> <span> &nbsp; 페어리</span>
-							</MenuItem>
+							{types.map((type) => (
+								<MenuItem value={type}>
+									<Typography sx={Icon[type].Color}>
+										{Icon[type].Icon} {type}
+									</Typography>
+								</MenuItem>
+							))}
 						</Select>
 					</FormControl>
 				</Grid>

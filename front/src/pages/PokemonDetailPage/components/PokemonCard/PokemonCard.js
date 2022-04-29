@@ -46,7 +46,7 @@ function pokemonCard({
 						>
 							<CardHeader
 								avatar={
-									<Avatar sx={{ bgcolor: typeOneColor }} aria-label='number'>
+									<Avatar sx={typeOneColor} aria-label='number'>
 										<Typography fontWeight='bold'>{id}</Typography>
 									</Avatar>
 								}
