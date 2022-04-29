@@ -43,7 +43,7 @@ function NavBar() {
 	};
 
 	// login page와 home에서는 NavBar가 뜨지 않도록 설정
-	if (location.pathname === '/login' || location.pathname === '/home' || location.pathname.includes('/StatisticsPage/TypeStatisticsPage/'))
+	if (location.pathname === '/login' || location.pathname === '/home' || location.pathname.includes('/StatisticsPage/TypeStatisticsPage/') || location.pathname.includes('/StatisticsPage/StatsStatisticsPage/'))
 		return null;
 
 	return (

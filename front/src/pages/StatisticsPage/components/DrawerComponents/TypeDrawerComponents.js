@@ -14,7 +14,7 @@ import {
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 
-function DrawerComponents({type, typeColor, pokemonInfo,isBarStats, isDoughnutType, isBarWeightHeight, isBarTotal, setIsBarStats, setIsDoughnutType, setIsBarWeightHeight, setIsBarTotal }) {
+function TypeDrawerComponents({type, typeColor, pokemonInfo,isBarStats, isDoughnutType, isBarWeightHeight, isBarTotal, setIsBarStats, setIsDoughnutType, setIsBarWeightHeight, setIsBarTotal }) {
     const drawerWidth = '24vw';
     const theme = useTheme();
     const navigate = useNavigate();
@@ -125,4 +125,4 @@ function DrawerComponents({type, typeColor, pokemonInfo,isBarStats, isDoughnutTy
 
 }
 
-export default DrawerComponents;
+export default TypeDrawerComponents;

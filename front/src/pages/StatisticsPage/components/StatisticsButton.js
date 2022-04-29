@@ -6,7 +6,7 @@ import {
 
 import './StatisticsButton.css';
 
-function StatisticsButton({ imgSrc, text, bColor, type }) {
+function StatisticsButton({ imgSrc, text, bColor, kind, type, stats }) {
     const navigate = useNavigate();
 
     const styles = {
@@ -30,9 +30,9 @@ function StatisticsButton({ imgSrc, text, bColor, type }) {
             color="inherit"
             className="mouse"
             style={styles.paperContainer}
-            onClick={() => {
-                navigate(`/StatisticsPage/TypeStatisticsPage/${type}`);
-            }}
+            onClick={() => (
+                kind ==='type' ? navigate(`/StatisticsPage/TypeStatisticsPage/${type}`) : navigate(`/StatisticsPage/StatsStatisticsPage/${stats}`)
+            )}
         >
             <div className="text" style={{ backgroundColor: bColor, borderRadius: '5px' }}>{text}</div>
         </Button>

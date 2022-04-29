@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import { BarStats, DoughnutType, BarWeightHeight, BarTotal } from './components/StatisticsCharts/TypeStatisticsCharts';
-import TypeDrawerComponents from './components/DrawerComponents/TypeDrawerComponents';
+import StatsDrawerComponents from './components/DrawerComponents/StatsDrawerComponents';
 
 import * as Api from '../../api';
 
-function TypeStatisticsPage() {
+function StatsStatisticsPage() {
   const params = useParams();
-  const { type } = params;
+  const { stats } = params;
   const [isBarStats, setIsBarStats] = useState(true);
   const [isDoughnutType, setIsDoughnutType] = useState(false);
   const [isBarWeightHeight, setIsBarWeightHeight] = useState(false);
@@ -15,7 +15,7 @@ function TypeStatisticsPage() {
   const [pokemons, setPokemons] = useState([]);
 
   useEffect(() => {
-    Api.get(`pokemonList/${type}`)
+    Api.get(`pokemonList/${stats}`)
       .then((res) => {
         setPokemons(res.data);
       })
@@ -35,24 +35,16 @@ function TypeStatisticsPage() {
     typesCnt: { '노말': 0, '불꽃': 0, '물': 0, '풀': 0, '전기': 0, '얼음': 0, '격투': 0, '독': 0, '땅': 0, '비행': 0, '에스퍼': 0, '벌레': 0, '바위': 0, '고스트': 0, '드래곤': 0, '강철': 0, '페어리': 0, "없음": 0 },
   }
 
-  const typeColorList = {
-    '노말': 'rgba(198, 198, 167, 0.8)',
-    '불꽃': 'rgba(245, 172, 120, 0.8)',
-    '물': 'rgba(157, 183, 245, 0.8)',
-    '풀': 'rgba(167, 219, 141, 0.8)',
-    '전기': 'rgba(250, 224, 120, 0.8)',
-    '얼음': 'rgba(188, 230, 230, 0.8)',
-    '격투': 'rgba(214, 120, 115, 0.8)',
-    '독': 'rgba(193, 131, 193, 0.8)',
-    '땅': 'rgba(235, 214, 157, 0.8)',
-    '비행': 'rgba(198, 183, 245, 0.8)',
-    '에스퍼': 'rgba(250, 146, 178, 0.8)',
-    '벌레': 'rgba(198, 209, 110, 0.8)',
-    '바위': 'rgba(209, 193, 125, 0.8)',
-    '고스트': 'rgba(162, 146, 188, 0.8)',
-    '드래곤': 'rgba(162, 125, 250, 0.8)',
-    '강철': 'rgba(209, 209, 224, 0.8)',
-    '페어리': 'rgba(244, 189, 201, 0.8)'
+  const statsColorList = {
+    '공격력': 'rgba(240, 128, 48, 0.8)',
+    '방어력': 'rgba(248, 208, 48, 0.8)',
+    'Hp': 'rgba(255, 0, 0, 0.8)',
+    '특수공격력':'rgba(104, 144, 240, 0.8)',
+    '특수방어력': 'rgba(120, 200, 80, 0.8)',
+    '스피드': 'rgba(193, 131, 193, 0.8)',
+    '키': 'rgba(161, 57, 89, 0.8)',
+    '몸무게': 'rgba(68, 94, 156, 0.8)',
+    '종합점수': 'rgba(128, 128, 128, 0.8)',
   };
 
   pokemons.forEach(pokemon => {
@@ -69,8 +61,6 @@ function TypeStatisticsPage() {
     y.typesCnt[pokemon.typeOne] += 1;
     y.typesCnt[pokemon.typeTwo] += 1;
   })
-
-  y.typesCnt[type] = 0
 
   const average = arr => arr.reduce((p, c) => p + c, 0) / arr.length;
 
@@ -89,9 +79,9 @@ function TypeStatisticsPage() {
 
 	return (
     <div>
-      <TypeDrawerComponents
-        type={type}
-        typeColor={typeColorList[type]}
+      <StatsDrawerComponents
+        stats={stats}
+        statsColor={statsColorList[stats]}
         pokemonInfo={pokemonInfo}
         isBarStats={isBarStats}
         isDoughnutType={isDoughnutType}
@@ -112,4 +102,4 @@ function TypeStatisticsPage() {
 	);
 }
 
-export default TypeStatisticsPage;
+export default StatsStatisticsPage;
