@@ -24,9 +24,9 @@ function PokemonDetailPage() {
 	const { typeOne, typeTwo } = pokemon;
 
 	const iconOne = typeOne && IconObj[typeOne].Icon;
-	const typeOneColor = typeOne && IconObj[typeOne].Color;
+	const typeOneColor = typeOne && IconObj[typeOne].Color.color;
 	const iconTwo = IconObj[typeTwo] ? IconObj[typeTwo].Icon : '';
-	const typeTwoColor = IconObj[typeTwo] ? IconObj[typeTwo].Color : '';
+	const typeTwoColor = IconObj[typeTwo] ? IconObj[typeTwo].Color.color : '';
 
 	return (
 		<Container sx={{ marginTop: '165px', width: '100%' }}>

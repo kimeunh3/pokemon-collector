@@ -16,7 +16,7 @@ import {
 	FormLabel,
 } from '@mui/material';
 import { CatchingPokemon } from '@mui/icons-material';
-import Icon from '../../../../core/Icon';
+import IconObj from '../../../../core/Icon';
 
 import * as Api from '../../../../api';
 
@@ -208,8 +208,8 @@ function RegisterPage({ setLogin }) {
 						>
 							{types.map((type) => (
 								<MenuItem value={type}>
-									<Typography sx={Icon[type].Color}>
-										{Icon[type].Icon} {type}
+									<Typography sx={IconObj[type].Color}>
+										{IconObj[type].Icon} {type}
 									</Typography>
 								</MenuItem>
 							))}
