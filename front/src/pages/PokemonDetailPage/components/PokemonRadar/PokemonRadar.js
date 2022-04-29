@@ -55,7 +55,7 @@ function PokemonRadar({ pokemon, typeOneColor }) {
 					perSpDefense,
 					perSpeed,
 				],
-				backgroundColor: [`${typeOneColor}4D`],
+				backgroundColor: [`${typeOneColor}66`],
 				borderColor: [
 					'rgb(255, 99, 132)',
 					'rgb(255, 159, 64)',

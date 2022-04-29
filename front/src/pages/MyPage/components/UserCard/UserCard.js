@@ -32,7 +32,6 @@ function UserCard({ userState }) {
 				}
 				action={<IconButton aria-label='settings' />}
 				title={email}
-				subheader={nickname}
 			/>
 			<CardMedia
 				component='img'
@@ -41,9 +40,8 @@ function UserCard({ userState }) {
 				sx={{ width: '65%', height: '65%', margin: 'auto' }}
 			/>
 			<CardContent>
-				<Typography variant='body2' color='text.secondary'>
-					{likeType} {point}
-				</Typography>
+				<Typography variant='h5'>포켓몬 트레이너 {nickname}님</Typography>
+				<Typography>포인트 {point}</Typography>
 			</CardContent>
 			<CardActions disableSpacing>
 				<IconButton aria-label='add to favorites'>
