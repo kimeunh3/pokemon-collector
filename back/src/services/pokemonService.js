@@ -67,6 +67,7 @@ class PokemonAuthService {
     }
 
     const userStickerIds = await User.findStickerListById({user_id});
+    const userAchievementsList = await User.findAchievementsListById({user_id});
     const achievements = await Achievements.findAchievementsByType({type: "collected"})
 
     

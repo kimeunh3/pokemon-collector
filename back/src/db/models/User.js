@@ -27,6 +27,11 @@ class User {
     return userStickerIds;
   }
 
+  static async findAchievementsListById({user_id}){
+    const achievementsList = await UserModel.findOne({ id: user_id, 'achievements.id':{$lt:100} },{achievements:1});
+    console.log(achievementsList)
+  }
+
   static async update({ user_id, fieldToUpdate, newValue }) {
     const filter = { id: user_id };
     const update = { [fieldToUpdate]: newValue };
