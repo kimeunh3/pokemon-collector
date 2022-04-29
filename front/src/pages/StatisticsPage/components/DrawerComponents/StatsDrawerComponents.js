@@ -14,7 +14,7 @@ import {
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 
-function StatsDrawerComponents({stats, statsColor, pokemonInfo,isBarStats, isDoughnutType, isBarWeightHeight, isBarTotal, setIsBarStats, setIsDoughnutType, setIsBarWeightHeight, setIsBarTotal }) {
+function StatsDrawerComponents({stats, statsColor, statsInfo, isBarStats, isDoughnutType, isBarWeightHeight, isBarTotal, setIsBarStats, setIsDoughnutType, setIsBarWeightHeight, setIsBarTotal }) {
     const drawerWidth = '24vw';
     const theme = useTheme();
     const navigate = useNavigate();
@@ -72,7 +72,7 @@ function StatsDrawerComponents({stats, statsColor, pokemonInfo,isBarStats, isDou
                 setIsBarWeightHeight(false);
                 setIsBarTotal(false);
               }}  
-            >속성 통계</Button>
+            >속성 순위 (상하위 30%)</Button>
           </ListItem>
           <ListItem style={isBarWeightHeight ? { backgroundColor: statsColor } : {}}>
             <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>arrow_right</span>
@@ -85,7 +85,7 @@ function StatsDrawerComponents({stats, statsColor, pokemonInfo,isBarStats, isDou
                 setIsBarWeightHeight(true);
                 setIsBarTotal(false);
               }}
-            >키/몸무게 통계</Button>
+            >포켓몬 순위 (상위 10%)</Button>
           </ListItem>
           <ListItem style={isBarTotal ? { backgroundColor: statsColor } : {}}>
             <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>arrow_right</span>
@@ -98,7 +98,7 @@ function StatsDrawerComponents({stats, statsColor, pokemonInfo,isBarStats, isDou
                 setIsBarWeightHeight(false);
                 setIsBarTotal(true);
               }}
-            >종합 능력치 통계</Button>
+            >포켓몬 순위 (하위 10%)</Button>
           </ListItem>
         </List>
         <Card variant="outlined" style={{ width: '20vw', marginLeft: '2vw', marginTop: '5vh' }}>
@@ -107,16 +107,13 @@ function StatsDrawerComponents({stats, statsColor, pokemonInfo,isBarStats, isDou
               {stats} 개요
             </Typography>
             <Typography variant="body2">
-              전체 {stats} 평균: {pokemonInfo.pokemonCnt}<br />
-              공격력 평균: {pokemonInfo.attackMean}<br />
-              방어력 평균: {pokemonInfo.defenseMean}<br />
-              Hp 평균: {pokemonInfo.hpMean}<br />
-              특수공격력 평균: {pokemonInfo.spAttackMean}<br />
-              특수방어력 평균: {pokemonInfo.spDefenseMean}<br />
-              스피드 평균: {pokemonInfo.speedMean}<br />
-              키 평균: {pokemonInfo.heightMean} (m)<br />
-              몸무게 평균: {pokemonInfo.weightMean} (kg)<br />
-              종합 점수 평균: {pokemonInfo.totalPointsMean}
+              전체 포켓몬 수: 151<br />
+              전체 속성 수: 17<br />
+              전체 {stats} 평균: {statsInfo.statsMean}<br />
+              최고 {stats} 속성: {statsInfo.defenseMean}<br />
+              최저 {stats} 속성 {statsInfo.hpMean}<br />
+              최고 {stats} 포켓몬: {statsInfo.spAttackMean}<br />
+              최저 {stats} 포켓몬: {statsInfo.spDefenseMean}
             </Typography>
           </CardContent>
         </Card>
