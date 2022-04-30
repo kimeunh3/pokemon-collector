@@ -10,9 +10,12 @@ import * as Api from '../../api';
 function BreadPage() {
 	const [point, setPoint] = useState();
 
-	useEffect(async () => {
-		const res = await Api.get('user/current');
-		setPoint(res.data.point);
+	useEffect(() => {
+		const fetchUserInfo = async () => {
+			const res = await Api.get('user/current');
+			setPoint(res.data.point);
+		};
+		fetchUserInfo();
 	}, []);
 
 	const breadImgs = [
