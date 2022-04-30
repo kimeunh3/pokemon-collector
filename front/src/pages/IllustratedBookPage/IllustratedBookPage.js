@@ -24,6 +24,9 @@ function IllustratedBookPage() {
 	const [isOpen, setIsOpen] = useState(false);
 	const [userPokemonList, setUserPokemonList] = useState([]);
 	const [pokemonList, setPokemonList]= useState([]);
+	const [userPokemonObj, setUserPokemonObj] = useState({});
+	const [pokemonNumber, setPokemonNumber] = useState();
+	const [pokemonBreadNumber, setPokemoBreadnNumber] = useState();
 
 	useEffect(() => {
 		Api.get('user/current').then((res) => {
@@ -31,12 +34,22 @@ function IllustratedBookPage() {
 		});
 	}, []);
 
-	const userPokemonObj = {};
-	userPokemonList.forEach((value) => {
-		userPokemonObj[value.id] = value.name;
-	});
+	useEffect(() => {
+		const newUserPokemonObj = {};
+		userPokemonList.forEach((value) => {
+			newUserPokemonObj[value.id] = value.name;
+		});
 
-	const pokemonNumber = Object.keys(userPokemonList).length;
+		setUserPokemonObj(newUserPokemonObj);
+
+		const userPokemonIdList = userPokemonList.map(pokemon => pokemon.id);
+
+		const userPokemonIdSetList = [...new Set(userPokemonIdList)];
+
+		setPokemonNumber(Object.keys(userPokemonIdSetList).length);
+
+		setPokemoBreadnNumber(Object.keys(userPokemonList).length);
+	}, [userPokemonList])
 
 	useEffect(() => {
 		const newPokemonList = [];
@@ -154,7 +167,7 @@ function IllustratedBookPage() {
 				style={{ backgroundColor: 'white', marginLeft: '630px' }}
 			/>
 			<div style={{ textAlign: 'end', marginTop: '20px', marginRight: '50px' }}>
-				보유한 포켓몬 수: {pokemonNumber}
+				뽑은 포켓몬 빵 수: {pokemonBreadNumber}&nbsp;&nbsp;&nbsp;보유한 포켓몬 수: {pokemonNumber}
 			</div>
 			<div
 				style={{
