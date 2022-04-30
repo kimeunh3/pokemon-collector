@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { login_required } from "../middlewares/login_required";
 import { PokemonAuthService } from "../services/pokemonService";
+import { achievementsService } from "../services/achievementsService";
 
 const pokemonAuthRouter = Router();
 pokemonAuthRouter.use(login_required);
@@ -72,13 +73,15 @@ pokemonAuthRouter.get("/pokemonList/:type", async (req, res, next) => {
 pokemonAuthRouter.get("/drawPokemon", async (req, res, next) => {
   try {
     // header에서 user id 받아오기
-    const user_id = req.currentUserId;
+    const userId = req.currentUserId;
     //pokemon 이름 가져오기
-    const pokemonIdAndName = await PokemonAuthService.getDrewPokemonIdAndName({user_id});
+    const pokemonIdAndName = await PokemonAuthService.getDrewPokemonIdAndName({userId});
 
     if (pokemonIdAndName.errorMessage) {
       throw new Error(pokemonIdAndName.errorMessage);
     }
+    // 업적 업데이트
+    await achievementsService.updateAchievements({userId, id:pokemonIdAndName.id})
 
     res.status(200).json(pokemonIdAndName);
   } catch (error) {
