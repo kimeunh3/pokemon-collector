@@ -23,22 +23,23 @@ function MyPage() {
 	const [userState, setUserState] = useState(null);
 	const [userPokemonList, setUserPokemonList] = useState(null);
 
+	const fetchUserInfo = async () => {
+		const res = await Api.get('user/current');
+		await setUserState(res.data);
+		await setUserPokemonList(res.data.stickers);
+	};
+
 	useEffect(() => {
-		const fetchUserInfo = async () => {
-			const res = await Api.get('user/current');
-			await setUserState(res.data);
-			await setUserPokemonList(res.data.stickers);
-		};
 		fetchUserInfo();
 	}, []);
-
-	console.log(userPokemonList);
 
 	return (
 		<Container fixed sx={{ marginTop: '165px', width: '100%' }}>
 			<Grid container spacing={2}>
 				<Grid item xs={4.5} md={4.5}>
-					{userState && <UserCard userState={userState} />}
+					{userState && (
+						<UserCard userState={userState} fetchUserInfo={fetchUserInfo} />
+					)}
 				</Grid>
 				<Grid
 					item
