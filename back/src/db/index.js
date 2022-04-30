@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import { User } from './models/User';
 import { Pokemon } from './models/Pokemon';
+import { Achievements } from './models/Achievements';
 import { PokemonRadarChartData } from './models/PokemonRadarChartData';
 const DB_URL =
   process.env.MONGODB_URL ||
@@ -16,4 +17,4 @@ db.on('error', (error) =>
   console.error(`MongoDB 연결에 실패하였습니다...\n${DB_URL}\n${error}`)
 );
 
-export { User, Pokemon, PokemonRadarChartData };
+export { User, Pokemon, Achievements, PokemonRadarChartData};
