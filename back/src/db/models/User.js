@@ -36,6 +36,11 @@ class User {
     return achievementsNotSucc
   }
 
+  static async findquizChanceById({userId}){
+    const quiz = await UserModel.findOne({ id:userId }, {quizChance:1},{_id:0});
+    return quiz.quizChance;
+  }
+
   static async update({ userId, fieldToUpdate, newValue }) {
     const filter = { id: userId };
     const update = { [fieldToUpdate]: newValue };
@@ -51,6 +56,7 @@ class User {
 
   static async findPointById({ userId }) {
     const {point} = await UserModel.findOne({ id:userId }, {point:1});
+    console.log(point)
     return point;
   }
 
@@ -89,6 +95,15 @@ class User {
       { $set: {'achievements.$.status': status}},
       {new: true}
     );
+  }
+
+  static async updateQuizChance({userId, newQuizChance}){
+    const {quizChance} = await UserModel.findOneAndUpdate(
+      {id : userId},
+      { $set: {quizChance:newQuizChance},},
+      { new: true }
+    )
+    return quizChance
   }
 }
 

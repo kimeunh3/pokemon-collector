@@ -1,6 +1,5 @@
 import { Pokemon } from "../db";
 import { User } from "../db";
-import { Achievements } from "../db";
 import {draw} from "../util/draw";
 
 class PokemonAuthService {
