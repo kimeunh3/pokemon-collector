@@ -11,8 +11,8 @@ class User {
     return user;
   }
 
-  static async findById({ user_id }) {
-    const user = await UserModel.findOne({ id: user_id });
+  static async findById({ userId }) {
+    const user = await UserModel.findOne({ id: userId });
     return user;
   }
 
@@ -21,8 +21,8 @@ class User {
     return users;
   }
 
-  static async update({ user_id, fieldToUpdate, newValue }) {
-    const filter = { id: user_id };
+  static async update({ userId, fieldToUpdate, newValue }) {
+    const filter = { id: userId };
     const update = { [fieldToUpdate]: newValue };
     const option = { returnOriginal: false };
 
@@ -34,24 +34,34 @@ class User {
     return updatedUser;
   }
 
-  static async findPointById({ user_id }) {
-    const {point} = await UserModel.findOne({ id:user_id }, {point:1});
+  static async findPointById({ userId }) {
+    const {point} = await UserModel.findOne({ id:userId }, {point:1});
     return point;
   }
 
-  static async updateStickers({user_id, id, name}){
-    const sticker = {id, name};
-    const {stickers} = await UserModel.findOneAndUpdate(
-      {id : user_id},
-      { $push: {stickers: sticker}},
-      {new: true}
-    );
-    return stickers;
+  static async updateStickers({userId, id, name}){  
+    const userStickers = await UserModel.findOne(
+      { id: userId, 'stickers.id':id},
+      {_id:0, 'stickers.$':1}
+      );
+    if(userStickers){
+        return await UserModel.findOneAndUpdate(
+        {id : userId,'stickers.id':id},
+        { $set: {'stickers.$.count': userStickers.stickers[0].count+1}},
+        {new: true}
+      );
+    }else{
+      return await UserModel.findOneAndUpdate(
+        {id : userId},
+        { $push: {stickers:{id, name, count:1}}},
+        {new: true}
+      );
+    }
   }
 
-  static async updatePoint({user_id, changedPoint}){
+  static async updatePoint({userId, changedPoint}){
     const {point} = await UserModel.findOneAndUpdate(
-      { id:user_id },
+      { id:userId },
       { $set: { point: changedPoint } },
       {new: true}
     );
