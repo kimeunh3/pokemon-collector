@@ -21,6 +21,21 @@ class User {
     return users;
   }
 
+  static async findStickerListById({userId}){
+    const userStickers = await UserModel.findOne({ id: userId });  
+    const userStickerIds = userStickers.stickers.map(sticker=>sticker.id);
+    return userStickerIds;
+  }
+
+  static async findAchievementsListById({userId}){
+    const achievementsList = await UserModel.findOne({ id: userId },{_id:0, achievements:1});
+    let achievementsNotSucc = []
+    await achievementsList.achievements.forEach(x=>{if(x.status < 100){
+      achievementsNotSucc.push(x.id)
+    }})
+    return achievementsNotSucc
+  }
+
   static async update({ userId, fieldToUpdate, newValue }) {
     const filter = { id: userId };
     const update = { [fieldToUpdate]: newValue };
@@ -36,6 +51,7 @@ class User {
 
   static async findPointById({ userId }) {
     const {point} = await UserModel.findOne({ id:userId }, {point:1});
+    console.log(point)
     return point;
   }
 
@@ -66,6 +82,14 @@ class User {
       {new: true}
     );
     return point;
+  }
+
+  static async updateAchievements({userId, id, status}){
+    return await UserModel.findOneAndUpdate(
+      {id : userId,'achievements.id':id},
+      { $set: {'achievements.$.status': status}},
+      {new: true}
+    );
   }
 }
 

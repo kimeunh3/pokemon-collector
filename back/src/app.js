@@ -4,6 +4,7 @@ import { errorMiddleware } from './middlewares/errorMiddleware';
 import { userAuthRouter } from './routers/userRouter';
 import { pokemonAuthRouter } from './routers/pokemonRouter';
 import { pokemonRadarChartDataAuthRouter } from './routers/pokemonRadarChartDataRouter';
+import { achievementsRouter } from "./routers/achievementsRouter";
 
 const { swaggerUi, specs } = require('./modules/swagger');
 const app = express();
@@ -30,6 +31,7 @@ app.get('/', (req, res) => {
 // 순서 중요 (router 에서 next() 시 아래의 에러 핸들링  middleware로 전달됨)
 app.use(userAuthRouter);
 app.use(pokemonAuthRouter);
+app.use(achievementsRouter);
 app.use(pokemonRadarChartDataAuthRouter);
 app.use(errorMiddleware);
 

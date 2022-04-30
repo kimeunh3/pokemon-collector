@@ -13,28 +13,9 @@ function TypeStatisticsPage() {
   const [isBarWeightHeight, setIsBarWeightHeight] = useState(false);
   const [isBarTotal, setIsBarTotal] = useState(false);
   const [pokemons, setPokemons] = useState([]);
-
-  useEffect(() => {
-    Api.get(`pokemonList/${type}`)
-      .then((res) => {
-        setPokemons(res.data);
-      })
-  }, []);
-
-  const x = [];
-  const y = {
-    attack: [],
-    defense: [],
-    hp: [],
-    spAttack: [],
-    spDefense: [],
-    speed: [],
-    height: [],
-    weight: [],
-    totalPoints: [],
-    typesCnt: { '노말': 0, '불꽃': 0, '물': 0, '풀': 0, '전기': 0, '얼음': 0, '격투': 0, '독': 0, '땅': 0, '비행': 0, '에스퍼': 0, '벌레': 0, '바위': 0, '고스트': 0, '드래곤': 0, '강철': 0, '페어리': 0, "없음": 0 },
-  }
-
+  const [x, setX] = useState();
+  const [y, setY] = useState();
+  const [pokemonInfo, setPokemonInfo] = useState();
   const typeColorList = {
     '노말': 'rgba(198, 198, 167, 0.8)',
     '불꽃': 'rgba(245, 172, 120, 0.8)',
@@ -55,37 +36,63 @@ function TypeStatisticsPage() {
     '페어리': 'rgba(244, 189, 201, 0.8)'
   };
 
-  pokemons.forEach(pokemon => {
-    x.push(pokemon.name);
-    y.attack.push(pokemon.attack);
-    y.defense.push(pokemon.defense);
-    y.hp.push(pokemon.hp);
-    y.spAttack.push(pokemon.spAttack);
-    y.spDefense.push(pokemon.spDefense);
-    y.speed.push(pokemon.speed);
-    y.height.push(pokemon.height);
-    y.weight.push(pokemon.weight);
-    y.totalPoints.push(pokemon.totalPoints);
-    y.typesCnt[pokemon.typeOne] += 1;
-    y.typesCnt[pokemon.typeTwo] += 1;
-  })
+  useEffect(() => {
+    Api.get(`pokemonList/${type}`)
+      .then((res) => {
+        setPokemons(res.data);
+      })
+  }, []);
 
-  y.typesCnt[type] = 0
+  useEffect(() => {
+    const newX = [];
+    const newY = {
+      attack: [],
+      defense: [],
+      hp: [],
+      spAttack: [],
+      spDefense: [],
+      speed: [],
+      height: [],
+      weight: [],
+      totalPoints: [],
+      typesCnt: { '노말': 0, '불꽃': 0, '물': 0, '풀': 0, '전기': 0, '얼음': 0, '격투': 0, '독': 0, '땅': 0, '비행': 0, '에스퍼': 0, '벌레': 0, '바위': 0, '고스트': 0, '드래곤': 0, '강철': 0, '페어리': 0, "없음": 0 },
+    };
+    pokemons.forEach(pokemon => {
+      newX.push(pokemon.name);
+      newY.attack.push(pokemon.attack);
+      newY.defense.push(pokemon.defense);
+      newY.hp.push(pokemon.hp);
+      newY.spAttack.push(pokemon.spAttack);
+      newY.spDefense.push(pokemon.spDefense);
+      newY.speed.push(pokemon.speed);
+      newY.height.push(pokemon.height);
+      newY.weight.push(pokemon.weight);
+      newY.totalPoints.push(pokemon.totalPoints);
+      newY.typesCnt[pokemon.typeOne] += 1;
+      newY.typesCnt[pokemon.typeTwo] += 1;
+    })
+    newY.typesCnt[type] = 0
 
-  const average = arr => arr.reduce((p, c) => p + c, 0) / arr.length;
+    setX(newX);
+    setY(newY);
 
-  const pokemonInfo = {
-    pokemonCnt: x.length,
-    attackMean: average(y.attack).toFixed(1),
-    defenseMean: average(y.defense).toFixed(1),
-    hpMean: average(y.hp).toFixed(1),
-    spAttackMean: average(y.spAttack).toFixed(1),
-    spDefenseMean: average(y.spDefense).toFixed(1),
-    speedMean: average(y.speed).toFixed(1),
-    heightMean: average(y.height).toFixed(1),
-    weightMean: average(y.weight).toFixed(1),
-    totalPointsMean: average(y.totalPoints).toFixed(1),
-  }
+    const average = arr => arr.reduce((p, c) => p + c, 0) / arr.length;
+    
+    setPokemonInfo({
+      pokemonCnt: newX.length,
+      attackMean: average(newY.attack).toFixed(1),
+      defenseMean: average(newY.defense).toFixed(1),
+      hpMean: average(newY.hp).toFixed(1),
+      spAttackMean: average(newY.spAttack).toFixed(1),
+      spDefenseMean: average(newY.spDefense).toFixed(1),
+      speedMean: average(newY.speed).toFixed(1),
+      heightMean: average(newY.height).toFixed(1),
+      weightMean: average(newY.weight).toFixed(1),
+      totalPointsMean: average(newY.totalPoints).toFixed(1),
+    });
+  }, [pokemons])
+
+  if(!pokemonInfo) return null;
 
 	return (
     <div>
