@@ -1,17 +1,18 @@
-import cors from "cors";
-import express from "express";
-import { errorMiddleware } from "./middlewares/errorMiddleware";
-import { userAuthRouter } from "./routers/userRouter";
-import { pokemonAuthRouter } from "./routers/pokemonRouter";
+import cors from 'cors';
+import express from 'express';
+import { errorMiddleware } from './middlewares/errorMiddleware';
+import { userAuthRouter } from './routers/userRouter';
+import { pokemonAuthRouter } from './routers/pokemonRouter';
+import { pokemonRadarChartDataAuthRouter } from './routers/pokemonRadarChartDataRouter';
 import { achievementsRouter } from "./routers/achievementsRouter";
 
 const { swaggerUi, specs } = require('./modules/swagger');
 const app = express();
 
 app.use(
-	'/api-docs',
-	swaggerUi.serve,
-	swaggerUi.setup(specs, { explorer: true })
+  '/api-docs',
+  swaggerUi.serve,
+  swaggerUi.setup(specs, { explorer: true })
 );
 // CORS 에러 방지
 app.use(cors());
@@ -24,13 +25,14 @@ app.use(express.urlencoded({ extended: false }));
 
 // 기본 페이지
 app.get('/', (req, res) => {
-	res.send('안녕하세요, 레이서 프로젝트 API 입니다.');
+  res.send('안녕하세요, 레이서 프로젝트 API 입니다.');
 });
 
 // 순서 중요 (router 에서 next() 시 아래의 에러 핸들링  middleware로 전달됨)
 app.use(userAuthRouter);
 app.use(pokemonAuthRouter);
 app.use(achievementsRouter);
+app.use(pokemonRadarChartDataAuthRouter);
 app.use(errorMiddleware);
 
 // eslint-disable-next-line import/prefer-default-export
