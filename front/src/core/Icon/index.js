@@ -30,7 +30,7 @@ import {
 
 const IconObj = {
 	노말: {
-		Icon: <Adjust sx={{ color: '#A8A878' }} />,
+		Icon: <Adjust sx={{ color: '#6D6D4E' }} />,
 		Color: '#A8A878',
 	},
 	불꽃: {

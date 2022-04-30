@@ -88,6 +88,7 @@ function App() {
 						<Route path='/StatisticsPage/StatsStatisticsPage/:stats' element={<StatsStatisticsPage />} />
 						<Route path='/MyPage' element={<MyPage userState={userState} />} />
 						<Route path='/QuizPage' element={<QuizPage />} />
+						<Route path='/MyPage' element={<MyPage />} />;
 					</Routes>
 				</Router>
 			</UserStateContext.Provider>
