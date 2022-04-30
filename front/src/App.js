@@ -83,9 +83,15 @@ function App() {
 						/>
 						<Route path='/IllustratedBook' element={<IllustratedBookPage />} />
 						<Route path='/StatisticsPage' element={<StatisticsPage />} />
-						<Route path='/StatisticsPage/TypeStatisticsPage/:type' element={<TypeStatisticsPage />} />
-						<Route path='/StatisticsPage/StatsStatisticsPage/:stats' element={<StatsStatisticsPage />} />
-						<Route path='/MyPage' element={<MyPage userState={userState} />} />
+						<Route
+							path='/StatisticsPage/TypeStatisticsPage/:type'
+							element={<TypeStatisticsPage />}
+						/>
+						<Route
+							path='/StatisticsPage/StatsStatisticsPage/:stats'
+							element={<StatsStatisticsPage />}
+						/>
+						<Route path='/MyPage' element={<MyPage />} />;
 					</Routes>
 				</Router>
 			</UserStateContext.Provider>
