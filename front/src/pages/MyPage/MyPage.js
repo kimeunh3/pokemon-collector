@@ -12,7 +12,6 @@ import {
 	Divider,
 	LinearProgress,
 } from '@mui/material';
-// import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import UserCard from './components/UserCard/UserCard';
 import MyStickerList from './components/MyStickerList/MyStickerList';
@@ -32,6 +31,8 @@ function MyPage() {
 		};
 		fetchUserInfo();
 	}, []);
+
+	console.log(userPokemonList);
 
 	return (
 		<Container fixed sx={{ marginTop: '165px', width: '100%' }}>
@@ -108,7 +109,11 @@ function MyPage() {
 				{userPokemonList &&
 					userPokemonList.map((pokemon) => (
 						<Grid item xs={2} md={2}>
-							<MyStickerList id={pokemon.id} name={pokemon.name} />
+							<MyStickerList
+								id={pokemon.id}
+								name={pokemon.name}
+								count={pokemon.count}
+							/>
 						</Grid>
 					))}
 			</Grid>
