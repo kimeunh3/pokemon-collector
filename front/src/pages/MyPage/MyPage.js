@@ -45,7 +45,7 @@ function MyPage() {
 					item
 					xs={7.5}
 					md={7.5}
-					sx={{ backgroundColor: 'white', marginTop: '20px' }}
+					sx={{ backgroundColor: 'white', marginTop: '17px' }}
 				>
 					<Box>
 						<Typography variant='h5'>업적</Typography>
