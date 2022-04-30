@@ -21,14 +21,14 @@ class User {
     return users;
   }
 
-  static async findStickerListById({user_id}){
-    const userStickers = await UserModel.findOne({ id: user_id });  
+  static async findStickerListById({userId}){
+    const userStickers = await UserModel.findOne({ id: userId });  
     const userStickerIds = userStickers.stickers.map(sticker=>sticker.id);
     return userStickerIds;
   }
 
-  static async findAchievementsListById({user_id}){
-    const achievementsList = await UserModel.findOne({ id: user_id },{_id:0, achievements:1});
+  static async findAchievementsListById({userId}){
+    const achievementsList = await UserModel.findOne({ id: userId },{_id:0, achievements:1});
     let achievementsNotSucc = []
     await achievementsList.achievements.forEach(x=>{if(x.status < 100){
       achievementsNotSucc.push(x.id)
@@ -36,8 +36,8 @@ class User {
     return achievementsNotSucc
   }
 
-  static async update({ user_id, fieldToUpdate, newValue }) {
-    const filter = { id: user_id };
+  static async update({ userId, fieldToUpdate, newValue }) {
+    const filter = { id: userId };
     const update = { [fieldToUpdate]: newValue };
     const option = { returnOriginal: false };
 
@@ -51,6 +51,7 @@ class User {
 
   static async findPointById({ userId }) {
     const {point} = await UserModel.findOne({ id:userId }, {point:1});
+    console.log(point)
     return point;
   }
 
@@ -83,9 +84,9 @@ class User {
     return point;
   }
 
-  static async updateAchievements({user_id, id, status}){
+  static async updateAchievements({userId, id, status}){
     return await UserModel.findOneAndUpdate(
-      {id : user_id,'achievements.id':id},
+      {id : userId,'achievements.id':id},
       { $set: {'achievements.$.status': status}},
       {new: true}
     );

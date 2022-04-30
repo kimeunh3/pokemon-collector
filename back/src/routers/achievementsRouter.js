@@ -16,8 +16,8 @@ achievementsRouter.get("/achievementList", async (req, res, next) => {
 
 achievementsRouter.get("/userStickerList", async (req, res, next) => {
   try {
-    const user_id = req.currentUserId;
-    const data = await achievementsService.getUserStickerList({user_id})
+    const userId = req.currentUserId;
+    const data = await achievementsService.getUserStickerList({userIdd})
     res.status(200).json(data);
   } catch (error) {
     next(error);

@@ -16,8 +16,8 @@ class achievementsService {
     return data;
   }
 
-  static async getUserStickerList({user_id}) {
-    const stickerList = await User.findStickerListById({user_id});
+  static async getUserStickerList({userId}) {
+    const stickerList = await User.findStickerListById({userId});
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!stickerList) {
@@ -29,9 +29,9 @@ class achievementsService {
     return stickerList;
   }
 
-  static async updateAchievements({user_id, id}){
-    const userStickerIds = await User.findStickerListById({user_id});
-    const notSuccAchievementsList = await User.findAchievementsListById({user_id});
+  static async updateAchievements({userId, id}){
+    const userStickerIds = await User.findStickerListById({userId});
+    const notSuccAchievementsList = await User.findAchievementsListById({userId});
     const achievementsList = await Achievements.findAchievementsByType({type: "collected"})
 
     //모든 업적 목록 순회
@@ -44,7 +44,7 @@ class achievementsService {
         }
         // 달성도
         let status = Math.round(intersection.length*(100/oneOfAchievements.condition.length))
-        let updated = await User.updateAchievements({user_id, id: oneOfAchievements.id, status})
+        let updated = await User.updateAchievements({userId, id: oneOfAchievements.id, status})
         
         if (!updated) {
           throw new Error("user achievemets update에 실패했습니다. 다시 한 번 확인해 주세요.");
