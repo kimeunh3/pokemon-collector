@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
-function PokemonBookCard({ name, selectType1, selectType2, searchName, num }) {
+function PokemonBookCard({ name, selectType, searchName, num }) {
 	const navigate = useNavigate();
-	let type1 = '10';
-	let type2 = '10';
+	const [type1, setType1] = useState('10');
+	const [type2, setType2] = useState('10');
 	const imgSrc = `https://d31z0g5vo6ghmg.cloudfront.net/pokemons/${num}.png`;
+	const [bColor, setBColor] = useState('#fff');
+	const [b2Color, setB2Color] = useState('#fff');
 	const type1List = {
 		// normal
 		20: [
@@ -98,30 +100,30 @@ function PokemonBookCard({ name, selectType1, selectType2, searchName, num }) {
 		180: '#EE99AC',
 	};
 
+	useEffect(() => {
+		Object.keys(type1List).forEach((key) => {
+			if (type1List[key].includes(num)) {
+				setType1(key);
+			}
+		});
+	
+		Object.keys(type2List).forEach((key) => {
+			if (type2List[key].includes(num)) {
+				setType2(key);
+			}
+		});
+	}, [])
+
+	useEffect(() => {
+		setBColor(typeColorList[type1]);
+		setB2Color(typeColorList[type2]);
+	}, [type1, type2])
+
 	if (searchName && !name.includes(searchName)) return null;
 
-	Object.keys(type1List).forEach((key) => {
-		if (type1List[key].includes(num)) {
-			type1 = key;
-		}
-	});
-
-	if (selectType1 !== '10' && type1 !== selectType1) {
+	if (selectType !== '10' && type1 !== selectType && type2 !== selectType ) {
 		return null;
 	}
-
-	Object.keys(type2List).forEach((key) => {
-		if (type2List[key].includes(num)) {
-			type2 = key;
-		}
-	});
-
-	if (selectType2 !== '10' && type2 !== selectType2) {
-		return null;
-	}
-
-	const bColor = typeColorList[type1];
-	const b2Color = typeColorList[type2];
 
 	return (
 		<Card

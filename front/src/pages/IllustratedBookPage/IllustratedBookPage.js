@@ -18,12 +18,13 @@ import ScrollUpButton from '../../components/commons/ScrollUpButton';
 import * as Api from '../../api';
 
 function IllustratedBookPage() {
-	const [selectType1, setSelectType1] = useState(10);
-	const [selectType2, setSelectType2] = useState(10);
+	const [selectType, setSelectType] = useState(10);
 	const [searchName, setSearchName] = useState();
 	const [isOpen, setIsOpen] = useState(false);
 	const [userPokemonList, setUserPokemonList] = useState([]);
 	const [pokemonList, setPokemonList]= useState([]);
+	const [userPokemonObj, setUserPokemonObj] = useState({});
+	const [pokemonNumber, setPokemonNumber] = useState();
 
 	useEffect(() => {
 		Api.get('user/current').then((res) => {
@@ -31,12 +32,20 @@ function IllustratedBookPage() {
 		});
 	}, []);
 
-	const userPokemonObj = {};
-	userPokemonList.forEach((value) => {
-		userPokemonObj[value.id] = value.name;
-	});
+	useEffect(() => {
+		const newUserPokemonObj = {};
+		userPokemonList.forEach((value) => {
+			newUserPokemonObj[value.id] = value.name;
+		});
 
-	const pokemonNumber = Object.keys(userPokemonList).length;
+		setUserPokemonObj(newUserPokemonObj);
+
+		const userPokemonIdList = userPokemonList.map(pokemon => pokemon.id);
+
+		const userPokemonIdSetList = [...new Set(userPokemonIdList)];
+
+		setPokemonNumber(Object.keys(userPokemonIdSetList).length);
+	}, [userPokemonList])
 
 	useEffect(() => {
 		const newPokemonList = [];
@@ -47,10 +56,7 @@ function IllustratedBookPage() {
 	}, [])
 
 	const handleChangeType1 = (e) => {
-		setSelectType1(e.target.value);
-	};
-	const handleChangeType2 = (e) => {
-		setSelectType2(e.target.value);
+		setSelectType(e.target.value);
 	};
 
 	const handleClickOpen = () => {
@@ -68,44 +74,13 @@ function IllustratedBookPage() {
 			<FormControl
 				style={{ width: '200px', marginLeft: '40px', backgroundColor: 'white' }}
 			>
-				<InputLabel id='demo-simple-select-label'>속성 1</InputLabel>
+				<InputLabel id='demo-simple-select-label'>속성</InputLabel>
 				<Select
 					labelId='demo-simple-select-label'
 					id='demo-simple-select'
-					value={selectType1}
-					label='속성 1'
+					value={selectType}
+					label='속성'
 					onChange={handleChangeType1}
-				>
-					<MenuItem value={10}>전체</MenuItem>
-					<MenuItem value={20}>노말</MenuItem>
-					<MenuItem value={30}>불꽃</MenuItem>
-					<MenuItem value={40}>물</MenuItem>
-					<MenuItem value={50}>풀</MenuItem>
-					<MenuItem value={60}>전기</MenuItem>
-					<MenuItem value={70}>얼음</MenuItem>
-					<MenuItem value={80}>격투</MenuItem>
-					<MenuItem value={90}>독</MenuItem>
-					<MenuItem value={100}>땅</MenuItem>
-					<MenuItem value={110}>비행</MenuItem>
-					<MenuItem value={120}>에스퍼</MenuItem>
-					<MenuItem value={130}>벌레</MenuItem>
-					<MenuItem value={140}>바위</MenuItem>
-					<MenuItem value={150}>고스트</MenuItem>
-					<MenuItem value={160}>드래곤</MenuItem>
-					<MenuItem value={170}>강철</MenuItem>
-					<MenuItem value={180}>페어리</MenuItem>
-				</Select>
-			</FormControl>
-			<FormControl
-				style={{ width: '200px', marginLeft: '40px', backgroundColor: 'white' }}
-			>
-				<InputLabel id='demo-simple-select-label'>속성 2</InputLabel>
-				<Select
-					labelId='demo-simple-select-label'
-					id='demo-simple-select'
-					value={selectType2}
-					label='속성 2'
-					onChange={handleChangeType2}
 				>
 					<MenuItem value={10}>전체</MenuItem>
 					<MenuItem value={20}>노말</MenuItem>
@@ -151,7 +126,7 @@ function IllustratedBookPage() {
 				label='포켓몬 이름 검색'
 				variant='outlined'
 				onChange={onChangeSearchName}
-				style={{ backgroundColor: 'white', marginLeft: '630px' }}
+				style={{ backgroundColor: 'white', float:'right', marginRight: '50px' }}
 			/>
 			<div style={{ textAlign: 'end', marginTop: '20px', marginRight: '50px' }}>
 				보유한 포켓몬 수: {pokemonNumber}
@@ -169,15 +144,13 @@ function IllustratedBookPage() {
 					Object.keys(userPokemonObj).includes(num) ? (
 						<PokemonBookCard
 							name={userPokemonObj[num]}
-							selectType1={String(selectType1)}
-							selectType2={String(selectType2)}
+							selectType={String(selectType)}
 							searchName={searchName}
 							num={Number(num)}
 						/>
 					) : (
 						<DefaultBookCard
-							selectType1={String(selectType1)}
-							selectType2={String(selectType2)}
+							selectType={String(selectType)}
 							searchName={searchName}
 						/>
 					)
