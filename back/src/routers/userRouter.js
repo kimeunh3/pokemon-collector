@@ -1,9 +1,26 @@
+/**
+ * @swagger
+ * /user/register:
+ *   post:
+ *     summary: 회원가입
+ *     description: User의 회원가입 API
+ *     tags: register
+ *     responses:
+ *       '200':
+ *        description: User의 회원가입
+ *        content: 
+ *         application/json:
+ *           schema:
+ *             type: Object
+ */
+
 import is from "@sindresorhus/is";
 import { Router } from "express";
 import { login_required } from "../middlewares/login_required";
 import { userAuthService } from '../services/userService';
 import { User } from '../db';
 const userAuthRouter = Router();
+
 
 userAuthRouter.post("/user/register", async function (req, res, next) {
   try {
@@ -71,9 +88,9 @@ userAuthRouter.get(
   async function (req, res, next) {
     try {
       // jwt토큰에서 추출된 사용자 id를 가지고 db에서 사용자 정보를 찾음.
-      const user_id = req.currentUserId;
+      const userId = req.currentUserId;
       const currentUserInfo = await userAuthService.getUserInfo({
-        user_id,
+        userId,
       });
 
       if (currentUserInfo.errorMessage) {
@@ -88,44 +105,57 @@ userAuthRouter.get(
 );
 
 userAuthRouter.put(
-  "/user/current",
+  "/user/attendanceCheck",
   login_required,
   async function (req, res, next) {
     try {
-      const user = await User.findById(req.params.id);
-
-      let hours = 0;
-
-      if (user.attendance.length > 0){
-        user.attendance.reverse();
-        user.attendance.map(a =>{
-          if(a.entry && a.exit.time){
-            hours = hours + calculateHours(a.entry.getTime(),a.exit.time.getTime());
-          }
-        })
-        hours = parseFloat(hours/(3600*1000)).toFixed(4);
-        
+      const userId = req.currentUserId;
+      let currentUserInfo = await userAuthService.getUserInfo({userId,});
       const attendance = new Date();
+      const savedAttendance = currentUserInfo.attendance;
+      var timeDiff = (attendance - savedAttendance);
 
-      const toUpdate = {attendance};
-
-      const updatedUser = await userAuthService.setUser({user_id, toUpdate});
-
-
-        
-      if (updatedUser.errorMessgae){
-        throw new Error(updatedUser.errorMessage);
+      if(timeDiff >= 24*60*60*1000){
+        // isPointGiven === false -> 포인트 지급  isPointGiven === true -> 포인트 지급 X
+        const isPointGiven = !(currentUserInfo.isPointGiven);
+        const toUpdate = {attendance, isPointGiven};
+        currentUserInfo = await userAuthService.setUser({userId, toUpdate});
+        if (currentUserInfo.errorMessage){
+          throw new Error(currentUserInfo.errorMessage);
+        }
       }
-      res.status(200).json(updatedUser);
-    
-      }
+
+      res.status(200).json({isPointGiven:currentUserInfo.isPointGiven});
       
-      }
-      catch(error){
+    }catch(error){
         next(error);
       }
   }
 );
+
+userAuthRouter.put(
+  "/user/checkIn",
+  login_required,
+  async function (req, res, next) {
+    try {
+      const userId = req.currentUserId;
+      let currentUserInfo = await userAuthService.getUserInfo({userId,});
+    
+      const point = currentUserInfo.point+1000;
+      const attendance = new Date();
+      const isPointGiven = !(currentUserInfo.isPointGiven);
+      const toUpdate = {point,attendance,isPointGiven};
+      currentUserInfo = await userAuthService.setUser({userId, toUpdate});
+      if (currentUserInfo.errorMessage){
+        throw new Error(currentUserInfo.errorMessage);
+      }
+    res.status(200).json({point:currentUserInfo.point});
+    }catch(error){
+        next(error);
+      }
+  }
+);
+
 
 
 
