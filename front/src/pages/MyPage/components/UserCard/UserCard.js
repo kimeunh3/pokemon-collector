@@ -22,21 +22,38 @@ function UserCard({ userState }) {
 
 	return (
 		<Card sx={{ maxWidth: 345 }}>
-			<CardHeader
-				avatar={
-					<Avatar
-						sx={{
-							bgcolor: 'transparent',
-							border: `3px solid ${IconObj[likeType].Color.color}`,
-						}}
-					>
-						{IconObj[likeType].Icon}
-					</Avatar>
-				}
-				action={<IconButton aria-label='settings' />}
-				title={email}
-				sx={{ paddingBottom: '0' }}
-			/>
+			<Grid container>
+				<Grid item md={8}>
+					<CardHeader
+						avatar={
+							<Avatar
+								sx={{
+									bgcolor: 'transparent',
+									border: `3px solid ${IconObj[likeType].Color.color}`,
+								}}
+							>
+								{IconObj[likeType].Icon}
+							</Avatar>
+						}
+						action={<IconButton aria-label='settings' />}
+						title={email}
+						sx={{ paddingBottom: '0' }}
+					/>
+				</Grid>
+				<Grid
+					item
+					md={4}
+					sx={{
+						paddingTop: '20px',
+						paddingRight: '8px',
+						paddingBottom: '2px',
+					}}
+				>
+					<Button variant='contained' color='success'>
+						출석체크
+					</Button>
+				</Grid>
+			</Grid>
 			<Box sx={{ width: '90%', margin: '0' }}>
 				<hr />
 			</Box>
