@@ -8,6 +8,9 @@ import {
 	CardMedia,
 	CardContent,
 	Typography,
+	Box,
+	Button,
+	Grid,
 } from '@mui/material';
 import { Favorite, Share } from '@mui/icons-material';
 import IconObj from '../../../../core/Icon';
@@ -32,7 +35,11 @@ function UserCard({ userState }) {
 				}
 				action={<IconButton aria-label='settings' />}
 				title={email}
+				sx={{ paddingBottom: '0' }}
 			/>
+			<Box sx={{ width: '90%', margin: '0' }}>
+				<hr />
+			</Box>
 			<CardMedia
 				component='img'
 				image={profileImg}
@@ -44,12 +51,21 @@ function UserCard({ userState }) {
 				<Typography>포인트 {point}</Typography>
 			</CardContent>
 			<CardActions disableSpacing>
-				<IconButton aria-label='add to favorites'>
-					<Favorite />
-				</IconButton>
-				<IconButton aria-label='share'>
-					<Share />
-				</IconButton>
+				<Grid container>
+					<Grid item xs={3} md={8}>
+						<IconButton aria-label='add to favorites'>
+							<Favorite />
+						</IconButton>
+						<IconButton aria-label='share'>
+							<Share />
+						</IconButton>
+					</Grid>
+					<Grid item xs={9} md={4}>
+						<Button variant='contained' disableElevation>
+							프로필 변경
+						</Button>
+					</Grid>
+				</Grid>
 			</CardActions>
 		</Card>
 	);
