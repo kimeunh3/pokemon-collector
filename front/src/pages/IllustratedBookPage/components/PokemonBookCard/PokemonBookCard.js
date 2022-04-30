@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
-function PokemonBookCard({ name, selectType1, selectType2, searchName, num }) {
+function PokemonBookCard({ name, selectType, searchName, num }) {
 	const navigate = useNavigate();
 	let type1 = '10';
 	let type2 = '10';
@@ -106,17 +106,13 @@ function PokemonBookCard({ name, selectType1, selectType2, searchName, num }) {
 		}
 	});
 
-	if (selectType1 !== '10' && type1 !== selectType1) {
-		return null;
-	}
-
 	Object.keys(type2List).forEach((key) => {
 		if (type2List[key].includes(num)) {
 			type2 = key;
 		}
 	});
 
-	if (selectType2 !== '10' && type2 !== selectType2) {
+	if (selectType !== '10' && type1 !== selectType && type2 !== selectType ) {
 		return null;
 	}
 
