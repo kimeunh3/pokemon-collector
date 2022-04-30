@@ -76,7 +76,7 @@ function LandingPageHeader({
 						<Grid item xs={2}>
 							<Button
 								color='inherit'
-								onClick={() => navigate('/login')}
+								onClick={() => navigate('/QuizPage')}
 								style={{ fontSize: '2vw' }}
 							>
 								퀴즈

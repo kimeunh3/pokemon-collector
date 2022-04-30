@@ -55,7 +55,7 @@ function DrawerComponents({ open, setOpen, isLogin, handleDialogOpen, logout }) 
             </ListItem>
             <ListItem>
               <span className="material-symbols-outlined">arrow_right</span>
-              <Button color="inherit" onClick={() => navigate('/login')} style={{ fontSize: '18px' }}>퀴즈</Button>
+              <Button color="inherit" onClick={() => navigate('/QuizPage')} style={{ fontSize: '18px' }}>퀴즈</Button>
             </ListItem>
             <ListItem>
               <span className="material-symbols-outlined">arrow_right</span>

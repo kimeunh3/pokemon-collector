@@ -81,7 +81,7 @@ function NavBarHeader({ open, setOpen, isLogin, handleDialogOpen, logout }) {
                         <Grid item xs={2}>
                             <Button
                                 color='inherit'
-                                onClick={() => navigate('/login')}
+                                onClick={() => navigate('/QuizPage')}
                                 style={{ fontSize: '1.1vw' }}
                             >
                                 퀴즈
