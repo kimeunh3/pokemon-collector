@@ -141,6 +141,11 @@ const UserSchema = new Schema(
         type: Boolean,
         required : false,
         default: true,
+    },
+    quizChance:{
+      type: Number,
+      required : true,
+      default: 3,
     }
   },
   {

@@ -51,7 +51,6 @@ class User {
 
   static async findPointById({ userId }) {
     const {point} = await UserModel.findOne({ id:userId }, {point:1});
-    console.log(point)
     return point;
   }
 
