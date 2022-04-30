@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import jwt from "jsonwebtoken";
 
 class userAuthService {
-  static async addUser({ nickname, email, password, sex, age, interest, likeType, point, profileImg, stickers }) {
+  static async addUser({ nickname, email, password, sex, birth, interest, likeType, point, profileImg, stickers }) {
     const user = await User.findByEmail({ email });
     if (user) {
       const errorMessage =
@@ -14,7 +14,7 @@ class userAuthService {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const id = uuidv4();
-    const newUser = { id, nickname, email, password: hashedPassword, sex, age, interest, likeType, point, profileImg, stickers };
+    const newUser = { id, nickname, email, password: hashedPassword, sex, birth, interest, likeType, point, profileImg, stickers };
 
     const createdNewUser = await User.create({ newUser });
     createdNewUser.errorMessage = null;
@@ -48,7 +48,7 @@ class userAuthService {
     const id = user.id;
     const nickname = user.nickname;
     const sex = user.sex;
-    const age = user.age;
+    const birth = user.birth;
     const interest = user.interest;
     const likeType = user.likeType;
     const point = user.point;
@@ -63,7 +63,7 @@ class userAuthService {
       email,
       password,
       sex,
-      age,
+      birth,
       interest,
       likeType,
       point,

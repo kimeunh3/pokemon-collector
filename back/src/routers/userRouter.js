@@ -30,14 +30,14 @@ userAuthRouter.post("/user/register", async function (req, res, next) {
       );
     }
 
-    const {nickname, email, password, sex, age, interest, likeType, point, profileImg, stickers} = req.body
+    const {nickname, email, password, sex, birth, interest, likeType, point, profileImg, stickers} = req.body
 
     const newUser = await userAuthService.addUser({
       nickname,
       email,
       password,
       sex,
-      age,
+      birth,
       interest,
       likeType,
       point,
