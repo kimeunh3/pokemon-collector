@@ -13,8 +13,9 @@ import {
 } from '@material-ui/core';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import IconObj from '../../../../core/Icon';
 
-function StatsDrawerComponents({stats, statsColor, pokemonInfo,isBarStats, isDoughnutType, isBarWeightHeight, isBarTotal, setIsBarStats, setIsDoughnutType, setIsBarWeightHeight, setIsBarTotal }) {
+function StatsDrawerComponents({stats, statsColor, statsInfo, isBarStats, isBarTypeTop5, isBarTypeLow5, isBarPokemonTop15, isBarPokemonLow15, setIsBarStats, setIsBarTypeTop5, setIsBarTypeLow5, setIsBarPokemonTop15, setIsBarPokemonLow15 }) {
     const drawerWidth = '24vw';
     const theme = useTheme();
     const navigate = useNavigate();
@@ -45,8 +46,8 @@ function StatsDrawerComponents({stats, statsColor, pokemonInfo,isBarStats, isDou
         <Divider />
         <List>
           <ListItem>
-            <span className="material-symbols-outlined">arrow_right</span>
-            <div style={{ fontSize: '20px', fontWeight: 'bold' }}>{stats} 통계</div>
+            {IconObj[stats].Icon}
+            <div style={{ fontSize: '20px', fontWeight: 'bold' }}>&nbsp;{stats} 통계</div>
           </ListItem>
           <ListItem style={isBarStats ? { backgroundColor: statsColor } : {}}>
             <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>arrow_right</span>
@@ -55,50 +56,68 @@ function StatsDrawerComponents({stats, statsColor, pokemonInfo,isBarStats, isDou
               style={{ fontSize: '12px' }}
               onClick={() => {
                 setIsBarStats(true);
-                setIsDoughnutType(false);
-                setIsBarWeightHeight(false);
-                setIsBarTotal(false);
+                setIsBarTypeTop5(false);
+                setIsBarTypeLow5(false);
+                setIsBarPokemonTop15(false);
+                setIsBarPokemonLow15(false);
               }}  
             >속성별 통계</Button>
           </ListItem>
-          <ListItem style={isDoughnutType ? { backgroundColor: statsColor } : {}}>
+          <ListItem style={isBarTypeTop5 ? { backgroundColor: statsColor } : {}}>
             <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>arrow_right</span>
             <Button
               color="inherit"
               style={{ fontSize: '12px' }}
               onClick={() => {
                 setIsBarStats(false);
-                setIsDoughnutType(true);
-                setIsBarWeightHeight(false);
-                setIsBarTotal(false);
+                setIsBarTypeTop5(true);
+                setIsBarTypeLow5(false);
+                setIsBarPokemonTop15(false);
+                setIsBarPokemonLow15(false);
               }}  
-            >속성 통계</Button>
+            >속성 순위 (상위 30%)</Button>
           </ListItem>
-          <ListItem style={isBarWeightHeight ? { backgroundColor: statsColor } : {}}>
+          <ListItem style={isBarTypeLow5 ? { backgroundColor: statsColor } : {}}>
             <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>arrow_right</span>
             <Button
               color="inherit"
               style={{ fontSize: '12px' }}
               onClick={() => {
                 setIsBarStats(false);
-                setIsDoughnutType(false);
-                setIsBarWeightHeight(true);
-                setIsBarTotal(false);
-              }}
-            >키/몸무게 통계</Button>
+                setIsBarTypeTop5(false);
+                setIsBarTypeLow5(true);
+                setIsBarPokemonTop15(false);
+                setIsBarPokemonLow15(false);
+              }}  
+            >속성 순위 (하위 30%)</Button>
           </ListItem>
-          <ListItem style={isBarTotal ? { backgroundColor: statsColor } : {}}>
+          <ListItem style={isBarPokemonTop15 ? { backgroundColor: statsColor } : {}}>
             <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>arrow_right</span>
             <Button
               color="inherit"
               style={{ fontSize: '12px' }}
               onClick={() => {
                 setIsBarStats(false);
-                setIsDoughnutType(false);
-                setIsBarWeightHeight(false);
-                setIsBarTotal(true);
+                setIsBarTypeTop5(false);
+                setIsBarTypeLow5(false);
+                setIsBarPokemonTop15(true);
+                setIsBarPokemonLow15(false);
               }}
-            >종합 능력치 통계</Button>
+            >포켓몬 순위 (상위 10%)</Button>
+          </ListItem>
+          <ListItem style={isBarPokemonLow15 ? { backgroundColor: statsColor } : {}}>
+            <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>arrow_right</span>
+            <Button
+              color="inherit"
+              style={{ fontSize: '12px' }}
+              onClick={() => {
+                setIsBarStats(false);
+                setIsBarTypeTop5(false);
+                setIsBarTypeLow5(false);
+                setIsBarPokemonTop15(false);
+                setIsBarPokemonLow15(true);
+              }}
+            >포켓몬 순위 (하위 10%)</Button>
           </ListItem>
         </List>
         <Card variant="outlined" style={{ width: '20vw', marginLeft: '2vw', marginTop: '5vh' }}>
@@ -107,16 +126,14 @@ function StatsDrawerComponents({stats, statsColor, pokemonInfo,isBarStats, isDou
               {stats} 개요
             </Typography>
             <Typography variant="body2">
-              전체 {stats} 평균: {pokemonInfo.pokemonCnt}<br />
-              공격력 평균: {pokemonInfo.attackMean}<br />
-              방어력 평균: {pokemonInfo.defenseMean}<br />
-              Hp 평균: {pokemonInfo.hpMean}<br />
-              특수공격력 평균: {pokemonInfo.spAttackMean}<br />
-              특수방어력 평균: {pokemonInfo.spDefenseMean}<br />
-              스피드 평균: {pokemonInfo.speedMean}<br />
-              키 평균: {pokemonInfo.heightMean} (m)<br />
-              몸무게 평균: {pokemonInfo.weightMean} (kg)<br />
-              종합 점수 평균: {pokemonInfo.totalPointsMean}
+              전체 포켓몬 수: 151<br />
+              전체 속성 수: 17<br />
+              전체 포켓몬 평균: {statsInfo.statsMean}<br />
+              속성 평균: {statsInfo.typesStatsMean}<br />
+              최고 {stats} 속성: {statsInfo.statsMax}<br />
+              최저 {stats} 속성: {statsInfo.statsMin}<br />
+              최고 {stats} 포켓몬: {statsInfo.pokemonMax}<br />
+              최저 {stats} 포켓몬: {statsInfo.pokemonMin}
             </Typography>
           </CardContent>
         </Card>

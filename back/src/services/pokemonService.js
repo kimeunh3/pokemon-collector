@@ -30,7 +30,7 @@ class PokemonAuthService {
     return pokemonName;
   }
 
-  static getPokemons(){
+  static async getAllPokemons(){
     return Pokemon.findAll();
   }
   
