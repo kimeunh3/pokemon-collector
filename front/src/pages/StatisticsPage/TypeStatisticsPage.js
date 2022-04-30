@@ -13,18 +13,9 @@ function TypeStatisticsPage() {
   const [isBarWeightHeight, setIsBarWeightHeight] = useState(false);
   const [isBarTotal, setIsBarTotal] = useState(false);
   const [pokemons, setPokemons] = useState([]);
-
-  useEffect(() => {
-    Api.get(`pokemonList/${type}`)
-      .then((res) => {
-        setPokemons(res.data);
-      })
-  }, []);
-
   const [x, setX] = useState();
   const [y, setY] = useState();
   const [pokemonInfo, setPokemonInfo] = useState();
-
   const typeColorList = {
     '노말': 'rgba(198, 198, 167, 0.8)',
     '불꽃': 'rgba(245, 172, 120, 0.8)',
@@ -44,6 +35,13 @@ function TypeStatisticsPage() {
     '강철': 'rgba(209, 209, 224, 0.8)',
     '페어리': 'rgba(244, 189, 201, 0.8)'
   };
+
+  useEffect(() => {
+    Api.get(`pokemonList/${type}`)
+      .then((res) => {
+        setPokemons(res.data);
+      })
+  }, []);
 
   useEffect(() => {
     const newX = [];
