@@ -56,6 +56,16 @@ const UserSchema = new Schema(
       required : false,
       default: Date.now(),
     },
+    isPointGiven: {
+        type: Boolean,
+        required : false,
+        default: true,
+    },
+    quizChance:{
+      type: Number,
+      required : true,
+      default: 3,
+    },
     achievements:{
       type:Array,
       default:[
@@ -136,11 +146,6 @@ const UserSchema = new Schema(
           status:0
         }
       ]
-    },
-    isPointGiven: {
-        type: Boolean,
-        required : false,
-        default: true,
     }
   },
   {
