@@ -4,7 +4,7 @@
  *   post:
  *     summary: 회원가입
  *     description: User의 회원가입 API
- *     tags: register
+ *     tags: [register]
  *     responses:
  *       '200':
  *        description: User의 회원가입
