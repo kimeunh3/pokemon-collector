@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { login_required } from "../middlewares/login_required";
+import { loginRequired } from "../middlewares/loginRequired";
 import { PokemonAuthService } from "../services/pokemonService";
 
 const pokemonAuthRouter = Router();
-pokemonAuthRouter.use(login_required);
+pokemonAuthRouter.use(loginRequired);
 
 pokemonAuthRouter.get("/pokemon/:id", async (req, res, next) => {
   try {

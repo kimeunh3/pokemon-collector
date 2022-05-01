@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import { login_required } from '../middlewares/login_required';
+import { loginRequired } from '../middlewares/loginRequired';
 import { PokemonRadarChartDataAuthService } from '../services/pokemonRadarChartDataService';
 
 const pokemonRadarChartDataAuthRouter = Router();
-pokemonRadarChartDataAuthRouter.use(login_required);
+pokemonRadarChartDataAuthRouter.use(loginRequired);
 
 pokemonRadarChartDataAuthRouter.get(
   '/pokemonData/:id',

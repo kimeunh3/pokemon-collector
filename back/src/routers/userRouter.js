@@ -16,7 +16,7 @@
 
 import is from "@sindresorhus/is";
 import { Router } from "express";
-import { login_required } from "../middlewares/login_required";
+import { loginRequired } from "../middlewares/loginRequired";
 import { userAuthService } from '../services/userService';
 import { User } from '../db';
 const userAuthRouter = Router();
@@ -84,7 +84,7 @@ userAuthRouter.post("/user/login", async function (req, res, next) {
 
 userAuthRouter.get(
   "/user/current",
-  login_required,
+  loginRequired,
   async function (req, res, next) {
     try {
       // jwt토큰에서 추출된 사용자 id를 가지고 db에서 사용자 정보를 찾음.
@@ -106,7 +106,7 @@ userAuthRouter.get(
 
 userAuthRouter.put(
   "/user/attendanceCheck",
-  login_required,
+  loginRequired,
   async function (req, res, next) {
     try {
       const userId = req.currentUserId;
@@ -135,7 +135,7 @@ userAuthRouter.put(
 
 userAuthRouter.put(
   "/user/checkIn",
-  login_required,
+  loginRequired,
   async function (req, res, next) {
     try {
       const userId = req.currentUserId;
@@ -156,7 +156,30 @@ userAuthRouter.put(
   }
 );
 
+userAuthRouter.put(
+  '/user/profileModify',
+  loginRequired,
+  async function (req, res, next) {
+    try{
+      const userId = req.currentUserId;
+      let currentUserInfo = await userAuthService.getUserInfo({userId,});
+      const nickname = req.body.nickname ?? null;
+      const likeType = req.body.likeType ?? null;
+      const profileImg = req.body.profileImg ?? null;
+      const interest = req.body.interest ?? null;
 
+      const toUpdate = {nickname, likeType, profileImg, interest};
+
+      currentUserInfo = await userAuthService.setUser({userId, toUpdate});
+      if (currentUserInfo.errorMessage){
+        throw new Error(currentUserInfo.errorMessage);
+      }
+    res.status(200).json({point:currentUserInfo});
+    }catch(error){
+        next(error);
+      }
+  }
+)
 
 
 export { userAuthRouter };
