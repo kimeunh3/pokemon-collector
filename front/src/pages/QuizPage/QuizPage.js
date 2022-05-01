@@ -14,6 +14,9 @@ function QuizPage() {
     const [isQuizEx5, setIsQuizEx5] = useState(false);
     const [isQuizStart, setIsQuizStart] = useState(false);
     const [isQuizIng, setIsQuizIng] = useState(false);
+    const [isCorrect, setIsCorrect] = useState(false);
+    const [isInCorrect, setIsInCorrect] = useState(false);
+    const [isContinue, setIsContinue] = useState(false);
     const [chance, setChance] = useState(3);
     const [pokemonName, setPokemonName] = useState();
     const [pokemonId, setPokemonId] = useState();
@@ -63,10 +66,19 @@ function QuizPage() {
                 <QuizComponent chance={chance} img='https://d31z0g5vo6ghmg.cloudfront.net/pokemons/pokeball.png' set1={setIsQuizStart} set2={setIsQuizIng} text='야생의 포켓몬이 나타났다!' isQuiz />
             )}
             {isQuizIng && (
-                <QuizComponent pokemonId={pokemonId} pokemonName={pokemonName} img={pokemonImg} chance={chance} isQuiz isQuizIng setIsQuizIng={setIsQuizIng} setIsEntry={setIsEntry} setIsQuizStart={setIsQuizStart} />
+                <QuizComponent pokemonId={pokemonId} pokemonName={pokemonName} img={pokemonImg} chance={chance} isQuiz isQuizIng setIsQuizIng={setIsQuizIng} setIsEntry={setIsEntry} setIsQuizStart={setIsQuizStart} setIsCorrect={setIsCorrect} setIsInCorrect={setIsInCorrect} />
             )}
             {isNoChance && (
                 <QuizComponent set1={setIsNoChance} set2={setIsEntry} text={['기회를 모두 다 썼구나!', <br/>, '퀴즈는 하루에 3번만 도전 가능한단다.']} />
+            )}
+            {isCorrect && (
+                <QuizComponent img={pokemonImg} set1={setIsCorrect} set2={setIsContinue} text={['정답! 500포인트 획득!', <br/>, `이 포켓몬은 ${pokemonName}!`]} />
+            )}
+            {isInCorrect && (
+                <QuizComponent img={pokemonImg} set1={setIsInCorrect} set2={setIsContinue} text={['오답...!', <br/>, `정답은 ${pokemonName}!`]} />
+            )}
+            {isContinue && (
+                <QuizComponent isQuiz isContinue chance={chance} setIsEntry={setIsEntry}  setIsContinue={setIsContinue} setIsQuizStart={setIsQuizStart} text='퀴즈를 계속 진행하겠니?' />
             )}
 		</div>
 	);
