@@ -1,3 +1,24 @@
+/**
+ * @swagger
+ *  components:
+ *     schemas:
+ *        user:
+ *          type: object
+ *          required:
+ *            - id
+ *            - email
+ *            - password
+ *            - nickname
+ *            - sex
+ *            - birth
+ *            - interest
+ *            - likeType
+ *          properties:
+ *             nickname:
+ *               type: string
+ *         
+ */
+
 import { Schema, model } from 'mongoose';
 
 const UserSchema = new Schema(

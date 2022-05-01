@@ -14,7 +14,7 @@ const options = {
         },
       ],
     },
-    apis: [],
+    apis: ['./src/db/schemas/*.js'],
   };
   
 const specs = swaggerJsDoc(options);
