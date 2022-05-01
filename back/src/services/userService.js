@@ -93,9 +93,9 @@ class userAuthService {
       return { errorMessage };
     }
 
-    if (toUpdate.name) {
-      const fieldToUpdate = "name";
-      const newValue = toUpdate.name;
+    if (toUpdate.nickname) {
+      const fieldToUpdate = "nickname";
+      const newValue = toUpdate.nickname;
       user = await User.update({ userId, fieldToUpdate, newValue });
     }
 
@@ -111,9 +111,15 @@ class userAuthService {
       user = await User.update({ userId, fieldToUpdate, newValue });
     }
 
-    if (toUpdate.description) {
-      const fieldToUpdate = "description";
-      const newValue = toUpdate.description;
+    if (toUpdate.interest) {
+      const fieldToUpdate = "interest";
+      const newValue = toUpdate.interest;
+      user = await User.update({ userId, fieldToUpdate, newValue });
+    }
+
+    if (toUpdate.likeType) {
+      const fieldToUpdate = "likeType";
+      const newValue = toUpdate.likeType;
       user = await User.update({ userId, fieldToUpdate, newValue });
     }
     
