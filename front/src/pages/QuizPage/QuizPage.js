@@ -1,95 +1,35 @@
 import React, { useState } from 'react';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import CardContent from '@mui/material/CardContent';
+
+import QuizEntry from './components/QuizEntry';
+import QuizEx from './components/QuizEx';
 
 function QuizPage() {
     const [isEntry, setIsEntry] = useState(true);
-    const [isQuizEx, setIsQuizEx] = useState(false);
+    const [isQuizEx1, setIsQuizEx1] = useState(false);
+    const [isQuizEx2, setIsQuizEx2] = useState(false);
+    const [isQuizEx3, setIsQuizEx3] = useState(false);
+    const [isQuizEx4, setIsQuizEx4] = useState(false);
+    const [isQuizEx5, setIsQuizEx5] = useState(false);
 
 	return (
 		<div style={{ paddingTop: '170px' }}>
             {isEntry && (
-                <Box
-                    className='QuizEntry'
-                    sx={{ position: 'absolute', width: '60%', left: '50%', transform: 'translateX(-50%)'}}
-                >
-                    <Card
-                        sx={{
-                            backgroundColor: 'transparent',
-                            boxShadow: 'none',
-                        }}
-                    >
-                        <CardMedia
-                            component='img'
-                            image='/images/QuizPageImg.gif'
-                            alt='퀴즈입장이미지'
-                        />
-                    </Card>
-                    <Button
-                        className='btn'
-                        variant='contained'
-                        color='error'
-                        onClick={() => {
-                            setIsEntry(false);
-                            setIsQuizEx(true);
-                        }}
-                        sx={{
-                            position: 'absolute',
-                            top: '45%',
-                            right: '50%',
-                            transform: 'translateX(50%)',
-                            padding: '2% 5% 2% 5%'
-                        }}
-                    >
-                        <Typography variant='h4'>퀴즈 시작하기!</Typography>
-                    </Button>
-                </Box>
+               <QuizEntry setIsEntry={setIsEntry} setIsQuizEx1={setIsQuizEx1} />
             )}
-            {isQuizEx && (
-                <Card
-                    sx={{
-                        position: 'absolute',
-                        left: '50%',
-                        transform: 'translateX(-50%)',
-                        width: '60%',
-                        height: '70%', 
-                        backgroundColor: '#fff',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'spaceBetween',
-                        overflow: 'inherit'
-                    }}
-                >
-                    <CardMedia
-                        component='img'
-                        image='/images/quizImg1.jpg'
-                        alt='퀴즈오박사이미지'
-                        sx={{
-                            width: '35%',
-                            maxWidth: '450px',
-                            minWidth: '200px',
-                            marginLeft: '50%',
-                            marginTop: '10px',
-                            transform: 'translateX(-50%)',
-                        }}
-                    />
-                    <CardContent
-                        sx={{
-                            border: '0.5rem solid black',
-                            margin: 'auto 10px 10px 10px',
-                            borderRadius: '5px',
-                            minHeight: '30%',
-                            padding: '20px',
-                            fontSize: '2rem'
-                        }}
-                    >
-                        <div>포켓몬 퀴즈에 온 걸 환영한다!</div>
-                    </CardContent>
-                </Card>
+            {isQuizEx1 && (
+                <QuizEx set1={setIsQuizEx1} set2={setIsQuizEx2} text={['포켓몬 퀴즈에 온 걸 환영한다!', <br/>, '여기엔 151마리의 포켓몬이 있단다.']} />
+            )}
+            {isQuizEx2 && (
+                <QuizEx set1={setIsQuizEx2} set2={setIsQuizEx3} text={['포켓몬의 실루엣을 보여줄테니', <br/>, '잘 보고 어떤 포켓몬인지 맞추면 된단다.']} />
+            )}
+            {isQuizEx3 && (
+                <QuizEx set1={setIsQuizEx3} set2={setIsQuizEx4} text={['정답을 맞추면 500포인트를 받을 수 있지.']} />
+            )}
+            {isQuizEx4 && (
+                <QuizEx set1={setIsQuizEx4} set2={setIsQuizEx5} text={['기회는 3번!', <br/>, '어려우면 힌트를 받거나 패스를 하렴.']} />
+            )}
+            {isQuizEx5 && (
+                <QuizEx set1={setIsQuizEx5} set2={setIsEntry} text='자, 그럼 시작한다!' />
             )}
 		</div>
 	);
