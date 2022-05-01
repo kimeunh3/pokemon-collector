@@ -28,6 +28,11 @@ class User {
   }
 
   static async findAchievementsListById({userId}){
+    const {achievements} = await UserModel.findOne({ id: userId },{_id:0, achievements:1});
+    return achievements
+  }
+
+  static async findAchievementsIdListById({userId}){
     const achievementsList = await UserModel.findOne({ id: userId },{_id:0, achievements:1});
     let achievementsNotSucc = []
     await achievementsList.achievements.forEach(x=>{if(x.status < 100){

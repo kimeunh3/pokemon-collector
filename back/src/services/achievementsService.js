@@ -16,6 +16,32 @@ class achievementsService {
     return data;
   }
 
+  static async getUserAchievements({userId}){
+    const userAchievementsList = await User.findAchievementsListById({userId});
+    if (!userAchievementsList) {
+      const errorMessage =
+        "유저의 업적 정보를 가져오지 못했습니다.";
+      return { errorMessage };
+    }
+    const achievementsList = await Achievements.findAll();
+    if (!achievementsList) {
+      const errorMessage =
+        "전체 업적 정보를 가져오지 못했습니다.";
+      return { errorMessage };
+    }
+    let DetailedUserAchievList = []
+    for(let i=0; i < achievementsList.length; i++ ){
+      DetailedUserAchievList.push({
+        id: achievementsList[i].id,
+        type: achievementsList[i].type,
+        name: achievementsList[i].name,
+        description: achievementsList[i].description,
+        status: userAchievementsList[i].status
+      })
+    }
+    return DetailedUserAchievList
+  }
+
   static async getUserStickerList({userId}) {
     const stickerList = await User.findStickerListById({userId});
 
@@ -31,7 +57,7 @@ class achievementsService {
 
   static async updateAchievements({userId, id}){
     const userStickerIds = await User.findStickerListById({userId});
-    const notSuccAchievementsList = await User.findAchievementsListById({userId});
+    const notSuccAchievementsList = await User.findAchievementsIdListById({userId});
     const achievementsList = await Achievements.findAchievementsByType({type: "collected"})
 
     //모든 업적 목록 순회
