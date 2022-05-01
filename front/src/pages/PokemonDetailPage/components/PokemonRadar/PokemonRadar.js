@@ -3,9 +3,11 @@ import { Container } from '@mui/material';
 import { Chart, registerables } from 'chart.js';
 import { Radar } from 'react-chartjs-2';
 
+import IconObj from '../../../../core/Icon';
+
 Chart.register(...registerables);
 
-function PokemonRadar({ pokemon, typeOneColor }) {
+function PokemonRadar({ radarDataOne }) {
 	const {
 		name,
 		height,
@@ -17,17 +19,8 @@ function PokemonRadar({ pokemon, typeOneColor }) {
 		spAttack,
 		spDefense,
 		speed,
-	} = pokemon;
-
-	const perTotal = Math.ceil((totalPoints / 1000) * 100);
-	const perWeight = Math.ceil((weight / 500) * 100);
-	const perHeight = Math.ceil((height / 5) * 100);
-	const perHp = Math.ceil((hp / 100) * 100);
-	const perAttack = Math.ceil((attack / 150) * 100);
-	const perDefense = Math.ceil((defense / 150) * 100);
-	const perSpAttack = Math.ceil((spAttack / 150) * 100);
-	const perSpDefense = Math.ceil((spDefense / 150) * 100);
-	const perSpeed = Math.ceil((speed / 150) * 100);
+		typeOne,
+	} = radarDataOne;
 
 	const data = {
 		labels: [
@@ -45,17 +38,17 @@ function PokemonRadar({ pokemon, typeOneColor }) {
 			{
 				label: `${name}`,
 				data: [
-					perTotal,
-					perHeight,
-					perWeight,
-					perHp,
-					perAttack,
-					perDefense,
-					perSpAttack,
-					perSpDefense,
-					perSpeed,
+					totalPoints,
+					height,
+					weight,
+					hp,
+					attack,
+					defense,
+					spAttack,
+					spDefense,
+					speed,
 				],
-				backgroundColor: [`${typeOneColor}66`],
+				backgroundColor: [`${IconObj[typeOne].Color.color}66`],
 				borderColor: [
 					'rgb(255, 99, 132)',
 					'rgb(255, 159, 64)',
@@ -73,6 +66,10 @@ function PokemonRadar({ pokemon, typeOneColor }) {
 	const options = {
 		maintainAspectRatio: false, // 가로세로 비율 설정
 		plugins: {
+			title: {
+				display: true,
+				text: '포켓몬 능력치 레이더 차트 (%)',
+			},
 			legend: {
 				display: true,
 
