@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     Card,
     CardMedia,
@@ -13,19 +13,40 @@ import {
 } from '@mui/material';
 import { ArrowDropDown, HelpOutlineOutlined, ArrowRight } from '@mui/icons-material';
 
-function QuizComponent({ set1, set2, text, img='/images/quizImg1.jpg', isQuiz=false, isQuizIng=false, setIsQuizIng, setIsEntry, setIsQuizStart }) {
-    const [isOpen, setIsOpen] = useState(false);
+import './QuizComponent.css';
+
+import * as Api from '../../../api';
+
+function QuizComponent({ pokemonId, pokemonName, chance, set1, set2, text, img='/images/quizImg1.jpg', isQuiz=false, isQuizIng=false, setIsQuizIng, setIsEntry, setIsQuizStart }) {
+    const [isHelpOpen, setIsHelpOpen] = useState(false);
     const [isAnswer, setIsAnswer] = useState(false); // 정답맞추는컴포넌트 (제출하기, 돌아가기)
-    const [isHint, setIsHint] = useState(false); // 힌트는 바로 제공(다이얼로그)
+    const [isHint, setIsHint] = useState(false);
     const [isPass, setIsPass] = useState(false);
     const [isStop, setIsStop] = useState(false);
+    const [pokemonType, setPokemonType] = useState();
+    const [pokemonNameNum, setPokemonNameNum] = useState();
 
-    console.log(isAnswer,isHint, isPass, isStop)
+    console.log(isAnswer)
+
+    useEffect(() => {
+        if (isHint) {
+            Api.get(`pokemon/${pokemonId}`)
+                .then((res) => {
+                    setPokemonType(res.data.typeOne);
+                    setPokemonNameNum(pokemonName.length);
+                })
+        }
+    }, [isHint])
 
 
-    const handleClose = () => {
-		setIsOpen(false);
+    const handleHelpClose = () => {
+		setIsHelpOpen(false);
 	};
+    const handleHintClose = () => {
+		setIsHint(false);
+	};
+
+    console.log(pokemonName);
 
     return (
         <Card
@@ -88,27 +109,27 @@ function QuizComponent({ set1, set2, text, img='/images/quizImg1.jpg', isQuiz=fa
                             justifyItems: 'start'
                         }}
                     >
-                        <button type="button" onClick={() => { setIsAnswer(true); }} style={{ background: 'none', border: 'none' }}>
+                        <button type="button" className="Button" onClick={() => { setIsAnswer(true); }} style={{ background: 'none', border: 'none' }}>
                             <Typography variant='h5'>
-                                <ArrowRight style={{ fontSize: '40px', verticalAlign: 'middle' }} />
+                                <ArrowRight className="Arrow" style={{ fontSize: '40px', verticalAlign: 'middle' }} />
                                 <span style={{ verticalAlign: 'middle' }}>정답을 맞춘다</span>
                             </Typography>
                         </button>
-                        <button type="button" onClick={() => { setIsHint(true); }} style={{ background: 'none', border: 'none' }}>
+                        <button type="button" className="Button" onClick={() => { setIsHint(true); }} style={{ background: 'none', border: 'none' }}>
                             <Typography variant='h5'>
-                                <ArrowRight style={{ fontSize: '40px', verticalAlign: 'middle' }} />
+                                <ArrowRight className="Arrow" style={{ fontSize: '40px', verticalAlign: 'middle' }} />
                                 <span style={{ verticalAlign: 'middle' }}>힌트를 받는다</span>
                             </Typography>
                         </button>
-                        <button type="button" onClick={() => { setIsPass(true); }} style={{ background: 'none', border: 'none' }}>
+                        <button type="button" className="Button" onClick={() => { setIsPass(true); }} style={{ background: 'none', border: 'none' }}>
                             <Typography variant='h5'>
-                                <ArrowRight style={{ fontSize: '40px', verticalAlign: 'middle' }} />
+                                <ArrowRight className="Arrow" style={{ fontSize: '40px', verticalAlign: 'middle' }} />
                                 <span style={{ verticalAlign: 'middle' }}>패스한다</span>
                             </Typography>
                         </button>
-                        <button type="button" onClick={() => { setIsStop(true); }} style={{ background: 'none', border: 'none' }}>
+                        <button type="button" className="Button" onClick={() => { setIsStop(true); }} style={{ background: 'none', border: 'none' }}>
                             <Typography variant='h5'>
-                                <ArrowRight style={{ fontSize: '40px', verticalAlign: 'middle' }} />
+                                <ArrowRight className="Arrow" style={{ fontSize: '40px', verticalAlign: 'middle' }} />
                                 <span style={{ verticalAlign: 'middle' }}>그만둔다</span>
                             </Typography>
                         </button>
@@ -152,6 +173,7 @@ function QuizComponent({ set1, set2, text, img='/images/quizImg1.jpg', isQuiz=fa
                     >
                         <button
                             type="button"
+                            className="Button"
                             onClick={() => {
                                 setIsQuizIng(false);
                                 setIsQuizStart(true);
@@ -163,12 +185,13 @@ function QuizComponent({ set1, set2, text, img='/images/quizImg1.jpg', isQuiz=fa
                             }}
                         >
                             <Typography variant='h5'>
-                                <ArrowRight style={{ fontSize: '40px', verticalAlign: 'middle' }} />
+                                <ArrowRight className="Arrow" style={{ fontSize: '40px', verticalAlign: 'middle' }} />
                                 <span style={{ verticalAlign: 'middle' }}>예</span>
                             </Typography>
                         </button>
                         <button
                             type="button"
+                            className="Button"
                             onClick={() => {
                                 setIsPass(false);
                             }}
@@ -178,7 +201,7 @@ function QuizComponent({ set1, set2, text, img='/images/quizImg1.jpg', isQuiz=fa
                             }}
                         >
                             <Typography variant='h5'>
-                                <ArrowRight style={{ fontSize: '40px', verticalAlign: 'middle' }} />
+                                <ArrowRight className="Arrow" style={{ fontSize: '40px', verticalAlign: 'middle' }} />
                                 <span style={{ verticalAlign: 'middle' }}>아니오</span>
                             </Typography>
                         </button>
@@ -222,6 +245,7 @@ function QuizComponent({ set1, set2, text, img='/images/quizImg1.jpg', isQuiz=fa
                     >
                         <button
                             type="button"
+                            className="Button"
                             onClick={() => {
                                 setIsQuizIng(false);
                                 setIsEntry(true);
@@ -233,12 +257,13 @@ function QuizComponent({ set1, set2, text, img='/images/quizImg1.jpg', isQuiz=fa
                             }}
                         >
                             <Typography variant='h5'>
-                                <ArrowRight style={{ fontSize: '40px', verticalAlign: 'middle' }} />
+                                <ArrowRight className="Arrow" style={{ fontSize: '40px', verticalAlign: 'middle' }} />
                                 <span style={{ verticalAlign: 'middle' }}>예</span>
                             </Typography>
                         </button>
                         <button
                             type="button"
+                            className="Button"
                             onClick={() => {
                                 setIsStop(false);
                             }}
@@ -248,7 +273,7 @@ function QuizComponent({ set1, set2, text, img='/images/quizImg1.jpg', isQuiz=fa
                             }}
                         >
                             <Typography variant='h5'>
-                                <ArrowRight style={{ fontSize: '40px', verticalAlign: 'middle' }} />
+                                <ArrowRight className="Arrow" style={{ fontSize: '40px', verticalAlign: 'middle' }} />
                                 <span style={{ verticalAlign: 'middle' }}>아니오</span>
                             </Typography>
                         </button>
@@ -291,13 +316,13 @@ function QuizComponent({ set1, set2, text, img='/images/quizImg1.jpg', isQuiz=fa
                     fontSize: '24px'
                 }}
             >
-                X 3
+                X {chance}
             </div>
             )}
             {isQuiz && (
                 <IconButton
                     onClick={() => {
-                        setIsOpen(true);
+                        setIsHelpOpen(true);
                     }}
                     sx={{
                         position: 'absolute',
@@ -308,18 +333,32 @@ function QuizComponent({ set1, set2, text, img='/images/quizImg1.jpg', isQuiz=fa
                     <HelpOutlineOutlined style={{ fontSize: '40px', color: 'black' }} />
                 </IconButton>
             )}
-            <Dialog open={isOpen} onClose={handleClose} style={{ zIndex: '10000' }}>
+            <Dialog open={isHelpOpen} onClose={handleHelpClose} style={{ zIndex: '10000' }}>
 				<DialogTitle>포켓몬 퀴즈 설명</DialogTitle>
 				<DialogContent>
 					포켓몬 퀴즈는 포켓몬의 실루엣 이미지를 보고 해당하는 포켓몬의 이름을 맞추는 게임입니다.<br/>
                     하루에 총 3번의 기회가 주어지며, 정답을 맞추면 500포인트가 지급됩니다.<br/>
                     게임을 시작하면 랜덤 포켓몬의 실루엣 이미지가 나타나고<br/>
                     정답을 맞추거나, 힌트를 받거나, 패스를 하거나, 그만둘 수 있습니다.<br/>
-                    힌트는 포켓몬 이름의 글자수로 제공되고, 패스를 선택하면 다른 포켓몬의 실루엣 이미지가 제공됩니다.<br/>
+                    왼쪽 위의 숫자는 현재 기회를 포함한 남은 기회를 나타내며,<br/>
+                    힌트는 포켓몬 이름의 글자수와 포켓몬의 속성으로 제공되고,<br/>
+                    패스를 선택하면 1번의 기회를 포기하고 다른 문제로 넘어갑니다.<br/>
                     게임을 도중에 그만두더라도 남은 기회가 있다면 언제든지 재도전하실 수 있습니다.
 				</DialogContent>
 				<DialogActions>
-					<Button variant='contained' color='inherit' onClick={handleClose}>
+					<Button variant='contained' color='inherit' onClick={handleHelpClose}>
+						닫기
+					</Button>
+				</DialogActions>
+			</Dialog>
+            <Dialog open={isHint} onClose={handleHintClose} style={{ zIndex: '10000' }}>
+				<DialogTitle>힌트</DialogTitle>
+				<DialogContent style={{ textAlign: 'center' }}>
+                    <img alt='오박사' src='/images/quizImg1.jpg' style={{ maxWidth: '400px' }} />
+                    <Typography variant="h5">이 포켓몬은 {pokemonNameNum}글자의 {pokemonType} 포켓몬이란다!</Typography>
+				</DialogContent>
+				<DialogActions>
+					<Button variant='contained' color='inherit' onClick={handleHintClose}>
 						닫기
 					</Button>
 				</DialogActions>

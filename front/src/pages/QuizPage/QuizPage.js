@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import QuizEntry from './components/QuizEntry';
 import QuizComponent from './components/QuizComponent';
 
+import * as Api from '../../api';
+
 function QuizPage() {
     const [isEntry, setIsEntry] = useState(true);
     const [isQuizEx1, setIsQuizEx1] = useState(false);
@@ -12,12 +14,30 @@ function QuizPage() {
     const [isQuizEx5, setIsQuizEx5] = useState(false);
     const [isQuizStart, setIsQuizStart] = useState(false);
     const [isQuizIng, setIsQuizIng] = useState(false);
+    const [chance, setChance] = useState(3);
+    const [pokemonName, setPokemonName] = useState();
+    const [pokemonId, setPokemonId] = useState();
+    const [isNoChance, setIsNoChance] = useState(false);
+    const [pokemonImg, setPokemonImg] = useState();
 
-    useEffect(() => {
-        if (isQuizStart) {
-            console.log('포켓몬 정보 받아옴');
+    const fetchUserInfo = async () => {
+		try {
+            const res = await Api.get('quiz');
+            setChance(res.data.reminingChance);
+            setPokemonName(res.data.quiz.name);
+            setPokemonId(res.data.quiz.id);
+            setPokemonImg(`https://d31z0g5vo6ghmg.cloudfront.net/pokemons/${res.data.quiz.id}.png`);
+        } catch (err) {
+            setIsQuizStart(false);
+            setIsNoChance(true);
         }
-    }, [isQuizStart]);
+	};
+
+	useEffect(() => {
+        if (isQuizStart) {
+		    fetchUserInfo();
+        }
+	}, [isQuizStart]);
 
 	return (
 		<div style={{ paddingTop: '170px' }}>
@@ -40,10 +60,13 @@ function QuizPage() {
                 <QuizComponent set1={setIsQuizEx5} set2={setIsQuizStart} text='자, 그럼 시작한다!' />
             )}
             {isQuizStart && (
-                <QuizComponent set1={setIsQuizStart} set2={setIsQuizIng} text='야생의 포켓몬이 나타났다!' isQuiz />
+                <QuizComponent chance={chance} img='https://d31z0g5vo6ghmg.cloudfront.net/pokemons/pokeball.png' set1={setIsQuizStart} set2={setIsQuizIng} text='야생의 포켓몬이 나타났다!' isQuiz />
             )}
             {isQuizIng && (
-                <QuizComponent isQuiz isQuizIng setIsQuizIng={setIsQuizIng} setIsEntry={setIsEntry} setIsQuizStart={setIsQuizStart} />
+                <QuizComponent pokemonId={pokemonId} pokemonName={pokemonName} img={pokemonImg} chance={chance} isQuiz isQuizIng setIsQuizIng={setIsQuizIng} setIsEntry={setIsEntry} setIsQuizStart={setIsQuizStart} />
+            )}
+            {isNoChance && (
+                <QuizComponent set1={setIsNoChance} set2={setIsEntry} text={['기회를 모두 다 썼구나!', <br/>, '퀴즈는 하루에 3번만 도전 가능한단다.']} />
             )}
 		</div>
 	);
