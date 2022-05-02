@@ -1,4 +1,4 @@
-import { UserModel } from "../schemas/user";
+import { UserModel } from '../schemas/user';
 
 class User {
   static async create({ newUser }) {
@@ -60,35 +60,35 @@ class User {
   }
 
   static async findPointById({ userId }) {
-    const {point} = await UserModel.findOne({ id:userId }, {point:1});
+    const { point } = await UserModel.findOne({ id: userId }, { point: 1 });
     return point;
   }
 
-  static async updateStickers({userId, id, name}){  
+  static async updateStickers({ userId, id, name }) {
     const userStickers = await UserModel.findOne(
-      { id: userId, 'stickers.id':id},
-      {_id:0, 'stickers.$':1}
-      );
-    if(userStickers){
-        return await UserModel.findOneAndUpdate(
-        {id : userId,'stickers.id':id},
-        { $set: {'stickers.$.count': userStickers.stickers[0].count+1}},
-        {new: true}
-      );
-    }else{
+      { id: userId, 'stickers.id': id },
+      { _id: 0, 'stickers.$': 1 }
+    );
+    if (userStickers) {
       return await UserModel.findOneAndUpdate(
-        {id : userId},
-        { $push: {stickers:{id, name, count:1}}},
-        {new: true}
+        { id: userId, 'stickers.id': id },
+        { $set: { 'stickers.$.count': userStickers.stickers[0].count + 1 } },
+        { new: true }
+      );
+    } else {
+      return await UserModel.findOneAndUpdate(
+        { id: userId },
+        { $push: { stickers: { id, name, count: 1 } } },
+        { new: true }
       );
     }
   }
 
-  static async updatePoint({userId, changedPoint}){
-    const {point} = await UserModel.findOneAndUpdate(
-      { id:userId },
+  static async updatePoint({ userId, changedPoint }) {
+    const { point } = await UserModel.findOneAndUpdate(
+      { id: userId },
       { $set: { point: changedPoint } },
-      {new: true}
+      { new: true }
     );
     return point;
   }
