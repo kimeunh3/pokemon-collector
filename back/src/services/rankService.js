@@ -25,6 +25,26 @@ class rankService {
 
     return updatedPoint
   }
+
+  static async getRankPointRanking({ count }) {
+    const rankingList = await User.findRankPointRanking({ count })
+    if (!rankingList) {
+      const errorMessage =
+        '랭크 포인트 랭킹을 불러오는데 실패했습니다.';
+      return { errorMessage };
+    }
+    return rankingList;
+  }
+
+  static async getstickersRanking({ count }) {
+    const rankingList = await User.findStickersRanking({ count })
+    if (!rankingList) {
+      const errorMessage =
+        '스티커 수 랭킹을 불러오는데 실패했습니다.';
+      return { errorMessage };
+    }
+    return rankingList
+  }
 }
 
 export { rankService };

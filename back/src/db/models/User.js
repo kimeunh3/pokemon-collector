@@ -54,6 +54,27 @@ class User {
     return quiz.quizChance;
   }
 
+  static async findRankPointRanking({ count }) {
+    const rankingList = await UserModel.find({}, { achievements: 0, stickers: 0 }).sort({ rankPoint: -1 }).limit(count)
+    return rankingList
+  }
+
+  static async findStickersRanking({ count }) {
+    const rankingList = await UserModel.aggregate([{
+      $project: {
+        id: 1, email: 1, nickname: 1,
+        sex: 1, age: 1, interest: 1,
+        likeType: 1, point: 1, profileImg: 1,
+        rankPoint: 1, stickersCount: { $size: '$stickers' }
+      }
+    }, {
+      $sort: { stickersCount: -1 }
+    }, {
+      $limit: count
+    }])
+    return rankingList
+  }
+
   static async update({ userId, fieldToUpdate, newValue }) {
     const filter = { id: userId };
     const update = { [fieldToUpdate]: newValue };
