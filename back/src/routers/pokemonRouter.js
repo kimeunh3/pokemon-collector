@@ -1,13 +1,7 @@
-<<<<<<< HEAD
 import { Router } from 'express';
 import { loginRequired } from '../middlewares/loginRequired';
 import { PokemonAuthService } from '../services/pokemonService';
-=======
-import { Router } from "express";
-import { login_required } from "../middlewares/login_required";
-import { PokemonAuthService } from "../services/pokemonService";
-import { achievementsService } from "../services/achievementsService";
->>>>>>> 2250d7dea7d409b7bfe84e57b79ebe2f94cccf2c
+import { achievementsService } from '../services/achievementsService';
 
 const pokemonAuthRouter = Router();
 pokemonAuthRouter.use(loginRequired);
@@ -89,7 +83,10 @@ pokemonAuthRouter.get('/drawPokemon', async (req, res, next) => {
       throw new Error(pokemonIdAndName.errorMessage);
     }
     // 업적 업데이트
-    await achievementsService.updateAchievements({userId, id:pokemonIdAndName.id})
+    await achievementsService.updateAchievements({
+      userId,
+      id: pokemonIdAndName.id,
+    });
 
     res.status(200).json(pokemonIdAndName);
   } catch (error) {
