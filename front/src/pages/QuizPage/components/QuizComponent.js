@@ -18,7 +18,7 @@ import './QuizComponent.css';
 
 import * as Api from '../../../api';
 
-function QuizComponent({ pokemonId, pokemonName, chance, set1, set2, text, img='/images/quizImg1.jpg', isQuiz=false, isQuizIng=false, setIsQuizIng, setIsEntry, setIsQuizStart, setIsCorrect, setIsInCorrect, isContinue, setIsContinue }) {
+function QuizComponent({ pokemonId, pokemonName, chance, set1, set2, text, img='/images/quizImg1.jpg', isQuiz=false, isQuizIng=false, setIsQuizIng, setIsEntry, setIsQuizStart, setIsCorrect, setIsInCorrect, isContinue, setIsContinue, isMobile }) {
     const [isHelpOpen, setIsHelpOpen] = useState(false);
     const [isAnswer, setIsAnswer] = useState(false);
     const [isHint, setIsHint] = useState(false);
@@ -102,7 +102,7 @@ function QuizComponent({ pokemonId, pokemonName, chance, set1, set2, text, img='
                     {text}
                 </CardContent>
             )}
-            {isQuizIng && !isAnswer && !isPass && !isStop && !isContinue && (
+            {isQuizIng && !isAnswer && !isPass && !isStop && (
                 <CardContent
                     sx={{
                         border: '8px solid black',
@@ -386,7 +386,7 @@ function QuizComponent({ pokemonId, pokemonName, chance, set1, set2, text, img='
                     </div>
                 </CardContent>
             )}
-            {!isQuizIng && !isContinue && (
+            {!isQuizIng && !isContinue && !isMobile && (
                 <IconButton
                     onClick={() => {
                         set1(false);
