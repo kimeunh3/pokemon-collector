@@ -16,22 +16,35 @@ class achievementsService {
     return data;
   }
 
-  static async getUserStickerList({userId}) {
-    const stickerList = await User.findStickerListById({userId});
-
-    // db에서 찾지 못한 경우, 에러 메시지 반환
-    if (!stickerList) {
+  static async getUserAchievements({userId}){
+    const userAchievementsList = await User.findAchievementsListById({userId});
+    if (!userAchievementsList) {
       const errorMessage =
-        "해당 번호를 가진 포켓몬이 없습니다. 다시 한 번 확인해 주세요.";
+        "유저의 업적 정보를 가져오지 못했습니다.";
       return { errorMessage };
     }
-
-    return stickerList;
+    const achievementsList = await Achievements.findAll();
+    if (!achievementsList) {
+      const errorMessage =
+        "전체 업적 정보를 가져오지 못했습니다.";
+      return { errorMessage };
+    }
+    let DetailedUserAchievList = []
+    for(let i=0; i < achievementsList.length; i++ ){
+      DetailedUserAchievList.push({
+        id: achievementsList[i].id,
+        type: achievementsList[i].type,
+        name: achievementsList[i].name,
+        description: achievementsList[i].description,
+        status: userAchievementsList[i].status
+      })
+    }
+    return DetailedUserAchievList
   }
 
   static async updateAchievements({userId, id}){
     const userStickerIds = await User.findStickerListById({userId});
-    const notSuccAchievementsList = await User.findAchievementsListById({userId});
+    const notSuccAchievementsList = await User.findAchievementsIdListById({userId});
     const achievementsList = await Achievements.findAchievementsByType({type: "collected"})
 
     //모든 업적 목록 순회
