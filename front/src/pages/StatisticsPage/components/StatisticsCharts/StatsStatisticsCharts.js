@@ -115,21 +115,41 @@ export const optionBarPokemonLow15 = {
 
 export function BarTypeStats({ y, colors, stats }) {
   const dataBarTypeStats = {
-    labels: ['노말', '불꽃', '물', '풀', '전기', '얼음', '격투', '독', '땅', '비행', '에스퍼', '벌레', '바위', '고스트', '드래곤', '강철', '페어리'],
+    labels: [
+      '노말',
+      '불꽃',
+      '물',
+      '풀',
+      '전기',
+      '얼음',
+      '격투',
+      '독',
+      '땅',
+      '비행',
+      '에스퍼',
+      '벌레',
+      '바위',
+      '고스트',
+      '드래곤',
+      '강철',
+      '페어리',
+    ],
     datasets: [
-        {
-          label: stats,
-          data: y,
-          backgroundColor: colors,
-        },
+      {
+        label: stats,
+        data: y,
+        backgroundColor: colors,
+      },
     ],
   };
 
   return (
-    <div style={{
+    <div
+      style={{
         backgroundColor: 'rgba(255, 255, 255, 0.5)',
         borderRadius: '10px',
-    }}>
+      }}
+    >
       <Bar options={optionBarTypeStats} data={dataBarTypeStats} />
     </div>
   );
@@ -139,19 +159,21 @@ export function BarTypeTop5({ x, y, colors, stats }) {
   const dataBarTypeTop5 = {
     labels: x,
     datasets: [
-        {
-          label: stats,
-          data: y,
-          backgroundColor: colors,
-        },
+      {
+        label: stats,
+        data: y,
+        backgroundColor: colors,
+      },
     ],
   };
 
   return (
-    <div style={{
+    <div
+      style={{
         backgroundColor: 'rgba(255, 255, 255, 0.5)',
         borderRadius: '10px',
-    }}>
+      }}
+    >
       <Bar options={optionBarTypeTop5} data={dataBarTypeTop5} />
     </div>
   );
@@ -161,19 +183,21 @@ export function BarTypeLow5({ x, y, colors, stats }) {
   const dataBarTypeLow5 = {
     labels: x,
     datasets: [
-        {
-          label: stats,
-          data: y,
-          backgroundColor: colors,
-        },
+      {
+        label: stats,
+        data: y,
+        backgroundColor: colors,
+      },
     ],
   };
 
   return (
-    <div style={{
+    <div
+      style={{
         backgroundColor: 'rgba(255, 255, 255, 0.5)',
         borderRadius: '10px',
-    }}>
+      }}
+    >
       <Bar options={optionBarTypeLow5} data={dataBarTypeLow5} />
     </div>
   );
@@ -183,19 +207,21 @@ export function BarPokemonTop15({ x, y, colors, stats }) {
   const dataBarPokemonTop15 = {
     labels: x,
     datasets: [
-        {
-          label: stats,
-          data: y,
-          backgroundColor: colors,
-        },
+      {
+        label: stats,
+        data: y,
+        backgroundColor: colors,
+      },
     ],
   };
 
   return (
-    <div style={{
+    <div
+      style={{
         backgroundColor: 'rgba(255, 255, 255, 0.5)',
         borderRadius: '10px',
-    }}>
+      }}
+    >
       <Bar options={optionBarPokemonTop15} data={dataBarPokemonTop15} />
     </div>
   );
@@ -205,19 +231,21 @@ export function BarPokemonLow15({ x, y, colors, stats }) {
   const dataBarPokemonLow15 = {
     labels: x,
     datasets: [
-        {
-          label: stats,
-          data: y,
-          backgroundColor: colors,
-        },
+      {
+        label: stats,
+        data: y,
+        backgroundColor: colors,
+      },
     ],
   };
 
   return (
-    <div style={{
+    <div
+      style={{
         backgroundColor: 'rgba(255, 255, 255, 0.5)',
         borderRadius: '10px',
-    }}>
+      }}
+    >
       <Bar options={optionBarPokemonLow15} data={dataBarPokemonLow15} />
     </div>
   );
