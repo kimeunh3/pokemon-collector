@@ -14,18 +14,18 @@
  *             type: Object
  */
 
-import is from "@sindresorhus/is";
-import { Router } from "express";
-import { loginRequired } from "../middlewares/loginRequired";
-import { userAuthService } from "../services/userService";
-import { User } from "../db";
+import is from '@sindresorhus/is';
+import { Router } from 'express';
+import { loginRequired } from '../middlewares/loginRequired';
+import { userAuthService } from '../services/userService';
+import { User } from '../db';
 const userAuthRouter = Router();
 
-userAuthRouter.post("/user/register", async function (req, res, next) {
+userAuthRouter.post('/user/register', async function (req, res, next) {
   try {
     if (is.emptyObject(req.body)) {
       throw new Error(
-        "headers의 Content-Type을 application/json으로 설정해주세요"
+        'headers의 Content-Type을 application/json으로 설정해주세요'
       );
     }
 
@@ -58,7 +58,7 @@ userAuthRouter.post("/user/register", async function (req, res, next) {
     if (newUser.errorMessage) {
       // throw new Error(newUser.errorMessage);
       return res.status(400).json({
-        status: "error",
+        status: 'error',
         error: newUser.errorMessage,
       });
     }
@@ -69,7 +69,7 @@ userAuthRouter.post("/user/register", async function (req, res, next) {
   }
 });
 
-userAuthRouter.post("/user/login", async function (req, res, next) {
+userAuthRouter.post('/user/login', async function (req, res, next) {
   try {
     const email = req.body.email;
     const password = req.body.password;
@@ -77,7 +77,7 @@ userAuthRouter.post("/user/login", async function (req, res, next) {
 
     if (user.errorMessage) {
       return res.status(400).json({
-        status: "error",
+        status: 'error',
         error: user.errorMessage,
       });
     }
@@ -89,7 +89,7 @@ userAuthRouter.post("/user/login", async function (req, res, next) {
 });
 
 userAuthRouter.get(
-  "/user/current",
+  '/user/current',
   loginRequired,
   async function (req, res, next) {
     try {
@@ -111,7 +111,7 @@ userAuthRouter.get(
 );
 
 userAuthRouter.put(
-  "/user/attendanceCheck",
+  '/user/attendanceCheck',
   loginRequired,
   async function (req, res, next) {
     try {
@@ -139,7 +139,7 @@ userAuthRouter.put(
 );
 
 userAuthRouter.put(
-  "/user/checkIn",
+  '/user/checkIn',
   loginRequired,
   async function (req, res, next) {
     try {
@@ -162,7 +162,7 @@ userAuthRouter.put(
 );
 
 userAuthRouter.put(
-  "/user/profileModify",
+  '/user/profileModify',
   loginRequired,
   async function (req, res, next) {
     try {

@@ -16,7 +16,7 @@
  *          properties:
  *             nickname:
  *               type: string
- *         
+ *
  */
 
 import { Schema, model } from 'mongoose';
@@ -43,45 +43,45 @@ const UserSchema = new Schema(
       type: String,
       required: true,
     },
-    birth:{
+    birth: {
       type: Date,
       required: true,
     },
-    interest:{
+    interest: {
       type: Number,
       required: true,
     },
-    likeType:{
+    likeType: {
       type: String,
       required: true,
     },
-    point:{
+    point: {
       type: Number,
       default: 1000,
       required: false,
     },
     profileImg: {
       type: String,
-      default: "pocketball.png",
+      default: 'pocketball.png',
       required: false,
     },
     stickers: [
       {
         id: String,
         name: String,
-        count: Number 
-      }
+        count: Number,
+      },
     ],
     attendance: {
       type: Date,
-      required : false,
+      required: false,
       default: Date.now(),
     },
     isPointGiven: {
-        type: Boolean,
-        required : false,
-        default: true,
-    }
+      type: Boolean,
+      required: false,
+      default: true,
+    },
   },
   {
     timestamps: true,
