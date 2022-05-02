@@ -1,6 +1,7 @@
 import { Router } from 'express';
-import { loginRequired } from '../middlewares/loginRequired';
+import { login_required } from '../middlewares/login_required';
 import { PokemonAuthService } from '../services/pokemonService';
+import { achievementsService } from '../services/achievementsService';
 
 const pokemonAuthRouter = Router();
 pokemonAuthRouter.use(loginRequired);
