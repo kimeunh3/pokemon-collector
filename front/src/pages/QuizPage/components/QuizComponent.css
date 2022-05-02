@@ -1,7 +1,7 @@
 .Arrow {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 .Button:hover .Arrow {
-    visibility: visible;
+  visibility: visible;
 }
