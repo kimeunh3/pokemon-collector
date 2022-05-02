@@ -94,7 +94,8 @@ function pokemonCard({
 										md={4}
 										sx={{ border: '1px solid black', borderRadius: '5px' }}
 									>
-										키 <br /> {height} m
+										키 <br />
+										{height} m
 									</Grid>
 									<Grid
 										item
@@ -106,7 +107,8 @@ function pokemonCard({
 										}}
 									>
 										몸무게
-										<br /> {weight} kg
+										<br />
+										{weight} kg
 									</Grid>
 									<Grid
 										item
@@ -114,8 +116,9 @@ function pokemonCard({
 										md={4}
 										sx={{ border: '1px solid black', borderRadius: '5px' }}
 									>
-										총 능력치
-										<br /> {totalPoints}
+										종합점수
+										<br />
+										{totalPoints}
 									</Grid>
 									<Grid
 										item
@@ -133,7 +136,8 @@ function pokemonCard({
 										sx={{ border: '1px solid black', borderRadius: '5px' }}
 									>
 										공격력
-										<br /> {attack}
+										<br />
+										{attack}
 									</Grid>
 									<Grid
 										item

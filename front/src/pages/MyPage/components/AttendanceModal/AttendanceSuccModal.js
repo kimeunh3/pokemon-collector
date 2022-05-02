@@ -35,7 +35,6 @@ function AttendanceSuccModal({
 	return (
 		<Modal
 			open={!attdSuccModalOpen}
-			e
 			aria-labelledby='modal-modal-title'
 			aria-describedby='modal-modal-description'
 		>
