@@ -42,6 +42,7 @@ function QuizComponent({
   isMobile,
   isRetry,
   setIsRetry,
+  setIsFirstCorrect,
   setIsFirstInCorrect,
 }) {
   const [isHelpOpen, setIsHelpOpen] = useState(false);
@@ -73,11 +74,13 @@ function QuizComponent({
     // 처음에 정답 맞춤 -> 1000포인트
     if (pokemonName === useAnswer && isRetry === false) {
       Api.get('succeedQuiz');
+      // Api.get('succeedQuiz/first');
       setIsQuizIng(false);
-      setIsCorrect(true);
+      setIsFirstCorrect(true);
       // 재도전에 정답 맞춤 -> 500포인트
     } else if (pokemonName === useAnswer) {
       Api.get('succeedQuiz');
+      // Api.get('succeedQuiz/second');
       setIsRetry(false);
       setIsCorrect(true);
       // 처음에 틀림 -> 재도전
@@ -241,7 +244,13 @@ function QuizComponent({
           포켓몬 퀴즈는 포켓몬의 실루엣 이미지를 보고 해당하는 포켓몬의 이름을
           맞추는 게임입니다.
           <br />
-          하루에 총 3번의 기회가 주어지며, 정답을 맞추면 500포인트가 지급됩니다.
+          하루에 총 3번의 기회가 주어지며, 정답을 맞추면 1000포인트가
+          지급됩니다.
+          <br />
+          틀리면 재도전의 기회가 주어지고, 재도전에서는 실루엣 이미지가 아닌
+          원본 이미지를 보여줍니다.
+          <br />
+          재도전에서 정답을 맞출 경우 500포인트가 지급됩니다.
           <br />
           게임을 시작하면 랜덤 포켓몬의 실루엣 이미지가 나타나고
           <br />

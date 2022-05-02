@@ -13,9 +13,11 @@ function QuizPage() {
   const [isQuizEx3, setIsQuizEx3] = useState(false);
   const [isQuizEx4, setIsQuizEx4] = useState(false);
   const [isQuizEx5, setIsQuizEx5] = useState(false);
+  const [isQuizEx6, setIsQuizEx6] = useState(false);
   const [isQuizStart, setIsQuizStart] = useState(false);
   const [isQuizIng, setIsQuizIng] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
+  const [isFirstCorrect, setIsFirstCorrect] = useState(false);
   const [isFirstInCorrect, setIsFirstInCorrect] = useState(false);
   const [isRetry, setIsRetry] = useState(false);
   const [isInCorrect, setIsInCorrect] = useState(false);
@@ -49,6 +51,14 @@ function QuizPage() {
     }
   }, [isQuizStart]);
 
+  useEffect(() => {
+    if (isRetry) {
+      setPokemonImg(
+        `https://d31z0g5vo6ghmg.cloudfront.net/pokemons/pokeball.png`
+      );
+    }
+  }, [isRetry]);
+
   return (
     <div style={{ paddingTop: '170px' }}>
       {!isMobile && isEntry && (
@@ -80,19 +90,30 @@ function QuizPage() {
         <QuizComponent
           set1={setIsQuizEx3}
           set2={setIsQuizEx4}
-          text={['정답을 맞추면 500포인트를 받을 수 있지.']}
+          text='정답을 맞추면 1000포인트를 받을 수 있지.'
         />
       )}
       {!isMobile && isQuizEx4 && (
         <QuizComponent
           set1={setIsQuizEx4}
           set2={setIsQuizEx5}
-          text={['기회는 3번!', <br />, '어려우면 힌트를 받거나 패스를 하렴.']}
+          text={[
+            '틀리면 더 쉽게 문제를 내줄테니 걱정말거라.',
+            <br />,
+            '대신 맞춰도 500포인트를 얻는단다!',
+          ]}
         />
       )}
       {!isMobile && isQuizEx5 && (
         <QuizComponent
           set1={setIsQuizEx5}
+          set2={setIsQuizEx6}
+          text={['기회는 3번!', <br />, '어려우면 힌트를 받거나 패스를 하렴.']}
+        />
+      )}
+      {!isMobile && isQuizEx6 && (
+        <QuizComponent
+          set1={setIsQuizEx6}
           set2={setIsQuizStart}
           text='자, 그럼 시작한다!'
         />
@@ -122,6 +143,7 @@ function QuizPage() {
           setIsInCorrect={setIsInCorrect}
           isRetry={isRetry}
           setIsRetry={setIsRetry}
+          setIsFirstCorrect={setIsFirstCorrect}
           setIsFirstInCorrect={setIsFirstInCorrect}
         />
       )}
@@ -133,6 +155,18 @@ function QuizPage() {
             '기회를 모두 다 썼구나!',
             <br />,
             '퀴즈는 하루에 3번만 도전 가능한단다.',
+          ]}
+        />
+      )}
+      {!isMobile && isFirstCorrect && (
+        <QuizComponent
+          img={pokemonImg}
+          set1={setIsFirstCorrect}
+          set2={setIsContinue}
+          text={[
+            '정답! 1000포인트 획득!',
+            <br />,
+            `이 포켓몬은 ${pokemonName}!`,
           ]}
         />
       )}
