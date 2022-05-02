@@ -28,7 +28,7 @@ function UserCard({ userState, fetchUserInfo }) {
 	const profileImg = `https://d31z0g5vo6ghmg.cloudfront.net/pokemons/pokeball.png`;
 
 	const fetchIsPointGiven = async () => {
-		const res = await Api.put('user/attendanceCheck');
+		const res = await Api.put('user/attendanceCheck'); // false면 성공 true면 실패
 		setAttdFailModalOpen(res.data.isPointGiven);
 		setAttdSuccModalOpen(res.data.isPointGiven);
 	};
