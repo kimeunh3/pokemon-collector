@@ -24,7 +24,7 @@ function PokemonRadar({ radarDataOne }) {
 
 	const data = {
 		labels: [
-			'총 능력치',
+			'종합점수',
 			'키(m)',
 			'몸무게(kg)',
 			'HP',
