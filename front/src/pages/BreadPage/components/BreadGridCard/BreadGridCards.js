@@ -16,7 +16,7 @@ function GridCards({ bread, breadImg, setPoint }) {
 		const response = await Api.get('drawPokemon');
 
 		alert(`${response.data.name}`);
-		await setPoint(response.userPoint);
+		setPoint(response.userPoint);
 		navigate(`/pokemonDetail/${response.data.id}`);
 	};
 
