@@ -120,9 +120,9 @@ userAuthRouter.put(
       const attendance = new Date();
       const savedAttendance = currentUserInfo.attendance;
       var timeDiff = attendance - savedAttendance;
-      let isPointGiven = !currentUserInfo.isPointGiven;
       if (timeDiff >= 24 * 60 * 60 * 1000) {
         // isPointGiven === false -> 포인트 지급  isPointGiven === true -> 포인트 지급 X
+        const isPointGiven = currentUserInfo.isPointGiven;
         const toUpdate = { attendance, isPointGiven };
         currentUserInfo = await userAuthService.setUser({ userId, toUpdate });
         if (currentUserInfo.errorMessage) {
@@ -131,6 +131,7 @@ userAuthRouter.put(
       }
 
       res.status(200).json({ isPointGiven: currentUserInfo.isPointGiven });
+      console.log(currentUserInfo);
     } catch (error) {
       next(error);
     }
@@ -147,13 +148,14 @@ userAuthRouter.put(
 
       const point = currentUserInfo.point + 1000;
       const attendance = new Date();
-      const isPointGiven = !currentUserInfo.isPointGiven;
+      const isPointGiven = currentUserInfo.isPointGiven;
       const toUpdate = { point, attendance, isPointGiven };
       currentUserInfo = await userAuthService.setUser({ userId, toUpdate });
       if (currentUserInfo.errorMessage) {
         throw new Error(currentUserInfo.errorMessage);
       }
       res.status(200).json({ point: currentUserInfo.point });
+      console.log(currentUserInfo);
     } catch (error) {
       next(error);
     }
