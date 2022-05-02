@@ -96,6 +96,7 @@ function QuizComponent({
 
   const onClickYesPass = () => {
     setIsQuizIng(false);
+    setIsRetry(false);
     setIsQuizStart(true);
     setIsPass(false);
   };
@@ -105,6 +106,7 @@ function QuizComponent({
 
   const onClickYesStop = () => {
     setIsQuizIng(false);
+    setIsRetry(false);
     setIsEntry(true);
     setIsStop(false);
   };
@@ -142,14 +144,26 @@ function QuizComponent({
         component='img'
         image={img}
         alt='퀴즈이미지'
-        sx={{
-          width: '35%',
-          maxWidth: '450px',
-          minWidth: '200px',
-          marginLeft: '50%',
-          marginTop: '10px',
-          transform: 'translateX(-50%)',
-        }}
+        sx={
+          isQuizIng && !isRetry
+            ? {
+                width: '35%',
+                maxWidth: '450px',
+                minWidth: '200px',
+                marginLeft: '50%',
+                marginTop: '10px',
+                transform: 'translateX(-50%)',
+                filter: 'brightness(0%)',
+              }
+            : {
+                width: '35%',
+                maxWidth: '450px',
+                minWidth: '200px',
+                marginLeft: '50%',
+                marginTop: '10px',
+                transform: 'translateX(-50%)',
+              }
+        }
       />
       {!isQuizIng && <QuizText text={text} />}
       {isQuizIng && !isAnswer && !isPass && !isStop && (

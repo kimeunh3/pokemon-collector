@@ -51,14 +51,6 @@ function QuizPage() {
     }
   }, [isQuizStart]);
 
-  useEffect(() => {
-    if (isRetry) {
-      setPokemonImg(
-        `https://d31z0g5vo6ghmg.cloudfront.net/pokemons/pokeball.png`
-      );
-    }
-  }, [isRetry]);
-
   return (
     <div style={{ paddingTop: '170px' }}>
       {!isMobile && isEntry && (
