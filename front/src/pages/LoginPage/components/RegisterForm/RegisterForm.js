@@ -117,15 +117,14 @@ function RegisterPage({ setLogin }) {
 					marginBottom: '2%',
 				}}
 			/>
-			{!isEmailValid && (
-				<Typography
-					variant='caption'
-					className='text-success'
-					sx={{ width: '70%', margin: 'auto', marginBottom: '1%' }}
-				>
-					이메일 형식이 올바르지 않습니다.
-				</Typography>
-			)}
+			<Typography
+				variant='caption'
+				className='text-success'
+				sx={{ width: '70%', margin: 'auto', marginBottom: '1%' }}
+				visibility={isEmailValid && 'hidden'}
+			>
+				이메일 형식이 올바르지 않습니다.
+			</Typography>
 			<TextField
 				required
 				name='password'
@@ -137,19 +136,13 @@ function RegisterPage({ setLogin }) {
 				onChange={onChange}
 				sx={{ width: '70%', margin: 'auto', marginBottom: '2%' }}
 			/>
-			{!isPasswordValid && (
-				<Typography
-					variant='caption'
-					className='text-success'
-					sx={{
-						width: '70%',
-						margin: 'auto',
-						marginBottom: '1%',
-					}}
-				>
-					비밀번호는 4글자 이상입니다.
-				</Typography>
-			)}
+			<Typography
+				className='text-success'
+				sx={{ width: '70%', margin: 'auto', marginBottom: '1%' }}
+				visibility={isPasswordValid && 'hidden'}
+			>
+				비밀번호는 4글자 이상입니다.
+			</Typography>
 			<TextField
 				required
 				size='small'
