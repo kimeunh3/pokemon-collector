@@ -1,6 +1,5 @@
 import { Achievements } from "../db";
 import { User } from "../db";
-import { draw } from "../util/draw";
 
 class achievementsService {
   static async getAchievements() {
