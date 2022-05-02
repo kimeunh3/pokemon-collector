@@ -12,8 +12,8 @@ function MyPage() {
 
 	const fetchUserInfo = async () => {
 		const res = await Api.get('user/current');
-		await setUserState(res.data);
-		await setUserPokemonList(res.data.stickers);
+		setUserState(res.data);
+		setUserPokemonList(res.data.stickers);
 	};
 
 	useEffect(() => {
@@ -42,7 +42,7 @@ function MyPage() {
 				</Grid>
 				{userPokemonList &&
 					userPokemonList.map((pokemon) => (
-						<Grid item xs={2} md={2}>
+						<Grid item xs={2} md={2} key={pokemon.id}>
 							<MyStickerList
 								id={pokemon.id}
 								name={pokemon.name}
