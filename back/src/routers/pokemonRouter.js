@@ -86,8 +86,10 @@ pokemonAuthRouter.get("/drawPokemon", async (req, res, next) => {
       const succeeded = await achievementsService.updateAchievements({ userId, pokemonId: drawResult.id })
       // 랭킹 포인트 업데이트
       const rankingPoint = await rankService.updateRankingPoint({
-        userId, pokemonId: drawResult.id,
+        userId,
+        pokemonId: drawResult.id,
         pokemonStatus: drawResult.pokemonStatus,
+        pokemonTotalPoint: drawResult.pokemonTotalPoint,
         succeeded
       })
       drawResult.RankingPoint = rankingPoint

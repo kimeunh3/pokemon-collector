@@ -69,8 +69,17 @@ class PokemonAuthService {
     const changedPoint = point - 1000;
     const appliedPoint = await User.updatePoint({ userId, changedPoint });
 
+    const drawResult = {
+      id,
+      name: pokemon.name,
+      pokemonStatus: pokemon.status,
+      pokemonTotalPoint: pokemon.totalPoints,
+      status: true,
+      userPoint: appliedPoint
+    };
 
-    return { id, name: pokemon.name, pokemonStatus: pokemon.status, status: true, userPoint: appliedPoint };
+    return drawResult
+
   }
 }
 
