@@ -17,11 +17,20 @@ import {
 	Adb,
 	Hardware,
 	Reddit,
+	Edit,
+	GppBad,
+	Favorite,
+	AutoAwesome,
+	GppMaybe,
+	Forward,
+	FileUpload,
+	Download,
+	Mediation,
 } from '@mui/icons-material';
 
 const IconObj = {
 	노말: {
-		Icon: <Adjust sx={{ color: '#A8A878' }} />,
+		Icon: <Adjust sx={{ color: '#6D6D4E' }} />,
 		Color: '#A8A878',
 	},
 	불꽃: {
@@ -87,6 +96,33 @@ const IconObj = {
 	페어리: {
 		Icon: <Reddit sx={{ color: '#EE99AC' }} />,
 		Color: { color: '#EE99AC' },
+	},
+	공격력: {
+		Icon: <Edit sx={{ color: 'rgba(240, 128, 48, 1)' }} />,
+	},
+	방어력: {
+		Icon: <GppBad sx={{ color: 'rgba(248, 208, 48, 1)' }} />,
+	},
+	Hp: {
+		Icon: <Favorite sx={{ color: 'rgba(255, 0, 0, 1)' }} />,
+	},
+	특수공격력: {
+		Icon: <AutoAwesome sx={{ color: 'rgba(104, 144, 240, 1)' }} />,
+	},
+	특수방어력: {
+		Icon: <GppMaybe sx={{ color: 'rgba(120, 200, 80, 1)' }} />,
+	},
+	스피드: {
+		Icon: <Forward sx={{ color: 'rgba(193, 131, 193, 1)' }} />,
+	},
+	키: {
+		Icon: <FileUpload sx={{ color: 'rgba(161, 57, 89, 1)' }} />,
+	},
+	몸무게: {
+		Icon: <Download sx={{ color: 'rgba(68, 94, 156, 1)' }} />,
+	},
+	종합점수: {
+		Icon: <Mediation sx={{ color: 'rgba(128, 128, 128, 1)' }} />,
 	},
 };
 

@@ -29,7 +29,11 @@ class PokemonAuthService {
     return pokemonName;
   }
 
+<<<<<<< HEAD
   static getPokemons() {
+=======
+  static async getAllPokemons(){
+>>>>>>> 2250d7dea7d409b7bfe84e57b79ebe2f94cccf2c
     return Pokemon.findAll();
   }
 
@@ -63,6 +67,7 @@ class PokemonAuthService {
         'stikers update에 실패했습니다. 다시 한 번 확인해 주세요.';
       return { errorMessage };
     }
+    
     // 포인트 삭감
     const changedPoint = point - 1000;
     const appliedPoint = await User.updatePoint({ userId, changedPoint });

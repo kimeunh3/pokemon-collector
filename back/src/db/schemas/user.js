@@ -67,7 +67,7 @@ const UserSchema = new Schema(
     },
     stickers: [
       {
-        id: String,
+        id: Number,
         name: String,
         count: Number,
       },
@@ -78,10 +78,103 @@ const UserSchema = new Schema(
       default: Date.now(),
     },
     isPointGiven: {
+<<<<<<< HEAD
       type: Boolean,
       required: false,
       default: true,
     },
+=======
+        type: Boolean,
+        required : false,
+        default: true,
+    },
+    quizChance:{
+      type: Number,
+      required : true,
+      default: 3,
+    },
+    achievements:{
+      type:Array,
+      default:[
+        {
+          id: 1,
+          status:0
+        },
+        {
+          id: 2,
+          status:0
+        },
+        {
+          id: 3,
+          status:0
+        },
+        {
+          id: 4,
+          status:0
+        },
+        {
+          id: 5,
+          status:0
+        },
+        {
+          id: 6,
+          status:0
+        },
+        {
+          id: 7,
+          status:0
+        },
+        {
+          id: 8,
+          status:0
+        },
+        {
+          id: 9,
+          status:0
+        },
+        {
+          id: 10,
+          status:0
+        },
+        {
+          id: 11,
+          status:0
+        },
+        {
+          id: 12,
+          status:0
+        },
+        {
+          id: 13,
+          status:0
+        },
+        {
+          id: 14,
+          status:0
+        },
+        {
+          id: 15,
+          status:0
+        },
+        {
+          id: 16,
+          status:0
+        },
+        {
+          id: 17,
+          status:0
+        },
+        {
+          id: 18,
+          status:0
+        },
+        {
+          id: 19,
+          status:0
+        }
+      ]
+    }
+>>>>>>> 2250d7dea7d409b7bfe84e57b79ebe2f94cccf2c
   },
   {
     timestamps: true,

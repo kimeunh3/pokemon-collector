@@ -14,6 +14,7 @@ import StatisticsPage from './pages/StatisticsPage/StatisticsPage';
 import TypeStatisticsPage from './pages/StatisticsPage/TypeStatisticsPage';
 import StatsStatisticsPage from './pages/StatisticsPage/StatsStatisticsPage';
 import MyPage from './pages/MyPage/MyPage';
+import QuizPage from './pages/QuizPage/QuizPage';
 
 import { UserStateContext, DispatchContext } from './Context';
 import './App.css';
@@ -86,6 +87,8 @@ function App() {
 						<Route path='/StatisticsPage/TypeStatisticsPage/:type' element={<TypeStatisticsPage />} />
 						<Route path='/StatisticsPage/StatsStatisticsPage/:stats' element={<StatsStatisticsPage />} />
 						<Route path='/MyPage' element={<MyPage userState={userState} />} />
+						<Route path='/QuizPage' element={<QuizPage />} />
+						<Route path='/MyPage' element={<MyPage />} />;
 					</Routes>
 				</Router>
 			</UserStateContext.Provider>
