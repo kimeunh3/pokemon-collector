@@ -80,7 +80,7 @@ function RegisterPage({ setLogin }) {
 
 		setInputs({
 			...inputs,
-			birth: dayjs(birth).format('YYYY-MM-DD'),
+			birth: new Date(dayjs(birth).format('YYYY-MM-DD')),
 		});
 
 		try {
