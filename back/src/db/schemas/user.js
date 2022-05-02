@@ -64,7 +64,7 @@ const UserSchema = new Schema(
     quizChance:{
       type: Number,
       required : true,
-      default: 4,
+      default: 3,
     },
     achievements:{
       type:Array,

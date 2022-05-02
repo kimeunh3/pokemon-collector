@@ -4,16 +4,15 @@ import {
     CardMedia,
     IconButton,
     Typography,
-    CardContent,
 	DialogActions,
 	DialogContent,
 	Button,
 	Dialog,
 	DialogTitle,
-    TextField,
 } from '@mui/material';
-import { ArrowDropDown, HelpOutlineOutlined, ArrowRight } from '@mui/icons-material';
+import { ArrowDropDown, HelpOutlineOutlined } from '@mui/icons-material';
 
+import { QuizText, QuizSelect, QuizAnswerSubmit, QuizYesOrNo } from './QuizItems/QuizItems';
 import './QuizComponent.css';
 
 import * as Api from '../../../api';
@@ -58,6 +57,33 @@ function QuizComponent({ pokemonId, pokemonName, chance, set1, set2, text, img='
         }
     }
 
+    const onClickYesPass = () => {
+        setIsQuizIng(false);
+        setIsQuizStart(true);
+        setIsPass(false);
+    }
+    const onClickNoPass = () => {
+        setIsPass(false);
+    }
+
+    const onClickYesStop = () => {
+        setIsQuizIng(false);
+        setIsEntry(true);
+        setIsStop(false);
+    }
+    const onClickNoStop = () => {
+        setIsStop(false);
+    }
+
+    const onClickYesContinue = () => {
+        setIsContinue(false);
+        setIsQuizStart(true);
+    }
+    const onClickNoContinue = () => {
+        setIsContinue(false);
+        setIsEntry(true);
+    }
+
     console.log(pokemonName);
 
     return (
@@ -89,302 +115,28 @@ function QuizComponent({ pokemonId, pokemonName, chance, set1, set2, text, img='
                 }}
             />
             {!isQuizIng && (
-                <CardContent
-                    sx={{
-                        border: '8px solid black',
-                        margin: 'auto 10px 10px 10px',
-                        borderRadius: '10px',
-                        minHeight: '30%',
-                        padding: '20px',
-                        fontSize: '30px'
-                    }}
-                >
-                    {text}
-                </CardContent>
+                <QuizText text={text} />
             )}
             {isQuizIng && !isAnswer && !isPass && !isStop && (
-                <CardContent
-                    sx={{
-                        border: '8px solid black',
-                        margin: 'auto 10px 10px 10px',
-                        borderRadius: '10px',
-                        minHeight: '30%',
-                        padding: '20px',
-                    }}
-                >
-                    <div
-                        style={{
-                            display: 'grid',
-                            gridTemplateRows: '1fr ',
-                            gridTemplateColumns: '1fr '.repeat(2),
-                            gap: '10px 30px',
-                            justifyItems: 'start'
-                        }}
-                    >
-                        <button type="button" className="Button" onClick={() => { setIsAnswer(true); }} style={{ background: 'none', border: 'none' }}>
-                            <Typography variant='h5'>
-                                <ArrowRight className="Arrow" style={{ fontSize: '40px', verticalAlign: 'middle' }} />
-                                <span style={{ verticalAlign: 'middle' }}>정답을 맞춘다</span>
-                            </Typography>
-                        </button>
-                        <button type="button" className="Button" onClick={() => { setIsHint(true); }} style={{ background: 'none', border: 'none' }}>
-                            <Typography variant='h5'>
-                                <ArrowRight className="Arrow" style={{ fontSize: '40px', verticalAlign: 'middle' }} />
-                                <span style={{ verticalAlign: 'middle' }}>힌트를 받는다</span>
-                            </Typography>
-                        </button>
-                        <button type="button" className="Button" onClick={() => { setIsPass(true); }} style={{ background: 'none', border: 'none' }}>
-                            <Typography variant='h5'>
-                                <ArrowRight className="Arrow" style={{ fontSize: '40px', verticalAlign: 'middle' }} />
-                                <span style={{ verticalAlign: 'middle' }}>패스한다</span>
-                            </Typography>
-                        </button>
-                        <button type="button" className="Button" onClick={() => { setIsStop(true); }} style={{ background: 'none', border: 'none' }}>
-                            <Typography variant='h5'>
-                                <ArrowRight className="Arrow" style={{ fontSize: '40px', verticalAlign: 'middle' }} />
-                                <span style={{ verticalAlign: 'middle' }}>그만둔다</span>
-                            </Typography>
-                        </button>
-                    </div>
-                </CardContent>
+                <QuizSelect setIsAnswer={setIsAnswer} setIsHint={setIsHint} setIsPass={setIsPass} setIsStop={setIsStop} />
             )}
             {isAnswer && (
-                <CardContent
-                    sx={{
-                        border: '8px solid black',
-                        margin: 'auto 10px 10px 10px',
-                        borderRadius: '10px',
-                        minHeight: '30%',
-                        padding: '20px',
-                        fontSize: '30px'
-                    }}
-                >
-                    <TextField id="outlined-basic" label="이 포켓몬의 이름은?" variant="outlined" onChange={(e) => { setUserAnswer(e.target.value); }} style={{ width: '100%' }} />
-                    <div
-                        style={{
-                            display: 'grid',
-                            gridTemplateColumns: '1fr '.repeat(2),
-                            gap: '10px 30px',
-                            justifyItems: 'start',
-                            marginTop: '10px'
-                        }}
-                    >
-                        <button type="button" className="Button" onClick={checkAnswer} style={{ background: 'none', border: 'none' }}>
-                            <Typography variant='h5'>
-                                <ArrowRight className="Arrow" style={{ fontSize: '40px', verticalAlign: 'middle' }} />
-                                <span style={{ verticalAlign: 'middle' }}>제출한다</span>
-                            </Typography>
-                        </button>
-                        <button type="button" className="Button" onClick={() => { setIsAnswer(false); }} style={{ background: 'none', border: 'none' }}>
-                            <Typography variant='h5'>
-                                <ArrowRight className="Arrow" style={{ fontSize: '40px', verticalAlign: 'middle' }} />
-                                <span style={{ verticalAlign: 'middle' }}>돌아간다</span>
-                            </Typography>
-                        </button>
-                    </div>
-                </CardContent>
+                <QuizAnswerSubmit setUserAnswer={setUserAnswer} checkAnswer={checkAnswer} setIsAnswer={setIsAnswer} />
             )}
             {isPass && (
-                <CardContent
-                    sx={{
-                        border: '8px solid black',
-                        margin: 'auto 10px 10px 10px',
-                        borderRadius: '10px',
-                        minHeight: '30%',
-                        padding: '20px',
-                        fontSize: '30px'
-                    }}
-                >
-                    패스하겠습니까?
-                </CardContent>
+                <QuizText text='패스하겠습니까?' />
             )}
             {isPass && (
-                <CardContent
-                    sx={{
-                        position: 'absolute',
-                        border: '8px solid black',
-                        margin: 'auto 10px 10px 10px',
-                        borderRadius: '10px',
-                        minHeight: '25%',
-                        minWidth: '23%',
-                        bottom: '32%',
-                        right: 0
-                    }}
-                >
-                    <div
-                        style={{
-                            display: 'grid',
-                            gridTemplateRows: '1fr ',
-                            gap: '10px',
-                            justifyItems: 'start'
-                        }}
-                    >
-                        <button
-                            type="button"
-                            className="Button"
-                            onClick={() => {
-                                setIsQuizIng(false);
-                                setIsQuizStart(true);
-                                setIsPass(false);
-                            }}
-                            style={{
-                                background: 'none',
-                                border: 'none'
-                            }}
-                        >
-                            <Typography variant='h5'>
-                                <ArrowRight className="Arrow" style={{ fontSize: '40px', verticalAlign: 'middle' }} />
-                                <span style={{ verticalAlign: 'middle' }}>예</span>
-                            </Typography>
-                        </button>
-                        <button
-                            type="button"
-                            className="Button"
-                            onClick={() => {
-                                setIsPass(false);
-                            }}
-                            style={{
-                                background: 'none',
-                                border: 'none'
-                            }}
-                        >
-                            <Typography variant='h5'>
-                                <ArrowRight className="Arrow" style={{ fontSize: '40px', verticalAlign: 'middle' }} />
-                                <span style={{ verticalAlign: 'middle' }}>아니오</span>
-                            </Typography>
-                        </button>
-                    </div>
-                </CardContent>
+                <QuizYesOrNo onClickYes={onClickYesPass} onClickNo={onClickNoPass} />
             )}
             {isStop && (
-                <CardContent
-                    sx={{
-                        border: '8px solid black',
-                        margin: 'auto 10px 10px 10px',
-                        borderRadius: '10px',
-                        minHeight: '30%',
-                        padding: '20px',
-                        fontSize: '30px'
-                    }}
-                >
-                    퀴즈를 그만두겠습니까?
-                </CardContent>
+                <QuizText text='퀴즈를 그만두겠습니까?' />
             )}
             {isStop && (
-                <CardContent
-                    sx={{
-                        position: 'absolute',
-                        border: '8px solid black',
-                        margin: 'auto 10px 10px 10px',
-                        borderRadius: '10px',
-                        minHeight: '25%',
-                        minWidth: '23%',
-                        bottom: '32%',
-                        right: 0
-                    }}
-                >
-                    <div
-                        style={{
-                            display: 'grid',
-                            gridTemplateRows: '1fr ',
-                            gap: '10px',
-                            justifyItems: 'start'
-                        }}
-                    >
-                        <button
-                            type="button"
-                            className="Button"
-                            onClick={() => {
-                                setIsQuizIng(false);
-                                setIsEntry(true);
-                                setIsStop(false);
-                            }}
-                            style={{
-                                background: 'none',
-                                border: 'none'
-                            }}
-                        >
-                            <Typography variant='h5'>
-                                <ArrowRight className="Arrow" style={{ fontSize: '40px', verticalAlign: 'middle' }} />
-                                <span style={{ verticalAlign: 'middle' }}>예</span>
-                            </Typography>
-                        </button>
-                        <button
-                            type="button"
-                            className="Button"
-                            onClick={() => {
-                                setIsStop(false);
-                            }}
-                            style={{
-                                background: 'none',
-                                border: 'none'
-                            }}
-                        >
-                            <Typography variant='h5'>
-                                <ArrowRight className="Arrow" style={{ fontSize: '40px', verticalAlign: 'middle' }} />
-                                <span style={{ verticalAlign: 'middle' }}>아니오</span>
-                            </Typography>
-                        </button>
-                    </div>
-                </CardContent>
+                <QuizYesOrNo onClickYes={onClickYesStop} onClickNo={onClickNoStop} />
             )}
             {isContinue && (
-                <CardContent
-                    sx={{
-                        position: 'absolute',
-                        border: '8px solid black',
-                        margin: 'auto 10px 10px 10px',
-                        borderRadius: '10px',
-                        minHeight: '25%',
-                        minWidth: '23%',
-                        bottom: '32%',
-                        right: 0
-                    }}
-                >
-                    <div
-                        style={{
-                            display: 'grid',
-                            gridTemplateRows: '1fr ',
-                            gap: '10px',
-                            justifyItems: 'start'
-                        }}
-                    >
-                        <button
-                            type="button"
-                            className="Button"
-                            onClick={() => {
-                                setIsContinue(false);
-                                setIsQuizStart(true);
-                            }}
-                            style={{
-                                background: 'none',
-                                border: 'none'
-                            }}
-                        >
-                            <Typography variant='h5'>
-                                <ArrowRight className="Arrow" style={{ fontSize: '40px', verticalAlign: 'middle' }} />
-                                <span style={{ verticalAlign: 'middle' }}>예</span>
-                            </Typography>
-                        </button>
-                        <button
-                            type="button"
-                            className="Button"
-                            onClick={() => {
-                                setIsContinue(false);
-                                setIsEntry(true);
-                            }}
-                            style={{
-                                background: 'none',
-                                border: 'none'
-                            }}
-                        >
-                            <Typography variant='h5'>
-                                <ArrowRight className="Arrow" style={{ fontSize: '40px', verticalAlign: 'middle' }} />
-                                <span style={{ verticalAlign: 'middle' }}>아니오</span>
-                            </Typography>
-                        </button>
-                    </div>
-                </CardContent>
+                <QuizYesOrNo onClickYes={onClickYesContinue} onClickNo={onClickNoContinue} />
             )}
             {!isQuizIng && !isContinue && !isMobile && (
                 <IconButton
@@ -446,7 +198,7 @@ function QuizComponent({ pokemonId, pokemonName, chance, set1, set2, text, img='
                     하루에 총 3번의 기회가 주어지며, 정답을 맞추면 500포인트가 지급됩니다.<br/>
                     게임을 시작하면 랜덤 포켓몬의 실루엣 이미지가 나타나고<br/>
                     정답을 맞추거나, 힌트를 받거나, 패스를 하거나, 그만둘 수 있습니다.<br/>
-                    왼쪽 위의 숫자는 현재 기회를 포함한 남은 기회를 나타내며,<br/>
+                    왼쪽 위의 숫자는 현재 기회를 제외한 남은 기회를 나타내며,<br/>
                     힌트는 포켓몬 이름의 글자수와 포켓몬의 속성으로 제공되고,<br/>
                     패스를 선택하면 1번의 기회를 포기하고 다른 문제로 넘어갑니다.<br/>
                     게임을 도중에 그만두더라도 남은 기회가 있다면 언제든지 재도전하실 수 있습니다.
