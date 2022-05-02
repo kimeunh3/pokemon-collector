@@ -16,6 +16,8 @@ function QuizPage() {
   const [isQuizStart, setIsQuizStart] = useState(false);
   const [isQuizIng, setIsQuizIng] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
+  const [isFirstInCorrect, setIsFirstInCorrect] = useState(false);
+  const [isRetry, setIsRetry] = useState(false);
   const [isInCorrect, setIsInCorrect] = useState(false);
   const [isContinue, setIsContinue] = useState(false);
   const [chance, setChance] = useState(3);
@@ -105,7 +107,7 @@ function QuizPage() {
           isQuiz
         />
       )}
-      {!isMobile && isQuizIng && (
+      {!isMobile && (isQuizIng || isRetry) && (
         <QuizComponent
           pokemonId={pokemonId}
           pokemonName={pokemonName}
@@ -118,6 +120,9 @@ function QuizPage() {
           setIsQuizStart={setIsQuizStart}
           setIsCorrect={setIsCorrect}
           setIsInCorrect={setIsInCorrect}
+          isRetry={isRetry}
+          setIsRetry={setIsRetry}
+          setIsFirstInCorrect={setIsFirstInCorrect}
         />
       )}
       {!isMobile && isNoChance && (
@@ -140,6 +145,17 @@ function QuizPage() {
             '정답! 500포인트 획득!',
             <br />,
             `이 포켓몬은 ${pokemonName}!`,
+          ]}
+        />
+      )}
+      {!isMobile && isFirstInCorrect && (
+        <QuizComponent
+          set1={setIsFirstInCorrect}
+          set2={setIsRetry}
+          text={[
+            '틀렸단다! 어려워 보이는구나.',
+            <br />,
+            `문제를 더 쉽게 내주마!`,
           ]}
         />
       )}

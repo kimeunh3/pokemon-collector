@@ -40,6 +40,9 @@ function QuizComponent({
   isContinue,
   setIsContinue,
   isMobile,
+  isRetry,
+  setIsRetry,
+  setIsFirstInCorrect,
 }) {
   const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [isAnswer, setIsAnswer] = useState(false);
@@ -67,12 +70,23 @@ function QuizComponent({
   };
 
   const checkAnswer = () => {
-    if (pokemonName === useAnswer) {
+    // 처음에 정답 맞춤 -> 1000포인트
+    if (pokemonName === useAnswer && isRetry === false) {
       Api.get('succeedQuiz');
       setIsQuizIng(false);
       setIsCorrect(true);
-    } else {
+      // 재도전에 정답 맞춤 -> 500포인트
+    } else if (pokemonName === useAnswer) {
+      Api.get('succeedQuiz');
+      setIsRetry(false);
+      setIsCorrect(true);
+      // 처음에 틀림 -> 재도전
+    } else if (isRetry === false) {
       setIsQuizIng(false);
+      setIsFirstInCorrect(true);
+      // 재도전에 틀림 -> 땡
+    } else {
+      setIsRetry(false);
       setIsInCorrect(true);
     }
   };
