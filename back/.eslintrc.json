@@ -1,29 +1,37 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["plugin:react/recommended", "airbnb", "prettier"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
     },
-    "extends": ["plugin:react/recommended", "airbnb", "prettier"],
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react"
-    ],
-    "rules": {
-        "linebreak-style": 0,
-		"react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-		"import/prefer-default-export": "off",
-		"no-console": "off",
-		"no-shadow": "off",
-		"global-require": 0,
-		"indent": "off",
-		"react/prop-types": 0
-    },
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
-    
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react"],
+  "rules": {
+    "arrowParens": "always",
+    "bracketSpacing": true,
+    "endOfLine": "lf",
+    "htmlWhitespaceSensitivity": "css",
+    "insertPragma": false,
+    "jsxBracketSameLine": false,
+    "jsxSingleQuote": true,
+    "printWidth": 80,
+    "proseWrap": "preserve",
+    "quoteProps": "as-needed",
+    "requirePragma": false,
+    "semi": true,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "useTabs": false,
+    "vueIndentScriptAndStyle": false,
+    "filepath": "c:\\Users\\pc\\Desktop\\elice-ai-track\\project2\\pokemon-collector\\back\\src\\db\\schemas\\pokemonRadarChartData.js",
+    "parser": "babel"
+  },
+  "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
 }

@@ -8,7 +8,7 @@
  *     responses:
  *       '200':
  *        description: User의 회원가입
- *        content: 
+ *        content:
  *         application/json:
  *           schema:
  *             type: Object
@@ -17,10 +17,9 @@
 import is from "@sindresorhus/is";
 import { Router } from "express";
 import { loginRequired } from "../middlewares/loginRequired";
-import { userAuthService } from '../services/userService';
-import { User } from '../db';
+import { userAuthService } from "../services/userService";
+import { User } from "../db";
 const userAuthRouter = Router();
-
 
 userAuthRouter.post("/user/register", async function (req, res, next) {
   try {
@@ -30,7 +29,18 @@ userAuthRouter.post("/user/register", async function (req, res, next) {
       );
     }
 
-    const {nickname, email, password, sex, birth, interest, likeType, point, profileImg, stickers} = req.body
+    const {
+      nickname,
+      email,
+      password,
+      sex,
+      birth,
+      interest,
+      likeType,
+      point,
+      profileImg,
+      stickers,
+    } = req.body;
 
     const newUser = await userAuthService.addUser({
       nickname,
@@ -48,8 +58,8 @@ userAuthRouter.post("/user/register", async function (req, res, next) {
     if (newUser.errorMessage) {
       // throw new Error(newUser.errorMessage);
       return res.status(400).json({
-        status: 'error',
-        error : newUser.errorMessage,
+        status: "error",
+        error: newUser.errorMessage,
       });
     }
 
@@ -61,16 +71,14 @@ userAuthRouter.post("/user/register", async function (req, res, next) {
 
 userAuthRouter.post("/user/login", async function (req, res, next) {
   try {
-
     const email = req.body.email;
     const password = req.body.password;
     const user = await userAuthService.getUser({ email, password });
-    
+
     if (user.errorMessage) {
-   
       return res.status(400).json({
-        status: 'error',
-        error : user.errorMessage,
+        status: "error",
+        error: user.errorMessage,
       });
     }
 
@@ -79,8 +87,6 @@ userAuthRouter.post("/user/login", async function (req, res, next) {
     next(error);
   }
 });
-
-
 
 userAuthRouter.get(
   "/user/current",
@@ -110,26 +116,25 @@ userAuthRouter.put(
   async function (req, res, next) {
     try {
       const userId = req.currentUserId;
-      let currentUserInfo = await userAuthService.getUserInfo({userId,});
+      let currentUserInfo = await userAuthService.getUserInfo({ userId });
       const attendance = new Date();
       const savedAttendance = currentUserInfo.attendance;
-      var timeDiff = (attendance - savedAttendance);
+      var timeDiff = attendance - savedAttendance;
 
-      if(timeDiff >= 24*60*60*1000){
+      if (timeDiff >= 24 * 60 * 60 * 1000) {
         // isPointGiven === false -> 포인트 지급  isPointGiven === true -> 포인트 지급 X
-        const isPointGiven = !(currentUserInfo.isPointGiven);
-        const toUpdate = {attendance, isPointGiven};
-        currentUserInfo = await userAuthService.setUser({userId, toUpdate});
-        if (currentUserInfo.errorMessage){
+        const isPointGiven = !currentUserInfo.isPointGiven;
+        const toUpdate = { attendance, isPointGiven };
+        currentUserInfo = await userAuthService.setUser({ userId, toUpdate });
+        if (currentUserInfo.errorMessage) {
           throw new Error(currentUserInfo.errorMessage);
         }
       }
 
-      res.status(200).json({isPointGiven:currentUserInfo.isPointGiven});
-      
-    }catch(error){
-        next(error);
-      }
+      res.status(200).json({ isPointGiven: currentUserInfo.isPointGiven });
+    } catch (error) {
+      next(error);
+    }
   }
 );
 
@@ -139,47 +144,46 @@ userAuthRouter.put(
   async function (req, res, next) {
     try {
       const userId = req.currentUserId;
-      let currentUserInfo = await userAuthService.getUserInfo({userId,});
-    
-      const point = currentUserInfo.point+1000;
+      let currentUserInfo = await userAuthService.getUserInfo({ userId });
+
+      const point = currentUserInfo.point + 1000;
       const attendance = new Date();
-      const isPointGiven = !(currentUserInfo.isPointGiven);
-      const toUpdate = {point,attendance,isPointGiven};
-      currentUserInfo = await userAuthService.setUser({userId, toUpdate});
-      if (currentUserInfo.errorMessage){
+      const isPointGiven = !currentUserInfo.isPointGiven;
+      const toUpdate = { point, attendance, isPointGiven };
+      currentUserInfo = await userAuthService.setUser({ userId, toUpdate });
+      if (currentUserInfo.errorMessage) {
         throw new Error(currentUserInfo.errorMessage);
       }
-    res.status(200).json({point:currentUserInfo.point});
-    }catch(error){
-        next(error);
-      }
+      res.status(200).json({ point: currentUserInfo.point });
+    } catch (error) {
+      next(error);
+    }
   }
 );
 
 userAuthRouter.put(
-  '/user/profileModify',
+  "/user/profileModify",
   loginRequired,
   async function (req, res, next) {
-    try{
+    try {
       const userId = req.currentUserId;
-      let currentUserInfo = await userAuthService.getUserInfo({userId,});
+      let currentUserInfo = await userAuthService.getUserInfo({ userId });
       const nickname = req.body.nickname ?? null;
       const likeType = req.body.likeType ?? null;
       const profileImg = req.body.profileImg ?? null;
       const interest = req.body.interest ?? null;
 
-      const toUpdate = {nickname, likeType, profileImg, interest};
+      const toUpdate = { nickname, likeType, profileImg, interest };
 
-      currentUserInfo = await userAuthService.setUser({userId, toUpdate});
-      if (currentUserInfo.errorMessage){
+      currentUserInfo = await userAuthService.setUser({ userId, toUpdate });
+      if (currentUserInfo.errorMessage) {
         throw new Error(currentUserInfo.errorMessage);
       }
-    res.status(200).json({point:currentUserInfo});
-    }catch(error){
-        next(error);
-      }
+      res.status(200).json({ point: currentUserInfo });
+    } catch (error) {
+      next(error);
+    }
   }
-)
-
+);
 
 export { userAuthRouter };
