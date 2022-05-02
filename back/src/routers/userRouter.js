@@ -120,7 +120,7 @@ userAuthRouter.put(
       const attendance = new Date();
       const savedAttendance = currentUserInfo.attendance;
       var timeDiff = attendance - savedAttendance;
-      const isPointGiven = !currentUserInfo.isPointGiven;
+      let isPointGiven = !currentUserInfo.isPointGiven;
       if (timeDiff >= 24 * 60 * 60 * 1000) {
         // isPointGiven === false -> 포인트 지급  isPointGiven === true -> 포인트 지급 X
         const toUpdate = { attendance, isPointGiven };
