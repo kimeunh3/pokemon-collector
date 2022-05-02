@@ -31,6 +31,7 @@ function UserCard({ userState, fetchUserInfo }) {
 		const res = await Api.put('user/attendanceCheck'); // false면 성공 true면 실패
 		setAttdFailModalOpen(res.data.isPointGiven);
 		setAttdSuccModalOpen(res.data.isPointGiven);
+		console.log('data', res.data);
 	};
 
 	const handleAttendance = () => {

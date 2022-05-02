@@ -29,11 +29,7 @@ class PokemonAuthService {
     return pokemonName;
   }
 
-<<<<<<< HEAD
-  static async getAllPokemons() {
-=======
   static getPokemons() {
->>>>>>> 7123e4b1a619c9d0f2b2d89af7217c9ae8249cf5
     return Pokemon.findAll();
   }
 
