@@ -5,8 +5,8 @@ import ScrollUpButton from '../../components/commons/ScrollUpButton';
 import WholeStatisticComponent from './components/WholeStatisticComponent';
 
 function StatisticsPage() {
-  const [isType, setIsType] = useState(true);
-  const [isStats, setIsStats] = useState(true);
+  const [isType, setIsType] = useState(false);
+  const [isStats, setIsStats] = useState(false);
 
   return (
     <div style={{ paddingTop: '170px', paddingBottom: '50px' }}>
