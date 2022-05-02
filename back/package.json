@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/",
   "dependencies": {
+    "@babel/helper-function-name": "^7.17.9",
     "@sindresorhus/is": "^4.2.0",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
