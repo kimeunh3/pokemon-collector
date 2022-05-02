@@ -13,7 +13,7 @@ class quizService {
     }
     //기회 차감
     const updatedQuizChance = await User.updateQuizChance({userId, newQuizChance:quizChance-1})
-    if (!updatedQuizChance) {
+    if (!updatedQuizChance & updatedQuizChance != 0) {
       const errorMessage =
         'quizChance update에 실패했습니다.';
       return { errorMessage };
