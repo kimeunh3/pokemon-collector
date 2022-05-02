@@ -20,7 +20,6 @@ import AttendanceFailModal from '../AttendanceModal/AttendanceFailModal';
 import AttendanceSuccModal from '../AttendanceModal/AttendanceSuccModal';
 
 function UserCard({ userState, fetchUserInfo }) {
-	const [isAttClick, setIsAttClick] = useState(false);
 	const [attdFailModalOpen, setAttdFailModalOpen] = useState(false);
 	const [attdSuccModalOpen, setAttdSuccModalOpen] = useState(true);
 
@@ -35,9 +34,10 @@ function UserCard({ userState, fetchUserInfo }) {
 	};
 
 	const handleAttendance = () => {
-		setIsAttClick(true);
 		fetchIsPointGiven();
 	};
+
+	console.log(attdSuccModalOpen);
 
 	return (
 		<Card sx={{ maxWidth: 345 }}>
@@ -113,7 +113,7 @@ function UserCard({ userState, fetchUserInfo }) {
 					setAttdFailModalOpen={setAttdFailModalOpen}
 				/>
 			)}
-			{(isAttClick && attdSuccModalOpen) || (
+			{attdSuccModalOpen || (
 				<AttendanceSuccModal
 					attdSuccModalOpen={attdSuccModalOpen}
 					setAttdSuccModalOpen={setAttdSuccModalOpen}
