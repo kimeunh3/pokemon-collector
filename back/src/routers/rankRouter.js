@@ -13,7 +13,7 @@ rankRouter.get("/ranking/:field/:count", async function (req, res, next) {
 
     if (field == 'rankPoint') {
       rankingList = await rankService.getRankPointRanking({ count })
-    } else if (req.params.field == 'stickers') {
+    } else if (field == 'stickers') {
       rankingList = await rankService.getstickersRanking({ count })
     } else {
       rankingList = { massage: "params error 경로 확인 필요" }
