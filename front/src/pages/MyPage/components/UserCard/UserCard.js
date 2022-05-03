@@ -14,7 +14,7 @@ import {
 } from '@mui/material';
 import { Favorite, Share } from '@mui/icons-material';
 import IconObj from '../../../../core/Icon';
-import ImgSrc from '../../../../core/constants/ImgSrc';
+import { pokemonURL } from '../../../../core/constants/ImgSrc';
 import * as Api from '../../../../api';
 
 import AttendanceFailModal from '../AttendanceModal/AttendanceFailModal';
@@ -25,16 +25,14 @@ function UserCard({ userState, fetchUserInfo, userPokemonList }) {
 	const [attdFailModalOpen, setAttdFailModalOpen] = useState(false);
 	const [attdSuccModalOpen, setAttdSuccModalOpen] = useState(true);
 	const [isEdit, setIsEdit] = useState(false);
-	const { email, nickname, likeType, point } = userState;
-
-	const profileImg = ImgSrc.pokeballImg;
+	const { email, nickname, likeType, point, profileImg } = userState;
 
 	const fetchIsPointGiven = async () => {
 		const res = await Api.put('user/attendanceCheck'); // false면 성공 true면 실패
 		setAttdFailModalOpen(res.data.isPointGiven);
 		setAttdSuccModalOpen(res.data.isPointGiven);
 	};
-
+	console.log(userState);
 	const handleAttendance = () => {
 		fetchIsPointGiven();
 	};
@@ -91,7 +89,7 @@ function UserCard({ userState, fetchUserInfo, userPokemonList }) {
 					</Box>
 					<CardMedia
 						component='img'
-						image={profileImg}
+						image={`${pokemonURL}/${profileImg}`}
 						alt='profileImg'
 						sx={{ width: '65%', height: '65%', margin: 'auto' }}
 					/>

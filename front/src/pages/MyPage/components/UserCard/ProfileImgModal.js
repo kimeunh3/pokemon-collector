@@ -6,6 +6,10 @@ function ProfileImgModal({
 	isEditProfileImg,
 	setIsEditProfileImg,
 	userPokemonList,
+	selected,
+	setSelected,
+	inputs,
+	setInputs,
 }) {
 	const style = {
 		position: 'absolute',
@@ -34,7 +38,15 @@ function ProfileImgModal({
 					{userPokemonList &&
 						userPokemonList.map((pokemon) => (
 							<Grid item xs={3} md={3} key={pokemon.id}>
-								<ProfileCard id={pokemon.id} name={pokemon.name} />
+								<ProfileCard
+									id={pokemon.id}
+									name={pokemon.name}
+									selected={selected}
+									setSelected={setSelected}
+									setIsEditProfileImg={setIsEditProfileImg}
+									inputs={inputs}
+									setInputs={setInputs}
+								/>
 							</Grid>
 						))}
 				</Grid>

@@ -16,6 +16,7 @@ import { CatchingPokemon } from '@mui/icons-material';
 import ProfileImgModal from './ProfileImgModal';
 
 import IconObj from '../../../../core/Icon';
+import { pokemonURL } from '../../../../core/constants/ImgSrc';
 import * as Api from '../../../../api';
 
 function UserEditCard({
@@ -24,8 +25,9 @@ function UserEditCard({
 	fetchUserInfo,
 	userPokemonList,
 }) {
-	const { email, nickname, likeType, interest } = userState;
+	const { email, nickname, likeType, interest, profileImg } = userState;
 	const [isEditProfileImg, setIsEditProfileImg] = useState(false);
+	const [selected, setSelected] = useState('pokeball');
 
 	console.log(userState);
 	const [inputs, setInputs] = useState({
@@ -33,6 +35,7 @@ function UserEditCard({
 		nickname,
 		likeType,
 		interest,
+		profileImg,
 	});
 	const types = [
 		'노말',
@@ -65,6 +68,8 @@ function UserEditCard({
 	console.log(inputs);
 
 	const handleEdit = async () => {
+		setInputs({ ...inputs, profileImg: `${selected}.png` });
+
 		const res = await Api.put('user/profileModify', inputs);
 		console.log(res);
 		fetchUserInfo();
@@ -78,11 +83,14 @@ function UserEditCard({
 		>
 			<CardMedia
 				component='img'
-				image='https://d31z0g5vo6ghmg.cloudfront.net/pokemons/pokeball.png'
+				image={`${pokemonURL}/${selected}.png`}
 				alt='profileImg'
 				sx={{ width: '65%', height: '65%', margin: 'auto', cursor: 'pointer' }}
 				onClick={() => {
 					setIsEditProfileImg(true);
+				}}
+				onChange={() => {
+					console.log('gffadsda');
 				}}
 			/>
 			<TextField
@@ -164,6 +172,10 @@ function UserEditCard({
 					isEditProfileImg={isEditProfileImg}
 					setIsEditProfileImg={setIsEditProfileImg}
 					userPokemonList={userPokemonList}
+					selected={selected}
+					setSelected={setSelected}
+					inputs={inputs}
+					setInputs={setInputs}
 				/>
 			)}
 		</Box>

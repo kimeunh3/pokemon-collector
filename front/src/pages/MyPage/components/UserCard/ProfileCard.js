@@ -1,8 +1,16 @@
 import React from 'react';
 import { Box, Card, CardMedia, Typography } from '@mui/material';
 
-function ProfileCard({ id, name }) {
-	const imgSrc = `https://d31z0g5vo6ghmg.cloudfront.net/pokemons/${id}.png`;
+import { pokemonURL } from '../../../../core/constants/ImgSrc';
+
+function ProfileCard({
+	id,
+	name,
+	setSelected,
+	setIsEditProfileImg,
+	inputs,
+	setInputs,
+}) {
 	return (
 		<Box>
 			<Card
@@ -11,10 +19,17 @@ function ProfileCard({ id, name }) {
 					cursor: 'pointer',
 				}}
 			/>
-			<CardMedia style={{ textAlign: 'center' }}>
+			<CardMedia
+				sx={{ textAlign: 'center', cursor: 'pointer' }}
+				onClick={() => {
+					setSelected(id);
+					setIsEditProfileImg(false);
+					setInputs({ ...inputs, profileImg: `${id}.png` });
+				}}
+			>
 				<img
 					alt=''
-					src={imgSrc}
+					src={`${pokemonURL}/${id}.png`}
 					style={{ marginTop: '1rem', width: '100px' }}
 				/>
 			</CardMedia>
