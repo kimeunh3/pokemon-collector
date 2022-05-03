@@ -32,7 +32,11 @@ function MyPage() {
 			<Grid container spacing={2}>
 				<Grid item xs={4.5} md={4.5}>
 					{userState && (
-						<UserCard userState={userState} fetchUserInfo={fetchUserInfo} />
+						<UserCard
+							userState={userState}
+							fetchUserInfo={fetchUserInfo}
+							userPokemonList={userPokemonList}
+						/>
 					)}
 				</Grid>
 				<Grid

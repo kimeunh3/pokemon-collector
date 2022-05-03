@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import dayjs from 'dayjs';
 import {
 	Box,
 	Button,
@@ -79,10 +78,10 @@ function RegisterPage({ setLogin }) {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		// setInputs({
-		// 	...inputs,
-		// 	birth: new Date(birth),
-		// });
+		setInputs({
+			...inputs,
+			birth: Date(birth),
+		});
 
 		try {
 			// "user/register" 엔드포인트로 post요청함.
@@ -186,8 +185,7 @@ function RegisterPage({ setLogin }) {
 								setBirth(newValue);
 								setInputs({
 									...inputs,
-									birth: new Date(birth),
-									// Date(dayjs(birth).format('YYYY-MM-DD')),
+									birth: Date(birth),
 								});
 							}}
 							// eslint-disable-next-line react/jsx-props-no-spreading

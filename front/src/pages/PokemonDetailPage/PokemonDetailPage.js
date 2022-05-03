@@ -38,13 +38,15 @@ function PokemonDetailPage() {
 		<Container sx={{ marginTop: '165px', width: '100%' }}>
 			<Grid container>
 				<Grid item xs={6} md={6}>
-					<PokemonCard
-						pokemon={pokemon}
-						iconOne={iconOne}
-						typeOneColor={typeOneColor}
-						iconTwo={iconTwo}
-						typeTwoColor={typeTwoColor}
-					/>
+					{pokemon && (
+						<PokemonCard
+							pokemon={pokemon}
+							iconOne={iconOne}
+							typeOneColor={typeOneColor}
+							iconTwo={iconTwo}
+							typeTwoColor={typeTwoColor}
+						/>
+					)}
 				</Grid>
 				<Grid item xs={6} md={6} sx={{ display: 'flex' }}>
 					{radarDataOne && <PokemonRadar radarDataOne={radarDataOne} />}

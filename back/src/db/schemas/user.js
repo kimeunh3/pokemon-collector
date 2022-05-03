@@ -62,7 +62,7 @@ const UserSchema = new Schema(
     },
     profileImg: {
       type: String,
-      default: 'pockeball.png',
+      default: 'pokeball.png',
       required: false,
     },
     stickers: [

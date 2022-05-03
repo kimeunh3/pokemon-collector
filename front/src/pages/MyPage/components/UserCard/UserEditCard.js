@@ -13,12 +13,20 @@ import {
 	CardMedia,
 } from '@mui/material';
 import { CatchingPokemon } from '@mui/icons-material';
+import ProfileImgModal from './ProfileImgModal';
 
 import IconObj from '../../../../core/Icon';
 import * as Api from '../../../../api';
 
-function UserEditCard({ userState, setIsEdit, fetchUserInfo }) {
+function UserEditCard({
+	userState,
+	setIsEdit,
+	fetchUserInfo,
+	userPokemonList,
+}) {
 	const { email, nickname, likeType, interest } = userState;
+	const [isEditProfileImg, setIsEditProfileImg] = useState(false);
+
 	console.log(userState);
 	const [inputs, setInputs] = useState({
 		email,
@@ -72,7 +80,10 @@ function UserEditCard({ userState, setIsEdit, fetchUserInfo }) {
 				component='img'
 				image='https://d31z0g5vo6ghmg.cloudfront.net/pokemons/pokeball.png'
 				alt='profileImg'
-				sx={{ width: '65%', height: '65%', margin: 'auto' }}
+				sx={{ width: '65%', height: '65%', margin: 'auto', cursor: 'pointer' }}
+				onClick={() => {
+					setIsEditProfileImg(true);
+				}}
 			/>
 			<TextField
 				disabled={disabled}
@@ -148,6 +159,13 @@ function UserEditCard({ userState, setIsEdit, fetchUserInfo }) {
 					변경 하기
 				</Button>
 			</Box>
+			{isEditProfileImg && (
+				<ProfileImgModal
+					isEditProfileImg={isEditProfileImg}
+					setIsEditProfileImg={setIsEditProfileImg}
+					userPokemonList={userPokemonList}
+				/>
+			)}
 		</Box>
 	);
 }
