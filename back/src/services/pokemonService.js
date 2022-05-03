@@ -78,7 +78,7 @@ class PokemonAuthService {
       userPoint: appliedPoint
     };
 
-    return drawResult
+    return drawResult;
 
   }
 }

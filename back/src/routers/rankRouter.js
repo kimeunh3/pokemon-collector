@@ -8,15 +8,15 @@ rankRouter.use(loginRequired);
 rankRouter.get('/ranking/:field/:count', async function (req, res, next) {
   try {
 
-    const { field, count } = req.params
-    let rankingList = []
+    const { field, count } = req.params;
+    let rankingList = [];
 
     if (field == 'rankPoint') {
-      rankingList = await rankService.getRankPointRanking({ count })
+      rankingList = await rankService.getRankPointRanking({ count });
     } else if (field == 'stickers') {
-      rankingList = await rankService.getstickersRanking({ count })
+      rankingList = await rankService.getstickersRanking({ count });
     } else {
-      rankingList = { massage: 'params error 경로 확인 필요' }
+      rankingList = { massage: 'params error 경로 확인 필요' };
     }
     if (rankingList.errorMessage) {
       throw new Error(rankingList.errorMessage);

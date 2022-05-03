@@ -17,17 +17,17 @@ class rankService {
 
     // 만약 같은 포켓몬을 가지고 있다면 50% 포인트만 받을 수 있음
     if (stickerCount > 1) {
-      toAdd /= 2
+      toAdd /= 2;
     }
     toAdd += succeeded.length * achievementsRankingPoint;
 
-    const updatedPoint = await User.updateRankingPoint({ userId, toAdd })
+    const updatedPoint = await User.updateRankingPoint({ userId, toAdd });
 
-    return updatedPoint
+    return updatedPoint;
   }
 
   static async getRankPointRanking({ count }) {
-    const rankingList = await User.findRankPointRanking({ count })
+    const rankingList = await User.findRankPointRanking({ count });
     if (!rankingList) {
       const errorMessage =
         '랭크 포인트 랭킹을 불러오는데 실패했습니다.';
@@ -37,13 +37,13 @@ class rankService {
   }
 
   static async getstickersRanking({ count }) {
-    const rankingList = await User.findStickersRanking({ count })
+    const rankingList = await User.findStickersRanking({ count });
     if (!rankingList) {
       const errorMessage =
         '스티커 수 랭킹을 불러오는데 실패했습니다.';
       return { errorMessage };
     }
-    return rankingList
+    return rankingList;
   }
 }
 
