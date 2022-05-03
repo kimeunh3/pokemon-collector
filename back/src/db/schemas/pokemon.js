@@ -1,5 +1,5 @@
-import { Schema, model } from "mongoose";
-import mongoose from "mongoose";
+import { Schema, model } from 'mongoose';
+import mongoose from 'mongoose';
 
 const PokemonSchema = new Schema(
   {
@@ -13,55 +13,55 @@ const PokemonSchema = new Schema(
     },
     status: {
       type: String,
-      enum: ["노말", "전설", "환상"],
+      enum: ['노말', '전설', '환상'],
       required: true,
     },
     typeOne: {
       type: String,
       enum: [
-        "풀",
-        "불꽃",
-        "물",
-        "벌레",
-        "노말",
-        "독",
-        "전기",
-        "땅",
-        "페어리",
-        "격투",
-        "에스퍼",
-        "바위",
-        "고스트",
-        "얼음",
-        "드래곤",
-        "비행",
-        "강철",
+        '풀',
+        '불꽃',
+        '물',
+        '벌레',
+        '노말',
+        '독',
+        '전기',
+        '땅',
+        '페어리',
+        '격투',
+        '에스퍼',
+        '바위',
+        '고스트',
+        '얼음',
+        '드래곤',
+        '비행',
+        '강철',
       ],
       required: true,
     },
     typeTwo: {
       type: String,
       enum: [
-        "풀",
-        "불꽃",
-        "물",
-        "벌레",
-        "노말",
-        "독",
-        "전기",
-        "땅",
-        "페어리",
-        "격투",
-        "에스퍼",
-        "바위",
-        "고스트",
-        "얼음",
-        "드래곤",
-        "비행",
-        "강철",
+        '풀',
+        '불꽃',
+        '물',
+        '벌레',
+        '노말',
+        '독',
+        '전기',
+        '땅',
+        '페어리',
+        '격투',
+        '에스퍼',
+        '바위',
+        '고스트',
+        '얼음',
+        '드래곤',
+        '비행',
+        '강철',
       ],
       required: false,
-      default: "없음",
+      default: '없음',
     },
     height: {
       type: Number,
@@ -105,6 +105,6 @@ const PokemonSchema = new Schema(
   }
 );
 
-const PokemonModel = model("Pokemon", PokemonSchema);
+const PokemonModel = model('Pokemon', PokemonSchema);
 
 export { PokemonModel };
