@@ -30,11 +30,17 @@ class quizService {
     return { quiz, reminingChance: updatedQuizChance };
   }
 
-  static async addPint({ userId }) {
+  static async addPoint({ userId, opportunity }) {
     const point = await User.findPointById({ userId });
+    let toAdd = 0;
+    if (opportunity == 'first') {
+      toAdd = 1000;
+    } else if (opportunity == 'second') {
+      toAdd = 500;
+    }
     const updatedPoint = await User.updatePoint({
       userId,
-      changedPoint: point + 500,
+      changedPoint: point + toAdd,
     });
     if (!updatedPoint) {
       const errorMessage = 'point update에 실패했습니다.';
