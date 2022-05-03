@@ -43,16 +43,12 @@ const UserSchema = new Schema(
       type: String,
       required: true,
     },
-    age: {
-      type: Number,
+    birth: {
+      type: Date,
       required: true,
     },
     interest: {
       type: Number,
-      required: true,
-    },
-    birth: {
-      type: Date,
       required: true,
     },
     likeType: {
