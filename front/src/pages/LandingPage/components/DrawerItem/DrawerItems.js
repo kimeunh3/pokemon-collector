@@ -1,16 +1,13 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Button, ListItem } from '@material-ui/core';
 
-function DrawerItem({ color = 'inherit', url, text }) {
-  const navigate = useNavigate();
-
+function DrawerItems({ color = 'inherit', handleOnClick, text }) {
   return (
     <ListItem>
       <span className='material-symbols-outlined'>arrow_right</span>
       <Button
         color={color}
-        onClick={() => navigate(`/${url}`)}
+        onClick={handleOnClick}
         style={{ fontSize: '18px' }}
       >
         {text}
@@ -19,4 +16,4 @@ function DrawerItem({ color = 'inherit', url, text }) {
   );
 }
 
-export default DrawerItem;
+export default DrawerItems;

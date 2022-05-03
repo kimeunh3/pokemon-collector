@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   IconButton,
   styled,
@@ -7,8 +8,7 @@ import {
   List,
   Divider,
 } from '@material-ui/core';
-import DrawerItem from './DrawerItem/DrawerItem';
-import DrawerOnClickItem from './DrawerItem/DrawerOnClickItem';
+import DrawerItems from './DrawerItem/DrawerItems';
 
 const drawerWidth = 240;
 
@@ -34,9 +34,53 @@ function DrawerComponents({
   logout,
 }) {
   const theme = useTheme();
+  const navigate = useNavigate();
 
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+
+  const handleClickBreadButton = () => {
+    if (isLogin) {
+      navigate('/bread');
+    } else {
+      handleDialogOpen();
+    }
+  };
+  const handleClickQuizButton = () => {
+    if (isLogin) {
+      navigate('/quizPage');
+    } else {
+      handleDialogOpen();
+    }
+  };
+  const handleClickIllustratedBookButton = () => {
+    if (isLogin) {
+      navigate('/illustratedBook');
+    } else {
+      handleDialogOpen();
+    }
+  };
+  const handleClickStatisticsButton = () => {
+    if (isLogin) {
+      navigate('/statisticsPage');
+    } else {
+      handleDialogOpen();
+    }
+  };
+  const handleClickMyPageButton = () => {
+    if (isLogin) {
+      navigate('/myPage');
+    } else {
+      handleDialogOpen();
+    }
+  };
+  const handleClickLogInOutButton = () => {
+    if (isLogin) {
+      logout();
+    } else {
+      navigate('/login');
+    }
   };
 
   return (
@@ -54,32 +98,24 @@ function DrawerComponents({
         </IconButton>
       </DrawerHeader>
       <Divider />
-      {isLogin ? (
-        <List>
-          <DrawerItem url='bread' text='포켓몬빵' />
-          <DrawerItem url='quizPage' text='퀴즈' />
-          <DrawerItem url='illustratedBook' text='도감' />
-          <DrawerItem url='statisticsPage' text='통계' />
-          <DrawerItem url='myPage' text='마이페이지' />
-          <DrawerOnClickItem
-            color='primary'
-            handleOnClick={logout}
-            text='로그아웃'
-          />
-        </List>
-      ) : (
-        <List>
-          <DrawerOnClickItem handleOnClick={handleDialogOpen} text='포켓몬빵' />
-          <DrawerOnClickItem handleOnClick={handleDialogOpen} text='퀴즈' />
-          <DrawerOnClickItem handleOnClick={handleDialogOpen} text='도감' />
-          <DrawerOnClickItem handleOnClick={handleDialogOpen} text='통계' />
-          <DrawerOnClickItem
-            handleOnClick={handleDialogOpen}
-            text='마이페이지'
-          />
-          <DrawerItem color='primary' url='login' text='로그인' />
-        </List>
-      )}
+      <List>
+        <DrawerItems handleOnClick={handleClickBreadButton} text='포켓몬빵' />
+        <DrawerItems handleOnClick={handleClickQuizButton} text='퀴즈' />
+        <DrawerItems
+          handleOnClick={handleClickIllustratedBookButton}
+          text='도감'
+        />
+        <DrawerItems handleOnClick={handleClickStatisticsButton} text='통계' />
+        <DrawerItems
+          handleOnClick={handleClickMyPageButton}
+          text='마이페이지'
+        />
+        <DrawerItems
+          color='primary'
+          handleOnClick={handleClickLogInOutButton}
+          text={isLogin ? '로그아웃' : '로그인'}
+        />
+      </List>
     </Drawer>
   );
 }
