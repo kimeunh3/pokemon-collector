@@ -26,6 +26,8 @@ import {
   pokemonFlyingDataAuthRouter,
   pokemonSteelDataAuthRouter,
 } from './routers/pokemonTypeDataRouter';
+import { pokemonMeanDataAuthRouter } from './routers/pokemonMeanDataRouter';
+import { pokemonScaledMeanDataAuthRouter } from './routers/pokemonScaledMeanDataRouter';
 
 const { swaggerUi, specs } = require('./modules/swagger');
 const app = express();
@@ -73,6 +75,8 @@ app.use(pokemonIceDataAuthRouter);
 app.use(pokemonDragonDataAuthRouter);
 app.use(pokemonFlyingDataAuthRouter);
 app.use(pokemonSteelDataAuthRouter);
+app.use(pokemonMeanDataAuthRouter);
+app.use(pokemonScaledMeanDataAuthRouter);
 app.use(errorMiddleware);
 // eslint-disable-next-line import/prefer-default-export
 export { app };
