@@ -4,9 +4,28 @@ import { errorMiddleware } from './middlewares/errorMiddleware';
 import { userAuthRouter } from './routers/userRouter';
 import { pokemonAuthRouter } from './routers/pokemonRouter';
 import { pokemonRadarChartDataAuthRouter } from './routers/pokemonRadarChartDataRouter';
-import { achievementsRouter } from "./routers/achievementsRouter";
-import { quizRouter } from "./routers/quizRouter";
-import { rankRouter } from "./routers/rankRouter";
+import { achievementsRouter } from './routers/achievementsRouter';
+import { quizRouter } from './routers/quizRouter';
+import { rankRouter } from './routers/rankRouter';
+import {
+  pokemonGrassDataAuthRouter,
+  pokemonFireDataAuthRouter,
+  pokemonWaterDataAuthRouter,
+  pokemonBugDataAuthRouter,
+  pokemonNormalDataAuthRouter,
+  pokemonPoisonDataAuthRouter,
+  pokemonElectricDataAuthRouter,
+  pokemonGroundDataAuthRouter,
+  pokemonFairyDataAuthRouter,
+  pokemonFightDataAuthRouter,
+  pokemonPsychicDataAuthRouter,
+  pokemonRockDataAuthRouter,
+  pokemonGhostDataAuthRouter,
+  pokemonIceDataAuthRouter,
+  pokemonDragonDataAuthRouter,
+  pokemonFlyingDataAuthRouter,
+  pokemonSteelDataAuthRouter,
+} from './routers/pokemonTypeDataRouter';
 
 const { swaggerUi, specs } = require('./modules/swagger');
 const app = express();
@@ -37,7 +56,23 @@ app.use(achievementsRouter);
 app.use(pokemonRadarChartDataAuthRouter);
 app.use(quizRouter);
 app.use(rankRouter);
+app.use(pokemonGrassDataAuthRouter);
+app.use(pokemonFireDataAuthRouter);
+app.use(pokemonWaterDataAuthRouter);
+app.use(pokemonBugDataAuthRouter);
+app.use(pokemonNormalDataAuthRouter);
+app.use(pokemonPoisonDataAuthRouter);
+app.use(pokemonElectricDataAuthRouter);
+app.use(pokemonGroundDataAuthRouter);
+app.use(pokemonFairyDataAuthRouter);
+app.use(pokemonFightDataAuthRouter);
+app.use(pokemonPsychicDataAuthRouter);
+app.use(pokemonRockDataAuthRouter);
+app.use(pokemonGhostDataAuthRouter);
+app.use(pokemonIceDataAuthRouter);
+app.use(pokemonDragonDataAuthRouter);
+app.use(pokemonFlyingDataAuthRouter);
+app.use(pokemonSteelDataAuthRouter);
 app.use(errorMiddleware);
-
 // eslint-disable-next-line import/prefer-default-export
 export { app };
