@@ -102,15 +102,15 @@ function PokemonBookCard({ name, selectType, searchName, num }) {
   const [b2Color, setB2Color] = useState('#fff');
 
   useEffect(() => {
-    Object.keys(TYPE_1_LIST).forEach((key) => {
-      if (TYPE_1_LIST[key].includes(num)) {
-        setType1(key);
+    Object.entries(TYPE_1_LIST).forEach((item) => {
+      if (item[1].includes(num)) {
+        setType1(item[0]);
       }
     });
 
-    Object.keys(TYPE_2_LIST).forEach((key) => {
-      if (TYPE_2_LIST[key].includes(num)) {
-        setType2(key);
+    Object.entries(TYPE_2_LIST).forEach((item) => {
+      if (item[1].includes(num)) {
+        setType2(item[0]);
       }
     });
   }, []);

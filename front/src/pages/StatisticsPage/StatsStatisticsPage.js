@@ -151,10 +151,9 @@ function StatsStatisticsPage() {
     delete newY.typesStatsSum.없음;
     delete newY.typesCnt.없음;
 
-    Object.keys(newY.typesStatsSum).forEach((pokemonType) => {
-      const typemean =
-        newY.typesStatsSum[pokemonType] / newY.typesCnt[pokemonType];
-      newY.typesMeans[pokemonType] = Number(typemean.toFixed(1));
+    Object.entries(newY.typesStatsSum).forEach((typeSum) => {
+      const typemean = typeSum[1] / newY.typesCnt[typeSum[0]];
+      newY.typesMeans[typeSum[0]] = Number(typemean.toFixed(1));
     });
 
     // 상위 30%, 하위 30% 속성 순위 차트에 들어갈 평균값
