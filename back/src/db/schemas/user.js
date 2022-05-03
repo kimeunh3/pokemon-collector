@@ -62,7 +62,7 @@ const UserSchema = new Schema(
     },
     profileImg: {
       type: String,
-      default: 'pocketball.png',
+      default: 'pockeball.png',
       required: false,
     },
     stickers: [
@@ -86,6 +86,11 @@ const UserSchema = new Schema(
       type: Number,
       required: true,
       default: 3,
+    },
+    rankPoint: {
+      type: Number,
+      required: false,
+      default: 0,
     },
     achievements: {
       type: Array,

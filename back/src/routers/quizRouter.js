@@ -18,14 +18,17 @@ quizRouter.get('/quiz', async function (req, res, next) {
   }
 });
 
-quizRouter.get('/succeedQuiz', async function (req, res, next) {
+quizRouter.get('/succeedQuiz/:opportunity', async function (req, res, next) {
   try {
     const userId = req.currentUserId;
-    const updatedPint = await quizService.addPint({ userId });
+    const { opportunity } = req.params;
+    let updatedPint = await quizService.addPoint({ userId, opportunity });
     if (updatedPint.errorMessage) {
       throw new Error(updatedPint.errorMessage);
     }
-
+    if ((opportunity != 'first') & (opportunity != 'second')) {
+      updatedPint = { errorMessage: 'params 확인 필요 (first or second)' };
+    }
     res.status(200).json(updatedPint);
   } catch (error) {
     next(error);
