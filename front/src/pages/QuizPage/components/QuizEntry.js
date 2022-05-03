@@ -5,6 +5,8 @@ import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
+import ImgSrc from '../../../core/constants/ImgSrc';
+
 function QuizEntry({ setIsEntry, setIsQuizEx1 }) {
   return (
     <Box
@@ -24,7 +26,7 @@ function QuizEntry({ setIsEntry, setIsQuizEx1 }) {
       >
         <CardMedia
           component='img'
-          image='https://d31z0g5vo6ghmg.cloudfront.net/front/QuizPageImg.gif'
+          image={ImgSrc.QuizPageGif}
           alt='퀴즈입장이미지'
         />
       </Card>

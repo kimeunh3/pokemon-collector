@@ -3,6 +3,7 @@ import { useMediaQuery } from '@material-ui/core';
 
 import QuizEntry from './components/QuizEntry';
 import QuizComponent from './components/QuizComponent';
+import ImgSrc from '../../core/constants/ImgSrc';
 
 import * as Api from '../../api';
 
@@ -113,7 +114,7 @@ function QuizPage() {
       {!isMobile && isQuizStart && (
         <QuizComponent
           chance={chance}
-          img='https://d31z0g5vo6ghmg.cloudfront.net/pokemons/pokeball.png'
+          img={ImgSrc.pokeballImg}
           set1={setIsQuizStart}
           set2={setIsQuizIng}
           text='야생의 포켓몬이 나타났다!'

@@ -10,6 +10,8 @@ import {
 } from '@material-ui/core';
 import MuiAppBar from '@material-ui/core/AppBar';
 
+import ImgSrc from '../../../core/constants/ImgSrc';
+
 function LandingPageHeader({
   open,
   setOpen,
@@ -206,12 +208,7 @@ function LandingPageHeader({
           <span className='material-symbols-outlined'>menu</span>
         </IconButton>
       </Toolbar>
-      <img
-        alt=''
-        src='https://d31z0g5vo6ghmg.cloudfront.net/front/logo.png'
-        width='600px'
-        height='210px'
-      />
+      <img alt='' src={ImgSrc.logoImg} width='600px' height='210px' />
     </AppBar>
   );
 }

@@ -19,6 +19,7 @@ import {
   QuizYesOrNo,
 } from './QuizItems/QuizItems';
 import './QuizComponent.css';
+import ImgSrc from '../../../core/constants/ImgSrc';
 
 import * as Api from '../../../api';
 
@@ -29,7 +30,7 @@ function QuizComponent({
   set1,
   set2,
   text,
-  img = 'https://d31z0g5vo6ghmg.cloudfront.net/front/quizImg1.jpg',
+  img = ImgSrc.quizImg1,
   isQuiz = false,
   isQuizIng = false,
   setIsQuizIng,
@@ -212,7 +213,7 @@ function QuizComponent({
       )}
       {isQuiz && (
         <img
-          src='https://d31z0g5vo6ghmg.cloudfront.net/front/pokeball.ico'
+          src={ImgSrc.pokeballIco}
           alt='남은기회'
           style={{
             position: 'absolute',
@@ -294,7 +295,7 @@ function QuizComponent({
         <DialogContent style={{ textAlign: 'center' }}>
           <img
             alt='오박사'
-            src='/images/quizImg1.jpg'
+            src={ImgSrc.quizImg1}
             style={{ maxWidth: '400px' }}
           />
           <Typography variant='h5'>

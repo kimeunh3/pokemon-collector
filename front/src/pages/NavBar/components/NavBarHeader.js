@@ -10,6 +10,8 @@ import {
 } from '@material-ui/core';
 import MuiAppBar from '@material-ui/core/AppBar';
 
+import ImgSrc from '../../../core/constants/ImgSrc';
+
 function NavBarHeader({ open, setOpen, isLogin, handleDialogOpen, logout }) {
   const navigate = useNavigate();
   const isMobile = useMediaQuery('(max-width: 900px)');
@@ -49,12 +51,7 @@ function NavBarHeader({ open, setOpen, isLogin, handleDialogOpen, logout }) {
           onClick={() => navigate('/home')}
           style={{ marginRight: '40%' }}
         >
-          <img
-            alt=''
-            src='https://d31z0g5vo6ghmg.cloudfront.net/front/logo.png'
-            width='200px'
-            height='70px'
-          />
+          <img alt='' src={ImgSrc.logoImg} width='200px' height='70px' />
         </IconButton>
         {isLogin ? (
           <Grid

@@ -14,6 +14,7 @@ import {
 import DefaultBookCard from './components/DefaultBookCard/DefaultBookCard';
 import PokemonBookCard from './components/PokemonBookCard/PokemonBookCard';
 import ScrollUpButton from '../../components/commons/ScrollUpButton';
+import ImgSrc from '../../core/constants/ImgSrc';
 
 import * as Api from '../../api';
 
@@ -113,10 +114,7 @@ function IllustratedBookPage() {
       <Dialog open={isOpen} onClose={handleClose} style={{ zIndex: '10000' }}>
         <DialogTitle>포켓몬 속성 색상표</DialogTitle>
         <DialogContent>
-          <img
-            alt=''
-            src='https://d31z0g5vo6ghmg.cloudfront.net/front/typeColor.png'
-          />
+          <img alt='' src={ImgSrc.typeColorImg} />
         </DialogContent>
         <DialogActions>
           <Button variant='contained' color='inherit' onClick={handleClose}>
