@@ -73,7 +73,7 @@ function DrawerComponents({
             <span className='material-symbols-outlined'>arrow_right</span>
             <Button
               color='inherit'
-              onClick={() => navigate('/QuizPage')}
+              onClick={() => navigate('/quizPage')}
               style={{ fontSize: '18px' }}
             >
               퀴즈
@@ -83,7 +83,7 @@ function DrawerComponents({
             <span className='material-symbols-outlined'>arrow_right</span>
             <Button
               color='inherit'
-              onClick={() => navigate('/IllustratedBook')}
+              onClick={() => navigate('/illustratedBook')}
               style={{ fontSize: '18px' }}
             >
               도감
@@ -93,7 +93,7 @@ function DrawerComponents({
             <span className='material-symbols-outlined'>arrow_right</span>
             <Button
               color='inherit'
-              onClick={() => navigate('/StatisticsPage')}
+              onClick={() => navigate('/statisticsPage')}
               style={{ fontSize: '18px' }}
             >
               통계
@@ -103,7 +103,7 @@ function DrawerComponents({
             <span className='material-symbols-outlined'>arrow_right</span>
             <Button
               color='inherit'
-              onClick={() => navigate('/MyPage')}
+              onClick={() => navigate('/myPage')}
               style={{ fontSize: '18px' }}
             >
               마이페이지

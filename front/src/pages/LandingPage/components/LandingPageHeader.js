@@ -78,7 +78,7 @@ function LandingPageHeader({
             <Grid item xs={2}>
               <Button
                 color='inherit'
-                onClick={() => navigate('/QuizPage')}
+                onClick={() => navigate('/quizPage')}
                 style={{ fontSize: '2vw' }}
               >
                 퀴즈
@@ -87,7 +87,7 @@ function LandingPageHeader({
             <Grid item xs={2}>
               <Button
                 color='inherit'
-                onClick={() => navigate('/IllustratedBook')}
+                onClick={() => navigate('/illustratedBook')}
                 style={{ fontSize: '2vw' }}
               >
                 도감
@@ -96,7 +96,7 @@ function LandingPageHeader({
             <Grid item xs={2}>
               <Button
                 color='inherit'
-                onClick={() => navigate('/StatisticsPage')}
+                onClick={() => navigate('/statisticsPage')}
                 style={{ fontSize: '2vw' }}
               >
                 통계
@@ -105,7 +105,7 @@ function LandingPageHeader({
             <Grid item xs={2}>
               <Button
                 color='inherit'
-                onClick={() => navigate('/MyPage')}
+                onClick={() => navigate('/myPage')}
                 style={{ fontSize: '2vw' }}
               >
                 마이페이지

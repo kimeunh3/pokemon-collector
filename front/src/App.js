@@ -79,19 +79,19 @@ function App() {
               path='/pokemonDetail/:pokemonId'
               element={<PokemonDetailPage />}
             />
-            <Route path='/IllustratedBook' element={<IllustratedBookPage />} />
-            <Route path='/StatisticsPage' element={<StatisticsPage />} />
+            <Route path='/illustratedBook' element={<IllustratedBookPage />} />
+            <Route path='/statisticsPage' element={<StatisticsPage />} />
             <Route
-              path='/StatisticsPage/TypeStatisticsPage/:type'
+              path='/statisticsPage/typeStatisticsPage/:type'
               element={<TypeStatisticsPage />}
             />
             <Route
-              path='/StatisticsPage/StatsStatisticsPage/:stats'
+              path='/statisticsPage/statsStatisticsPage/:stats'
               element={<StatsStatisticsPage />}
             />
-            <Route path='/MyPage' element={<MyPage userState={userState} />} />
-            <Route path='/QuizPage' element={<QuizPage />} />
-            <Route path='/MyPage' element={<MyPage />} />;
+            <Route path='/myPage' element={<MyPage userState={userState} />} />
+            <Route path='/quizPage' element={<QuizPage />} />
+            <Route path='/myPage' element={<MyPage />} />;
           </Routes>
         </Router>
       </UserStateContext.Provider>

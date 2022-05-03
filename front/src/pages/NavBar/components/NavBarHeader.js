@@ -81,7 +81,7 @@ function NavBarHeader({ open, setOpen, isLogin, handleDialogOpen, logout }) {
             <Grid item xs={2}>
               <Button
                 color='inherit'
-                onClick={() => navigate('/QuizPage')}
+                onClick={() => navigate('/quizPage')}
                 style={{ fontSize: '1.1vw' }}
               >
                 퀴즈
@@ -90,7 +90,7 @@ function NavBarHeader({ open, setOpen, isLogin, handleDialogOpen, logout }) {
             <Grid item xs={2}>
               <Button
                 color='inherit'
-                onClick={() => navigate('/IllustratedBook')}
+                onClick={() => navigate('/illustratedBook')}
                 style={{ fontSize: '1.1vw' }}
               >
                 도감
@@ -99,7 +99,7 @@ function NavBarHeader({ open, setOpen, isLogin, handleDialogOpen, logout }) {
             <Grid item xs={2}>
               <Button
                 color='inherit'
-                onClick={() => navigate('/StatisticsPage')}
+                onClick={() => navigate('/statisticsPage')}
                 style={{ fontSize: '1.1vw' }}
               >
                 통계
@@ -108,7 +108,7 @@ function NavBarHeader({ open, setOpen, isLogin, handleDialogOpen, logout }) {
             <Grid item xs={2}>
               <Button
                 color='inherit'
-                onClick={() => navigate('/MyPage')}
+                onClick={() => navigate('/myPage')}
                 style={{ fontSize: '1.1vw' }}
               >
                 마이페이지

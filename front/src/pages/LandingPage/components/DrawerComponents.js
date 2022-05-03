@@ -11,6 +11,22 @@ import {
   ListItem,
 } from '@material-ui/core';
 
+const drawerWidth = 240;
+
+const DrawerHeader = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+  justifyContent: 'flex-start',
+  width: drawerWidth,
+  flexShrink: 0,
+  '& .MuiDrawer-paper': {
+    width: drawerWidth,
+  },
+}));
+
 function DrawerComponents({
   open,
   setOpen,
@@ -19,22 +35,7 @@ function DrawerComponents({
   logout,
 }) {
   const navigate = useNavigate();
-  const drawerWidth = 240;
   const theme = useTheme();
-
-  const DrawerHeader = styled('div')(({ theme }) => ({
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-    justifyContent: 'flex-start',
-    width: drawerWidth,
-    flexShrink: 0,
-    '& .MuiDrawer-paper': {
-      width: drawerWidth,
-    },
-  }));
 
   const handleDrawerClose = () => {
     setOpen(false);
@@ -49,11 +50,9 @@ function DrawerComponents({
     >
       <DrawerHeader>
         <IconButton onClick={handleDrawerClose}>
-          {theme.direction === 'rtl' ? (
-            <span className='material-symbols-outlined'>menu</span>
-          ) : (
-            <span className='material-symbols-outlined'>close</span>
-          )}
+          <span className='material-symbols-outlined'>
+            {theme.direction === 'rtl' ? 'menu' : 'close'}
+          </span>
         </IconButton>
       </DrawerHeader>
       <Divider />
@@ -73,7 +72,7 @@ function DrawerComponents({
             <span className='material-symbols-outlined'>arrow_right</span>
             <Button
               color='inherit'
-              onClick={() => navigate('/QuizPage')}
+              onClick={() => navigate('/quizPage')}
               style={{ fontSize: '18px' }}
             >
               퀴즈
@@ -83,7 +82,7 @@ function DrawerComponents({
             <span className='material-symbols-outlined'>arrow_right</span>
             <Button
               color='inherit'
-              onClick={() => navigate('/IllustratedBook')}
+              onClick={() => navigate('/illustratedBook')}
               style={{ fontSize: '18px' }}
             >
               도감
@@ -93,7 +92,7 @@ function DrawerComponents({
             <span className='material-symbols-outlined'>arrow_right</span>
             <Button
               color='inherit'
-              onClick={() => navigate('/StatisticsPage')}
+              onClick={() => navigate('/statisticsPage')}
               style={{ fontSize: '18px' }}
             >
               통계
@@ -103,7 +102,7 @@ function DrawerComponents({
             <span className='material-symbols-outlined'>arrow_right</span>
             <Button
               color='inherit'
-              onClick={() => navigate('/MyPage')}
+              onClick={() => navigate('/myPage')}
               style={{ fontSize: '18px' }}
             >
               마이페이지

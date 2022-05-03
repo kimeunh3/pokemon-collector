@@ -47,8 +47,8 @@ function NavBar() {
   if (
     location.pathname === '/login' ||
     location.pathname === '/home' ||
-    location.pathname.includes('/StatisticsPage/TypeStatisticsPage/') ||
-    location.pathname.includes('/StatisticsPage/StatsStatisticsPage/')
+    location.pathname.includes('/statisticsPage/typeStatisticsPage/') ||
+    location.pathname.includes('/statisticsPage/statsStatisticsPage/')
   )
     return null;
 
