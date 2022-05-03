@@ -144,8 +144,8 @@ class User {
       { id: userId },
       { $set: { quizChance: newQuizChance }, },
       { new: true }
-    )
-    return quizChance
+    );
+    return quizChance;
   }
 }
 

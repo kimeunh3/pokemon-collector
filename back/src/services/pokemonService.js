@@ -1,6 +1,6 @@
-import { Pokemon } from "../db";
-import { User } from "../db";
-import { draw } from "../util/draw";
+import { Pokemon } from '../db';
+import { User } from '../db';
+import { draw } from '../util/draw';
 
 class PokemonAuthService {
   static async getPokemon({ id }) {
@@ -9,7 +9,7 @@ class PokemonAuthService {
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!pokemon) {
       const errorMessage =
-        "해당 번호를 가진 포켓몬이 없습니다. 다시 한 번 확인해 주세요.";
+        '해당 번호를 가진 포켓몬이 없습니다. 다시 한 번 확인해 주세요.';
       return { errorMessage };
     }
 
@@ -22,7 +22,7 @@ class PokemonAuthService {
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!pokemonName) {
       const errorMessage =
-        "해당 번호를 가진 포켓몬이 없습니다. 다시 한 번 확인해 주세요.";
+        '해당 번호를 가진 포켓몬이 없습니다. 다시 한 번 확인해 주세요.';
       return { errorMessage };
     }
 
@@ -38,10 +38,10 @@ class PokemonAuthService {
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (pokemons.length <= 0) {
       const errorMessage =
-        "해당 속성의 포켓몬이 없습니다. 다시 한 번 확인해 주세요.";
+        '해당 속성의 포켓몬이 없습니다. 다시 한 번 확인해 주세요.';
       return { errorMessage };
     }
-    return pokemons
+    return pokemons;
   }
 
   static async getDrewResult({ userId }) {
@@ -61,7 +61,7 @@ class PokemonAuthService {
 
     if (!stickers) {
       const errorMessage =
-        "stikers update에 실패했습니다. 다시 한 번 확인해 주세요.";
+        'stikers update에 실패했습니다. 다시 한 번 확인해 주세요.';
       return { errorMessage };
     }
 
