@@ -23,7 +23,7 @@ export const options1 = {
   plugins: {
     title: {
       display: true,
-      text: '속성별 능력치',
+      text: '속성별 능력치 평균',
     },
   },
   responsive: true,

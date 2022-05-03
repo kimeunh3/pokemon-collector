@@ -29,7 +29,7 @@ function QuizComponent({
   set1,
   set2,
   text,
-  img = '/images/quizImg1.jpg',
+  img = 'https://d31z0g5vo6ghmg.cloudfront.net/front/quizImg1.jpg',
   isQuiz = false,
   isQuizIng = false,
   setIsQuizIng,

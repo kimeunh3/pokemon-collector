@@ -24,7 +24,7 @@ function QuizEntry({ setIsEntry, setIsQuizEx1 }) {
       >
         <CardMedia
           component='img'
-          image='/images/QuizPageImg.gif'
+          image='https://d31z0g5vo6ghmg.cloudfront.net/front/QuizPageImg.gif'
           alt='퀴즈입장이미지'
         />
       </Card>
