@@ -74,14 +74,12 @@ function QuizComponent({
   const checkAnswer = () => {
     // 처음에 정답 맞춤 -> 1000포인트
     if (pokemonName === useAnswer && isRetry === false) {
-      Api.get('succeedQuiz');
-      // Api.get('succeedQuiz/first');
+      Api.get('succeedQuiz/first');
       setIsQuizIng(false);
       setIsFirstCorrect(true);
       // 재도전에 정답 맞춤 -> 500포인트
     } else if (pokemonName === useAnswer) {
-      Api.get('succeedQuiz');
-      // Api.get('succeedQuiz/second');
+      Api.get('succeedQuiz/second');
       setIsRetry(false);
       setIsCorrect(true);
       // 처음에 틀림 -> 재도전
