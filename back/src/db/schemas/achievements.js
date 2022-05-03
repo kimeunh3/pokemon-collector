@@ -1,31 +1,31 @@
-import { Schema, model } from "mongoose";
-import mongoose from "mongoose";
+import { Schema, model } from 'mongoose';
+import mongoose from 'mongoose';
 
 const AchievementsSchema = new Schema(
   {
-    id:{
+    id: {
       type: Number,
-      required: true
+      required: true,
     },
-    type:{
-      type:String,
-      required: true
+    type: {
+      type: String,
+      required: true,
     },
-    name:{
-      type:String,
-      required: true
+    name: {
+      type: String,
+      required: true,
     },
-    description:{
-      type:String,
-      required: true
+    description: {
+      type: String,
+      required: true,
     },
-    condition:[Number],
+    condition: [Number],
   },
   {
     timestamps: true,
   }
 );
 
-const AchievementsModel = model("Achievements", AchievementsSchema);
+const AchievementsModel = model('Achievements', AchievementsSchema);
 
 export { AchievementsModel };
