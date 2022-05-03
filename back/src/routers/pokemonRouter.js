@@ -80,18 +80,6 @@ pokemonAuthRouter.get('/drawPokemon', async (req, res, next) => {
     if (drawResult.errorMessage) {
       throw new Error(drawResult.errorMessage);
     }
-    const pokemonIdAndName = await PokemonAuthService.getDrewPokemonIdAndName({
-      userId,
-    });
-
-    if (pokemonIdAndName.errorMessage) {
-      throw new Error(pokemonIdAndName.errorMessage);
-    }
-    // 업적 업데이트
-    await achievementsService.updateAchievements({
-      userId,
-      id: pokemonIdAndName.id,
-    });
 
     if (drawResult.status) {
       // 업적 업데이트
