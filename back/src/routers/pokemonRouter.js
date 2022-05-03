@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { loginRequired } from '../middlewares/login_required';
+import { loginRequired } from '../middlewares/loginRequired';
 import { PokemonAuthService } from '../services/pokemonService';
 import { achievementsService } from '../services/achievementsService';
 import { rankService } from '../services/rankService';

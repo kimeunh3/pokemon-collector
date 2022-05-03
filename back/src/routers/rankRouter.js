@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import { login_required } from '../middlewares/login_required';
+import { loginRequired } from '../middlewares/loginRequired';
 import { rankService } from '../services/rankService';
 
 const rankRouter = Router();
-rankRouter.use(login_required);
+rankRouter.use(loginRequired);
 
 rankRouter.get('/ranking/:field/:count', async function (req, res, next) {
   try {
