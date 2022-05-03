@@ -91,7 +91,6 @@ function App() {
             />
             <Route path='/myPage' element={<MyPage userState={userState} />} />
             <Route path='/quizPage' element={<QuizPage />} />
-            <Route path='/myPage' element={<MyPage />} />;
           </Routes>
         </Router>
       </UserStateContext.Provider>
