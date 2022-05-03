@@ -12,12 +12,10 @@ import {
 } from '@mui/material';
 import { ArrowDropDown, HelpOutlineOutlined } from '@mui/icons-material';
 
-import {
-  QuizText,
-  QuizSelect,
-  QuizAnswerSubmit,
-  QuizYesOrNo,
-} from './QuizItems/QuizItems';
+import QuizText from './QuizItems/QuizText';
+import QuizAnswerSubmit from './QuizItems/QuizAnswerSubmit';
+import QuizSelect from './QuizItems/QuizSelect';
+import QuizYesOrNo from './QuizItems/QuizYesOrNo';
 import './QuizComponent.css';
 import ImgSrc from '../../../core/constants/ImgSrc';
 
