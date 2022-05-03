@@ -11,6 +11,7 @@ import { UserStateContext, DispatchContext } from '../../Context';
 import LandingPageHeader from './components/LandingPageHeader';
 import DrawerComponents from '../../components/LandingNavBar/DrawerComponents';
 import ScrollUpButton from '../../components/commons/ScrollUpButton';
+import RankingButton from '../../components/commons/RankingButton';
 
 import ImgSrc from '../../core/constants/ImgSrc';
 
@@ -78,6 +79,7 @@ function LandingPage() {
         logout={logout}
       />
       <ScrollUpButton />
+      <RankingButton />
       <div
         style={{
           position: 'relative',
