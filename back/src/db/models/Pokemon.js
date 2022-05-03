@@ -12,15 +12,15 @@ class Pokemon {
   }
 
   static async findAll() {
-    return PokemonModel.find({})
+    return PokemonModel.find({});
   }
 
   static async findPokemonsByType({ type }) {
-    return PokemonModel.find({ $or: [{ typeOne: type }, { typeTwo: type }] })
+    return PokemonModel.find({ $or: [{ typeOne: type }, { typeTwo: type }] });
   }
 
   static async getPokemonCount() {
-    return PokemonModel.find({}).count()
+    return PokemonModel.find({}).count();
   }
 }
 

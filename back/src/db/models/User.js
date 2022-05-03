@@ -28,14 +28,20 @@ class User {
   }
 
   static async findOneStickerCountById({ userId, pokemonId }) {
-    const oneStickers = await UserModel.findOne({ id: userId, 'stickers.id': pokemonId }, { _id: 0, 'stickers.$': 1 });
+    const oneStickers = await UserModel.findOne(
+      { id: userId, 'stickers.id': pokemonId },
+      { _id: 0, 'stickers.$': 1 }
+    );
     const count = oneStickers.stickers[0].count
     return count
   }
 
   static async findAchievementsListById({ userId }) {
-    const { achievements } = await UserModel.findOne({ id: userId }, { _id: 0, achievements: 1 });
-    return achievements
+    const { achievements } = await UserModel.findOne(
+      { id: userId },
+      { _id: 0, achievements: 1 }
+    );
+    return achievements;
   }
 
   static async findAchievementsIdListById({ userId }) {
@@ -43,20 +49,28 @@ class User {
     let achievementsNotSucc = []
     await achievementsList.achievements.forEach(x => {
       if (x.status < 100) {
-        achievementsNotSucc.push(x.id)
+        achievementsNotSucc.push(x.id);
       }
     })
-    return achievementsNotSucc
+    return achievementsNotSucc;
   }
 
   static async findQuizChanceById({ userId }) {
-    const quiz = await UserModel.findOne({ id: userId }, { quizChance: 1 }, { _id: 0 });
+    const quiz = await UserModel.findOne(
+      { id: userId },
+      { quizChance: 1 },
+      { _id: 0 }
+    );
     return quiz.quizChance;
   }
 
   static async findRankPointRanking({ count }) {
-    const rankingList = await UserModel.find({}, { achievements: 0, stickers: 0 }).sort({ rankPoint: -1 }).limit(count)
-    return rankingList
+    const rankingList = await UserModel.find(
+      {},
+      { achievements: 0, stickers: 0 })
+      .sort({ rankPoint: -1 })
+      .limit(count);
+    return rankingList;
   }
 
   static async findStickersRanking({ count }) {
@@ -71,8 +85,8 @@ class User {
       $sort: { stickersCount: -1 }
     }, {
       $limit: count
-    }])
-    return rankingList
+    }]);
+    return rankingList;
   }
 
   static async update({ userId, fieldToUpdate, newValue }) {
