@@ -1,14 +1,14 @@
-import { Router } from "express";
-import { login_required } from "../middlewares/login_required";
+import { Router } from 'express';
+import { loginRequired } from '../middlewares/loginRequired';
 import { quizService } from '../services/quizService';
 
 const quizRouter = Router();
-quizRouter.use(login_required);
+quizRouter.use(loginRequired);
 
-quizRouter.get("/quiz", async function (req, res, next) {
+quizRouter.get('/quiz', async function (req, res, next) {
   try {
     const userId = req.currentUserId;
-    const quiz = await quizService.getQuiz({userId})
+    const quiz = await quizService.getQuiz({ userId });
     if (quiz.errorMessage) {
       throw new Error(quiz.errorMessage);
     }
@@ -18,14 +18,17 @@ quizRouter.get("/quiz", async function (req, res, next) {
   }
 });
 
-quizRouter.get("/succeedQuiz", async function (req, res, next) {
+quizRouter.get('/succeedQuiz/:opportunity', async function (req, res, next) {
   try {
     const userId = req.currentUserId;
-    const updatedPint = await quizService.addPint({userId})
+    const { opportunity } = req.params;
+    let updatedPint = await quizService.addPoint({ userId, opportunity });
     if (updatedPint.errorMessage) {
       throw new Error(updatedPint.errorMessage);
     }
-
+    if ((opportunity != 'first') & (opportunity != 'second')) {
+      updatedPint = { errorMessage: 'params 확인 필요 (first or second)' };
+    }
     res.status(200).json(updatedPint);
   } catch (error) {
     next(error);

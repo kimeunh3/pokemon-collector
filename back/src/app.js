@@ -6,6 +6,7 @@ import { pokemonAuthRouter } from './routers/pokemonRouter';
 import { pokemonRadarChartDataAuthRouter } from './routers/pokemonRadarChartDataRouter';
 import { achievementsRouter } from "./routers/achievementsRouter";
 import { quizRouter } from "./routers/quizRouter";
+import { rankRouter } from "./routers/rankRouter";
 
 const { swaggerUi, specs } = require('./modules/swagger');
 const app = express();
@@ -35,6 +36,7 @@ app.use(pokemonAuthRouter);
 app.use(achievementsRouter);
 app.use(pokemonRadarChartDataAuthRouter);
 app.use(quizRouter);
+app.use(rankRouter);
 app.use(errorMiddleware);
 
 // eslint-disable-next-line import/prefer-default-export
