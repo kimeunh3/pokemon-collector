@@ -149,9 +149,9 @@ class userAuthService {
       user = await User.update({ userId, fieldToUpdate, newValue });
     }
 
-    if (toUpdate.isPointGiven) {
+    if (toUpdate.isPointGiven !== user.isPointGiven) {
       const fieldToUpdate = 'isPointGiven';
-      const newValue = !toUpdate.isPointGiven;
+      const newValue = toUpdate.isPointGiven;
       user = await User.update({ userId, fieldToUpdate, newValue });
     }
 

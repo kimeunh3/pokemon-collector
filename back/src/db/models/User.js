@@ -21,28 +21,40 @@ class User {
     return users;
   }
 
-  static async findStickerListById({userId}){
-    const userStickers = await UserModel.findOne({ id: userId });  
-    const userStickerIds = userStickers.stickers.map(sticker=>sticker.id);
+  static async findStickerListById({ userId }) {
+    const userStickers = await UserModel.findOne({ id: userId });
+    const userStickerIds = userStickers.stickers.map((sticker) => sticker.id);
     return userStickerIds;
   }
 
-  static async findAchievementsListById({userId}){
-    const {achievements} = await UserModel.findOne({ id: userId },{_id:0, achievements:1});
-    return achievements
+  static async findAchievementsListById({ userId }) {
+    const { achievements } = await UserModel.findOne(
+      { id: userId },
+      { _id: 0, achievements: 1 }
+    );
+    return achievements;
   }
 
-  static async findAchievementsIdListById({userId}){
-    const achievementsList = await UserModel.findOne({ id: userId },{_id:0, achievements:1});
-    let achievementsNotSucc = []
-    await achievementsList.achievements.forEach(x=>{if(x.status < 100){
-      achievementsNotSucc.push(x.id)
-    }})
-    return achievementsNotSucc
+  static async findAchievementsIdListById({ userId }) {
+    const achievementsList = await UserModel.findOne(
+      { id: userId },
+      { _id: 0, achievements: 1 }
+    );
+    let achievementsNotSucc = [];
+    await achievementsList.achievements.forEach((x) => {
+      if (x.status < 100) {
+        achievementsNotSucc.push(x.id);
+      }
+    });
+    return achievementsNotSucc;
   }
 
-  static async findquizChanceById({userId}){
-    const quiz = await UserModel.findOne({ id:userId }, {quizChance:1},{_id:0});
+  static async findquizChanceById({ userId }) {
+    const quiz = await UserModel.findOne(
+      { id: userId },
+      { quizChance: 1 },
+      { _id: 0 }
+    );
     return quiz.quizChance;
   }
 
@@ -93,21 +105,21 @@ class User {
     return point;
   }
 
-  static async updateAchievements({userId, id, status}){
+  static async updateAchievements({ userId, id, status }) {
     return await UserModel.findOneAndUpdate(
-      {id : userId,'achievements.id':id},
-      { $set: {'achievements.$.status': status}},
-      {new: true}
+      { id: userId, 'achievements.id': id },
+      { $set: { 'achievements.$.status': status } },
+      { new: true }
     );
   }
 
-  static async updateQuizChance({userId, newQuizChance}){
-    const {quizChance} = await UserModel.findOneAndUpdate(
-      {id : userId},
-      { $set: {quizChance:newQuizChance},},
+  static async updateQuizChance({ userId, newQuizChance }) {
+    const { quizChance } = await UserModel.findOneAndUpdate(
+      { id: userId },
+      { $set: { quizChance: newQuizChance } },
       { new: true }
-    )
-    return quizChance
+    );
+    return quizChance;
   }
 }
 
