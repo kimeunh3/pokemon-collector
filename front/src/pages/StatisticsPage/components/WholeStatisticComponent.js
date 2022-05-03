@@ -7,29 +7,29 @@ import {
 
 import * as Api from '../../../api';
 
+const TypeToNum = {
+  노말: 0,
+  불꽃: 1,
+  물: 2,
+  풀: 3,
+  전기: 4,
+  얼음: 5,
+  격투: 6,
+  독: 7,
+  땅: 8,
+  비행: 9,
+  에스퍼: 10,
+  벌레: 11,
+  바위: 12,
+  고스트: 13,
+  드래곤: 14,
+  강철: 15,
+  페어리: 16,
+};
+
 function WholeStatisticComponent() {
   const [pokemons, setPokemons] = useState([]);
   const [y, setY] = useState();
-
-  const typeToNum = {
-    노말: 0,
-    불꽃: 1,
-    물: 2,
-    풀: 3,
-    전기: 4,
-    얼음: 5,
-    격투: 6,
-    독: 7,
-    땅: 8,
-    비행: 9,
-    에스퍼: 10,
-    벌레: 11,
-    바위: 12,
-    고스트: 13,
-    드래곤: 14,
-    강철: 15,
-    페어리: 16,
-  };
 
   useEffect(() => {
     Api.get('pokemonList').then((res) => {
@@ -56,22 +56,22 @@ function WholeStatisticComponent() {
       totalPointsMeans: [],
     };
     pokemons.forEach((pokemon) => {
-      newY.attack[typeToNum[pokemon.typeOne]] += pokemon.attack;
-      newY.attack[typeToNum[pokemon.typeTwo]] += pokemon.attack;
-      newY.defense[typeToNum[pokemon.typeOne]] += pokemon.defense;
-      newY.defense[typeToNum[pokemon.typeTwo]] += pokemon.defense;
-      newY.hp[typeToNum[pokemon.typeOne]] += pokemon.hp;
-      newY.hp[typeToNum[pokemon.typeTwo]] += pokemon.hp;
-      newY.spAttack[typeToNum[pokemon.typeOne]] += pokemon.spAttack;
-      newY.spAttack[typeToNum[pokemon.typeTwo]] += pokemon.spAttack;
-      newY.spDefense[typeToNum[pokemon.typeOne]] += pokemon.spDefense;
-      newY.spDefense[typeToNum[pokemon.typeTwo]] += pokemon.spDefense;
-      newY.speed[typeToNum[pokemon.typeOne]] += pokemon.speed;
-      newY.speed[typeToNum[pokemon.typeTwo]] += pokemon.speed;
-      newY.totalPoints[typeToNum[pokemon.typeOne]] += pokemon.totalPoints;
-      newY.totalPoints[typeToNum[pokemon.typeTwo]] += pokemon.totalPoints;
-      newY.typesCnt[typeToNum[pokemon.typeOne]] += 1;
-      newY.typesCnt[typeToNum[pokemon.typeTwo]] += 1;
+      newY.attack[TypeToNum[pokemon.typeOne]] += pokemon.attack;
+      newY.attack[TypeToNum[pokemon.typeTwo]] += pokemon.attack;
+      newY.defense[TypeToNum[pokemon.typeOne]] += pokemon.defense;
+      newY.defense[TypeToNum[pokemon.typeTwo]] += pokemon.defense;
+      newY.hp[TypeToNum[pokemon.typeOne]] += pokemon.hp;
+      newY.hp[TypeToNum[pokemon.typeTwo]] += pokemon.hp;
+      newY.spAttack[TypeToNum[pokemon.typeOne]] += pokemon.spAttack;
+      newY.spAttack[TypeToNum[pokemon.typeTwo]] += pokemon.spAttack;
+      newY.spDefense[TypeToNum[pokemon.typeOne]] += pokemon.spDefense;
+      newY.spDefense[TypeToNum[pokemon.typeTwo]] += pokemon.spDefense;
+      newY.speed[TypeToNum[pokemon.typeOne]] += pokemon.speed;
+      newY.speed[TypeToNum[pokemon.typeTwo]] += pokemon.speed;
+      newY.totalPoints[TypeToNum[pokemon.typeOne]] += pokemon.totalPoints;
+      newY.totalPoints[TypeToNum[pokemon.typeTwo]] += pokemon.totalPoints;
+      newY.typesCnt[TypeToNum[pokemon.typeOne]] += 1;
+      newY.typesCnt[TypeToNum[pokemon.typeTwo]] += 1;
     });
 
     for (let i = 0; i < 17; i += 1) {

@@ -11,6 +11,50 @@ import StatsDrawerComponents from './components/DrawerComponents/StatsDrawerComp
 
 import * as Api from '../../api';
 
+const KorEngStatsList = {
+  공격력: 'attack',
+  방어력: 'defense',
+  Hp: 'hp',
+  특수공격력: 'spAttack',
+  특수방어력: 'spDefense',
+  스피드: 'speed',
+  키: 'height',
+  몸무게: 'weight',
+  종합점수: 'totalPoints',
+};
+
+const TypeColorList = {
+  노말: 'rgba(198, 198, 167, 0.8)',
+  불꽃: 'rgba(245, 172, 120, 0.8)',
+  물: 'rgba(157, 183, 245, 0.8)',
+  풀: 'rgba(167, 219, 141, 0.8)',
+  전기: 'rgba(250, 224, 120, 0.8)',
+  얼음: 'rgba(188, 230, 230, 0.8)',
+  격투: 'rgba(214, 120, 115, 0.8)',
+  독: 'rgba(193, 131, 193, 0.8)',
+  땅: 'rgba(235, 214, 157, 0.8)',
+  비행: 'rgba(198, 183, 245, 0.8)',
+  에스퍼: 'rgba(250, 146, 178, 0.8)',
+  벌레: 'rgba(198, 209, 110, 0.8)',
+  바위: 'rgba(209, 193, 125, 0.8)',
+  고스트: 'rgba(162, 146, 188, 0.8)',
+  드래곤: 'rgba(162, 125, 250, 0.8)',
+  강철: 'rgba(209, 209, 224, 0.8)',
+  페어리: 'rgba(244, 189, 201, 0.8)',
+};
+
+const StatsColorList = {
+  공격력: 'rgba(240, 128, 48, 0.8)',
+  방어력: 'rgba(248, 208, 48, 0.8)',
+  Hp: 'rgba(255, 0, 0, 0.8)',
+  특수공격력: 'rgba(104, 144, 240, 0.8)',
+  특수방어력: 'rgba(120, 200, 80, 0.8)',
+  스피드: 'rgba(193, 131, 193, 0.8)',
+  키: 'rgba(161, 57, 89, 0.8)',
+  몸무게: 'rgba(68, 94, 156, 0.8)',
+  종합점수: 'rgba(128, 128, 128, 0.8)',
+};
+
 function StatsStatisticsPage() {
   const params = useParams();
   const { stats } = params;
@@ -20,18 +64,7 @@ function StatsStatisticsPage() {
   const [isBarPokemonTop15, setIsBarPokemonTop15] = useState(false);
   const [isBarPokemonLow15, setIsBarPokemonLow15] = useState(false);
 
-  const korengStatsList = {
-    공격력: 'attack',
-    방어력: 'defense',
-    Hp: 'hp',
-    특수공격력: 'spAttack',
-    특수방어력: 'spDefense',
-    스피드: 'speed',
-    키: 'height',
-    몸무게: 'weight',
-    종합점수: 'totalPoints',
-  };
-  const engStats = korengStatsList[stats];
+  const engStats = KorEngStatsList[stats];
   const [pokemons, setPokemons] = useState([]);
   const [y, setY] = useState({});
   const [statsInfo, setStatsInfo] = useState({});
@@ -52,37 +85,7 @@ function StatsStatisticsPage() {
   const [pokemonsStatsTop15Colors, setPokemonsStatsTop15Colors] = useState([]);
   const [pokemonsStatsLow15Colors, setPokemonsStatsLow15Colors] = useState([]);
 
-  const typeColorList = {
-    노말: 'rgba(198, 198, 167, 0.8)',
-    불꽃: 'rgba(245, 172, 120, 0.8)',
-    물: 'rgba(157, 183, 245, 0.8)',
-    풀: 'rgba(167, 219, 141, 0.8)',
-    전기: 'rgba(250, 224, 120, 0.8)',
-    얼음: 'rgba(188, 230, 230, 0.8)',
-    격투: 'rgba(214, 120, 115, 0.8)',
-    독: 'rgba(193, 131, 193, 0.8)',
-    땅: 'rgba(235, 214, 157, 0.8)',
-    비행: 'rgba(198, 183, 245, 0.8)',
-    에스퍼: 'rgba(250, 146, 178, 0.8)',
-    벌레: 'rgba(198, 209, 110, 0.8)',
-    바위: 'rgba(209, 193, 125, 0.8)',
-    고스트: 'rgba(162, 146, 188, 0.8)',
-    드래곤: 'rgba(162, 125, 250, 0.8)',
-    강철: 'rgba(209, 209, 224, 0.8)',
-    페어리: 'rgba(244, 189, 201, 0.8)',
-  };
-  const statsColorList = {
-    공격력: 'rgba(240, 128, 48, 0.8)',
-    방어력: 'rgba(248, 208, 48, 0.8)',
-    Hp: 'rgba(255, 0, 0, 0.8)',
-    특수공격력: 'rgba(104, 144, 240, 0.8)',
-    특수방어력: 'rgba(120, 200, 80, 0.8)',
-    스피드: 'rgba(193, 131, 193, 0.8)',
-    키: 'rgba(161, 57, 89, 0.8)',
-    몸무게: 'rgba(68, 94, 156, 0.8)',
-    종합점수: 'rgba(128, 128, 128, 0.8)',
-  };
-  const typeColors = Object.values(typeColorList);
+  const typeColors = Object.values(TypeColorList);
 
   // 평균값 구하는 함수
   const average = (arr) => arr.reduce((p, c) => p + c, 0) / arr.length;
@@ -217,12 +220,12 @@ function StatsStatisticsPage() {
 
     typesMeansTop5.slice(0, 5).forEach((pokemonType) => {
       newTypesMeansTop5List.push(y.typesMeans[pokemonType]);
-      newTypesMeansTop5Colors.push(typeColorList[pokemonType]);
+      newTypesMeansTop5Colors.push(TypeColorList[pokemonType]);
     });
 
     typesMeansLow5.slice(1, 6).forEach((pokemonType) => {
       newTypesMeansLow5List.push(y.typesMeans[pokemonType]);
-      newTypesMeansLow5Colors.push(typeColorList[pokemonType]);
+      newTypesMeansLow5Colors.push(TypeColorList[pokemonType]);
     });
 
     // 상위 30%, 하위 30% 속성 순위 차트에 평균값 넣기
@@ -274,7 +277,7 @@ function StatsStatisticsPage() {
     <div>
       <StatsDrawerComponents
         stats={stats}
-        statsColor={statsColorList[stats]}
+        statsColor={StatsColorList[stats]}
         statsInfo={statsInfo}
         isBarStats={isBarTypeStats}
         isBarTypeTop5={isBarTypeTop5}
