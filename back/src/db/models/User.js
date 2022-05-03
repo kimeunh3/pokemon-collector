@@ -45,13 +45,16 @@ class User {
   }
 
   static async findAchievementsIdListById({ userId }) {
-    const achievementsList = await UserModel.findOne({ id: userId }, { _id: 0, achievements: 1 });
-    let achievementsNotSucc = []
+    const achievementsList = await UserModel.findOne(
+      { id: userId },
+      { _id: 0, achievements: 1 }
+    );
+    let achievementsNotSucc = [];
     await achievementsList.achievements.forEach(x => {
       if (x.status < 100) {
         achievementsNotSucc.push(x.id);
       }
-    })
+    });
     return achievementsNotSucc;
   }
 
