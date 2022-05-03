@@ -12,13 +12,12 @@ import {
 } from '@mui/material';
 import { ArrowDropDown, HelpOutlineOutlined } from '@mui/icons-material';
 
-import {
-  QuizText,
-  QuizSelect,
-  QuizAnswerSubmit,
-  QuizYesOrNo,
-} from './QuizItems/QuizItems';
+import QuizText from './QuizItems/QuizText';
+import QuizAnswerSubmit from './QuizItems/QuizAnswerSubmit';
+import QuizSelect from './QuizItems/QuizSelect';
+import QuizYesOrNo from './QuizItems/QuizYesOrNo';
 import './QuizComponent.css';
+import ImgSrc from '../../../core/constants/ImgSrc';
 
 import * as Api from '../../../api';
 
@@ -29,7 +28,7 @@ function QuizComponent({
   set1,
   set2,
   text,
-  img = '/images/quizImg1.jpg',
+  img = ImgSrc.quizImg1,
   isQuiz = false,
   isQuizIng = false,
   setIsQuizIng,
@@ -40,6 +39,10 @@ function QuizComponent({
   isContinue,
   setIsContinue,
   isMobile,
+  isRetry,
+  setIsRetry,
+  setIsFirstCorrect,
+  setIsFirstInCorrect,
 }) {
   const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [isAnswer, setIsAnswer] = useState(false);
@@ -67,18 +70,30 @@ function QuizComponent({
   };
 
   const checkAnswer = () => {
-    if (pokemonName === useAnswer) {
-      Api.get('succeedQuiz');
+    // 처음에 정답 맞춤 -> 1000포인트
+    if (pokemonName === useAnswer && isRetry === false) {
+      Api.get('succeedQuiz/first');
       setIsQuizIng(false);
+      setIsFirstCorrect(true);
+      // 재도전에 정답 맞춤 -> 500포인트
+    } else if (pokemonName === useAnswer) {
+      Api.get('succeedQuiz/second');
+      setIsRetry(false);
       setIsCorrect(true);
-    } else {
+      // 처음에 틀림 -> 재도전
+    } else if (isRetry === false) {
       setIsQuizIng(false);
+      setIsFirstInCorrect(true);
+      // 재도전에 틀림 -> 땡
+    } else {
+      setIsRetry(false);
       setIsInCorrect(true);
     }
   };
 
   const onClickYesPass = () => {
     setIsQuizIng(false);
+    setIsRetry(false);
     setIsQuizStart(true);
     setIsPass(false);
   };
@@ -88,6 +103,7 @@ function QuizComponent({
 
   const onClickYesStop = () => {
     setIsQuizIng(false);
+    setIsRetry(false);
     setIsEntry(true);
     setIsStop(false);
   };
@@ -125,14 +141,26 @@ function QuizComponent({
         component='img'
         image={img}
         alt='퀴즈이미지'
-        sx={{
-          width: '35%',
-          maxWidth: '450px',
-          minWidth: '200px',
-          marginLeft: '50%',
-          marginTop: '10px',
-          transform: 'translateX(-50%)',
-        }}
+        sx={
+          isQuizIng && !isRetry
+            ? {
+                width: '35%',
+                maxWidth: '450px',
+                minWidth: '200px',
+                marginLeft: '50%',
+                marginTop: '10px',
+                transform: 'translateX(-50%)',
+                filter: 'brightness(0%)',
+              }
+            : {
+                width: '35%',
+                maxWidth: '450px',
+                minWidth: '200px',
+                marginLeft: '50%',
+                marginTop: '10px',
+                transform: 'translateX(-50%)',
+              }
+        }
       />
       {!isQuizIng && <QuizText text={text} />}
       {isQuizIng && !isAnswer && !isPass && !isStop && (
@@ -181,7 +209,7 @@ function QuizComponent({
       )}
       {isQuiz && (
         <img
-          src='https://d31z0g5vo6ghmg.cloudfront.net/front/pokeball.ico'
+          src={ImgSrc.pokeballIco}
           alt='남은기회'
           style={{
             position: 'absolute',
@@ -227,7 +255,13 @@ function QuizComponent({
           포켓몬 퀴즈는 포켓몬의 실루엣 이미지를 보고 해당하는 포켓몬의 이름을
           맞추는 게임입니다.
           <br />
-          하루에 총 3번의 기회가 주어지며, 정답을 맞추면 500포인트가 지급됩니다.
+          하루에 총 3번의 기회가 주어지며, 정답을 맞추면 1000포인트가
+          지급됩니다.
+          <br />
+          틀리면 재도전의 기회가 주어지고, 재도전에서는 실루엣 이미지가 아닌
+          원본 이미지를 보여줍니다.
+          <br />
+          재도전에서 정답을 맞출 경우 500포인트가 지급됩니다.
           <br />
           게임을 시작하면 랜덤 포켓몬의 실루엣 이미지가 나타나고
           <br />
@@ -257,7 +291,7 @@ function QuizComponent({
         <DialogContent style={{ textAlign: 'center' }}>
           <img
             alt='오박사'
-            src='/images/quizImg1.jpg'
+            src={ImgSrc.quizImg1}
             style={{ maxWidth: '400px' }}
           />
           <Typography variant='h5'>

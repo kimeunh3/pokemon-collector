@@ -10,6 +10,26 @@ import TypeDrawerComponents from './components/DrawerComponents/TypeDrawerCompon
 
 import * as Api from '../../api';
 
+const TypeColorList = {
+  노말: 'rgba(198, 198, 167, 0.8)',
+  불꽃: 'rgba(245, 172, 120, 0.8)',
+  물: 'rgba(157, 183, 245, 0.8)',
+  풀: 'rgba(167, 219, 141, 0.8)',
+  전기: 'rgba(250, 224, 120, 0.8)',
+  얼음: 'rgba(188, 230, 230, 0.8)',
+  격투: 'rgba(214, 120, 115, 0.8)',
+  독: 'rgba(193, 131, 193, 0.8)',
+  땅: 'rgba(235, 214, 157, 0.8)',
+  비행: 'rgba(198, 183, 245, 0.8)',
+  에스퍼: 'rgba(250, 146, 178, 0.8)',
+  벌레: 'rgba(198, 209, 110, 0.8)',
+  바위: 'rgba(209, 193, 125, 0.8)',
+  고스트: 'rgba(162, 146, 188, 0.8)',
+  드래곤: 'rgba(162, 125, 250, 0.8)',
+  강철: 'rgba(209, 209, 224, 0.8)',
+  페어리: 'rgba(244, 189, 201, 0.8)',
+};
+
 function TypeStatisticsPage() {
   const params = useParams();
   const { type } = params;
@@ -21,25 +41,6 @@ function TypeStatisticsPage() {
   const [x, setX] = useState();
   const [y, setY] = useState();
   const [pokemonInfo, setPokemonInfo] = useState();
-  const typeColorList = {
-    노말: 'rgba(198, 198, 167, 0.8)',
-    불꽃: 'rgba(245, 172, 120, 0.8)',
-    물: 'rgba(157, 183, 245, 0.8)',
-    풀: 'rgba(167, 219, 141, 0.8)',
-    전기: 'rgba(250, 224, 120, 0.8)',
-    얼음: 'rgba(188, 230, 230, 0.8)',
-    격투: 'rgba(214, 120, 115, 0.8)',
-    독: 'rgba(193, 131, 193, 0.8)',
-    땅: 'rgba(235, 214, 157, 0.8)',
-    비행: 'rgba(198, 183, 245, 0.8)',
-    에스퍼: 'rgba(250, 146, 178, 0.8)',
-    벌레: 'rgba(198, 209, 110, 0.8)',
-    바위: 'rgba(209, 193, 125, 0.8)',
-    고스트: 'rgba(162, 146, 188, 0.8)',
-    드래곤: 'rgba(162, 125, 250, 0.8)',
-    강철: 'rgba(209, 209, 224, 0.8)',
-    페어리: 'rgba(244, 189, 201, 0.8)',
-  };
 
   useEffect(() => {
     Api.get(`pokemonList/${type}`).then((res) => {
@@ -121,7 +122,7 @@ function TypeStatisticsPage() {
     <div>
       <TypeDrawerComponents
         type={type}
-        typeColor={typeColorList[type]}
+        typeColor={TypeColorList[type]}
         pokemonInfo={pokemonInfo}
         isBarStats={isBarStats}
         isDoughnutType={isDoughnutType}
