@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import { UserStateContext, DispatchContext } from '../../Context';
 import NavBarHeader from './components/NavBarHeader';
-import DrawerComponents from './components/DrawerComponents';
+import DrawerComponents from '../../components/LandingNavBar/DrawerComponents';
 import ImgSrc from '../../core/constants/ImgSrc';
 
 function NavBar() {
@@ -34,13 +34,13 @@ function NavBar() {
 
   const [open, setOpen] = useState(false);
 
-  const [openDialog, setOpenDialog] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   const handleDialogOpen = () => {
-    setOpenDialog(true);
+    setDialogOpen(true);
   };
   const handleDialogClose = () => {
-    setOpenDialog(false);
+    setDialogOpen(false);
   };
 
   // login page와 home에서는 NavBar가 뜨지 않도록 설정
@@ -87,7 +87,7 @@ function NavBar() {
         </div>
       </div>
       <Dialog
-        open={openDialog}
+        open={dialogOpen}
         onClose={handleDialogClose}
         style={{ zIndex: '1300' }}
       >

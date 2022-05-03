@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import { UserStateContext, DispatchContext } from '../../Context';
 import LandingPageHeader from './components/LandingPageHeader';
-import DrawerComponents from './components/DrawerComponents';
+import DrawerComponents from '../../components/LandingNavBar/DrawerComponents';
 import ScrollUpButton from '../../components/commons/ScrollUpButton';
 
 import ImgSrc from '../../core/constants/ImgSrc';
@@ -34,13 +34,13 @@ function LandingPage() {
     navigate('/home');
   };
 
-  const [openDialog, setOpenDialog] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   const handleDialogOpen = () => {
-    setOpenDialog(true);
+    setDialogOpen(true);
   };
   const handleDialogClose = () => {
-    setOpenDialog(false);
+    setDialogOpen(false);
   };
 
   return (
@@ -82,13 +82,16 @@ function LandingPage() {
         style={{
           position: 'relative',
           top: '200px',
-          left: '10%',
         }}
       >
-        <img alt='' src={ImgSrc.posterImg} style={{ height: '500px' }} />
+        <img
+          alt=''
+          src={ImgSrc.posterImg}
+          style={{ height: '500px', marginLeft: '10%' }}
+        />
       </div>
       <Dialog
-        open={openDialog}
+        open={dialogOpen}
         onClose={handleDialogClose}
         style={{ zIndex: '1300' }}
       >
