@@ -129,21 +129,15 @@ function PokemonBookCard({ name, selectType, searchName, num }) {
   return (
     <Card
       onClick={() => navigate(`/pokemonDetail/${num}`)}
-      style={
-        type2 === '10'
-          ? {
-              width: '220px',
-              justifySelf: 'center',
-              cursor: 'pointer',
-              boxShadow: `inset 0px 0px 30px ${bColor}`,
-            }
-          : {
-              width: '220px',
-              justifySelf: 'center',
-              cursor: 'pointer',
-              boxShadow: `inset 0px 0px 30px ${bColor}, inset 0px -25px ${b2Color}`,
-            }
-      }
+      style={{
+        width: '220px',
+        justifySelf: 'center',
+        cursor: 'pointer',
+        boxShadow:
+          type2 === '10'
+            ? `inset 0px 0px 30px ${bColor}`
+            : `inset 0px 0px 30px ${bColor}, inset 0px -25px ${b2Color}`,
+      }}
     >
       <CardMedia style={{ textAlign: 'center' }}>
         <img
