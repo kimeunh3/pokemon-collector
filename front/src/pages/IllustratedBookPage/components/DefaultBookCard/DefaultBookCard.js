@@ -4,6 +4,8 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
+import ImgSrc from '../../../../core/constants/ImgSrc';
+
 function DefaultBookCard({ selectType, searchName }) {
   if (selectType !== '10') return null;
   if (searchName) return null;
@@ -13,7 +15,7 @@ function DefaultBookCard({ selectType, searchName }) {
       <CardMedia style={{ textAlign: 'center' }}>
         <img
           alt=''
-          src='https://d31z0g5vo6ghmg.cloudfront.net/pokemons/pokeball.png'
+          src={ImgSrc.pokeballImg}
           style={{ marginTop: '1rem', width: '140px' }}
         />
       </CardMedia>
