@@ -1,5 +1,5 @@
-import { Achievements } from "../db";
-import { User } from "../db";
+import { Achievements } from '../db';
+import { User } from '../db';
 
 class achievementsService {
   static async getAchievements() {
@@ -8,7 +8,7 @@ class achievementsService {
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!data) {
       const errorMessage =
-        "해당 번호를 가진 포켓몬이 없습니다. 다시 한 번 확인해 주세요.";
+        '해당 번호를 가진 포켓몬이 없습니다. 다시 한 번 확인해 주세요.';
       return { errorMessage };
     }
 
@@ -19,13 +19,13 @@ class achievementsService {
     const userAchievementsList = await User.findAchievementsListById({ userId });
     if (!userAchievementsList) {
       const errorMessage =
-        "유저의 업적 정보를 가져오지 못했습니다.";
+        '유저의 업적 정보를 가져오지 못했습니다.';
       return { errorMessage };
     }
     const achievementsList = await Achievements.findAll();
     if (!achievementsList) {
       const errorMessage =
-        "전체 업적 정보를 가져오지 못했습니다.";
+        '전체 업적 정보를 가져오지 못했습니다.';
       return { errorMessage };
     }
     let DetailedUserAchievList = []
@@ -44,7 +44,7 @@ class achievementsService {
   static async updateAchievements({ userId, pokemonId }) {
     const userStickerIds = await User.findStickerListById({ userId });
     const notSuccAchievementsList = await User.findAchievementsIdListById({ userId });
-    const achievementsList = await Achievements.findAchievementsByType({ type: "collected" })
+    const achievementsList = await Achievements.findAchievementsByType({ type: 'collected' })
 
     let succeeded = []  // 달성도 100을 채운 업적을 저장
     //모든 업적 목록 순회
@@ -62,7 +62,7 @@ class achievementsService {
         }
         let updated = await User.updateAchievements({ userId, id: oneOfAchievements.id, status })
         if (!updated) {
-          throw new Error("user achievemets update에 실패했습니다. 다시 한 번 확인해 주세요.");
+          throw new Error('user achievemets update에 실패했습니다. 다시 한 번 확인해 주세요.');
         }
       }
     });

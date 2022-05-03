@@ -1,4 +1,4 @@
-import { PokemonModel } from "../schemas/pokemon";
+import { PokemonModel } from '../schemas/pokemon';
 
 class Pokemon {
   static async findById({ id }) {
@@ -11,15 +11,15 @@ class Pokemon {
     return { id, name };
   }
 
-  static async findAll(){
+  static async findAll() {
     return PokemonModel.find({})
   }
 
-  static async findPokemonsByType({ type }){
-    return PokemonModel.find({$or:[{typeOne:type}, {typeTwo:type}]})
+  static async findPokemonsByType({ type }) {
+    return PokemonModel.find({ $or: [{ typeOne: type }, { typeTwo: type }] })
   }
 
-  static async getPokemonCount(){
+  static async getPokemonCount() {
     return PokemonModel.find({}).count()
   }
 }

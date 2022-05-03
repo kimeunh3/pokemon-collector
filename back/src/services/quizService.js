@@ -1,5 +1,5 @@
-import { Pokemon } from "../db";
-import { User } from "../db";
+import { Pokemon } from '../db';
+import { User } from '../db';
 
 class quizService {
 
@@ -7,7 +7,7 @@ class quizService {
     //남은 기회 확인
     const quizChance = await User.findQuizChanceById({ userId });
     if (quizChance <= 0) {
-      const message = "기회 부족"
+      const message = '기회 부족'
       return { message, quizChance }
     }
     //기회 차감

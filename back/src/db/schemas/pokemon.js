@@ -1,5 +1,5 @@
-import { Schema, model } from "mongoose";
-import mongoose from "mongoose";
+import { Schema, model } from 'mongoose';
+import mongoose from 'mongoose';
 
 const PokemonSchema = new Schema(
   {

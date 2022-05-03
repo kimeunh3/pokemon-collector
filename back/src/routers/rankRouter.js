@@ -1,11 +1,11 @@
-import { Router } from "express";
-import { login_required } from "../middlewares/login_required";
+import { Router } from 'express';
+import { login_required } from '../middlewares/login_required';
 import { rankService } from '../services/rankService';
 
 const rankRouter = Router();
 rankRouter.use(login_required);
 
-rankRouter.get("/ranking/:field/:count", async function (req, res, next) {
+rankRouter.get('/ranking/:field/:count', async function (req, res, next) {
   try {
 
     const { field, count } = req.params
@@ -16,7 +16,7 @@ rankRouter.get("/ranking/:field/:count", async function (req, res, next) {
     } else if (field == 'stickers') {
       rankingList = await rankService.getstickersRanking({ count })
     } else {
-      rankingList = { massage: "params error 경로 확인 필요" }
+      rankingList = { massage: 'params error 경로 확인 필요' }
     }
     if (rankingList.errorMessage) {
       throw new Error(rankingList.errorMessage);

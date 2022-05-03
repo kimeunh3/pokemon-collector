@@ -41,7 +41,7 @@ const UserSchema = new Schema(
     },
     profileImg: {
       type: String,
-      default: "pocketball.png",
+      default: 'pocketball.png',
       required: false,
     },
     stickers: [
