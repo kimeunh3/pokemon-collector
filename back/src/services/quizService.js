@@ -1,11 +1,10 @@
 import { Pokemon } from '../db';
 import { User } from '../db';
-import { draw } from '../util/draw';
 
 class quizService {
   static async getQuiz({ userId }) {
     //남은 기회 확인
-    const quizChance = await User.findquizChanceById({ userId });
+    const quizChance = await User.findQuizChanceById({ userId });
     if (quizChance <= 0) {
       const message = '기회 부족';
       return { message, quizChance };

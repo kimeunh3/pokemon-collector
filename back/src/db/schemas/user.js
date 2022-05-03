@@ -87,6 +87,11 @@ const UserSchema = new Schema(
       required: true,
       default: 3,
     },
+    rankPoint: {
+      type: Number,
+      required: false,
+      default: 0,
+    },
     achievements: {
       type: Array,
       default: [

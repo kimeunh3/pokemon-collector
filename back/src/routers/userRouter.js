@@ -18,7 +18,6 @@ import is from '@sindresorhus/is';
 import { Router } from 'express';
 import { loginRequired } from '../middlewares/loginRequired';
 import { userAuthService } from '../services/userService';
-import { User } from '../db';
 const userAuthRouter = Router();
 
 userAuthRouter.post('/user/register', async function (req, res, next) {
