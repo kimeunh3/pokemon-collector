@@ -27,6 +27,15 @@ class User {
     return userStickerIds;
   }
 
+  static async findOneStickerCountById({ userId, pokemonId }) {
+    const oneStickers = await UserModel.findOne(
+      { id: userId, 'stickers.id': pokemonId },
+      { _id: 0, 'stickers.$': 1 }
+    );
+    const count = oneStickers.stickers[0].count;
+    return count;
+  }
+
   static async findAchievementsListById({ userId }) {
     const { achievements } = await UserModel.findOne(
       { id: userId },
@@ -49,13 +58,50 @@ class User {
     return achievementsNotSucc;
   }
 
-  static async findquizChanceById({ userId }) {
+  static async findQuizChanceById({ userId }) {
     const quiz = await UserModel.findOne(
       { id: userId },
       { quizChance: 1 },
       { _id: 0 }
     );
     return quiz.quizChance;
+  }
+
+  static async findRankPointRanking({ count }) {
+    const rankingList = await UserModel.find(
+      {},
+      { achievements: 0, stickers: 0 }
+    )
+      .sort({ rankPoint: -1 })
+      .limit(count);
+    return rankingList;
+  }
+
+  static async findStickersRanking({ count }) {
+    const rankingList = await UserModel.aggregate([
+      {
+        $project: {
+          id: 1,
+          email: 1,
+          nickname: 1,
+          sex: 1,
+          age: 1,
+          interest: 1,
+          likeType: 1,
+          point: 1,
+          profileImg: 1,
+          rankPoint: 1,
+          stickersCount: { $size: '$stickers' },
+        },
+      },
+      {
+        $sort: { stickersCount: -1 },
+      },
+      {
+        $limit: count,
+      },
+    ]);
+    return rankingList;
   }
 
   static async update({ userId, fieldToUpdate, newValue }) {
@@ -103,6 +149,15 @@ class User {
       { new: true }
     );
     return point;
+  }
+
+  static async updateRankingPoint({ userId, toAdd }) {
+    const { rankPoint } = await UserModel.findOneAndUpdate(
+      { id: userId },
+      { $inc: { rankPoint: toAdd } },
+      { new: true }
+    );
+    return rankPoint;
   }
 
   static async updateAchievements({ userId, id, status }) {

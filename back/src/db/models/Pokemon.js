@@ -19,8 +19,8 @@ class Pokemon {
     return PokemonModel.find({ $or: [{ typeOne: type }, { typeTwo: type }] });
   }
 
-  static async getPokemonCount(){
-    return PokemonModel.find({}).count()
+  static async getPokemonCount() {
+    return PokemonModel.find({}).count();
   }
 }
 
