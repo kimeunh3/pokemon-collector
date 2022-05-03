@@ -95,14 +95,17 @@ pokemonAuthRouter.get('/drawPokemon', async (req, res, next) => {
 
     if (drawResult.status) {
       // 업적 업데이트
-      const succeeded = await achievementsService.updateAchievements({ userId, pokemonId: drawResult.id });
+      const succeeded = await achievementsService.updateAchievements({
+        userId,
+        pokemonId: drawResult.id,
+      });
       // 랭킹 포인트 업데이트
       const rankingPoint = await rankService.updateRankingPoint({
         userId,
         pokemonId: drawResult.id,
         pokemonStatus: drawResult.pokemonStatus,
         pokemonTotalPoint: drawResult.pokemonTotalPoint,
-        succeeded
+        succeeded,
       });
       drawResult.RankingPoint = rankingPoint;
     }

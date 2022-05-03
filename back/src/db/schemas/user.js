@@ -90,7 +90,7 @@ const UserSchema = new Schema(
     rankPoint: {
       type: Number,
       required: false,
-      default: 0
+      default: 0,
     },
     achievements: {
       type: Array,

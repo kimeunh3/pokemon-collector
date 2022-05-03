@@ -5,19 +5,19 @@ const AchievementsSchema = new Schema(
   {
     id: {
       type: Number,
-      required: true
+      required: true,
     },
     type: {
       type: String,
-      required: true
+      required: true,
     },
     name: {
       type: String,
-      required: true
+      required: true,
     },
     description: {
       type: String,
-      required: true
+      required: true,
     },
     condition: [Number],
   },
@@ -26,6 +26,6 @@ const AchievementsSchema = new Schema(
   }
 );
 
-const AchievementsModel = model("Achievements", AchievementsSchema);
+const AchievementsModel = model('Achievements', AchievementsSchema);
 
 export { AchievementsModel };

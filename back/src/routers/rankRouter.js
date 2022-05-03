@@ -7,7 +7,6 @@ rankRouter.use(loginRequired);
 
 rankRouter.get('/ranking/:field/:count', async function (req, res, next) {
   try {
-
     const { field, count } = req.params;
     let rankingList = [];
 
