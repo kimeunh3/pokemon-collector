@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import dayjs from 'dayjs';
+// import dayjs from 'dayjs';
 import {
 	Box,
 	Button,
@@ -34,6 +34,7 @@ function RegisterPage({ setLogin }) {
 		sex: 'male',
 		interest: 3,
 		likeType: '',
+		birth: '',
 	});
 	const types = [
 		'노말',
@@ -78,10 +79,10 @@ function RegisterPage({ setLogin }) {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		setInputs({
-			...inputs,
-			birth: new Date(dayjs(birth).format('YYYY-MM-DD')),
-		});
+		// setInputs({
+		// 	...inputs,
+		// 	birth: new Date(birth),
+		// });
 
 		try {
 			// "user/register" 엔드포인트로 post요청함.
@@ -183,6 +184,11 @@ function RegisterPage({ setLogin }) {
 							mask='____-__-__'
 							onChange={(newValue) => {
 								setBirth(newValue);
+								setInputs({
+									...inputs,
+									birth: new Date(birth),
+									// Date(dayjs(birth).format('YYYY-MM-DD')),
+								});
 							}}
 							// eslint-disable-next-line react/jsx-props-no-spreading
 							renderInput={(params) => <TextField {...params} />}

@@ -3,6 +3,7 @@ import { useMediaQuery } from '@material-ui/core';
 
 import QuizEntry from './components/QuizEntry';
 import QuizComponent from './components/QuizComponent';
+import ImgSrc from '../../core/constants/ImgSrc';
 
 import * as Api from '../../api';
 
@@ -13,9 +14,13 @@ function QuizPage() {
   const [isQuizEx3, setIsQuizEx3] = useState(false);
   const [isQuizEx4, setIsQuizEx4] = useState(false);
   const [isQuizEx5, setIsQuizEx5] = useState(false);
+  const [isQuizEx6, setIsQuizEx6] = useState(false);
   const [isQuizStart, setIsQuizStart] = useState(false);
   const [isQuizIng, setIsQuizIng] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
+  const [isFirstCorrect, setIsFirstCorrect] = useState(false);
+  const [isFirstInCorrect, setIsFirstInCorrect] = useState(false);
+  const [isRetry, setIsRetry] = useState(false);
   const [isInCorrect, setIsInCorrect] = useState(false);
   const [isContinue, setIsContinue] = useState(false);
   const [chance, setChance] = useState(3);
@@ -78,19 +83,30 @@ function QuizPage() {
         <QuizComponent
           set1={setIsQuizEx3}
           set2={setIsQuizEx4}
-          text={['정답을 맞추면 500포인트를 받을 수 있지.']}
+          text='정답을 맞추면 1000포인트를 받을 수 있지.'
         />
       )}
       {!isMobile && isQuizEx4 && (
         <QuizComponent
           set1={setIsQuizEx4}
           set2={setIsQuizEx5}
-          text={['기회는 3번!', <br />, '어려우면 힌트를 받거나 패스를 하렴.']}
+          text={[
+            '틀리면 더 쉽게 문제를 내줄테니 걱정말거라.',
+            <br />,
+            '대신 맞춰도 500포인트를 얻는단다!',
+          ]}
         />
       )}
       {!isMobile && isQuizEx5 && (
         <QuizComponent
           set1={setIsQuizEx5}
+          set2={setIsQuizEx6}
+          text={['기회는 3번!', <br />, '어려우면 힌트를 받거나 패스를 하렴.']}
+        />
+      )}
+      {!isMobile && isQuizEx6 && (
+        <QuizComponent
+          set1={setIsQuizEx6}
           set2={setIsQuizStart}
           text='자, 그럼 시작한다!'
         />
@@ -98,14 +114,14 @@ function QuizPage() {
       {!isMobile && isQuizStart && (
         <QuizComponent
           chance={chance}
-          img='https://d31z0g5vo6ghmg.cloudfront.net/pokemons/pokeball.png'
+          img={ImgSrc.pokeballImg}
           set1={setIsQuizStart}
           set2={setIsQuizIng}
           text='야생의 포켓몬이 나타났다!'
           isQuiz
         />
       )}
-      {!isMobile && isQuizIng && (
+      {!isMobile && (isQuizIng || isRetry) && (
         <QuizComponent
           pokemonId={pokemonId}
           pokemonName={pokemonName}
@@ -118,6 +134,10 @@ function QuizPage() {
           setIsQuizStart={setIsQuizStart}
           setIsCorrect={setIsCorrect}
           setIsInCorrect={setIsInCorrect}
+          isRetry={isRetry}
+          setIsRetry={setIsRetry}
+          setIsFirstCorrect={setIsFirstCorrect}
+          setIsFirstInCorrect={setIsFirstInCorrect}
         />
       )}
       {!isMobile && isNoChance && (
@@ -131,6 +151,18 @@ function QuizPage() {
           ]}
         />
       )}
+      {!isMobile && isFirstCorrect && (
+        <QuizComponent
+          img={pokemonImg}
+          set1={setIsFirstCorrect}
+          set2={setIsContinue}
+          text={[
+            '정답! 1000포인트 획득!',
+            <br />,
+            `이 포켓몬은 ${pokemonName}!`,
+          ]}
+        />
+      )}
       {!isMobile && isCorrect && (
         <QuizComponent
           img={pokemonImg}
@@ -140,6 +172,17 @@ function QuizPage() {
             '정답! 500포인트 획득!',
             <br />,
             `이 포켓몬은 ${pokemonName}!`,
+          ]}
+        />
+      )}
+      {!isMobile && isFirstInCorrect && (
+        <QuizComponent
+          set1={setIsFirstInCorrect}
+          set2={setIsRetry}
+          text={[
+            '틀렸단다! 어려워 보이는구나.',
+            <br />,
+            `문제를 더 쉽게 내주마!`,
           ]}
         />
       )}

@@ -19,6 +19,7 @@ import * as Api from '../../../../api';
 
 function UserEditCard({ userState, setIsEdit, fetchUserInfo }) {
 	const { email, nickname, likeType, interest } = userState;
+	console.log(userState);
 	const [inputs, setInputs] = useState({
 		email,
 		nickname,

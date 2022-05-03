@@ -9,7 +9,8 @@ import {
 } from '@mui/material';
 import { UserStateContext, DispatchContext } from '../../Context';
 import NavBarHeader from './components/NavBarHeader';
-import DrawerComponents from './components/DrawerComponents';
+import DrawerComponents from '../../components/LandingNavBar/DrawerComponents';
+import ImgSrc from '../../core/constants/ImgSrc';
 
 function NavBar() {
   const navigate = useNavigate();
@@ -33,21 +34,21 @@ function NavBar() {
 
   const [open, setOpen] = useState(false);
 
-  const [openDialog, setOpenDialog] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   const handleDialogOpen = () => {
-    setOpenDialog(true);
+    setDialogOpen(true);
   };
   const handleDialogClose = () => {
-    setOpenDialog(false);
+    setDialogOpen(false);
   };
 
   // login page와 home에서는 NavBar가 뜨지 않도록 설정
   if (
     location.pathname === '/login' ||
     location.pathname === '/home' ||
-    location.pathname.includes('/StatisticsPage/TypeStatisticsPage/') ||
-    location.pathname.includes('/StatisticsPage/StatsStatisticsPage/')
+    location.pathname.includes('/statisticsPage/typeStatisticsPage/') ||
+    location.pathname.includes('/statisticsPage/statsStatisticsPage/')
   )
     return null;
 
@@ -82,16 +83,11 @@ function NavBar() {
             position: 'absolute',
           }}
         >
-          <img
-            alt=''
-            src='https://d31z0g5vo6ghmg.cloudfront.net/front/nav-icon.png'
-            width='110px'
-            height='110px'
-          />
+          <img alt='' src={ImgSrc.navIconImg} width='110px' height='110px' />
         </div>
       </div>
       <Dialog
-        open={openDialog}
+        open={dialogOpen}
         onClose={handleDialogClose}
         style={{ zIndex: '1300' }}
       >

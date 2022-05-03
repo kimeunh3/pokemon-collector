@@ -30,8 +30,8 @@ function StatisticsButton({ imgSrc, text, bColor, kind, type, stats }) {
       style={styles.paperContainer}
       onClick={() =>
         kind === 'type'
-          ? navigate(`/StatisticsPage/TypeStatisticsPage/${type}`)
-          : navigate(`/StatisticsPage/StatsStatisticsPage/${stats}`)
+          ? navigate(`/statisticsPage/typeStatisticsPage/${type}`)
+          : navigate(`/statisticsPage/statsStatisticsPage/${stats}`)
       }
     >
       <div
