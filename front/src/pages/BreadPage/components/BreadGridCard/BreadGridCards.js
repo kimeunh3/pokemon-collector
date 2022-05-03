@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -6,18 +6,22 @@ import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import * as Api from '../../../../api';
 
+import BreadOpenModal from '../BreadOpenModal/BreadOpenModal';
+
 function GridCards({ bread, breadImg, setPoint }) {
-	const navigate = useNavigate();
+	const [isModalOpen, setIsModalOpen] = useState(false);
+
+	// const navigate = useNavigate();
 
 	const handleClick = async () => {
 		const response = await Api.get('drawPokemon');
-
-		alert(`${response.data.name}`);
+		setIsModalOpen(true);
+		// alert(`${response.data.name}`);
 		setPoint(response.userPoint);
-		navigate(`/pokemonDetail/${response.data.id}`);
+		// navigate(`/pokemonDetail/${response.data.id}`);
 	};
 
 	const breadImgSrc = `https://d31z0g5vo6ghmg.cloudfront.net/front/bread/${breadImg}.png`;
@@ -71,6 +75,12 @@ function GridCards({ bread, breadImg, setPoint }) {
 						<Typography>빵 구매</Typography>
 					</Button>
 				</Box>
+				{isModalOpen && (
+					<BreadOpenModal
+						isModalOpen={isModalOpen}
+						setIsModalOpen={setIsModalOpen}
+					/>
+				)}
 			</Grid>
 		);
 	}
