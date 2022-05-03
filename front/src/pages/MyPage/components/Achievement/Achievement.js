@@ -9,7 +9,6 @@ import {
 	Divider,
 	LinearProgress,
 } from '@mui/material';
-// import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import IconObj from '../../../../core/Icon';
 
 function Achievement({ userAchievement }) {
@@ -67,7 +66,7 @@ function Achievement({ userAchievement }) {
 						variant='determinate'
 						value={status}
 						sx={{
-							// width: '90%',
+							width: '94%',
 							height: 10,
 							borderRadius: 5,
 							color: `${IconObj['불꽃'].Color.color}`,

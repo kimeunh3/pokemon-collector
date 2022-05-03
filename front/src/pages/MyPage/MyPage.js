@@ -27,11 +27,6 @@ function MyPage() {
 		fetchAchievements();
 	}, []);
 
-	// setUserAchievements((v) => {
-	// 	console.log(v);
-	// });
-	console.log(userAchievements);
-
 	return (
 		<Container fixed sx={{ marginTop: '165px', width: '100%' }}>
 			<Grid container spacing={2}>
