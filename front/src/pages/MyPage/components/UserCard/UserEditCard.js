@@ -27,9 +27,8 @@ function UserEditCard({
 }) {
 	const { email, nickname, likeType, interest, profileImg } = userState;
 	const [isEditProfileImg, setIsEditProfileImg] = useState(false);
-	const [selected, setSelected] = useState('pokeball');
+	const [selected, setSelected] = useState(profileImg);
 
-	console.log(userState);
 	const [inputs, setInputs] = useState({
 		email,
 		nickname,
@@ -65,13 +64,9 @@ function UserEditCard({
 		});
 	};
 
-	console.log(inputs);
-
 	const handleEdit = async () => {
 		setInputs({ ...inputs, profileImg: `${selected}.png` });
-
-		const res = await Api.put('user/profileModify', inputs);
-		console.log(res);
+		await Api.put('user/profileModify', inputs);
 		fetchUserInfo();
 		setIsEdit(false);
 	};
@@ -83,14 +78,11 @@ function UserEditCard({
 		>
 			<CardMedia
 				component='img'
-				image={`${pokemonURL}/${selected}.png`}
+				image={`${pokemonURL}/${selected}`}
 				alt='profileImg'
 				sx={{ width: '65%', height: '65%', margin: 'auto', cursor: 'pointer' }}
 				onClick={() => {
 					setIsEditProfileImg(true);
-				}}
-				onChange={() => {
-					console.log('gffadsda');
 				}}
 			/>
 			<TextField

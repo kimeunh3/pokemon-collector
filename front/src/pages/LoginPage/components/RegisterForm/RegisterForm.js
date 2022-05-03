@@ -94,8 +94,6 @@ function RegisterPage({ setLogin }) {
 		}
 	};
 
-	console.log(inputs);
-
 	return (
 		<Box
 			component='form'

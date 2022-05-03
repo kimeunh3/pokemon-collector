@@ -32,7 +32,6 @@ function UserCard({ userState, fetchUserInfo, userPokemonList }) {
 		setAttdFailModalOpen(res.data.isPointGiven);
 		setAttdSuccModalOpen(res.data.isPointGiven);
 	};
-	console.log(userState);
 	const handleAttendance = () => {
 		fetchIsPointGiven();
 	};

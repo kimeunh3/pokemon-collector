@@ -22,9 +22,9 @@ function ProfileCard({
 			<CardMedia
 				sx={{ textAlign: 'center', cursor: 'pointer' }}
 				onClick={() => {
-					setSelected(id);
-					setIsEditProfileImg(false);
+					setSelected(`${id}.png`);
 					setInputs({ ...inputs, profileImg: `${id}.png` });
+					setIsEditProfileImg(false);
 				}}
 			>
 				<img
