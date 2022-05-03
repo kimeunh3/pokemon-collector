@@ -8,6 +8,8 @@ const ImgSrc = {
   posterImg: 'https://d31z0g5vo6ghmg.cloudfront.net/front/poster.png',
   logoImg: 'https://d31z0g5vo6ghmg.cloudfront.net/front/logo.png',
   loadingGif: 'https://d31z0g5vo6ghmg.cloudfront.net/front/loading.gif',
+  loginBackgroundImg:
+    'https://d31z0g5vo6ghmg.cloudfront.net/front/loginBackground.png',
 };
 
 export default ImgSrc;
