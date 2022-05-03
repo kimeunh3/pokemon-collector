@@ -51,7 +51,7 @@ function TypeDrawerComponents({
       style={{ zIndex: '1200' }}
     >
       <DrawerHeader>
-        <IconButton onClick={() => navigate('/StatisticsPage')}>
+        <IconButton onClick={() => navigate('/statisticsPage')}>
           {theme.direction === 'rtl' ? (
             <span className='material-symbols-outlined'>menu</span>
           ) : (
