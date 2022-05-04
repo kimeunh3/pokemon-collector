@@ -5,13 +5,17 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import CardMedia from '@mui/material/CardMedia';
 
-function BreadOpenModal({ isModalOpen, setIsModalOpen }) {
+import { useNavigate } from 'react-router-dom';
+
+function BreadOpenModal({ isModalOpen, setIsModalOpen, drawnPokemon }) {
+	const navigate = useNavigate();
+
 	const style = {
 		position: 'absolute',
 		top: '50%',
 		left: '50%',
 		transform: 'translate(-50%, -50%)',
-		width: 800,
+		width: 700,
 		bgcolor: 'background.paper',
 		border: '2px solid #000',
 		borderRadius: '20px',
@@ -26,15 +30,20 @@ function BreadOpenModal({ isModalOpen, setIsModalOpen }) {
 			aria-describedby='modal-modal-description'
 		>
 			<Box sx={style}>
-				<CardMedia image='/getPokemon.gif' />
+				<CardMedia
+					component='img'
+					image='/getPokemon2.gif'
+					alt='빵 뽑는 이미지'
+				/>
 				<Button
 					sx={{ marginLeft: 15, marginTop: 3 }}
 					variant='contained'
 					onClick={() => {
 						setIsModalOpen(false);
+						navigate(`/pokemonDetail/${drawnPokemon.id}`);
 					}}
 				>
-					확인
+					뽑은 스티커 확인하러 가기!
 				</Button>
 			</Box>
 		</Modal>

@@ -6,22 +6,19 @@ import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
-// import { useNavigate } from 'react-router-dom';
 import * as Api from '../../../../api';
 
 import BreadOpenModal from '../BreadOpenModal/BreadOpenModal';
 
 function GridCards({ bread, breadImg, setPoint }) {
 	const [isModalOpen, setIsModalOpen] = useState(false);
-
-	// const navigate = useNavigate();
+	const [drawnPokemon, setDrawnPokemon] = useState(null);
 
 	const handleClick = async () => {
 		const response = await Api.get('drawPokemon');
 		setIsModalOpen(true);
-		// alert(`${response.data.name}`);
 		setPoint(response.userPoint);
-		// navigate(`/pokemonDetail/${response.data.id}`);
+		setDrawnPokemon(response.data);
 	};
 
 	const breadImgSrc = `https://d31z0g5vo6ghmg.cloudfront.net/front/bread/${breadImg}.png`;
@@ -79,6 +76,7 @@ function GridCards({ bread, breadImg, setPoint }) {
 					<BreadOpenModal
 						isModalOpen={isModalOpen}
 						setIsModalOpen={setIsModalOpen}
+						drawnPokemon={drawnPokemon}
 					/>
 				)}
 			</Grid>
