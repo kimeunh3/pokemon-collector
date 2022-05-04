@@ -225,4 +225,24 @@ userAuthRouter.put(
   }
 );
 
+userAuthRouter.post(
+  '/user/changePassword',
+  loginRequired,
+  async function (req, res, next) {
+    try {
+      if (is.emptyObject(req.body) || !req.body.password) {
+        throw new Error('변경할 패스워드를 입력해주세요.');
+      }
+
+      const userId = req.currentUserId;
+      const password = req.body.password;
+
+      const user = await userAuthService.changePassword({ userId, password });
+      res.status(200).json(user);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
 export { userAuthRouter };
