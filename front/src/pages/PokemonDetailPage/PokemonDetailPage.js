@@ -10,7 +10,7 @@ import * as Api from '../../api';
 import IconObj from '../../core/Icon';
 
 function PokemonDetailPage() {
-	const [pokemon, setPokemon] = useState([]);
+	const [pokemon, setPokemon] = useState({});
 	const [radarDataOne, setRadarDataOne] = useState(null);
 	const params = useParams();
 

@@ -9,6 +9,8 @@ import Avatar from '@mui/material/Avatar';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
+import { pokemonURL } from '../../../../core/constants/ImgSrc';
+
 function pokemonCard({
 	pokemon,
 	iconOne,
@@ -28,8 +30,6 @@ function pokemonCard({
 		attack,
 		defense,
 	} = pokemon;
-
-	const imgSrc = `https://d31z0g5vo6ghmg.cloudfront.net/pokemons/${id}.png`;
 
 	return (
 		<Container fixed sx={{ minWidth: 800 }}>
@@ -73,12 +73,15 @@ function pokemonCard({
 							<Box sx={{ width: '90%', margin: '0' }}>
 								<hr />
 							</Box>
-							<CardMedia
-								component='img'
-								image={imgSrc}
-								alt='pokemon'
-								sx={{ width: '100%', height: '100%', padding: '20px' }}
-							/>
+							{pokemon && (
+								<CardMedia
+									component='img'
+									image={`${pokemonURL}/${id}.png`}
+									alt='pokemon'
+									sx={{ width: '100%', height: '100%', padding: '20px' }}
+								/>
+							)}
+
 							<CardContent>
 								<Grid
 									container
