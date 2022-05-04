@@ -25,7 +25,9 @@ class PokemonGrassDataAuthService {
   }
   static async getPokemonsTotal() {
     const pokemons = await PokemonGrassData.findAll();
-    return pokemons.map((pokemon) => pokemon.totalPoints);
+    return pokemons.map((pokemon) => ({
+      [pokemon.name]: pokemon.totalPoints,
+    }));
   }
 }
 
@@ -36,7 +38,9 @@ class PokemonFireDataAuthService {
   }
   static async getPokemonsTotal() {
     const pokemons = await PokemonFireData.findAll();
-    return pokemons.map((pokemon) => pokemon.totalPoints);
+    return pokemons.map((pokemon) => ({
+      [pokemon.name]: pokemon.totalPoints,
+    }));
   }
 }
 
@@ -47,7 +51,9 @@ class PokemonWaterDataAuthService {
   }
   static async getPokemonsTotal() {
     const pokemons = await PokemonWaterData.findAll();
-    return pokemons.map((pokemon) => pokemon.totalPoints);
+    return pokemons.map((pokemon) => ({
+      [pokemon.name]: pokemon.totalPoints,
+    }));
   }
 }
 
@@ -58,7 +64,9 @@ class PokemonBugDataAuthService {
   }
   static async getPokemonsTotal() {
     const pokemons = await PokemonBugData.findAll();
-    return pokemons.map((pokemon) => pokemon.totalPoints);
+    return pokemons.map((pokemon) => ({
+      [pokemon.name]: pokemon.totalPoints,
+    }));
   }
 }
 
@@ -69,7 +77,9 @@ class PokemonNormalDataAuthService {
   }
   static async getPokemonsTotal() {
     const pokemons = await PokemonNormalData.findAll();
-    return pokemons.map((pokemon) => pokemon.totalPoints);
+    return pokemons.map((pokemon) => ({
+      [pokemon.name]: pokemon.totalPoints,
+    }));
   }
 }
 
@@ -80,7 +90,9 @@ class PokemonPoisonDataAuthService {
   }
   static async getPokemonsTotal() {
     const pokemons = await PokemonPoisonData.findAll();
-    return pokemons.map((pokemon) => pokemon.totalPoints);
+    return pokemons.map((pokemon) => ({
+      [pokemon.name]: pokemon.totalPoints,
+    }));
   }
 }
 
@@ -91,7 +103,9 @@ class PokemonElectricDataAuthService {
   }
   static async getPokemonsTotal() {
     const pokemons = await PokemonElectricData.findAll();
-    return pokemons.map((pokemon) => pokemon.totalPoints);
+    return pokemons.map((pokemon) => ({
+      [pokemon.name]: pokemon.totalPoints,
+    }));
   }
 }
 
@@ -102,7 +116,9 @@ class PokemonGroundDataAuthService {
   }
   static async getPokemonsTotal() {
     const pokemons = await PokemonGroundData.findAll();
-    return pokemons.map((pokemon) => pokemon.totalPoints);
+    return pokemons.map((pokemon) => ({
+      [pokemon.name]: pokemon.totalPoints,
+    }));
   }
 }
 
@@ -113,7 +129,9 @@ class PokemonFairyDataAuthService {
   }
   static async getPokemonsTotal() {
     const pokemons = await PokemonFairyData.findAll();
-    return pokemons.map((pokemon) => pokemon.totalPoints);
+    return pokemons.map((pokemon) => ({
+      [pokemon.name]: pokemon.totalPoints,
+    }));
   }
 }
 
@@ -124,7 +142,9 @@ class PokemonFightDataAuthService {
   }
   static async getPokemonsTotal() {
     const pokemons = await PokemonFightData.findAll();
-    return pokemons.map((pokemon) => pokemon.totalPoints);
+    return pokemons.map((pokemon) => ({
+      [pokemon.name]: pokemon.totalPoints,
+    }));
   }
 }
 
@@ -135,7 +155,9 @@ class PokemonPsychicDataAuthService {
   }
   static async getPokemonsTotal() {
     const pokemons = await PokemonPsychicData.findAll();
-    return pokemons.map((pokemon) => pokemon.totalPoints);
+    return pokemons.map((pokemon) => ({
+      [pokemon.name]: pokemon.totalPoints,
+    }));
   }
 }
 
@@ -146,7 +168,9 @@ class PokemonRockDataAuthService {
   }
   static async getPokemonsTotal() {
     const pokemons = await PokemonRockData.findAll();
-    return pokemons.map((pokemon) => pokemon.totalPoints);
+    return pokemons.map((pokemon) => ({
+      [pokemon.name]: pokemon.totalPoints,
+    }));
   }
 }
 
@@ -157,7 +181,9 @@ class PokemonGhostDataAuthService {
   }
   static async getPokemonsTotal() {
     const pokemons = await PokemonGhostData.findAll();
-    return pokemons.map((pokemon) => pokemon.totalPoints);
+    return pokemons.map((pokemon) => ({
+      [pokemon.name]: pokemon.totalPoints,
+    }));
   }
 }
 
@@ -168,7 +194,9 @@ class PokemonIceDataAuthService {
   }
   static async getPokemonsTotal() {
     const pokemons = await PokemonIceData.findAll();
-    return pokemons.map((pokemon) => pokemon.totalPoints);
+    return pokemons.map((pokemon) => ({
+      [pokemon.name]: pokemon.totalPoints,
+    }));
   }
 }
 
@@ -179,7 +207,9 @@ class PokemonDragonDataAuthService {
   }
   static async getPokemonsTotal() {
     const pokemons = await PokemonDragonData.findAll();
-    return pokemons.map((pokemon) => pokemon.totalPoints);
+    return pokemons.map((pokemon) => ({
+      [pokemon.name]: pokemon.totalPoints,
+    }));
   }
 }
 
@@ -190,7 +220,9 @@ class PokemonFlyingDataAuthService {
   }
   static async getPokemonsTotal() {
     const pokemons = await PokemonFlyingData.findAll();
-    return pokemons.map((pokemon) => pokemon.totalPoints);
+    return pokemons.map((pokemon) => ({
+      [pokemon.name]: pokemon.totalPoints,
+    }));
   }
 }
 
@@ -201,7 +233,9 @@ class PokemonSteelDataAuthService {
   }
   static async getPokemonsTotal() {
     const pokemons = await PokemonSteelData.findAll();
-    return pokemons.map((pokemon) => pokemon.totalPoints);
+    return pokemons.map((pokemon) => ({
+      [pokemon.name]: pokemon.totalPoints,
+    }));
   }
 }
 
