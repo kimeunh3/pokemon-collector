@@ -89,6 +89,7 @@ class User {
           profileImg: 1,
           rankPoint: 1,
           stickersCount: { $size: '$stickers' },
+          stickers: 1,
         },
       },
       {
