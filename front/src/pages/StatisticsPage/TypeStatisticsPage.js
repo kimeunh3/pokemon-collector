@@ -91,6 +91,7 @@ function TypeStatisticsPage() {
         speed: [],
         height: [],
         weight: [],
+        originTotalPoints: [],
         totalPoints: [],
         typesCnt: {
           노말: 0,
@@ -123,6 +124,7 @@ function TypeStatisticsPage() {
         newY.speed.push(pokemon.speed);
         newY.height.push(pokemon.height);
         newY.weight.push(pokemon.weight);
+        newY.originTotalPoints.push(pokemon.totalPoints);
         newY.totalPoints.push(pokemonTotalInfo[pokemon.name].toFixed(1));
         newY.typesCnt[pokemon.typeOne] += 1;
         newY.typesCnt[pokemon.typeTwo] += 1;
@@ -144,7 +146,7 @@ function TypeStatisticsPage() {
         speedMean: average(newY.speed).toFixed(1),
         heightMean: average(newY.height).toFixed(1),
         weightMean: average(newY.weight).toFixed(1),
-        totalPointsMean: average(newY.totalPoints).toFixed(1),
+        totalPointsMean: average(newY.originTotalPoints).toFixed(1),
       });
     }
   }, [pokemons, pokemonTotalInfo]);
