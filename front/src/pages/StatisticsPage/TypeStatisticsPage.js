@@ -71,13 +71,11 @@ function TypeStatisticsPage() {
 
   useEffect(() => {
     Api.get(`pokemonTypeData/${KorEngTypeList[type]}/total`).then((res) => {
-      console.log(res.data);
       const newPokemonTotalInfo = {};
       res.data.forEach((pokemon) => {
         newPokemonTotalInfo[pokemon.name] = pokemon.totalPoints;
       });
       setPokemonTotalInfo(newPokemonTotalInfo);
-      console.log(newPokemonTotalInfo);
     });
   }, []);
 
@@ -116,8 +114,6 @@ function TypeStatisticsPage() {
         },
       };
       pokemons.forEach((pokemon) => {
-        console.log(pokemonTotalInfo);
-        console.log(pokemonTotalInfo[pokemon.name]);
         newX.push(pokemon.name);
         newY.attack.push(pokemon.attack);
         newY.defense.push(pokemon.defense);
@@ -127,7 +123,7 @@ function TypeStatisticsPage() {
         newY.speed.push(pokemon.speed);
         newY.height.push(pokemon.height);
         newY.weight.push(pokemon.weight);
-        newY.totalPoints.push(pokemonTotalInfo[pokemon.name]);
+        newY.totalPoints.push(pokemonTotalInfo[pokemon.name].toFixed(1));
         newY.typesCnt[pokemon.typeOne] += 1;
         newY.typesCnt[pokemon.typeTwo] += 1;
       });

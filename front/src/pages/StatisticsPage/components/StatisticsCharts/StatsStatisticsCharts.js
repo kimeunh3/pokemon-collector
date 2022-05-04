@@ -146,7 +146,7 @@ export function BarTypeStats({ y, colors, stats }) {
   return (
     <div
       style={{
-        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        backgroundColor: 'rgba(255, 255, 255, 1)',
         borderRadius: '10px',
       }}
     >
@@ -170,7 +170,7 @@ export function BarTypeTop5({ x, y, colors, stats }) {
   return (
     <div
       style={{
-        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        backgroundColor: 'rgba(255, 255, 255, 1)',
         borderRadius: '10px',
       }}
     >
@@ -194,7 +194,7 @@ export function BarTypeLow5({ x, y, colors, stats }) {
   return (
     <div
       style={{
-        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        backgroundColor: 'rgba(255, 255, 255, 1)',
         borderRadius: '10px',
       }}
     >
@@ -218,7 +218,7 @@ export function BarPokemonTop15({ x, y, colors, stats }) {
   return (
     <div
       style={{
-        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        backgroundColor: 'rgba(255, 255, 255, 1)',
         borderRadius: '10px',
       }}
     >
@@ -242,7 +242,7 @@ export function BarPokemonLow15({ x, y, colors, stats }) {
   return (
     <div
       style={{
-        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        backgroundColor: 'rgba(255, 255, 255, 1)',
         borderRadius: '10px',
       }}
     >

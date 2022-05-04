@@ -41,11 +41,7 @@ export const optionBarStats = {
 };
 
 export const optionDoughnutType = {
-  // responsive: true,
   plugins: {
-    // legend: {
-    //   position: 'top',
-    // },
     title: {
       display: true,
       text: '보유한 다른 속성',
@@ -103,10 +99,28 @@ export const optionBarTotal = {
     intersect: false,
   },
   scales: {
-    x: {
+    stats: {
+      type: 'linear',
+      position: 'left',
+      title: {
+        display: true,
+        text: '능력치',
+      },
+      grid: {
+        display: false,
+      },
       stacked: true,
     },
-    y: {
+    totalPoint: {
+      type: 'linear',
+      position: 'right',
+      title: {
+        display: true,
+        text: '종합점수',
+      },
+      grid: {
+        display: false,
+      },
       stacked: true,
     },
   },
@@ -152,7 +166,7 @@ export function BarStats({ x, y }) {
   return (
     <div
       style={{
-        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        backgroundColor: 'rgba(255, 255, 255, 1)',
         borderRadius: '10px',
       }}
     >
@@ -216,7 +230,7 @@ export function DoughnutType({ y }) {
   return (
     <div
       style={{
-        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        backgroundColor: 'rgba(255, 255, 255, 1)',
         borderRadius: '10px',
         maxWidth: '40vw',
         marginLeft: '18vw',
@@ -249,7 +263,7 @@ export function BarWeightHeight({ x, y }) {
   return (
     <div
       style={{
-        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        backgroundColor: 'rgba(255, 255, 255, 1)',
         borderRadius: '10px',
       }}
     >
@@ -267,36 +281,42 @@ export function BarTotal({ x, y }) {
         data: y.attack,
         backgroundColor: 'rgba(240, 128, 48, 0.5)',
         stack: 'Stack 0',
+        yAxisID: 'stats',
       },
       {
         label: '방어력',
         data: y.defense,
         backgroundColor: 'rgba(248, 208, 48, 0.5)',
         stack: 'Stack 0',
+        yAxisID: 'stats',
       },
       {
         label: 'Hp',
         data: y.hp,
         backgroundColor: 'rgba(255, 0, 0, 0.5)',
         stack: 'Stack 0',
+        yAxisID: 'stats',
       },
       {
         label: '특수공격력',
         data: y.spAttack,
         backgroundColor: 'rgba(104, 144, 240, 0.5)',
         stack: 'Stack 0',
+        yAxisID: 'stats',
       },
       {
         label: '특수방어력',
         data: y.spDefense,
         backgroundColor: 'rgba(120, 200, 80, 0.5)',
         stack: 'Stack 0',
+        yAxisID: 'stats',
       },
       {
         label: '스피드',
         data: y.speed,
         backgroundColor: 'rgba(193, 131, 193, 0.5)',
         stack: 'Stack 0',
+        yAxisID: 'stats',
       },
       {
         type: 'line',
@@ -304,6 +324,7 @@ export function BarTotal({ x, y }) {
         data: y.totalPoints,
         backgroundColor: 'black',
         stack: 'Stack 1',
+        yAxisID: 'totalPoint',
       },
     ],
   };
@@ -311,7 +332,7 @@ export function BarTotal({ x, y }) {
   return (
     <div
       style={{
-        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        backgroundColor: 'rgba(255, 255, 255, 1)',
         borderRadius: '10px',
       }}
     >
