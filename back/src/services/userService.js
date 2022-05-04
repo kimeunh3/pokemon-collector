@@ -181,6 +181,27 @@ class userAuthService {
 
     return user;
   }
+
+  static async changePassword({ userId, password }) {
+    const user = await User.findById({ userId });
+
+    if (!user) {
+      const errorMessage =
+        '해당 이메일은 가입 내역이 없습니다. 비밀번호 변경에 실패했습니다.';
+      return { errorMessage };
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const createdNewUser = await User.changePassword({
+      userId,
+      password: hashedPassword,
+    });
+
+    createdNewUser.errorMessage = null;
+
+    return createdNewUser;
+  }
 }
 
 export { userAuthService };
