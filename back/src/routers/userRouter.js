@@ -69,18 +69,8 @@ userAuthRouter.post('/user/register', async function (req, res, next) {
       );
     }
 
-    const {
-      nickname,
-      email,
-      password,
-      sex,
-      birth,
-      interest,
-      likeType,
-      point,
-      profileImg,
-      stickers,
-    } = req.body;
+    const { nickname, email, password, sex, birth, interest, likeType } =
+      req.body;
 
     const newUser = await userAuthService.addUser({
       nickname,
@@ -90,9 +80,6 @@ userAuthRouter.post('/user/register', async function (req, res, next) {
       birth,
       interest,
       likeType,
-      point,
-      profileImg,
-      stickers,
     });
 
     if (newUser.errorMessage) {
