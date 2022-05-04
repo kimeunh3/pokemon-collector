@@ -14,31 +14,31 @@ const userAuthRouter = Router();
  *       description: User의 회원가입 API
  *       tags: [register]
  *       parameters:
- *         - in: body
+ *         - in: path
  *           name: nickname
  *           description: User의 닉네임
  *           example: 포켓몬 트레이너
- *         - in: body
+ *         - in: path
  *           name: email
  *           description: User의 이메일
  *           example: a@a.com
- *         - in: body
+ *         - in: path
  *           name: password
  *           description: User의 비밀번호(4글자 이상)
  *           example: 1234
- *         - in: body
+ *         - in: path
  *           name: sex
  *           description: User의 성별
  *           example: Male
- *         - in: body
+ *         - in: path
  *           name: birth
  *           description: User의 생년월일
  *           example: 1988-02-12
- *         - in: body
+ *         - in: path
  *           name: interest
  *           description: User의 포켓몬에 대한 관심도
  *           example: 3
- *         - in: body
+ *         - in: path
  *           name: likeType
  *           description: User의 좋아하는 포켓몬 속성
  *           example: 불
