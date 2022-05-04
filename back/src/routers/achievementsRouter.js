@@ -1,3 +1,18 @@
+/**
+ * @swagger
+ * /achievementList:
+ *   post:
+ *     summary: 회원가입
+ *     description: 업적 리스트 반환 API
+ *     tags: [achievements]
+ *     responses:
+ *       '200':
+ *        description: 업적 리스트 반환
+ *        content:
+ *         application/json:
+ *           schema:
+ *             type: List
+ */
 import { Router } from 'express';
 import { loginRequired } from '../middlewares/loginRequired';
 import { achievementsService } from '../services/achievementsService';
