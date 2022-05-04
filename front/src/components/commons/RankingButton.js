@@ -20,6 +20,7 @@ function RankingButton() {
   const [stickersUsers, setStickersUsers] = useState();
   const [IsRankPoint, setIsRankPoint] = useState('랭크포인트');
   const [alignment, setAlignment] = useState('랭크포인트');
+  const [loginDialogOpen, setLoginDialogOpen] = useState(false);
 
   const userState = useContext(UserStateContext);
   const isLogin = !!userState.user;
@@ -30,6 +31,10 @@ function RankingButton() {
   const handleChange = (event, newAlignment) => {
     setAlignment(newAlignment);
     setIsRankPoint(newAlignment);
+  };
+
+  const handleLoginDialogClose = () => {
+    setLoginDialogOpen(false);
   };
 
   useEffect(() => {
@@ -62,8 +67,8 @@ function RankingButton() {
         setStickersUsers(newUser);
       });
     } else if (isClick) {
-      console.log('로그아웃상태입니다.');
       setIsClick(false);
+      setLoginDialogOpen(true);
     }
   }, [isClick]);
 
@@ -129,6 +134,23 @@ function RankingButton() {
         )}
         <DialogActions>
           <Button variant='contained' color='inherit' onClick={handleClose}>
+            닫기
+          </Button>
+        </DialogActions>
+      </Dialog>
+      <Dialog
+        open={loginDialogOpen}
+        onClose={handleLoginDialogClose}
+        style={{ zIndex: '1300' }}
+      >
+        <DialogTitle>pokemon-collector</DialogTitle>
+        <DialogContent>로그인 후 이용가능한 서비스입니다!</DialogContent>
+        <DialogActions>
+          <Button
+            variant='contained'
+            color='inherit'
+            onClick={handleLoginDialogClose}
+          >
             닫기
           </Button>
         </DialogActions>
