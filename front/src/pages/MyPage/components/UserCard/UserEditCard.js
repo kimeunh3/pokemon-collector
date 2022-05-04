@@ -29,7 +29,6 @@ function UserEditCard({
 	const [isEditProfileImg, setIsEditProfileImg] = useState(false);
 	const [selected, setSelected] = useState('pokeball');
 
-	console.log(userState);
 	const [inputs, setInputs] = useState({
 		email,
 		nickname,
@@ -65,13 +64,10 @@ function UserEditCard({
 		});
 	};
 
-	console.log(inputs);
-
 	const handleEdit = async () => {
 		setInputs({ ...inputs, profileImg: `${selected}.png` });
 
-		const res = await Api.put('user/profileModify', inputs);
-		console.log(res);
+		await Api.put('user/profileModify', inputs);
 		fetchUserInfo();
 		setIsEdit(false);
 	};

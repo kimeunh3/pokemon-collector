@@ -30,21 +30,18 @@ function BreadOpenModal({ isModalOpen, setIsModalOpen, drawnPokemon }) {
 			aria-describedby='modal-modal-description'
 		>
 			<Box sx={style}>
-				<CardMedia
-					component='img'
-					image='/getPokemon2.gif'
-					alt='빵 뽑는 이미지'
-				/>
-				<Button
-					sx={{ marginLeft: 15, marginTop: 3 }}
-					variant='contained'
-					onClick={() => {
-						setIsModalOpen(false);
-						navigate(`/pokemonDetail/${drawnPokemon.id}`);
-					}}
-				>
-					뽑은 스티커 확인하러 가기!
-				</Button>
+				<CardMedia component='img' image='/getPokemon3.gif' alt='getPokemon' />
+				<Box m={2} sx={{ display: 'flex', justifyContent: 'center' }}>
+					<Button
+						variant='contained'
+						onClick={() => {
+							setIsModalOpen(false);
+							navigate(`/pokemonDetail/${drawnPokemon.id}`);
+						}}
+					>
+						뽑은 스티커 확인하러 가기!
+					</Button>
+				</Box>
 			</Box>
 		</Modal>
 	);
