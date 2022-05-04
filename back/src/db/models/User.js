@@ -68,10 +68,7 @@ class User {
   }
 
   static async findRankPointRanking({ count }) {
-    const rankingList = await UserModel.find(
-      {},
-      { achievements: 0, stickers: 0 }
-    )
+    const rankingList = await UserModel.find({}, { achievements: 0 })
       .sort({ rankPoint: -1 })
       .limit(count);
     return rankingList;
