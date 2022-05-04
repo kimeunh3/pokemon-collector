@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import dayjs from 'dayjs';
 import {
 	Box,
 	Button,
@@ -34,6 +33,7 @@ function RegisterPage({ setLogin }) {
 		sex: 'male',
 		interest: 3,
 		likeType: '',
+		birth: '',
 	});
 	const types = [
 		'노말',
@@ -80,7 +80,7 @@ function RegisterPage({ setLogin }) {
 
 		setInputs({
 			...inputs,
-			birth: new Date(dayjs(birth).format('YYYY-MM-DD')),
+			birth: Date(birth),
 		});
 
 		try {
@@ -93,8 +93,6 @@ function RegisterPage({ setLogin }) {
 			console.log('회원가입에 실패하였습니다.', err);
 		}
 	};
-
-	console.log(inputs);
 
 	return (
 		<Box
@@ -183,6 +181,10 @@ function RegisterPage({ setLogin }) {
 							mask='____-__-__'
 							onChange={(newValue) => {
 								setBirth(newValue);
+								setInputs({
+									...inputs,
+									birth: Date(birth),
+								});
 							}}
 							// eslint-disable-next-line react/jsx-props-no-spreading
 							renderInput={(params) => <TextField {...params} />}

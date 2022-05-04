@@ -98,7 +98,7 @@ class User {
         $sort: { stickersCount: -1 },
       },
       {
-        $limit: count,
+        $limit: Number(count),
       },
     ]);
     return rankingList;

@@ -148,7 +148,7 @@ const UserSchema = new Schema(
     },
     profileImg: {
       type: String,
-      default: 'pockeball.png',
+      default: 'pokeball.png',
       required: false,
     },
     stickers: [
@@ -183,7 +183,7 @@ const UserSchema = new Schema(
       default: [
         {
           id: 1,
-          status: 0,
+          status: 100,
         },
         {
           id: 2,
