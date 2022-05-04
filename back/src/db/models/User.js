@@ -176,6 +176,19 @@ class User {
     );
     return quizChance;
   }
+
+  static async changePassword({ userId, password }) {
+    const filter = { id: userId };
+    const update = { password: password };
+    const option = { returnOriginal: false };
+
+    const updatedUser = await UserModel.findOneAndUpdate(
+      filter,
+      update,
+      option
+    );
+    return updatedUser;
+  }
 }
 
 export { User };
