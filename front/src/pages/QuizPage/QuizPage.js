@@ -4,6 +4,7 @@ import { useMediaQuery } from '@material-ui/core';
 import QuizEntry from './components/QuizEntry';
 import QuizComponent from './components/QuizComponent';
 import ImgSrc from '../../core/constants/ImgSrc';
+import RankingButton from '../../components/commons/RankingButton';
 
 import * as Api from '../../api';
 
@@ -206,6 +207,7 @@ function QuizPage() {
         />
       )}
       {isMobile && <QuizComponent isMobile text='퀴즈는 pc에서!' />}
+      <RankingButton />
     </div>
   );
 }
