@@ -29,7 +29,7 @@ function NavBar() {
     // dispatch 함수를 이용해 로그아웃함.
     dispatch({ type: 'LOGOUT' });
     // 기본 페이지로 돌아감.
-    navigate('/home');
+    navigate('/');
   };
 
   const [open, setOpen] = useState(false);
@@ -46,7 +46,7 @@ function NavBar() {
   // login page와 home에서는 NavBar가 뜨지 않도록 설정
   if (
     location.pathname === '/login' ||
-    location.pathname === '/home' ||
+    location.pathname === '/' ||
     location.pathname.includes('/statisticsPage/typeStatisticsPage/') ||
     location.pathname.includes('/statisticsPage/statsStatisticsPage/')
   )

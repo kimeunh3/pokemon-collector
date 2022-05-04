@@ -15,6 +15,7 @@ import DefaultBookCard from './components/DefaultBookCard/DefaultBookCard';
 import PokemonBookCard from './components/PokemonBookCard/PokemonBookCard';
 import ScrollUpButton from '../../components/commons/ScrollUpButton';
 import ImgSrc from '../../core/constants/ImgSrc';
+import RankingButton from '../../components/commons/RankingButton';
 
 import * as Api from '../../api';
 
@@ -162,6 +163,7 @@ function IllustratedBookPage() {
         )}
       </div>
       <ScrollUpButton />
+      <RankingButton />
     </div>
   );
 }

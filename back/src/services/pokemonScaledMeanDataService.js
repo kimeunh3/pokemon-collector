@@ -7,7 +7,9 @@ class PokemonScaledMeanDataAuthService {
   }
   static async getAveragesTotal() {
     const pokemons = await PokemonScaledMeanData.findAll();
-    return pokemons.map((pokemon) => pokemon.totalPoints);
+    return pokemons.map((pokemon) => ({
+      [pokemon.group]: pokemon.totalPoints,
+    }));
   }
 }
 

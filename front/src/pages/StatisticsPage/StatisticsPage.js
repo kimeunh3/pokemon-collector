@@ -3,6 +3,7 @@ import { AppBar, Toolbar, Button, Grid } from '@material-ui/core';
 import StatisticsButton from './components/StatisticsButton';
 import ScrollUpButton from '../../components/commons/ScrollUpButton';
 import WholeStatisticComponent from './components/WholeStatisticComponent';
+import RankingButton from '../../components/commons/RankingButton';
 
 function StatisticsPage() {
   const [isType, setIsType] = useState(false);
@@ -245,6 +246,7 @@ function StatisticsPage() {
         )}
       </div>
       <ScrollUpButton />
+      <RankingButton />
     </div>
   );
 }

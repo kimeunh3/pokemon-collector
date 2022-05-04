@@ -11,6 +11,7 @@ import { UserStateContext, DispatchContext } from '../../Context';
 import LandingPageHeader from './components/LandingPageHeader';
 import DrawerComponents from '../../components/LandingNavBar/DrawerComponents';
 import ScrollUpButton from '../../components/commons/ScrollUpButton';
+import RankingButton from '../../components/commons/RankingButton';
 
 import ImgSrc from '../../core/constants/ImgSrc';
 
@@ -31,7 +32,7 @@ function LandingPage() {
     // dispatch 함수를 이용해 로그아웃함.
     dispatch({ type: 'LOGOUT' });
     // 기본 페이지로 돌아감.
-    navigate('/home');
+    navigate('/');
   };
 
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -78,6 +79,7 @@ function LandingPage() {
         logout={logout}
       />
       <ScrollUpButton />
+      <RankingButton />
       <div
         style={{
           position: 'relative',
