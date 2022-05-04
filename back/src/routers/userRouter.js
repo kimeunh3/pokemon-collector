@@ -7,58 +7,41 @@ const userAuthRouter = Router();
 
 /**
  * @swagger
- * /user/register:
- *   post:
- *     summary: 회원가입
- *     description: User의 회원가입 API
- *     tags: [register]
- *     parameters:
- *       - name: nickname
- *         in: body
- *         description: User의 닉네임
- *         example: 포켓몬 트레이너
- *       - name: email
- *         in: body
- *         description: User의 이메일
- *         example: a@a.com
- *       - name: password
- *         in: body
- *         description: User의 비밀번호(4글자 이상)
- *         example: 1234
- *       - name: sex
- *         in: body
- *         description: User의 성별
- *         example: Male
- *       - name: birth
- *         in: body
- *         description: User의 생년월일
- *         example: 1988-02-12
- *       - name: interest
- *         in: body
- *         description: User의 포켓몬에 대한 관심도
- *         example: 3
- *       - name: likeType
- *         in: body
- *         description: User의 좋아하는 포켓몬 속성
- *         example: 불
- *       - name: point
- *         in: body
- *         description: User의 포인트
- *         example: 1000
- *       - name: profileImg
- *         in: body
- *         description: User의 프로필사진
- *         example: pokeball.png
- *       - name: stickers
- *         in: body
- *         description: User의 스티커 목록
- *     responses:
- *       '200':
- *        description: User의 회원가입
- *        content:
- *         application/json:
- *           schema:
- *             type: Object
+ * paths:
+ *   /user/register:
+ *     post:
+ *       summary: 회원가입
+ *       description: User의 회원가입 API
+ *       tags: [register]
+ *       parameters:
+ *         - in: body
+ *           name: nickname
+ *           description: User의 닉네임
+ *           example: 포켓몬 트레이너
+ *         - in: body
+ *           name: email
+ *           description: User의 이메일
+ *           example: a@a.com
+ *         - in: body
+ *           name: password
+ *           description: User의 비밀번호(4글자 이상)
+ *           example: 1234
+ *         - in: body
+ *           name: sex
+ *           description: User의 성별
+ *           example: Male
+ *         - in: body
+ *           name: birth
+ *           description: User의 생년월일
+ *           example: 1988-02-12
+ *         - in: body
+ *           name: interest
+ *           description: User의 포켓몬에 대한 관심도
+ *           example: 3
+ *         - in: body
+ *           name: likeType
+ *           description: User의 좋아하는 포켓몬 속성
+ *           example: 불
  */
 
 userAuthRouter.post('/user/register', async function (req, res, next) {
