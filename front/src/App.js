@@ -69,7 +69,7 @@ function App() {
         <Router>
           <NavBar />
           <Routes>
-            <Route path='/home' element={<LandingPage />} />
+            <Route path='/' exact element={<LandingPage />} />
             <Route path='/login' element={<LoginPage />} />
             <Route
               path='/bread'

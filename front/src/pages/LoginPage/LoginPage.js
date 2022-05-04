@@ -64,7 +64,7 @@ function LoginPage() {
       });
 
       // 기본 페이지로 이동함.
-      navigate('/home', { replace: true });
+      navigate('/', { replace: true });
     } catch (err) {
       setLoginFailModal(true);
       console.log('로그인에 실패하였습니다.\n', err);

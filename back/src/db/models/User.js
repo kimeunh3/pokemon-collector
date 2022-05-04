@@ -68,10 +68,7 @@ class User {
   }
 
   static async findRankPointRanking({ count }) {
-    const rankingList = await UserModel.find(
-      {},
-      { achievements: 0, stickers: 0 }
-    )
+    const rankingList = await UserModel.find({}, { achievements: 0 })
       .sort({ rankPoint: -1 })
       .limit(count);
     return rankingList;
@@ -98,7 +95,7 @@ class User {
         $sort: { stickersCount: -1 },
       },
       {
-        $limit: count,
+        $limit: Number(count),
       },
     ]);
     return rankingList;
@@ -175,6 +172,19 @@ class User {
       { new: true }
     );
     return quizChance;
+  }
+
+  static async changePassword({ userId, password }) {
+    const filter = { id: userId };
+    const update = { password: password };
+    const option = { returnOriginal: false };
+
+    const updatedUser = await UserModel.findOneAndUpdate(
+      filter,
+      update,
+      option
+    );
+    return updatedUser;
   }
 }
 

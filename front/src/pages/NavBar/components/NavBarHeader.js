@@ -36,7 +36,7 @@ function NavBarHeader({ open, setOpen, isLogin, handleDialogOpen, logout }) {
           edge='start'
           color='inherit'
           aria-label='menu'
-          onClick={() => navigate('/home')}
+          onClick={() => navigate('/')}
           style={{ marginRight: '40%' }}
         >
           <img alt='' src={ImgSrc.logoImg} width='200px' height='70px' />
