@@ -8,9 +8,9 @@ import {
 } from '@mui/material';
 import MilitaryTech from '@mui/icons-material/MilitaryTech';
 import IconObj from '../../../core/Icon';
-import RankingStickers from './RankingStickers/RankingStickers';
+// import RankingStickers from './RankingStickers/RankingStickers';
 
-function RankingUserBox({ i, user }) {
+function RankingUserBox({ i, user, IsRankPoint }) {
   const medalColor = ['#D5A11E', '#A3A3A3', '#CD7F32'];
   const [isStickersOpen, setIsStickersOpen] = useState(false);
 
@@ -79,7 +79,9 @@ function RankingUserBox({ i, user }) {
             </div>
             <div style={{ display: 'flex' }}>---------------------------</div>
             <div style={{ position: 'relative', top: '-7px', display: 'flex' }}>
-              {user.rankPoint}점
+              {IsRankPoint === '랭크포인트'
+                ? `${user.rankPoint}점`
+                : `${user.stickersCount}개`}
             </div>
           </div>
           <img
@@ -99,9 +101,10 @@ function RankingUserBox({ i, user }) {
         PaperProps={{ style: { backgroundColor: '#e5e5e5' } }}
       >
         <DialogContent style={{ display: 'flex' }}>
-          {user.stickers.map((pokemon) => (
+          {/* {user.stickers.map((pokemon) => (
             <RankingStickers id={pokemon.id} name={pokemon.name} />
-          ))}
+          ))} */}
+          안녕하세요
         </DialogContent>
         <DialogActions>
           <Button
