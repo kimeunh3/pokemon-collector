@@ -112,20 +112,20 @@ function RankingButton() {
           exclusive
           value={IsRankPoint}
           onChange={handleChange}
-          style={{ justifyContent: 'center' }}
+          style={{ justifyContent: 'center', margin: '15px 0 15px 0' }}
         >
           <ToggleButton value='랭크포인트'>랭크포인트</ToggleButton>
           <ToggleButton value='스티커 수'>스티커 수</ToggleButton>
         </ToggleButtonGroup>
         {rankPointUsers && IsRankPoint === '랭크포인트' && (
-          <DialogContent>
+          <DialogContent style={{ paddingTop: 0 }}>
             {rankPointUsers.map((user, i) => (
               <RankingUserBox i={i} user={user} IsRankPoint={IsRankPoint} />
             ))}
           </DialogContent>
         )}
         {IsRankPoint === '스티커 수' && (
-          <DialogContent>
+          <DialogContent style={{ paddingTop: 0 }}>
             {stickersUsers.map((user, i) => (
               <RankingUserBox i={i} user={user} IsRankPoint={IsRankPoint} />
             ))}
