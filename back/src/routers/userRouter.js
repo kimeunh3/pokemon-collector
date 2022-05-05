@@ -224,7 +224,7 @@ userAuthRouter.put(
 /**
  * @swagger
  * paths:
- *   /user/attendanceCheck:
+ *   /user/checkIn:
  *     put:
  *       tags:
  *       - user
