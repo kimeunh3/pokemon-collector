@@ -11,7 +11,7 @@ import StatsDrawerComponents from './components/DrawerComponents/StatsDrawerComp
 
 import * as Api from '../../api';
 
-const KorEngStatsList = {
+const KOR_ENG_STATS_LIST = {
   공격력: 'attack',
   방어력: 'defense',
   Hp: 'hp',
@@ -23,7 +23,7 @@ const KorEngStatsList = {
   종합점수: 'totalPoints',
 };
 
-const TypeColorList = {
+const TYPE_COLOR_LIST = {
   노말: 'rgba(198, 198, 167, 0.8)',
   불꽃: 'rgba(245, 172, 120, 0.8)',
   물: 'rgba(157, 183, 245, 0.8)',
@@ -43,7 +43,7 @@ const TypeColorList = {
   페어리: 'rgba(244, 189, 201, 0.8)',
 };
 
-const StatsColorList = {
+const STATS_COLOR_LIST = {
   공격력: 'rgba(240, 128, 48, 0.8)',
   방어력: 'rgba(248, 208, 48, 0.8)',
   Hp: 'rgba(255, 0, 0, 0.8)',
@@ -55,35 +55,35 @@ const StatsColorList = {
   종합점수: 'rgba(128, 128, 128, 0.8)',
 };
 
-function StatsStatisticsPage() {
-  const params = useParams();
-  const { stats } = params;
-  const [select, setSelect] = useState('barTypeStats');
-  // select: barTypeStats, barTypeTop5, barTypeLow5, barPokemonTop15, barPokemonLow15
-
-  const engStats = KorEngStatsList[stats];
-  const [pokemons, setPokemons] = useState([]);
-  const [y, setY] = useState({});
-  const [statsInfo, setStatsInfo] = useState({});
-  const [statsMean, setStatsMean] = useState();
-  const [typesStatsMean, setTypesStatsMean] = useState();
-
-  const [typesMeansTop5, setTypesMeansTop5] = useState([]);
-  const [typesMeansLow5, setTypesMeansLow5] = useState([]);
-  const [typesMeansTop5List, setTypesMeansTop5List] = useState([]);
-  const [typesMeansLow5List, setTypesMeansLow5List] = useState([]);
-  const [typesMeansTop5Colors, setTypesMeansTop5Colors] = useState([]);
-  const [typesMeansLow5Colors, setTypesMeansLow5Colors] = useState([]);
-
-  const [pokemonsStatsTop15, setPokemonsStatsTop15] = useState([]);
-  const [pokemonsStatsLow15, setPokemonsStatsLow15] = useState([]);
-  const [pokemonsStatsTop15List, setPokemonsStatsTop15List] = useState([]);
-  const [pokemonsStatsLow15List, setPokemonsStatsLow15List] = useState([]);
-  const [pokemonsStatsTop15Colors, setPokemonsStatsTop15Colors] = useState([]);
-  const [pokemonsStatsLow15Colors, setPokemonsStatsLow15Colors] = useState([]);
-
-  const typeColors = Object.values(TypeColorList);
-
+function StatsStatistics(
+  engStats,
+  typeColors,
+  pokemons,
+  setPokemons,
+  y,
+  setY,
+  setStatsInfo,
+  statsMean,
+  setStatsMean,
+  typesStatsMean,
+  setTypesStatsMean,
+  typesMeansTop5,
+  setTypesMeansTop5,
+  typesMeansLow5,
+  setTypesMeansLow5,
+  setTypesMeansTop5List,
+  setTypesMeansLow5List,
+  setTypesMeansTop5Colors,
+  setTypesMeansLow5Colors,
+  pokemonsStatsTop15,
+  setPokemonsStatsTop15,
+  pokemonsStatsLow15,
+  setPokemonsStatsLow15,
+  setPokemonsStatsTop15List,
+  setPokemonsStatsLow15List,
+  setPokemonsStatsTop15Colors,
+  setPokemonsStatsLow15Colors
+) {
   // 평균값 구하는 함수
   const average = (arr) => arr.reduce((p, c) => p + c, 0) / arr.length;
 
@@ -216,12 +216,12 @@ function StatsStatisticsPage() {
 
     typesMeansTop5.slice(0, 5).forEach((pokemonType) => {
       newTypesMeansTop5List.push(y.typesMeans[pokemonType]);
-      newTypesMeansTop5Colors.push(TypeColorList[pokemonType]);
+      newTypesMeansTop5Colors.push(TYPE_COLOR_LIST[pokemonType]);
     });
 
     typesMeansLow5.slice(1, 6).forEach((pokemonType) => {
       newTypesMeansLow5List.push(y.typesMeans[pokemonType]);
-      newTypesMeansLow5Colors.push(TypeColorList[pokemonType]);
+      newTypesMeansLow5Colors.push(TYPE_COLOR_LIST[pokemonType]);
     });
 
     // 상위 30%, 하위 30% 속성 순위 차트에 평균값 넣기
@@ -268,12 +268,71 @@ function StatsStatisticsPage() {
     setPokemonsStatsTop15Colors(newPokemonsStatsTop15Colors);
     setPokemonsStatsLow15Colors(newPokemonsStatsLow15Colors);
   }, [pokemonsStatsTop15, pokemonsStatsLow15]);
+}
+
+function StatsStatisticsPage() {
+  const params = useParams();
+  const { stats } = params;
+  const [select, setSelect] = useState('barTypeStats');
+  // select: barTypeStats, barTypeTop5, barTypeLow5, barPokemonTop15, barPokemonLow15
+
+  const engStats = KOR_ENG_STATS_LIST[stats];
+  const typeColors = Object.values(TYPE_COLOR_LIST);
+  const [pokemons, setPokemons] = useState([]);
+  const [y, setY] = useState({});
+  const [statsInfo, setStatsInfo] = useState({});
+  const [statsMean, setStatsMean] = useState();
+  const [typesStatsMean, setTypesStatsMean] = useState();
+
+  const [typesMeansTop5, setTypesMeansTop5] = useState([]);
+  const [typesMeansLow5, setTypesMeansLow5] = useState([]);
+  const [typesMeansTop5List, setTypesMeansTop5List] = useState([]);
+  const [typesMeansLow5List, setTypesMeansLow5List] = useState([]);
+  const [typesMeansTop5Colors, setTypesMeansTop5Colors] = useState([]);
+  const [typesMeansLow5Colors, setTypesMeansLow5Colors] = useState([]);
+
+  const [pokemonsStatsTop15, setPokemonsStatsTop15] = useState([]);
+  const [pokemonsStatsLow15, setPokemonsStatsLow15] = useState([]);
+  const [pokemonsStatsTop15List, setPokemonsStatsTop15List] = useState([]);
+  const [pokemonsStatsLow15List, setPokemonsStatsLow15List] = useState([]);
+  const [pokemonsStatsTop15Colors, setPokemonsStatsTop15Colors] = useState([]);
+  const [pokemonsStatsLow15Colors, setPokemonsStatsLow15Colors] = useState([]);
+
+  StatsStatistics(
+    engStats,
+    typeColors,
+    pokemons,
+    setPokemons,
+    y,
+    setY,
+    setStatsInfo,
+    statsMean,
+    setStatsMean,
+    typesStatsMean,
+    setTypesStatsMean,
+    typesMeansTop5,
+    setTypesMeansTop5,
+    typesMeansLow5,
+    setTypesMeansLow5,
+    setTypesMeansTop5List,
+    setTypesMeansLow5List,
+    setTypesMeansTop5Colors,
+    setTypesMeansLow5Colors,
+    pokemonsStatsTop15,
+    setPokemonsStatsTop15,
+    pokemonsStatsLow15,
+    setPokemonsStatsLow15,
+    setPokemonsStatsTop15List,
+    setPokemonsStatsLow15List,
+    setPokemonsStatsTop15Colors,
+    setPokemonsStatsLow15Colors
+  );
 
   return (
     <div>
       <StatsDrawerComponents
         stats={stats}
-        statsColor={StatsColorList[stats]}
+        statsColor={STATS_COLOR_LIST[stats]}
         statsInfo={statsInfo}
         select={select}
         setSelect={setSelect}
