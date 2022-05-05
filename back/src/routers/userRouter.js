@@ -193,6 +193,13 @@ userAuthRouter.get(
  *             application/json:
  *               schema:
  *                 type: object
+ *                 properties:
+ *                   attendance:
+ *                     type: string
+ *                     example: 2022-05-02T16:03:30.429Z
+ *                   isPointGiven:
+ *                     type: string
+ *                     example: false
  */
 
 userAuthRouter.put(
