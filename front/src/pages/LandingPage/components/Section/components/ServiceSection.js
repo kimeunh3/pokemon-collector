@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Box,
   Card,
@@ -9,7 +10,45 @@ import {
   Typography,
 } from '@mui/material';
 
-function ServiceSection() {
+function ServiceSection({ isLogin, handleDialogOpen }) {
+  const navigate = useNavigate();
+
+  const handleClickBreadButton = () => {
+    if (isLogin) {
+      navigate('/bread');
+    } else {
+      handleDialogOpen();
+    }
+  };
+  const handleClickQuizButton = () => {
+    if (isLogin) {
+      navigate('/quizPage');
+    } else {
+      handleDialogOpen();
+    }
+  };
+  const handleClickIllustratedBookButton = () => {
+    if (isLogin) {
+      navigate('/illustratedBook');
+    } else {
+      handleDialogOpen();
+    }
+  };
+  const handleClickStatisticsButton = () => {
+    if (isLogin) {
+      navigate('/statisticsPage');
+    } else {
+      handleDialogOpen();
+    }
+  };
+  const handleClickMyPageButton = () => {
+    if (isLogin) {
+      navigate('/myPage');
+    } else {
+      handleDialogOpen();
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -58,7 +97,9 @@ function ServiceSection() {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size='small'>포켓몬빵 뽑으러 가기</Button>
+            <Button size='small' onClick={handleClickBreadButton}>
+              포켓몬빵 뽑으러 가기
+            </Button>
           </CardActions>
         </Card>
         <Card
@@ -87,7 +128,9 @@ function ServiceSection() {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size='small'>퀴즈 풀러 가기</Button>
+            <Button size='small' onClick={handleClickQuizButton}>
+              퀴즈 풀러 가기
+            </Button>
           </CardActions>
         </Card>
         <Card
@@ -115,7 +158,9 @@ function ServiceSection() {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size='small'>출석체크하러 가기</Button>
+            <Button size='small' onClick={handleClickMyPageButton}>
+              출석체크하러 가기
+            </Button>
           </CardActions>
         </Card>
       </div>
@@ -157,7 +202,9 @@ function ServiceSection() {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size='small'>포켓몬 통계 보러 가기</Button>
+            <Button size='small' onClick={handleClickStatisticsButton}>
+              포켓몬 통계 보러 가기
+            </Button>
           </CardActions>
         </Card>
         <Card
@@ -185,7 +232,9 @@ function ServiceSection() {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size='small'>포켓몬 도감 보러 가기</Button>
+            <Button size='small' onClick={handleClickIllustratedBookButton}>
+              포켓몬 도감 보러 가기
+            </Button>
           </CardActions>
         </Card>
         <Card
@@ -214,7 +263,9 @@ function ServiceSection() {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size='small'>랭킹 보러 가기</Button>
+            <Button size='small' disabled>
+              왼쪽 아래 랭킹 버튼을 클릭해 보세요!
+            </Button>
           </CardActions>
         </Card>
       </div>
