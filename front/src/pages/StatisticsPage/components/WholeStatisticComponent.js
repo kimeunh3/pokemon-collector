@@ -46,7 +46,7 @@ const ENG_TYPE = [
   'fairy',
 ];
 
-function WholeStatistic(
+function wholeStatistic(
   pokemons,
   setPokemons,
   setY,
@@ -133,7 +133,7 @@ function WholeStatisticComponent() {
   const [y, setY] = useState();
   const [pokemonTotalInfo, setPokemonTotalInfo] = useState();
 
-  WholeStatistic(
+  wholeStatistic(
     pokemons,
     setPokemons,
     setY,
