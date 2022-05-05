@@ -60,7 +60,6 @@ function WholeStatisticComponent() {
 
   useEffect(() => {
     Api.get('pokemonScaledMeanData/total').then((res) => {
-      console.log(res.data);
       const newPokemonTotalInfo = {};
       res.data.forEach((pokemon) => {
         newPokemonTotalInfo[pokemon.type] = pokemon.totalPoints;

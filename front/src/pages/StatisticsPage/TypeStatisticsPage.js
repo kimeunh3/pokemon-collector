@@ -53,10 +53,9 @@ const TypeColorList = {
 function TypeStatisticsPage() {
   const params = useParams();
   const { type } = params;
-  const [isBarStats, setIsBarStats] = useState(true);
-  const [isDoughnutType, setIsDoughnutType] = useState(false);
-  const [isBarWeightHeight, setIsBarWeightHeight] = useState(false);
-  const [isBarTotal, setIsBarTotal] = useState(false);
+  const [select, setSelect] = useState('barStats');
+  // select: barStats, doughnutType, barWeightHeight, barTotal
+
   const [pokemons, setPokemons] = useState([]);
   const [x, setX] = useState();
   const [y, setY] = useState();
@@ -159,20 +158,14 @@ function TypeStatisticsPage() {
         type={type}
         typeColor={TypeColorList[type]}
         pokemonInfo={pokemonInfo}
-        isBarStats={isBarStats}
-        isDoughnutType={isDoughnutType}
-        isBarWeightHeight={isBarWeightHeight}
-        isBarTotal={isBarTotal}
-        setIsBarStats={setIsBarStats}
-        setIsDoughnutType={setIsDoughnutType}
-        setIsBarWeightHeight={setIsBarWeightHeight}
-        setIsBarTotal={setIsBarTotal}
+        select={select}
+        setSelect={setSelect}
       />
       <div style={{ margin: '10vh 3vw auto 25vw' }}>
-        {isBarStats && <BarStats x={x} y={y} />}
-        {isDoughnutType && <DoughnutType y={y} />}
-        {isBarWeightHeight && <BarWeightHeight x={x} y={y} />}
-        {isBarTotal && <BarTotal x={x} y={y} />}
+        {select === 'barStats' && <BarStats x={x} y={y} />}
+        {select === 'doughnutType' && <DoughnutType y={y} />}
+        {select === 'barWeightHeight' && <BarWeightHeight x={x} y={y} />}
+        {select === 'barTotal' && <BarTotal x={x} y={y} />}
       </div>
     </div>
   );
