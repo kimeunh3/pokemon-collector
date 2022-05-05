@@ -15,6 +15,7 @@ class achievementsService {
     return data;
   }
 
+  // id 순으로 정렬
   static async getUserAchievements({ userId }) {
     const userAchievementsList = await User.findAchievementsListById({
       userId,
@@ -38,6 +39,35 @@ class achievementsService {
         status: userAchievementsList[i].status,
       });
     }
+    return DetailedUserAchievList;
+  }
+
+  // 달성도 순으로 오름차순 정렬
+  static async getSortedUserAchievements({ userId }) {
+    const userAchievementsSortedList =
+      await User.findAchievementsSortedListById({
+        userId,
+      });
+    if (!userAchievementsSortedList) {
+      const errorMessage = '유저의 업적 정보를 가져오지 못했습니다.';
+      return { errorMessage };
+    }
+    const achievementsList = await Achievements.findAll();
+    if (!achievementsList) {
+      const errorMessage = '전체 업적 정보를 가져오지 못했습니다.';
+      return { errorMessage };
+    }
+    let DetailedUserAchievList = [];
+    userAchievementsSortedList.forEach((userAchievements) => {
+      let achievementIdx = userAchievements.id - 1;
+      DetailedUserAchievList.push({
+        id: achievementsList[achievementIdx].id,
+        type: achievementsList[achievementIdx].type,
+        name: achievementsList[achievementIdx].name,
+        description: achievementsList[achievementIdx].description,
+        status: userAchievements.status,
+      });
+    });
     return DetailedUserAchievList;
   }
 

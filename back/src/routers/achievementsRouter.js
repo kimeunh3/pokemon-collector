@@ -17,9 +17,10 @@ achievementsRouter.get('/achievementList', async (req, res, next) => {
 achievementsRouter.get('/userAchievementList', async (req, res, next) => {
   try {
     const userId = req.currentUserId;
-    const userAchievementsList = await achievementsService.getUserAchievements({
-      userId,
-    });
+    const userAchievementsList =
+      await achievementsService.getSortedUserAchievements({
+        userId,
+      });
     res.status(200).json(userAchievementsList);
   } catch (error) {
     next(error);

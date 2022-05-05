@@ -39,9 +39,18 @@ class User {
   static async findAchievementsListById({ userId }) {
     const { achievements } = await UserModel.findOne(
       { id: userId },
-      { _id: 0, achievements: 1 }
+      { _id: 0 }
     );
     return achievements;
+  }
+
+  static async findAchievementsSortedListById({ userId }) {
+    const { achievements } = await UserModel.findOne(
+      { id: userId },
+      { _id: 0 }
+    );
+    const sortedAchievements = achievements.sort((a, b) => a.status - b.status);
+    return sortedAchievements;
   }
 
   static async findAchievementsIdListById({ userId }) {
@@ -89,6 +98,7 @@ class User {
           profileImg: 1,
           rankPoint: 1,
           stickersCount: { $size: '$stickers' },
+          stickers: 1,
         },
       },
       {
