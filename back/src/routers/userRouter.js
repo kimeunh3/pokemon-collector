@@ -28,18 +28,25 @@ const userAuthRouter = Router();
  *                 properties:
  *                   nickname:
  *                     type: string
+ *                     example: 포켓몬 트레이너
  *                   email:
  *                     type: string
+ *                     example: a@naver.com
  *                   password:
  *                     type: string
+ *                     example: 1234
  *                   sex:
  *                     type: string
+ *                     example: Male
  *                   birth:
  *                     type: string
+ *                     example: 1990-12-03
  *                   interest:
- *                     type: string
+ *                     type: number
+ *                     example: 3
  *                   likeType:
  *                     type: string
+ *                     example: 격투
  */
 
 userAuthRouter.post('/user/register', async function (req, res, next) {
