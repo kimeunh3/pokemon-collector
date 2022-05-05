@@ -13,6 +13,13 @@ const options = {
         url: 'http://localhost:5000',
       },
     ],
+    securityDefinitions: {
+      jwt: {
+        type: 'jwt',
+        in: 'header',
+        name: 'jwt',
+      },
+    },
   },
   apis: ['./src/db/schemas/*.js', './src/routers/*.js'],
 };
