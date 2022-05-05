@@ -10,38 +10,43 @@ const userAuthRouter = Router();
  * paths:
  *   /user/register:
  *     post:
+ *       requestBody:
+ *         required: true
+ *       tags:
+ *       - user
  *       summary: 회원가입
  *       description: User의 회원가입 API
- *       tags: [register]
- *       parameters:
- *         - in: body
- *           name: nickname
- *           description: User의 닉네임
- *           example: 포켓몬 트레이너
- *         - in: body
- *           name: email
- *           description: User의 이메일
- *           example: a@a.com
- *         - in: body
- *           name: password
- *           description: User의 비밀번호(4글자 이상)
- *           example: 1234
- *         - in: body
- *           name: sex
- *           description: User의 성별
- *           example: Male
- *         - in: body
- *           name: birth
- *           description: User의 생년월일
- *           example: 1988-02-12
- *         - in: body
- *           name: interest
- *           description: User의 포켓몬에 대한 관심도
- *           example: 3
- *         - in: body
- *           name: likeType
- *           description: User의 좋아하는 포켓몬 속성
- *           example: 불
+ *       responses:
+ *         '200':
+ *           description: 회원가입 성공
+ *         '400':
+ *           description: Content-Type application/json으로 설정X
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 type: object
+ *                 properties:
+ *                   nickname:
+ *                     type: string
+ *                     example: 포켓몬 트레이너
+ *                   email:
+ *                     type: string
+ *                     example: a@naver.com
+ *                   password:
+ *                     type: string
+ *                     example: 1234
+ *                   sex:
+ *                     type: string
+ *                     example: Male
+ *                   birth:
+ *                     type: string
+ *                     example: 1990-12-03
+ *                   interest:
+ *                     type: number
+ *                     example: 3
+ *                   likeType:
+ *                     type: string
+ *                     example: 격투
  */
 
 userAuthRouter.post('/user/register', async function (req, res, next) {
@@ -79,6 +84,35 @@ userAuthRouter.post('/user/register', async function (req, res, next) {
   }
 });
 
+/**
+ * @swagger
+ * paths:
+ *   /user/login:
+ *     post:
+ *       requestBody:
+ *         required: true
+ *       tags:
+ *       - user
+ *       summary: 로그인
+ *       description: User의 로그인 API
+ *       responses:
+ *         '200':
+ *           description: 로그인 성공
+ *         '400':
+ *           description: 가입 내역이 없는 이메일이므로 로그인 실패
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 type: object
+ *                 properties:
+ *                   email:
+ *                     type: string
+ *                     example: a@naver.com
+ *                   password:
+ *                     type: string
+ *                     example: 1234
+ */
+
 userAuthRouter.post('/user/login', async function (req, res, next) {
   try {
     const email = req.body.email;
@@ -97,6 +131,30 @@ userAuthRouter.post('/user/login', async function (req, res, next) {
     next(error);
   }
 });
+
+/**
+ * @swagger
+ * paths:
+ *   /user/current:
+ *     get:
+ *       tags:
+ *       - user
+ *       summary: 최근에 로그인한 유저 정보
+ *       description: 최근에 로그인한 User의 정보를 불러오는 API
+ *       parameters:
+ *         - in: header
+ *           name: Authorization
+ *           required: true
+ *       responses:
+ *         '200':
+ *           description: 최근에 로그인한 유저 정보 불러옴
+ *         '400':
+ *           description: 정상적인 토큰이 아니라서 유저 정보를 불러오는 것을 실패
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 type: object
+ */
 
 userAuthRouter.get(
   '/user/current',
@@ -119,6 +177,30 @@ userAuthRouter.get(
     }
   }
 );
+/**
+ * @swagger
+ * paths:
+ *   /user/attendanceCheck:
+ *     put:
+ *       tags:
+ *       - user
+ *       summary: 유저의 마지막 로그인 시간으로부터 24시간 경과 확인
+ *       description: 유저의 마지막 로그인 시간으로부터 24시간 경과 확인 -> 포인트 지급 여부 업데이트 API
+ *       responses:
+ *         '200':
+ *           description: 출석체크 시간, 포인트 지급 여부 업데이트
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 type: object
+ *                 properties:
+ *                   attendance:
+ *                     type: string
+ *                     example: 2022-05-02T16:03:30.429Z
+ *                   isPointGiven:
+ *                     type: string
+ *                     example: false
+ */
 
 userAuthRouter.put(
   '/user/attendanceCheck',
@@ -146,7 +228,33 @@ userAuthRouter.put(
     }
   }
 );
-
+/**
+ * @swagger
+ * paths:
+ *   /user/checkIn:
+ *     put:
+ *       tags:
+ *       - user
+ *       summary: 기존 포인트 + 1000
+ *       description: 기존 포인트 + 1000, 포인트 지급 여부 업데이트 API
+ *       responses:
+ *         '200':
+ *           description: 포인트, 포인트 지급 여부 업데이트
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 type: object
+ *                 properties:
+ *                   attendance:
+ *                     type: string
+ *                     example: 2022-05-02T16:03:30.429Z
+ *                   isPointGiven:
+ *                     type: string
+ *                     example: false
+ *                   point:
+ *                     type: number
+ *                     example: 2000
+ */
 userAuthRouter.put(
   '/user/checkIn',
   loginRequired,
@@ -169,7 +277,38 @@ userAuthRouter.put(
     }
   }
 );
-
+/**
+ * @swagger
+ * paths:
+ *   /user/profileModify:
+ *     put:
+ *       tags:
+ *       - user
+ *       requestBody:
+ *         required: true
+ *       summary: 유저의 프로필 변경
+ *       description: 유저의 프로필 변경 API
+ *       responses:
+ *         '200':
+ *           description: 유저 프로필 변경 성공
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 type: object
+ *                 properties:
+ *                   nickname:
+ *                     type: string
+ *                     example: 태초마을 관장
+ *                   likeType:
+ *                     type: string
+ *                     example: 불꽃
+ *                   profileImg:
+ *                     type: string
+ *                     example: 117.png
+ *                   interest:
+ *                     type: number
+ *                     example: 5
+ */
 userAuthRouter.put(
   '/user/profileModify',
   loginRequired,
@@ -194,7 +333,31 @@ userAuthRouter.put(
     }
   }
 );
-
+/**
+ * @swagger
+ * paths:
+ *   /user/changePassword:
+ *     post:
+ *       requestBody:
+ *         required: true
+ *       tags:
+ *       - user
+ *       summary: 비밀번호 변경
+ *       description: User의 비밀번호 변경 API
+ *       responses:
+ *         '200':
+ *           description: 비밀번호 변경 성공
+ *         '400':
+ *           description: 변경할 패스워드 입력 X
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 type: object
+ *                 properties:
+ *                   password:
+ *                     type: string
+ *                     example: 12345
+ */
 userAuthRouter.post(
   '/user/changePassword',
   loginRequired,
