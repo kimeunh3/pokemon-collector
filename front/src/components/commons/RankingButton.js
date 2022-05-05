@@ -19,7 +19,6 @@ function RankingButton() {
   const [rankPointUsers, setRankPointUsers] = useState();
   const [stickersUsers, setStickersUsers] = useState();
   const [IsRankPoint, setIsRankPoint] = useState('랭크포인트');
-  const [alignment, setAlignment] = useState('랭크포인트');
   const [loginDialogOpen, setLoginDialogOpen] = useState(false);
 
   const userState = useContext(UserStateContext);
@@ -28,9 +27,10 @@ function RankingButton() {
   const handleClose = () => {
     setIsOpen(false);
   };
-  const handleChange = (event, newAlignment) => {
-    setAlignment(newAlignment);
-    setIsRankPoint(newAlignment);
+  const handleChange = (event, newValue) => {
+    if (newValue) {
+      setIsRankPoint(newValue);
+    }
   };
 
   const handleLoginDialogClose = () => {
@@ -54,7 +54,6 @@ function RankingButton() {
       });
       Api.get('ranking/stickers/20').then((res) => {
         const newUser = [];
-        console.log(res.data);
         res.data.forEach((user) => {
           newUser.push({
             nickname: user.nickname,
@@ -110,8 +109,8 @@ function RankingButton() {
         </DialogTitle>
         <ToggleButtonGroup
           color='primary'
-          value={alignment}
           exclusive
+          value={IsRankPoint}
           onChange={handleChange}
           style={{ justifyContent: 'center' }}
         >
