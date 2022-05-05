@@ -301,7 +301,31 @@ userAuthRouter.put(
     }
   }
 );
-
+/**
+ * @swagger
+ * paths:
+ *   /user/changePassword:
+ *     post:
+ *       requestBody:
+ *         required: true
+ *       tags:
+ *       - user
+ *       summary: 비밀번호 변경
+ *       description: User의 비밀번호 변경 API
+ *       responses:
+ *         '200':
+ *           description: 비밀번호 변경 성공
+ *         '400':
+ *           description: 변경할 패스워드 입력 X
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 type: object
+ *                 properties:
+ *                   password:
+ *                     type: string
+ *                     example: 12345
+ */
 userAuthRouter.post(
   '/user/changePassword',
   loginRequired,
