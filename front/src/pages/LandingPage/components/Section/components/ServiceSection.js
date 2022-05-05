@@ -43,8 +43,7 @@ function ServiceSection() {
         >
           <CardMedia
             component='img'
-            height='140'
-            image='/static/images/cards/contemplative-reptile.jpg'
+            image='homeService1.png'
             alt='green iguana'
           />
           <CardContent>
@@ -73,8 +72,7 @@ function ServiceSection() {
         >
           <CardMedia
             component='img'
-            height='140'
-            image='/static/images/cards/contemplative-reptile.jpg'
+            image='homeService2.png'
             alt='green iguana'
           />
           <CardContent>
@@ -103,8 +101,7 @@ function ServiceSection() {
         >
           <CardMedia
             component='img'
-            height='140'
-            image='/static/images/cards/contemplative-reptile.jpg'
+            image='homeService3.png'
             alt='green iguana'
           />
           <CardContent>
@@ -146,8 +143,7 @@ function ServiceSection() {
         >
           <CardMedia
             component='img'
-            height='140'
-            image='/static/images/cards/contemplative-reptile.jpg'
+            image='homeService4.png'
             alt='green iguana'
           />
           <CardContent>
@@ -175,8 +171,7 @@ function ServiceSection() {
         >
           <CardMedia
             component='img'
-            height='140'
-            image='/static/images/cards/contemplative-reptile.jpg'
+            image='homeService5.png'
             alt='green iguana'
           />
           <CardContent>
@@ -204,8 +199,7 @@ function ServiceSection() {
         >
           <CardMedia
             component='img'
-            height='140'
-            image='/static/images/cards/contemplative-reptile.jpg'
+            image='homeService6.png'
             alt='green iguana'
           />
           <CardContent>
