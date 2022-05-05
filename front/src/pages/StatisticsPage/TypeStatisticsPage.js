@@ -10,7 +10,7 @@ import TypeDrawerComponents from './components/DrawerComponents/TypeDrawerCompon
 
 import * as Api from '../../api';
 
-const KorEngTypeList = {
+const KOR_ENG_TYPE_LIST = {
   노말: 'normal',
   불꽃: 'fire',
   물: 'water',
@@ -30,7 +30,7 @@ const KorEngTypeList = {
   페어리: 'fairy',
 };
 
-const TypeColorList = {
+const TYPE_COLOR_LIST = {
   노말: 'rgba(198, 198, 167, 0.8)',
   불꽃: 'rgba(245, 172, 120, 0.8)',
   물: 'rgba(157, 183, 245, 0.8)',
@@ -50,19 +50,16 @@ const TypeColorList = {
   페어리: 'rgba(244, 189, 201, 0.8)',
 };
 
-function TypeStatisticsPage() {
-  const params = useParams();
-  const { type } = params;
-  const [isBarStats, setIsBarStats] = useState(true);
-  const [isDoughnutType, setIsDoughnutType] = useState(false);
-  const [isBarWeightHeight, setIsBarWeightHeight] = useState(false);
-  const [isBarTotal, setIsBarTotal] = useState(false);
-  const [pokemons, setPokemons] = useState([]);
-  const [x, setX] = useState();
-  const [y, setY] = useState();
-  const [pokemonInfo, setPokemonInfo] = useState();
-  const [pokemonTotalInfo, setPokemonTotalInfo] = useState();
-
+function typeStatistic(
+  type,
+  pokemons,
+  setPokemons,
+  setX,
+  setY,
+  setPokemonInfo,
+  pokemonTotalInfo,
+  setPokemonTotalInfo
+) {
   useEffect(() => {
     Api.get(`pokemonList/${type}`).then((res) => {
       setPokemons(res.data);
@@ -70,14 +67,12 @@ function TypeStatisticsPage() {
   }, []);
 
   useEffect(() => {
-    Api.get(`pokemonTypeData/${KorEngTypeList[type]}/total`).then((res) => {
-      console.log(res.data);
+    Api.get(`pokemonTypeData/${KOR_ENG_TYPE_LIST[type]}/total`).then((res) => {
       const newPokemonTotalInfo = {};
       res.data.forEach((pokemon) => {
         newPokemonTotalInfo[pokemon.name] = pokemon.totalPoints;
       });
       setPokemonTotalInfo(newPokemonTotalInfo);
-      console.log(newPokemonTotalInfo);
     });
   }, []);
 
@@ -93,6 +88,7 @@ function TypeStatisticsPage() {
         speed: [],
         height: [],
         weight: [],
+        originTotalPoints: [],
         totalPoints: [],
         typesCnt: {
           노말: 0,
@@ -116,8 +112,6 @@ function TypeStatisticsPage() {
         },
       };
       pokemons.forEach((pokemon) => {
-        console.log(pokemonTotalInfo);
-        console.log(pokemonTotalInfo[pokemon.name]);
         newX.push(pokemon.name);
         newY.attack.push(pokemon.attack);
         newY.defense.push(pokemon.defense);
@@ -127,7 +121,8 @@ function TypeStatisticsPage() {
         newY.speed.push(pokemon.speed);
         newY.height.push(pokemon.height);
         newY.weight.push(pokemon.weight);
-        newY.totalPoints.push(pokemonTotalInfo[pokemon.name]);
+        newY.originTotalPoints.push(pokemon.totalPoints);
+        newY.totalPoints.push(pokemonTotalInfo[pokemon.name].toFixed(1));
         newY.typesCnt[pokemon.typeOne] += 1;
         newY.typesCnt[pokemon.typeTwo] += 1;
       });
@@ -148,10 +143,34 @@ function TypeStatisticsPage() {
         speedMean: average(newY.speed).toFixed(1),
         heightMean: average(newY.height).toFixed(1),
         weightMean: average(newY.weight).toFixed(1),
-        totalPointsMean: average(newY.totalPoints).toFixed(1),
+        totalPointsMean: average(newY.originTotalPoints).toFixed(1),
       });
     }
   }, [pokemons, pokemonTotalInfo]);
+}
+
+function TypeStatisticsPage() {
+  const params = useParams();
+  const { type } = params;
+  const [select, setSelect] = useState('barStats');
+  // select: barStats, doughnutType, barWeightHeight, barTotal
+
+  const [pokemons, setPokemons] = useState([]);
+  const [x, setX] = useState();
+  const [y, setY] = useState();
+  const [pokemonInfo, setPokemonInfo] = useState();
+  const [pokemonTotalInfo, setPokemonTotalInfo] = useState();
+
+  typeStatistic(
+    type,
+    pokemons,
+    setPokemons,
+    setX,
+    setY,
+    setPokemonInfo,
+    pokemonTotalInfo,
+    setPokemonTotalInfo
+  );
 
   if (!pokemonInfo) return null;
 
@@ -159,22 +178,16 @@ function TypeStatisticsPage() {
     <div>
       <TypeDrawerComponents
         type={type}
-        typeColor={TypeColorList[type]}
+        typeColor={TYPE_COLOR_LIST[type]}
         pokemonInfo={pokemonInfo}
-        isBarStats={isBarStats}
-        isDoughnutType={isDoughnutType}
-        isBarWeightHeight={isBarWeightHeight}
-        isBarTotal={isBarTotal}
-        setIsBarStats={setIsBarStats}
-        setIsDoughnutType={setIsDoughnutType}
-        setIsBarWeightHeight={setIsBarWeightHeight}
-        setIsBarTotal={setIsBarTotal}
+        select={select}
+        setSelect={setSelect}
       />
       <div style={{ margin: '10vh 3vw auto 25vw' }}>
-        {isBarStats && <BarStats x={x} y={y} />}
-        {isDoughnutType && <DoughnutType y={y} />}
-        {isBarWeightHeight && <BarWeightHeight x={x} y={y} />}
-        {isBarTotal && <BarTotal x={x} y={y} />}
+        {select === 'barStats' && <BarStats x={x} y={y} />}
+        {select === 'doughnutType' && <DoughnutType y={y} />}
+        {select === 'barWeightHeight' && <BarWeightHeight x={x} y={y} />}
+        {select === 'barTotal' && <BarTotal x={x} y={y} />}
       </div>
     </div>
   );
