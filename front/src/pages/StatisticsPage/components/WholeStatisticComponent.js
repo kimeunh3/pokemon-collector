@@ -34,7 +34,7 @@ const EngType = [
   'grass',
   'electric',
   'ice',
-  'fighting',
+  'fight',
   'poison',
   'ground',
   'flying',
