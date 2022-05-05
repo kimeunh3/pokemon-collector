@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -8,6 +8,13 @@ import { useNavigate } from 'react-router-dom';
 import ImgSrc from '../../../../core/constants/ImgSrc';
 
 function BreadOpenModal({ isModalOpen, setIsModalOpen, drawnPokemon }) {
+	const [buttonUp, setButtonUp] = useState(false);
+
+	setTimeout(() => {
+		setButtonUp(true);
+		console.log(buttonUp);
+	}, 3000);
+
 	const navigate = useNavigate();
 
 	const style = {
@@ -31,9 +38,20 @@ function BreadOpenModal({ isModalOpen, setIsModalOpen, drawnPokemon }) {
 		>
 			<Box sx={style}>
 				<CardMedia component='img' image={ImgSrc.getPokemon} alt='getPokemon' />
-				<Box m={2} sx={{ display: 'flex', justifyContent: 'center' }}>
+				<Box
+					visibility={buttonUp || 'hidden'}
+					sx={
+						buttonUp
+							? {
+									transform: 'translate(33%,-600%)',
+									transition: '800ms all ease-in-out',
+							  }
+							: { transform: 'translate(33%,0%)' }
+					}
+				>
 					<Button
 						variant='contained'
+						color='success'
 						onClick={() => {
 							setIsModalOpen(false);
 							navigate(`/pokemonDetail/${drawnPokemon.id}`);
