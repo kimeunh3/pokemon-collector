@@ -244,6 +244,16 @@ userAuthRouter.put(
  *             application/json:
  *               schema:
  *                 type: object
+ *                 properties:
+ *                   attendance:
+ *                     type: string
+ *                     example: 2022-05-02T16:03:30.429Z
+ *                   isPointGiven:
+ *                     type: string
+ *                     example: false
+ *                  point:
+ *                    type: number
+ *                    example: 2000
  */
 userAuthRouter.put(
   '/user/checkIn',
