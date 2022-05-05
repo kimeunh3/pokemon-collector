@@ -141,6 +141,10 @@ userAuthRouter.post('/user/login', async function (req, res, next) {
  *       - user
  *       summary: 최근에 로그인한 유저 정보
  *       description: 최근에 로그인한 User의 정보를 불러오는 API
+ *       parameters:
+ *         - in: header
+ *           name: Authorization
+ *           required: true
  *       responses:
  *         '200':
  *           description: 최근에 로그인한 유저 정보 불러옴
@@ -150,13 +154,6 @@ userAuthRouter.post('/user/login', async function (req, res, next) {
  *             application/json:
  *               schema:
  *                 type: object
- *                 properties:
- *                   email:
- *                     type: string
- *                     example: a@naver.com
- *                   password:
- *                     type: string
- *                     example: 1234
  */
 
 userAuthRouter.get(
@@ -180,6 +177,29 @@ userAuthRouter.get(
     }
   }
 );
+/**
+ * @swagger
+ * paths:
+ *   /user/current:
+ *     put:
+ *       tags:
+ *       - user
+ *       summary: 최근에 로그인한 유저 정보
+ *       description: 최근에 로그인한 User의 정보를 불러오는 API
+ *       parameters:
+ *         - in: header
+ *           name: Authorization
+ *           required: true
+ *       responses:
+ *         '200':
+ *           description: 최근에 로그인한 유저 정보 불러옴
+ *         '400':
+ *           description: 정상적인 토큰이 아니라서 유저 정보를 불러오는 것을 실패
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 type: object
+ */
 
 userAuthRouter.put(
   '/user/attendanceCheck',

@@ -13,15 +13,6 @@ const options = {
         url: 'http://localhost:5000',
       },
     ],
-    components: {
-      securitySchemes: {
-        jwt: {
-          type: 'http',
-          scheme: 'bearer',
-          bearerFormat: 'jwt',
-        },
-      },
-    },
   },
   apis: ['./src/db/schemas/*.js', './src/routers/*.js'],
 };
