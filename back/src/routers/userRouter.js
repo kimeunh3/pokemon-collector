@@ -180,21 +180,15 @@ userAuthRouter.get(
 /**
  * @swagger
  * paths:
- *   /user/current:
+ *   /user/attendanceCheck:
  *     put:
  *       tags:
  *       - user
- *       summary: 최근에 로그인한 유저 정보
- *       description: 최근에 로그인한 User의 정보를 불러오는 API
- *       parameters:
- *         - in: header
- *           name: Authorization
- *           required: true
+ *       summary: 유저의 마지막 로그인 시간으로부터 24시간 경과 확인
+ *       description: 유저의 마지막 로그인 시간으로부터 24시간 경과 확인 -> 포인트 지급 여부 업데이트
  *       responses:
  *         '200':
- *           description: 최근에 로그인한 유저 정보 불러옴
- *         '400':
- *           description: 정상적인 토큰이 아니라서 유저 정보를 불러오는 것을 실패
+ *           description: 출석체크 시간, 포인트 지급 여부 업데이트
  *           content:
  *             application/json:
  *               schema:
@@ -227,7 +221,23 @@ userAuthRouter.put(
     }
   }
 );
-
+/**
+ * @swagger
+ * paths:
+ *   /user/attendanceCheck:
+ *     put:
+ *       tags:
+ *       - user
+ *       summary: 기존 포인트 + 1000
+ *       description: 기존 포인트 + 1000, 포인트 지급 여부 업데이트
+ *       responses:
+ *         '200':
+ *           description: 포인트, 포인트 지급 여부 업데이트
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 type: object
+ */
 userAuthRouter.put(
   '/user/checkIn',
   loginRequired,
@@ -250,7 +260,23 @@ userAuthRouter.put(
     }
   }
 );
-
+/**
+ * @swagger
+ * paths:
+ *   /user/attendanceCheck:
+ *     put:
+ *       tags:
+ *       - user
+ *       summary: 유저의 마지막 로그인 시간으로부터 24시간 경과 확인
+ *       description: 유저의 마지막 로그인 시간으로부터 24시간 경과 확인 -> 포인트 지급 여부 업데이트
+ *       responses:
+ *         '200':
+ *           description: 출석체크 시간, 포인트 지급 여부 업데이트
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 type: object
+ */
 userAuthRouter.put(
   '/user/profileModify',
   loginRequired,
