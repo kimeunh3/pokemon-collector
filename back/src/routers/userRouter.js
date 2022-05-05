@@ -15,9 +15,9 @@ const userAuthRouter = Router();
  *       summary: 회원가입
  *       description: User의 회원가입 API
  *       responses:
- *         200:
+ *         '200':
  *           description: 회원가입 성공
- *         400:
+ *         '400':
  *           description: Content-Type application/json으로 설정X
  *           content:
  *             application/json:
@@ -25,6 +25,18 @@ const userAuthRouter = Router();
  *                 type: object
  *                 properties:
  *                   nickname:
+ *                     type: string
+ *                   email:
+ *                     type: string
+ *                   password:
+ *                     type: string
+ *                   sex:
+ *                     type: string
+ *                   birth:
+ *                     type: string
+ *                   interest:
+ *                     type: string
+ *                   likeType:
  *                     type: string
  */
 
