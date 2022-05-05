@@ -38,6 +38,27 @@ achievementsRouter.use(loginRequired);
  *                    type: array
  *                    items:
  *                      type: number
+ *            example:
+ *              - _id: 626a3362d48b52f83c27058a
+ *                id: 1
+ *                type: visited
+ *                name: '초심자 트레이너'
+ *                description: '따끈따끈한 트레이너'
+ *                condition: [1]
+ *              - _id: 626a3362d48b52f83c27058b
+ *                id: 2
+ *                type: collected
+ *                name: '스타팅 포켓몬 콜렉터'
+ *                description: '스타팅 포켓몬을 모두 모았다!'
+ *                condition: [1, 4, 7]
+ *              - _id: 626a3362d48b52f83c27058c
+ *                id: 3
+ *                type: collected
+ *                name: '노말 포켓몬 콜렉터'
+ *                description: '노말 속성 포켓몬을 모두 모았다!'
+ *                condition: [16, 17, 18, 19, 20, 21, 22, 39, 40, 52, 53, 83,
+ *                            84, 85, 108, 113, 115, 128, 132, 133, 137, 143]
+ *
  *
  */
 achievementsRouter.get('/achievementList', async (req, res, next) => {
@@ -60,7 +81,7 @@ achievementsRouter.get('/achievementList', async (req, res, next) => {
  *      - Authorization: []
  *    responses:
  *      '200':
- *        description: 업적 리스트 반환
+ *        description: 유저의 업적 리스트 반환 성공
  *        content:
  *          application/json:
  *            schema:
@@ -78,6 +99,32 @@ achievementsRouter.get('/achievementList', async (req, res, next) => {
  *                    type: string
  *                  status:
  *                    type: number
+ *            example:
+ *              - id: 1
+ *                type: visited
+ *                name: '초심자 트레이너'
+ *                description: '따끈따끈한 트레이너'
+ *                status: 100
+ *              - id: 2
+ *                type: collected
+ *                name: '스타팅 포켓몬 콜렉터'
+ *                description: '스타팅 포켓몬을 모두 모았다!'
+ *                status: 33
+ *              - id: 3
+ *                type: collected
+ *                name: '노말 포켓몬 콜렉터'
+ *                description: '노말 속성 포켓몬을 모두 모았다!'
+ *                status: 73
+ *              - id: 4
+ *                type: collected
+ *                name: '불꽃 포켓몬 콜렉터'
+ *                description: '불꽃 속성 포켓몬을 모두 모았다!'
+ *                status: 58
+ *              - id: 5
+ *                type: collected
+ *                name: '물 포켓몬 콜렉터'
+ *                description: '물 속성 포켓몬을 모두 모았다!'
+ *                status: 75
  *      '400':
  *        description: 요청이 잘못 됨
  */

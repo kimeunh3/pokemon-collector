@@ -31,6 +31,11 @@ quizRouter.use(loginRequired);
  *                      type: string
  *                reminingChance:
  *                  type: number
+ *            example:
+ *              quiz:
+ *                id: 106
+ *                name: 시라소몬
+ *              reminingChance: 2
  *      '400':
  *        description: 요청이 잘못 됨
  */
@@ -67,6 +72,8 @@ quizRouter.get('/quiz', async function (req, res, next) {
  *        required: true
  *        schema:
  *          type: string
+ *          enum: [first, second]
+ *          example: first
  *        style: matrix
  *    responses:
  *      '200':
@@ -80,6 +87,8 @@ quizRouter.get('/quiz', async function (req, res, next) {
  *                updatedPoint:
  *                  type: number
  *                  decription: 충전이 적용 된 유저 포인트
+ *            example:
+ *              updatedPoint: 4500
  *      '400':
  *        description: 요청이 잘못 됨
  */
