@@ -1,18 +1,3 @@
-/**
- * @swagger
- * /achievementList:
- *   post:
- *     summary: 회원가입
- *     description: 업적 리스트 반환 API
- *     tags: [achievements]
- *     responses:
- *       '200':
- *        description: 업적 리스트 반환
- *        content:
- *         application/json:
- *           schema:
- *             type: List
- */
 import { Router } from 'express';
 import { loginRequired } from '../middlewares/loginRequired';
 import { achievementsService } from '../services/achievementsService';
@@ -20,6 +5,35 @@ import { achievementsService } from '../services/achievementsService';
 const achievementsRouter = Router();
 achievementsRouter.use(loginRequired);
 
+/**
+ * @swagger
+ * /achievementList:
+ *  post:
+ *    summary: 회원가입
+ *    description: 업적 리스트 반환 API
+ *    tags: [achievements]
+ *    responses:
+ *      '200':
+ *        description: 업적 리스트 반환
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: array
+ *                _id:
+ *                  type: string
+ *                id:
+ *                  type: number
+ *                type:
+ *                  type: string
+ *                name:
+ *                  type: string
+ *                description:
+ *                  type: string
+ *                condition:
+ *                  type: array
+ *
+ *
+ */
 achievementsRouter.get('/achievementList', async (req, res, next) => {
   try {
     const data = await achievementsService.getAchievements();
