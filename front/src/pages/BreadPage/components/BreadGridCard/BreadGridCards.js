@@ -11,77 +11,77 @@ import * as Api from '../../../../api';
 import BreadOpenModal from '../BreadOpenModal/BreadOpenModal';
 
 function GridCards({ bread, breadImg, setPoint }) {
-	const [isModalOpen, setIsModalOpen] = useState(false);
-	const [drawnPokemon, setDrawnPokemon] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [drawnPokemon, setDrawnPokemon] = useState(null);
 
-	const handleClick = async () => {
-		const response = await Api.get('drawPokemon');
-		setIsModalOpen(true);
-		setPoint(response.userPoint);
-		setDrawnPokemon(response.data);
-	};
+  const handleClick = async () => {
+    const response = await Api.get('drawPokemon');
+    setIsModalOpen(true);
+    setPoint(response.userPoint);
+    setDrawnPokemon(response.data);
+  };
 
-	const breadImgSrc = `https://d31z0g5vo6ghmg.cloudfront.net/front/bread/${breadImg}.png`;
+  const breadImgSrc = `${process.env.REACT_APP_CLOUDFRONT_URL}front/bread/${breadImg}.png`;
 
-	if (bread) {
-		return (
-			<Grid
-				item
-				xs={3}
-				sx={{
-					'&: hover': {
-						'& .btn': {
-							display: 'block',
-						},
-						'& .bread': {
-							opacity: '0.7',
-							transition: 'all 0.5s ease',
-						},
-					},
-				}}
-			>
-				<Box
-					className='bread'
-					sx={{ position: 'relative', width: '100%', height: '100%' }}
-				>
-					<Card
-						sx={{
-							backgroundColor: 'transparent',
-							boxShadow: 'none',
-						}}
-					>
-						<CardMedia
-							sx={{}}
-							component='img'
-							image={breadImgSrc}
-							alt={breadImg}
-						/>
-					</Card>
-					<Button
-						className='btn'
-						variant='contained'
-						color='success'
-						onClick={handleClick}
-						sx={{
-							display: 'none',
-							position: 'absolute',
-							top: '40%',
-							right: '33%',
-						}}
-					>
-						<Typography>빵 구매</Typography>
-					</Button>
-				</Box>
-				{isModalOpen && (
-					<BreadOpenModal
-						isModalOpen={isModalOpen}
-						setIsModalOpen={setIsModalOpen}
-						drawnPokemon={drawnPokemon}
-					/>
-				)}
-			</Grid>
-		);
-	}
+  if (bread) {
+    return (
+      <Grid
+        item
+        xs={3}
+        sx={{
+          '&: hover': {
+            '& .btn': {
+              display: 'block',
+            },
+            '& .bread': {
+              opacity: '0.7',
+              transition: 'all 0.5s ease',
+            },
+          },
+        }}
+      >
+        <Box
+          className='bread'
+          sx={{ position: 'relative', width: '100%', height: '100%' }}
+        >
+          <Card
+            sx={{
+              backgroundColor: 'transparent',
+              boxShadow: 'none',
+            }}
+          >
+            <CardMedia
+              sx={{}}
+              component='img'
+              image={breadImgSrc}
+              alt={breadImg}
+            />
+          </Card>
+          <Button
+            className='btn'
+            variant='contained'
+            color='success'
+            onClick={handleClick}
+            sx={{
+              display: 'none',
+              position: 'absolute',
+              top: '40%',
+              right: '33%',
+            }}
+          >
+            <Typography>빵 구매</Typography>
+          </Button>
+        </Box>
+        {isModalOpen && (
+          <BreadOpenModal
+            isModalOpen={isModalOpen}
+            setIsModalOpen={setIsModalOpen}
+            drawnPokemon={drawnPokemon}
+          />
+        )}
+      </Grid>
+    );
+  }
 }
 
 export default GridCards;

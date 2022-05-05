@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box } from '@mui/material';
 import ServiceSectionCard from './ServiceSectionCard/ServiceSectionCard';
+import { homeURL } from '../../../../../core/constants/ImgSrc';
 
 function ServiceSection({ isLogin, handleDialogOpen }) {
   const navigate = useNavigate();
@@ -65,7 +66,7 @@ function ServiceSection({ isLogin, handleDialogOpen }) {
         }}
       >
         <ServiceSectionCard
-          imgSrc='homeService1.png'
+          imgSrc={`${homeURL}homeService1.PNG`}
           title='포켓몬빵 뽑기'
           text={[
             '1000포인트를 지불하고 7가지 종류의 포켓몬빵 중 하나를 구매하면 랜덤으로 포켓몬 스티커를 뽑을 수 있습니다.',
@@ -77,7 +78,7 @@ function ServiceSection({ isLogin, handleDialogOpen }) {
           buttonText='포켓몬빵 뽑으러 가기'
         />
         <ServiceSectionCard
-          imgSrc='homeService2.png'
+          imgSrc={`${homeURL}homeService2.PNG`}
           title='오박사의 퀴즈'
           text={[
             '오박사의 포켓몬 실루엣 퀴즈를 풀고 포켓몬빵을 구매할 수 있는 포인트를 얻을 수 있습니다.',
@@ -89,7 +90,7 @@ function ServiceSection({ isLogin, handleDialogOpen }) {
           buttonText='퀴즈 풀러 가기'
         />
         <ServiceSectionCard
-          imgSrc='homeService3.png'
+          imgSrc={`${homeURL}homeService3.PNG`}
           title='출석체크'
           text={[
             '24시간에 한 번, 1000포인트를 받을 수 있습니다.',
@@ -115,7 +116,7 @@ function ServiceSection({ isLogin, handleDialogOpen }) {
         }}
       >
         <ServiceSectionCard
-          imgSrc='homeService4.png'
+          imgSrc={`${homeURL}homeService4.PNG`}
           title='포켓몬 통계'
           text={[
             '우리에게 친숙한 포켓몬을 통계를 통해 더 자세히 알아보세요.',
@@ -127,7 +128,7 @@ function ServiceSection({ isLogin, handleDialogOpen }) {
           buttonText='포켓몬 통계 보러 가기'
         />
         <ServiceSectionCard
-          imgSrc='homeService5.png'
+          imgSrc={`${homeURL}homeService5.PNG`}
           title='포켓몬 도감'
           text={[
             '도감을 통해 수집한 포켓몬을 볼 수 있습니다.',
@@ -139,7 +140,7 @@ function ServiceSection({ isLogin, handleDialogOpen }) {
           buttonText='포켓몬 도감 보러 가기'
         />
         <ServiceSectionCard
-          imgSrc='homeService6.png'
+          imgSrc={`${homeURL}homeService6.PNG`}
           title='랭킹 시스템'
           text={[
             '랭크포인트와 포켓몬 스티커 수로 랭킹을 볼 수 있습니다.',
