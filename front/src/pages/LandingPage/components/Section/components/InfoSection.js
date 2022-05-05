@@ -54,11 +54,13 @@ function InfoSection() {
 					item
 					xs={12}
 					md={12}
-					sx={{ display: 'flex', justifyContent: 'center', marginTop: '30px' }}
+					sx={{ display: 'flex', justifyContent: 'center', marginTop: '100px' }}
 				>
 					<Typography variant='h5'>서비스 취지 & 목적</Typography>
 				</Grid>
-				<Divider sx={{ color: 'black', width: '100%', border: '1px solid' }} />
+
+				<Divider sx={{ width: '100%' }} />
+
 				<Grid item xs={4} md={4}>
 					<Card>
 						<CardMedia
@@ -68,7 +70,7 @@ function InfoSection() {
 						/>
 						<CardContent>
 							<Typography variant='body1'>
-								마트 오픈시간 전 포켓몬 빵 구입 줄 선 시민들 -중앙일보
+								마트 오픈시간 전 포켓몬 빵 구입 줄 선 시민들 - 중앙일보
 							</Typography>
 						</CardContent>
 					</Card>
@@ -96,7 +98,7 @@ function InfoSection() {
 						/>
 						<CardContent sx={{ backgroundColor: '#FFFFFF' }}>
 							<Typography variant='body1'>
-								포켓몬빵 40일만에 1000만개 팔렸다… - 이데일리
+								포켓몬빵 40일만에 1000만개 팔렸다… <br />- 이데일리
 							</Typography>
 						</CardContent>
 					</Card>
@@ -138,7 +140,7 @@ function InfoSection() {
 						/>
 						<CardContent sx={{ backgroundColor: '#EEF2FF' }}>
 							<Typography variant='body1'>
-								포켓몬빵 유행이 불러온 새로운 사기범죄 - jtbc
+								포켓몬빵 유행이 불러온 새로운 사기범죄 <br />- jtbc
 							</Typography>
 						</CardContent>
 					</Card>
