@@ -10,7 +10,7 @@ import TypeDrawerComponents from './components/DrawerComponents/TypeDrawerCompon
 
 import * as Api from '../../api';
 
-const KorEngTypeList = {
+const KOR_ENG_TYPE_LIST = {
   노말: 'normal',
   불꽃: 'fire',
   물: 'water',
@@ -30,7 +30,7 @@ const KorEngTypeList = {
   페어리: 'fairy',
 };
 
-const TypeColorList = {
+const TYPE_COLOR_LIST = {
   노말: 'rgba(198, 198, 167, 0.8)',
   불꽃: 'rgba(245, 172, 120, 0.8)',
   물: 'rgba(157, 183, 245, 0.8)',
@@ -50,18 +50,16 @@ const TypeColorList = {
   페어리: 'rgba(244, 189, 201, 0.8)',
 };
 
-function TypeStatisticsPage() {
-  const params = useParams();
-  const { type } = params;
-  const [select, setSelect] = useState('barStats');
-  // select: barStats, doughnutType, barWeightHeight, barTotal
-
-  const [pokemons, setPokemons] = useState([]);
-  const [x, setX] = useState();
-  const [y, setY] = useState();
-  const [pokemonInfo, setPokemonInfo] = useState();
-  const [pokemonTotalInfo, setPokemonTotalInfo] = useState();
-
+function typeStatistic(
+  type,
+  pokemons,
+  setPokemons,
+  setX,
+  setY,
+  setPokemonInfo,
+  pokemonTotalInfo,
+  setPokemonTotalInfo
+) {
   useEffect(() => {
     Api.get(`pokemonList/${type}`).then((res) => {
       setPokemons(res.data);
@@ -69,7 +67,7 @@ function TypeStatisticsPage() {
   }, []);
 
   useEffect(() => {
-    Api.get(`pokemonTypeData/${KorEngTypeList[type]}/total`).then((res) => {
+    Api.get(`pokemonTypeData/${KOR_ENG_TYPE_LIST[type]}/total`).then((res) => {
       const newPokemonTotalInfo = {};
       res.data.forEach((pokemon) => {
         newPokemonTotalInfo[pokemon.name] = pokemon.totalPoints;
@@ -149,6 +147,30 @@ function TypeStatisticsPage() {
       });
     }
   }, [pokemons, pokemonTotalInfo]);
+}
+
+function TypeStatisticsPage() {
+  const params = useParams();
+  const { type } = params;
+  const [select, setSelect] = useState('barStats');
+  // select: barStats, doughnutType, barWeightHeight, barTotal
+
+  const [pokemons, setPokemons] = useState([]);
+  const [x, setX] = useState();
+  const [y, setY] = useState();
+  const [pokemonInfo, setPokemonInfo] = useState();
+  const [pokemonTotalInfo, setPokemonTotalInfo] = useState();
+
+  typeStatistic(
+    type,
+    pokemons,
+    setPokemons,
+    setX,
+    setY,
+    setPokemonInfo,
+    pokemonTotalInfo,
+    setPokemonTotalInfo
+  );
 
   if (!pokemonInfo) return null;
 
@@ -156,7 +178,7 @@ function TypeStatisticsPage() {
     <div>
       <TypeDrawerComponents
         type={type}
-        typeColor={TypeColorList[type]}
+        typeColor={TYPE_COLOR_LIST[type]}
         pokemonInfo={pokemonInfo}
         select={select}
         setSelect={setSelect}

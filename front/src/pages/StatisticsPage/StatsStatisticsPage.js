@@ -55,7 +55,7 @@ const STATS_COLOR_LIST = {
   종합점수: 'rgba(128, 128, 128, 0.8)',
 };
 
-function StatsStatistics(
+function statsStatistics(
   engStats,
   typeColors,
   pokemons,
@@ -298,7 +298,7 @@ function StatsStatisticsPage() {
   const [pokemonsStatsTop15Colors, setPokemonsStatsTop15Colors] = useState([]);
   const [pokemonsStatsLow15Colors, setPokemonsStatsLow15Colors] = useState([]);
 
-  StatsStatistics(
+  statsStatistics(
     engStats,
     typeColors,
     pokemons,
