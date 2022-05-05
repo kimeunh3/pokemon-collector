@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Grid, Box, Typography } from '@mui/material';
 
 import * as Api from '../../../../api';
-import { BarStatChart, BarWeightHeight } from './StatisticsCharts/Charts';
+import { BarStatChart, BarWeight, BarHeight } from './StatisticsCharts/Charts';
 
 function BarCharts({ id }) {
 	const [pokemon, setPokemon] = useState([]);
@@ -95,8 +95,11 @@ function BarCharts({ id }) {
 						<Grid item xs={6} md={6}>
 							<BarStatChart x={x} y={newY} />
 						</Grid>
-						<Grid item xs={6} md={6}>
-							<BarWeightHeight x={x} y={newY} />
+						<Grid item xs={3}>
+							<BarHeight x={x} y={newY} />
+						</Grid>
+						<Grid item xs={3}>
+							<BarWeight x={x} y={newY} />
 						</Grid>
 						<Grid item xs={12} sx={{ marginTop: '30px' }}>
 							<Typography variant='h5'>
@@ -107,8 +110,11 @@ function BarCharts({ id }) {
 						<Grid item xs={6} md={6}>
 							<BarStatChart x={typeX} y={newTypeY} />
 						</Grid>
-						<Grid item xs={6} md={6}>
-							<BarWeightHeight x={typeX} y={newTypeY} />
+						<Grid item xs={3}>
+							<BarHeight x={typeX} y={newTypeY} />
+						</Grid>
+						<Grid item xs={3} md={3}>
+							<BarWeight x={typeX} y={newTypeY} />
 						</Grid>
 					</Grid>
 				</Box>

@@ -90,15 +90,16 @@ export function BarStatChart({ x, y }) {
 	);
 }
 
-const optionBarWeightHeight = {
+const optionBarHeight = {
 	responsive: true,
+	maintainAspectRatio: false,
 	plugins: {
 		legend: {
 			position: 'top',
 		},
 		title: {
 			display: true,
-			text: '키/몸무게',
+			text: '키',
 		},
 	},
 	scales: {
@@ -113,9 +114,51 @@ const optionBarWeightHeight = {
 				display: false,
 			},
 		},
+	},
+};
+
+export function BarHeight({ x, y }) {
+	const dataBarHeight = {
+		labels: x,
+		datasets: [
+			{
+				label: '키',
+				data: y.height,
+				backgroundColor: 'rgba(161, 57, 89, 0.5)',
+				yAxisID: 'height',
+			},
+		],
+	};
+
+	return (
+		<Box
+			sx={{
+				backgroundColor: 'rgba(255, 255, 255, 0.5)',
+				borderRadius: '10px',
+				height: '100%',
+			}}
+		>
+			<Bar options={optionBarHeight} data={dataBarHeight} />
+		</Box>
+	);
+}
+
+const optionBarWeight = {
+	responsive: true,
+	maintainAspectRatio: false,
+	plugins: {
+		legend: {
+			position: 'top',
+		},
+		title: {
+			display: true,
+			text: '몸무게',
+		},
+	},
+	scales: {
 		weight: {
 			type: 'linear',
-			position: 'right',
+			position: 'left',
 			title: {
 				display: true,
 				text: '몸무게 (kg)',
@@ -127,16 +170,10 @@ const optionBarWeightHeight = {
 	},
 };
 
-export function BarWeightHeight({ x, y }) {
-	const dataBarWeightHeight = {
+export function BarWeight({ x, y }) {
+	const dataBarWeight = {
 		labels: x,
 		datasets: [
-			{
-				label: '키',
-				data: y.height,
-				backgroundColor: 'rgba(161, 57, 89, 0.5)',
-				yAxisID: 'height',
-			},
 			{
 				label: '몸무게',
 				data: y.weight,
@@ -151,9 +188,10 @@ export function BarWeightHeight({ x, y }) {
 			sx={{
 				backgroundColor: 'rgba(255, 255, 255, 0.5)',
 				borderRadius: '10px',
+				height: '100%',
 			}}
 		>
-			<Bar options={optionBarWeightHeight} data={dataBarWeightHeight} />
+			<Bar options={optionBarWeight} data={dataBarWeight} />
 		</Box>
 	);
 }
