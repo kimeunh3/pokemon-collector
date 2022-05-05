@@ -71,6 +71,41 @@ pokemonAuthRouter.get('/pokemonList/:type', async (req, res, next) => {
   }
 });
 
+/**
+ * @swagger
+ * /drawPokemon:
+ *  get:
+ *    summary: 포켓몬 스티커 뽑기
+ *    description: 포켓몬 스티커를 등급에 따라 확률적으로 뽑아주고 업적 및 랭크를 갱신
+ *    tags: [pokemon]
+ *    security:
+ *      - Authorization: []
+ *    responses:
+ *      '200':
+ *        description: 포켓몬 스티커 뽑기 및 업적•랭크 포인트 갱신
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                id:
+ *                  type: number
+ *                name:
+ *                  type: string
+ *                pokemonStatus:
+ *                  type: string
+ *                pokemonTotalPoint:
+ *                  type: number
+ *                status:
+ *                  type: boolean
+ *                  description: 성공 여부
+ *                userPoint:
+ *                  type: number
+ *                PankingPoint:
+ *                  type: number
+ *      '400':
+ *        description: 요청이 잘못 됨
+ */
 pokemonAuthRouter.get('/drawPokemon', async (req, res, next) => {
   try {
     // header에서 user id 받아오기
@@ -78,7 +113,10 @@ pokemonAuthRouter.get('/drawPokemon', async (req, res, next) => {
     //pokemon 이름 가져오기
     let drawResult = await PokemonAuthService.getDrewResult({ userId });
     if (drawResult.errorMessage) {
-      throw new Error(drawResult.errorMessage);
+      return res.status(400).json({
+        status: 'error',
+        error: drawResult.errorMessage,
+      });
     }
 
     if (drawResult.status) {
