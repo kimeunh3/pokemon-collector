@@ -104,7 +104,7 @@ function ServiceSection({ isLogin, handleDialogOpen }) {
       <div style={{ textAlign: 'center', fontSize: '30px' }}>
         포켓몬에 대한 정보를 알아보고
         <br />
-        자신의 랭킹을 확인해보세요!
+        자신의 랭킹을 확인하세요!
       </div>
       <div
         style={{
