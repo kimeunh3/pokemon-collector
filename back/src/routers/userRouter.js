@@ -251,9 +251,9 @@ userAuthRouter.put(
  *                   isPointGiven:
  *                     type: string
  *                     example: false
- *                  point:
- *                    type: number
- *                    example: 2000
+ *                   point:
+ *                     type: number
+ *                     example: 2000
  */
 userAuthRouter.put(
   '/user/checkIn',
