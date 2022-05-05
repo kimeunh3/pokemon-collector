@@ -120,8 +120,6 @@ function QuizComponent({
     setIsEntry(true);
   };
 
-  console.log(pokemonName);
-
   return (
     <Card
       sx={{
