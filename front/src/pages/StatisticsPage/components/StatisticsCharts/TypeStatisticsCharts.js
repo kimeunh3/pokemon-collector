@@ -27,7 +27,7 @@ ChartJS.register(
   Legend
 );
 
-export const optionBarStats = {
+const OPTION_BAR_STATS = {
   responsive: true,
   plugins: {
     legend: {
@@ -40,7 +40,7 @@ export const optionBarStats = {
   },
 };
 
-export const optionDoughnutType = {
+const OPTION_DOUGHNUT_TYPE = {
   plugins: {
     title: {
       display: true,
@@ -49,7 +49,7 @@ export const optionDoughnutType = {
   },
 };
 
-export const optionBarWeightHeight = {
+const OPTION_BAR_WEIGHT_HEIGHT = {
   responsive: true,
   plugins: {
     legend: {
@@ -86,7 +86,7 @@ export const optionBarWeightHeight = {
   },
 };
 
-export const optionBarTotal = {
+const OPTION_BAR_TOTAL = {
   plugins: {
     title: {
       display: true,
@@ -170,7 +170,7 @@ export function BarStats({ x, y }) {
         borderRadius: '10px',
       }}
     >
-      <Bar options={optionBarStats} data={dataBarStats} />
+      <Bar options={OPTION_BAR_STATS} data={dataBarStats} />
     </div>
   );
 }
@@ -236,7 +236,7 @@ export function DoughnutType({ y }) {
         marginLeft: '18vw',
       }}
     >
-      <Doughnut options={optionDoughnutType} data={dataDoughnutType} />
+      <Doughnut options={OPTION_DOUGHNUT_TYPE} data={dataDoughnutType} />
     </div>
   );
 }
@@ -267,7 +267,7 @@ export function BarWeightHeight({ x, y }) {
         borderRadius: '10px',
       }}
     >
-      <Bar options={optionBarWeightHeight} data={dataBarWeightHeight} />
+      <Bar options={OPTION_BAR_WEIGHT_HEIGHT} data={dataBarWeightHeight} />
     </div>
   );
 }
@@ -336,7 +336,7 @@ export function BarTotal({ x, y }) {
         borderRadius: '10px',
       }}
     >
-      <Bar options={optionBarTotal} data={dataBarTotal} />
+      <Bar options={OPTION_BAR_TOTAL} data={dataBarTotal} />
     </div>
   );
 }
