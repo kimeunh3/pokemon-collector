@@ -19,7 +19,7 @@ ChartJS.register(
   Legend
 );
 
-export const options1 = {
+const OPTION_1 = {
   plugins: {
     title: {
       display: true,
@@ -59,7 +59,7 @@ export const options1 = {
   },
 };
 
-export const options2 = {
+const OPTION_2 = {
   indexAxis: 'y',
   elements: {
     bar: {
@@ -154,7 +154,7 @@ export function WholeStatsStatisticsCharts({ y }) {
     ],
   };
 
-  return <Bar options={options1} data={data} />;
+  return <Bar options={OPTION_1} data={data} />;
 }
 
 export function WholeTypeCharts({ y }) {
@@ -208,5 +208,5 @@ export function WholeTypeCharts({ y }) {
     ],
   };
 
-  return <Bar options={options2} data={data} />;
+  return <Bar options={OPTION_2} data={data} />;
 }
