@@ -185,7 +185,7 @@ userAuthRouter.get(
  *       tags:
  *       - user
  *       summary: 유저의 마지막 로그인 시간으로부터 24시간 경과 확인
- *       description: 유저의 마지막 로그인 시간으로부터 24시간 경과 확인 -> 포인트 지급 여부 업데이트
+ *       description: 유저의 마지막 로그인 시간으로부터 24시간 경과 확인 -> 포인트 지급 여부 업데이트 API
  *       responses:
  *         '200':
  *           description: 출석체크 시간, 포인트 지급 여부 업데이트
@@ -229,7 +229,7 @@ userAuthRouter.put(
  *       tags:
  *       - user
  *       summary: 기존 포인트 + 1000
- *       description: 기존 포인트 + 1000, 포인트 지급 여부 업데이트
+ *       description: 기존 포인트 + 1000, 포인트 지급 여부 업데이트 API
  *       responses:
  *         '200':
  *           description: 포인트, 포인트 지급 여부 업데이트
@@ -263,15 +263,15 @@ userAuthRouter.put(
 /**
  * @swagger
  * paths:
- *   /user/attendanceCheck:
+ *   /user/profileModify:
  *     put:
  *       tags:
  *       - user
- *       summary: 유저의 마지막 로그인 시간으로부터 24시간 경과 확인
- *       description: 유저의 마지막 로그인 시간으로부터 24시간 경과 확인 -> 포인트 지급 여부 업데이트
+ *       summary: 유저의 프로필 변경
+ *       description: 유저의 프로필 변경 API
  *       responses:
  *         '200':
- *           description: 출석체크 시간, 포인트 지급 여부 업데이트
+ *           description: 유저 프로필 변경 성공
  *           content:
  *             application/json:
  *               schema:
