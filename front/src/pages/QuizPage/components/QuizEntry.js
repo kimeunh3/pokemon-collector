@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 
 import ImgSrc from '../../../core/constants/ImgSrc';
 
-function QuizEntry({ setIsEntry, setIsQuizEx1 }) {
+function QuizEntry({ setStage }) {
   return (
     <Box
       className='QuizEntry'
@@ -35,8 +35,7 @@ function QuizEntry({ setIsEntry, setIsQuizEx1 }) {
         variant='contained'
         color='error'
         onClick={() => {
-          setIsEntry(false);
-          setIsQuizEx1(true);
+          setStage('quizEx1');
         }}
         sx={{
           position: 'absolute',

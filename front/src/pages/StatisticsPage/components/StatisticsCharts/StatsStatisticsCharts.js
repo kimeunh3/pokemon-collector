@@ -19,7 +19,7 @@ ChartJS.register(
   Legend
 );
 
-export const optionBarTypeStats = {
+const OPTION_BAR_TYPE_STATS = {
   responsive: true,
   plugins: {
     legend: {
@@ -33,7 +33,7 @@ export const optionBarTypeStats = {
   },
 };
 
-export const optionBarTypeTop5 = {
+const OPTION_BAR_TYPE_TOP5 = {
   indexAxis: 'y',
   elements: {
     bar: {
@@ -53,7 +53,7 @@ export const optionBarTypeTop5 = {
   },
 };
 
-export const optionBarTypeLow5 = {
+const OPTION_BAR_TYPE_LOW5 = {
   indexAxis: 'y',
   elements: {
     bar: {
@@ -73,7 +73,7 @@ export const optionBarTypeLow5 = {
   },
 };
 
-export const optionBarPokemonTop15 = {
+const OPTION_BAR_POKEMON_TOP15 = {
   indexAxis: 'y',
   elements: {
     bar: {
@@ -93,7 +93,7 @@ export const optionBarPokemonTop15 = {
   },
 };
 
-export const optionBarPokemonLow15 = {
+const OPTION_BAR_POKEMON_LOW15 = {
   indexAxis: 'y',
   elements: {
     bar: {
@@ -146,11 +146,11 @@ export function BarTypeStats({ y, colors, stats }) {
   return (
     <div
       style={{
-        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        backgroundColor: 'rgba(255, 255, 255, 1)',
         borderRadius: '10px',
       }}
     >
-      <Bar options={optionBarTypeStats} data={dataBarTypeStats} />
+      <Bar options={OPTION_BAR_TYPE_STATS} data={dataBarTypeStats} />
     </div>
   );
 }
@@ -170,11 +170,11 @@ export function BarTypeTop5({ x, y, colors, stats }) {
   return (
     <div
       style={{
-        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        backgroundColor: 'rgba(255, 255, 255, 1)',
         borderRadius: '10px',
       }}
     >
-      <Bar options={optionBarTypeTop5} data={dataBarTypeTop5} />
+      <Bar options={OPTION_BAR_TYPE_TOP5} data={dataBarTypeTop5} />
     </div>
   );
 }
@@ -194,11 +194,11 @@ export function BarTypeLow5({ x, y, colors, stats }) {
   return (
     <div
       style={{
-        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        backgroundColor: 'rgba(255, 255, 255, 1)',
         borderRadius: '10px',
       }}
     >
-      <Bar options={optionBarTypeLow5} data={dataBarTypeLow5} />
+      <Bar options={OPTION_BAR_TYPE_LOW5} data={dataBarTypeLow5} />
     </div>
   );
 }
@@ -218,11 +218,11 @@ export function BarPokemonTop15({ x, y, colors, stats }) {
   return (
     <div
       style={{
-        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        backgroundColor: 'rgba(255, 255, 255, 1)',
         borderRadius: '10px',
       }}
     >
-      <Bar options={optionBarPokemonTop15} data={dataBarPokemonTop15} />
+      <Bar options={OPTION_BAR_POKEMON_TOP15} data={dataBarPokemonTop15} />
     </div>
   );
 }
@@ -242,11 +242,11 @@ export function BarPokemonLow15({ x, y, colors, stats }) {
   return (
     <div
       style={{
-        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        backgroundColor: 'rgba(255, 255, 255, 1)',
         borderRadius: '10px',
       }}
     >
-      <Bar options={optionBarPokemonLow15} data={dataBarPokemonLow15} />
+      <Bar options={OPTION_BAR_POKEMON_LOW15} data={dataBarPokemonLow15} />
     </div>
   );
 }
