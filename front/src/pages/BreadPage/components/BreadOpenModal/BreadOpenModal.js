@@ -1,11 +1,11 @@
 import React from 'react';
-// import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import CardMedia from '@mui/material/CardMedia';
-
 import { useNavigate } from 'react-router-dom';
+
+import ImgSrc from '../../../../core/constants/ImgSrc';
 
 function BreadOpenModal({ isModalOpen, setIsModalOpen, drawnPokemon }) {
 	const navigate = useNavigate();
@@ -30,7 +30,7 @@ function BreadOpenModal({ isModalOpen, setIsModalOpen, drawnPokemon }) {
 			aria-describedby='modal-modal-description'
 		>
 			<Box sx={style}>
-				<CardMedia component='img' image='/getPokemon3.gif' alt='getPokemon' />
+				<CardMedia component='img' image={ImgSrc.getPokemon} alt='getPokemon' />
 				<Box m={2} sx={{ display: 'flex', justifyContent: 'center' }}>
 					<Button
 						variant='contained'
