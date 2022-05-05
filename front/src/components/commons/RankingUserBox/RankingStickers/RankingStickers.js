@@ -4,9 +4,10 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import { pokemonURL } from '../../../../core/constants/ImgSrc';
 
 function RankingStickers({ id, name }) {
-  const imgSrc = `https://d31z0g5vo6ghmg.cloudfront.net/pokemons/${id}.png`;
+  const imgSrc = `${pokemonURL}/${id}.png`;
   return (
     <Box>
       <Card style={{ width: '170px', marginRight: '10px' }}>
