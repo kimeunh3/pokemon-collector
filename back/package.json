@@ -19,16 +19,17 @@
   },
   "homepage": "https://github.com/",
   "dependencies": {
+    "@babel/helper-function-name": "^7.17.9",
     "@sindresorhus/is": "^4.2.0",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "express": "^4.17.3",
     "jest": "^27.3.1",
     "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.3",
     "mongoose": "^6.2.1",
     "supertest": "^6.1.6",
-    "swagger-jsdoc": "^6.2.1",
-    "swagger-ui-express": "^4.3.0",
+    "swagger-cli": "^4.0.4",
     "uuid": "^8.3.2",
     "yarn": "^1.22.17"
   },
@@ -45,7 +46,9 @@
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.4.0",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "swagger-jsdoc": "^6.2.1",
+    "swagger-ui-express": "^4.3.0"
   },
   "jest": {
     "testEnvironment": "node",
