@@ -68,9 +68,25 @@ class User {
   }
 
   static async findRankPointRanking({ count }) {
-    const rankingList = await UserModel.find({}, { achievements: 0 })
-      .sort({ rankPoint: -1 })
-      .limit(count);
+    const rankingList = await UserModel.aggregate([
+      {
+        $project: {
+          id: 1,
+          email: 1,
+          nickname: 1,
+          profileImg: 1,
+          rankPoint: 1,
+          likeType: 1,
+          stickers: 1,
+        },
+      },
+      {
+        $sort: { rankPoint: -1 },
+      },
+      {
+        $limit: Number(count),
+      },
+    ]);
     return rankingList;
   }
 
@@ -81,14 +97,10 @@ class User {
           id: 1,
           email: 1,
           nickname: 1,
-          sex: 1,
-          age: 1,
-          interest: 1,
-          likeType: 1,
-          point: 1,
           profileImg: 1,
-          rankPoint: 1,
+          likeType: 1,
           stickersCount: { $size: '$stickers' },
+          stickers: 1,
         },
       },
       {
