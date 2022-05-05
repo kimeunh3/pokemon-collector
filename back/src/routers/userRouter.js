@@ -10,6 +10,8 @@ const userAuthRouter = Router();
  * paths:
  *   /user/register:
  *     post:
+ *       requestBody:
+ *         required: true
  *       tags:
  *       - user
  *       summary: 회원가입
@@ -75,6 +77,32 @@ userAuthRouter.post('/user/register', async function (req, res, next) {
   }
 });
 
+/**
+ * @swagger
+ * paths:
+ *   /user/login:
+ *     post:
+ *       requestBody:
+ *         required: true
+ *       tags:
+ *       - user
+ *       summary: 로그인
+ *       description: User의 로그인 API
+ *       responses:
+ *         '200':
+ *           description: 로그인 성공
+ *         '400':
+ *           description: 가입 내역이 없는 이메일이므로 로그인 실패
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 type: object
+ *                 properties:
+ *                   email:
+ *                     type: string
+ *                   password:
+ *                     type: string
+ */
 userAuthRouter.post('/user/login', async function (req, res, next) {
   try {
     const email = req.body.email;
