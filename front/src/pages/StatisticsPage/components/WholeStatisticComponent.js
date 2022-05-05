@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import { Grid } from '@material-ui/core';
 import {
   WholeStatsStatisticsCharts,
   WholeTypeCharts,
@@ -7,7 +6,7 @@ import {
 
 import * as Api from '../../../api';
 
-const TypeToNum = {
+const TYPE_TO_NUM = {
   노말: 0,
   불꽃: 1,
   물: 2,
@@ -27,7 +26,7 @@ const TypeToNum = {
   페어리: 16,
 };
 
-const EngType = [
+const ENG_TYPE = [
   'normal',
   'fire',
   'water',
@@ -47,11 +46,13 @@ const EngType = [
   'fairy',
 ];
 
-function WholeStatisticComponent() {
-  const [pokemons, setPokemons] = useState([]);
-  const [y, setY] = useState();
-  const [pokemonTotalInfo, setPokemonTotalInfo] = useState();
-
+function WholeStatistic(
+  pokemons,
+  setPokemons,
+  setY,
+  pokemonTotalInfo,
+  setPokemonTotalInfo
+) {
   useEffect(() => {
     Api.get('pokemonList').then((res) => {
       setPokemons(res.data);
@@ -87,20 +88,20 @@ function WholeStatisticComponent() {
         totalPointsMeans: [],
       };
       pokemons.forEach((pokemon) => {
-        newY.attack[TypeToNum[pokemon.typeOne]] += pokemon.attack;
-        newY.attack[TypeToNum[pokemon.typeTwo]] += pokemon.attack;
-        newY.defense[TypeToNum[pokemon.typeOne]] += pokemon.defense;
-        newY.defense[TypeToNum[pokemon.typeTwo]] += pokemon.defense;
-        newY.hp[TypeToNum[pokemon.typeOne]] += pokemon.hp;
-        newY.hp[TypeToNum[pokemon.typeTwo]] += pokemon.hp;
-        newY.spAttack[TypeToNum[pokemon.typeOne]] += pokemon.spAttack;
-        newY.spAttack[TypeToNum[pokemon.typeTwo]] += pokemon.spAttack;
-        newY.spDefense[TypeToNum[pokemon.typeOne]] += pokemon.spDefense;
-        newY.spDefense[TypeToNum[pokemon.typeTwo]] += pokemon.spDefense;
-        newY.speed[TypeToNum[pokemon.typeOne]] += pokemon.speed;
-        newY.speed[TypeToNum[pokemon.typeTwo]] += pokemon.speed;
-        newY.typesCnt[TypeToNum[pokemon.typeOne]] += 1;
-        newY.typesCnt[TypeToNum[pokemon.typeTwo]] += 1;
+        newY.attack[TYPE_TO_NUM[pokemon.typeOne]] += pokemon.attack;
+        newY.attack[TYPE_TO_NUM[pokemon.typeTwo]] += pokemon.attack;
+        newY.defense[TYPE_TO_NUM[pokemon.typeOne]] += pokemon.defense;
+        newY.defense[TYPE_TO_NUM[pokemon.typeTwo]] += pokemon.defense;
+        newY.hp[TYPE_TO_NUM[pokemon.typeOne]] += pokemon.hp;
+        newY.hp[TYPE_TO_NUM[pokemon.typeTwo]] += pokemon.hp;
+        newY.spAttack[TYPE_TO_NUM[pokemon.typeOne]] += pokemon.spAttack;
+        newY.spAttack[TYPE_TO_NUM[pokemon.typeTwo]] += pokemon.spAttack;
+        newY.spDefense[TYPE_TO_NUM[pokemon.typeOne]] += pokemon.spDefense;
+        newY.spDefense[TYPE_TO_NUM[pokemon.typeTwo]] += pokemon.spDefense;
+        newY.speed[TYPE_TO_NUM[pokemon.typeOne]] += pokemon.speed;
+        newY.speed[TYPE_TO_NUM[pokemon.typeTwo]] += pokemon.speed;
+        newY.typesCnt[TYPE_TO_NUM[pokemon.typeOne]] += 1;
+        newY.typesCnt[TYPE_TO_NUM[pokemon.typeTwo]] += 1;
       });
 
       for (let i = 0; i < 17; i += 1) {
@@ -118,13 +119,27 @@ function WholeStatisticComponent() {
         newY.speedMeans.push(speedMean.toFixed(1));
       }
 
-      EngType.forEach((type) => {
+      ENG_TYPE.forEach((type) => {
         newY.totalPointsMeans.push(pokemonTotalInfo[type].toFixed(1));
       });
 
       setY(newY);
     }
   }, [pokemons, pokemonTotalInfo]);
+}
+
+function WholeStatisticComponent() {
+  const [pokemons, setPokemons] = useState([]);
+  const [y, setY] = useState();
+  const [pokemonTotalInfo, setPokemonTotalInfo] = useState();
+
+  WholeStatistic(
+    pokemons,
+    setPokemons,
+    setY,
+    pokemonTotalInfo,
+    setPokemonTotalInfo
+  );
 
   if (!y) return null;
 
