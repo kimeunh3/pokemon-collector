@@ -58,11 +58,8 @@ const StatsColorList = {
 function StatsStatisticsPage() {
   const params = useParams();
   const { stats } = params;
-  const [isBarTypeStats, setIsBarTypeStats] = useState(true);
-  const [isBarTypeTop5, setIsBarTypeTop5] = useState(false);
-  const [isBarTypeLow5, setIsBarTypeLow5] = useState(false);
-  const [isBarPokemonTop15, setIsBarPokemonTop15] = useState(false);
-  const [isBarPokemonLow15, setIsBarPokemonLow15] = useState(false);
+  const [select, setSelect] = useState('barTypeStats');
+  // select: barTypeStats, barTypeTop5, barTypeLow5, barPokemonTop15, barPokemonLow15
 
   const engStats = KorEngStatsList[stats];
   const [pokemons, setPokemons] = useState([]);
@@ -278,22 +275,14 @@ function StatsStatisticsPage() {
         stats={stats}
         statsColor={StatsColorList[stats]}
         statsInfo={statsInfo}
-        isBarStats={isBarTypeStats}
-        isBarTypeTop5={isBarTypeTop5}
-        isBarTypeLow5={isBarTypeLow5}
-        isBarPokemonTop15={isBarPokemonTop15}
-        isBarPokemonLow15={isBarPokemonLow15}
-        setIsBarStats={setIsBarTypeStats}
-        setIsBarTypeTop5={setIsBarTypeTop5}
-        setIsBarTypeLow5={setIsBarTypeLow5}
-        setIsBarPokemonTop15={setIsBarPokemonTop15}
-        setIsBarPokemonLow15={setIsBarPokemonLow15}
+        select={select}
+        setSelect={setSelect}
       />
       <div style={{ margin: '10vh 3vw auto 25vw' }}>
-        {isBarTypeStats && (
+        {select === 'barTypeStats' && (
           <BarTypeStats y={y.typesMeans} colors={typeColors} stats={stats} />
         )}
-        {isBarTypeTop5 && (
+        {select === 'barTypeTop5' && (
           <BarTypeTop5
             x={typesMeansTop5}
             y={typesMeansTop5List}
@@ -301,7 +290,7 @@ function StatsStatisticsPage() {
             stats={stats}
           />
         )}
-        {isBarTypeLow5 && (
+        {select === 'barTypeLow5' && (
           <BarTypeLow5
             x={typesMeansLow5}
             y={typesMeansLow5List}
@@ -309,7 +298,7 @@ function StatsStatisticsPage() {
             stats={stats}
           />
         )}
-        {isBarPokemonTop15 && (
+        {select === 'barPokemonTop15' && (
           <BarPokemonTop15
             x={pokemonsStatsTop15}
             y={pokemonsStatsTop15List}
@@ -317,7 +306,7 @@ function StatsStatisticsPage() {
             stats={stats}
           />
         )}
-        {isBarPokemonLow15 && (
+        {select === 'barPokemonLow15' && (
           <BarPokemonLow15
             x={pokemonsStatsLow15}
             y={pokemonsStatsLow15List}
