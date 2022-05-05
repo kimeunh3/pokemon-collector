@@ -12,9 +12,6 @@ class userAuthService {
     birth,
     interest,
     likeType,
-    point,
-    profileImg,
-    stickers,
   }) {
     const user = await User.findByEmail({ email });
     if (user) {
@@ -34,9 +31,6 @@ class userAuthService {
       birth,
       interest,
       likeType,
-      point,
-      profileImg,
-      stickers,
     };
 
     const createdNewUser = await User.create({ newUser });
