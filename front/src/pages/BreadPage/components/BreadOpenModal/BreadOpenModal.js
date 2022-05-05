@@ -22,7 +22,7 @@ function BreadOpenModal({ isModalOpen, setIsModalOpen, drawnPokemon }) {
 		top: '50%',
 		left: '50%',
 		transform: 'translate(-50%, -50%)',
-		width: 700,
+		width: 500,
 		bgcolor: 'background.paper',
 		border: '2px solid #000',
 		borderRadius: '20px',
@@ -43,10 +43,10 @@ function BreadOpenModal({ isModalOpen, setIsModalOpen, drawnPokemon }) {
 					sx={
 						buttonUp
 							? {
-									transform: 'translate(33%,-600%)',
-									transition: '800ms all ease-in-out',
+									transform: 'translate(28%,-460%)',
+									transition: '600ms all ease-in-out',
 							  }
-							: { transform: 'translate(33%,0%)' }
+							: { transform: 'translate(28%,0%)' }
 					}
 				>
 					<Button
