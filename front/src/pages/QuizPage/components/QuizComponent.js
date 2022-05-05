@@ -25,24 +25,12 @@ function QuizComponent({
   pokemonId,
   pokemonName,
   chance,
-  set1,
-  set2,
   text,
   img = ImgSrc.quizImg1,
-  isQuiz = false,
-  isQuizIng = false,
-  setIsQuizIng,
-  setIsEntry,
-  setIsQuizStart,
-  setIsCorrect,
-  setIsInCorrect,
-  isContinue,
-  setIsContinue,
   isMobile,
-  isRetry,
-  setIsRetry,
-  setIsFirstCorrect,
-  setIsFirstInCorrect,
+  stage,
+  nextStage,
+  setStage,
 }) {
   const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [isAnswer, setIsAnswer] = useState(false);
@@ -71,53 +59,43 @@ function QuizComponent({
 
   const checkAnswer = () => {
     // 처음에 정답 맞춤 -> 1000포인트
-    if (pokemonName === useAnswer && isRetry === false) {
+    if (pokemonName === useAnswer && stage !== 'retry') {
       Api.get('succeedQuiz/first');
-      setIsQuizIng(false);
-      setIsFirstCorrect(true);
+      setStage('firstCorrect');
       // 재도전에 정답 맞춤 -> 500포인트
     } else if (pokemonName === useAnswer) {
       Api.get('succeedQuiz/second');
-      setIsRetry(false);
-      setIsCorrect(true);
+      setStage('correct');
       // 처음에 틀림 -> 재도전
-    } else if (isRetry === false) {
-      setIsQuizIng(false);
-      setIsFirstInCorrect(true);
+    } else if (stage !== 'retry') {
+      setStage('firstIncorrect');
       // 재도전에 틀림 -> 땡
     } else {
-      setIsRetry(false);
-      setIsInCorrect(true);
+      setStage('incorrect');
     }
   };
 
   const onClickYesPass = () => {
-    setIsQuizIng(false);
-    setIsRetry(false);
-    setIsQuizStart(true);
     setIsPass(false);
+    setStage('quizStart');
   };
   const onClickNoPass = () => {
     setIsPass(false);
   };
 
   const onClickYesStop = () => {
-    setIsQuizIng(false);
-    setIsRetry(false);
-    setIsEntry(true);
     setIsStop(false);
+    setStage('entry');
   };
   const onClickNoStop = () => {
     setIsStop(false);
   };
 
   const onClickYesContinue = () => {
-    setIsContinue(false);
-    setIsQuizStart(true);
+    setStage('quizStart');
   };
   const onClickNoContinue = () => {
-    setIsContinue(false);
-    setIsEntry(true);
+    setStage('entry');
   };
 
   return (
@@ -140,7 +118,7 @@ function QuizComponent({
         image={img}
         alt='퀴즈이미지'
         sx={
-          isQuizIng && !isRetry
+          stage === 'quizIng'
             ? {
                 width: '35%',
                 maxWidth: '450px',
@@ -160,15 +138,18 @@ function QuizComponent({
               }
         }
       />
-      {!isQuizIng && <QuizText text={text} />}
-      {isQuizIng && !isAnswer && !isPass && !isStop && (
-        <QuizSelect
-          setIsAnswer={setIsAnswer}
-          setIsHint={setIsHint}
-          setIsPass={setIsPass}
-          setIsStop={setIsStop}
-        />
-      )}
+      {stage !== 'quizIng' && stage !== 'retry' && <QuizText text={text} />}
+      {(stage === 'quizIng' || stage === 'retry') &&
+        !isAnswer &&
+        !isPass &&
+        !isStop && (
+          <QuizSelect
+            setIsAnswer={setIsAnswer}
+            setIsHint={setIsHint}
+            setIsPass={setIsPass}
+            setIsStop={setIsStop}
+          />
+        )}
       {isAnswer && (
         <QuizAnswerSubmit
           setUserAnswer={setUserAnswer}
@@ -184,28 +165,31 @@ function QuizComponent({
       {isStop && (
         <QuizYesOrNo onClickYes={onClickYesStop} onClickNo={onClickNoStop} />
       )}
-      {isContinue && (
+      {stage === 'continue' && (
         <QuizYesOrNo
           onClickYes={onClickYesContinue}
           onClickNo={onClickNoContinue}
         />
       )}
-      {!isQuizIng && !isContinue && !isMobile && (
-        <IconButton
-          onClick={() => {
-            set1(false);
-            set2(true);
-          }}
-          sx={{
-            position: 'absolute',
-            bottom: '20px',
-            right: '20px',
-          }}
-        >
-          <ArrowDropDown style={{ fontSize: '50px', color: 'black' }} />
-        </IconButton>
-      )}
-      {isQuiz && (
+      {(stage !== 'quizIng' || stage !== 'retry' || stage !== 'continue') &&
+        !isMobile && (
+          <IconButton
+            onClick={() => {
+              setStage(nextStage);
+            }}
+            sx={{
+              position: 'absolute',
+              bottom: '20px',
+              right: '20px',
+            }}
+          >
+            <ArrowDropDown style={{ fontSize: '50px', color: 'black' }} />
+          </IconButton>
+        )}
+      {(stage === 'quizStart' ||
+        stage === 'quizIng' ||
+        stage === 'retry' ||
+        stage === 'continue') && (
         <img
           src={ImgSrc.pokeballIco}
           alt='남은기회'
@@ -217,7 +201,10 @@ function QuizComponent({
           }}
         />
       )}
-      {isQuiz && (
+      {(stage === 'quizStart' ||
+        stage === 'quizIng' ||
+        stage === 'retry' ||
+        stage === 'continue') && (
         <div
           style={{
             position: 'absolute',
@@ -229,7 +216,10 @@ function QuizComponent({
           X {chance}
         </div>
       )}
-      {isQuiz && (
+      {(stage === 'quizStart' ||
+        stage === 'quizIng' ||
+        stage === 'retry' ||
+        stage === 'continue') && (
         <IconButton
           onClick={() => {
             setIsHelpOpen(true);
