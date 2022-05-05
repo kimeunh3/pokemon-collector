@@ -107,8 +107,10 @@ userAuthRouter.post('/user/register', async function (req, res, next) {
  *                 properties:
  *                   email:
  *                     type: string
+ *                     example: a@naver.com
  *                   password:
  *                     type: string
+ *                     example: 1234
  */
 
 userAuthRouter.post('/user/login', async function (req, res, next) {
