@@ -117,26 +117,15 @@ function QuizComponent({
         component='img'
         image={img}
         alt='퀴즈이미지'
-        sx={
-          stage === 'quizIng'
-            ? {
-                width: '35%',
-                maxWidth: '450px',
-                minWidth: '200px',
-                marginLeft: '50%',
-                marginTop: '10px',
-                transform: 'translateX(-50%)',
-                filter: 'brightness(0%)',
-              }
-            : {
-                width: '35%',
-                maxWidth: '450px',
-                minWidth: '200px',
-                marginLeft: '50%',
-                marginTop: '10px',
-                transform: 'translateX(-50%)',
-              }
-        }
+        sx={{
+          width: '35%',
+          maxWidth: '450px',
+          minWidth: '200px',
+          marginLeft: '50%',
+          marginTop: '10px',
+          transform: 'translateX(-50%)',
+          filter: stage === 'quizIng' ? 'brightness(0%)' : 'none',
+        }}
       />
       {stage !== 'quizIng' && stage !== 'retry' && <QuizText text={text} />}
       {(stage === 'quizIng' || stage === 'retry') &&
@@ -171,7 +160,9 @@ function QuizComponent({
           onClickNo={onClickNoContinue}
         />
       )}
-      {(stage !== 'quizIng' || stage !== 'retry' || stage !== 'continue') &&
+      {stage !== 'quizIng' &&
+        stage !== 'retry' &&
+        stage !== 'continue' &&
         !isMobile && (
           <IconButton
             onClick={() => {
