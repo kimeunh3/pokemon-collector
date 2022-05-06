@@ -127,7 +127,7 @@ function HeaderMenu({
         </Grid>
       </Grid>
       <IconButton
-        color='info'
+        color='inherit'
         aria-label='open drawer'
         edge='end'
         onClick={handleDrawerOpen}
@@ -136,6 +136,7 @@ function HeaderMenu({
           marginRight: '5%',
           marginLeft: 'auto',
           display: !isMobile ? 'none' : 'block',
+          color: 'black',
         }}
       >
         <span className='material-symbols-outlined'>menu</span>
