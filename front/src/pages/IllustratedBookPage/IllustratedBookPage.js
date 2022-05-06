@@ -149,6 +149,7 @@ function IllustratedBookPage() {
         {pokemonList.map((num) =>
           Object.keys(userPokemonObj).includes(num) ? (
             <PokemonBookCard
+              key={Number(num)}
               name={userPokemonObj[num]}
               selectType={String(selectType)}
               searchName={searchName}
@@ -156,6 +157,7 @@ function IllustratedBookPage() {
             />
           ) : (
             <DefaultBookCard
+              key={Number(num)}
               selectType={String(selectType)}
               searchName={searchName}
             />
