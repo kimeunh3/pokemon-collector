@@ -4,6 +4,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import { pokemonURL } from '../../../../core/constants/ImgSrc';
 
 const TYPE_1_LIST = {
   // normal
@@ -97,7 +98,7 @@ function PokemonBookCard({ name, selectType, searchName, num }) {
   const navigate = useNavigate();
   const [type1, setType1] = useState('10');
   const [type2, setType2] = useState('10');
-  const imgSrc = `https://d31z0g5vo6ghmg.cloudfront.net/pokemons/${num}.png`;
+  const imgSrc = `${pokemonURL}/${num}.png`;
   const [bColor, setBColor] = useState('#fff');
   const [b2Color, setB2Color] = useState('#fff');
 
