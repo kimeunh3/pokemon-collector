@@ -101,7 +101,13 @@ function RankingUserBox({ i, user, IsRankPoint }) {
         onClose={handleStickersClose}
         PaperProps={{ style: { backgroundColor: '#e5e5e5' } }}
       >
-        <DialogContent style={{ display: 'flex', marginTop: '10px' }}>
+        <DialogContent
+          style={{
+            display: 'flex',
+            marginTop: '10px',
+            padding: '0 20px 0 20px',
+          }}
+        >
           {user.stickers.map((pokemon) => (
             <RankingStickers
               key={pokemon.id}
