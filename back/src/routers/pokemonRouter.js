@@ -9,89 +9,90 @@ pokemonAuthRouter.use(loginRequired);
 
 /**
  * @swagger
- * /pokemon/{id}:
- *  get:
- *    summary: 포켓몬 모든 정보 반환
- *    description: >
- *      포켓몬의 id를 params로 받아 해당 포켓몬의 정보를 반환
- *    tags: [pokemon]
- *    security:
- *      - Authorization: []
- *    parameters:
- *      - in: path
- *        name: id
- *        required: true
- *        schema:
+ * paths:
+ *   /pokemon/{id}:
+ *    get:
+ *      summary: 포켓몬 모든 정보 반환
+ *      description: >
+ *        포켓몬의 id를 params로 받아 해당 포켓몬의 정보를 반환
+ *      tags: [pokemon]
+ *      security:
+ *        - Authorization: []
+ *      parameters:
+ *        - in: path
+ *          name: id
+ *          required: true
  *          type: number
- *          maximum: 151
- *          examples:
- *            zero:
- *              value: 0
- *            max:
- *              value: 151
- *        style: matrix
- *    responses:
- *      '200':
- *        description: 포켓몬 정보 요청 정상 처리
- *        content:
- *          application/json:
- *            schema:
- *              type: object
- *              properties:
- *                _id:
- *                  type: string
- *                id:
- *                  type: number
- *                name:
- *                  type: string
- *                status:
- *                  type: string
- *                typeOne:
- *                  type: string
- *                typeTwo:
- *                  type: string
- *                height:
- *                  type: number
- *                weight:
- *                  type: number
- *                totalPoints:
- *                  type: number
- *                hp:
- *                  type: number
- *                attack:
- *                  type: number
- *                defense:
- *                  type: number
- *                spAttack:
- *                  type: number
- *                spDefense:
- *                  type: number
- *                speed:
- *                  type: number
- *            example:
- *              _id: 626407bd961c4243634ea1e8,
- *              id: 2
- *              name: 이상해풀
- *              status: 노말
- *              typeOne: 풀
- *              typeTwo: 독
- *              height: 1
- *              weight: 13
- *              totalPoints: 405
- *              hp: 60
- *              attack: 62
- *              defense: 63
- *              spAttack: 80
- *              spDefense: 80
- *              speed: 60
- *      '400':
- *        description: 요청이 잘못 됨
+ *          schema:
+ *            type: number
+ *            maximum: 151
+ *            examples:
+ *              zero:
+ *                value: 0
+ *              max:
+ *                value: 151
+ *          style: matrix
+ *      responses:
+ *        '200':
+ *          description: 포켓몬 정보 요청 정상 처리
+ *          content:
+ *            application/json:
+ *              schema:
+ *                type: object
+ *                properties:
+ *                  _id:
+ *                    type: string
+ *                  id:
+ *                    type: number
+ *                  name:
+ *                    type: string
+ *                  status:
+ *                    type: string
+ *                  typeOne:
+ *                    type: string
+ *                  typeTwo:
+ *                    type: string
+ *                  height:
+ *                    type: number
+ *                  weight:
+ *                    type: number
+ *                  totalPoints:
+ *                    type: number
+ *                  hp:
+ *                    type: number
+ *                  attack:
+ *                    type: number
+ *                  defense:
+ *                    type: number
+ *                  spAttack:
+ *                    type: number
+ *                  spDefense:
+ *                    type: number
+ *                  speed:
+ *                    type: number
+ *              example:
+ *                _id: 626407bd961c4243634ea1e8,
+ *                id: 2
+ *                name: 이상해풀
+ *                status: 노말
+ *                typeOne: 풀
+ *                typeTwo: 독
+ *                height: 1
+ *                weight: 13
+ *                totalPoints: 405
+ *                hp: 60
+ *                attack: 62
+ *                defense: 63
+ *                spAttack: 80
+ *                spDefense: 80
+ *                speed: 60
+ *        '400':
+ *          description: 요청이 잘못 됨
  */
 pokemonAuthRouter.get('/pokemon/:id', async (req, res, next) => {
   try {
     //:id 값 가져오기
     const id = Number(req.params.id);
-
     //pokemon 정보 가져오기
     const pokemon = await PokemonAuthService.getPokemon({
       id,

@@ -14,6 +14,10 @@ achievementsRouter.use(loginRequired);
  *    tags: [achievements]
  *    security:
  *      - Authorization: []
+ *    parameters:
+ *      in: header
+ *      name: Authorization
+ *      required: true
  *    responses:
  *      '200':
  *        description: 업적 리스트 반환
