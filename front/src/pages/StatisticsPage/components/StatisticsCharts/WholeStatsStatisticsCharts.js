@@ -157,53 +157,15 @@ export function WholeStatsStatisticsCharts({ y }) {
   return <Bar options={OPTION_1} data={data} />;
 }
 
-export function WholeTypeCharts({ y }) {
-  const ColorList = [
-    'rgba(198, 198, 167, 0.6)',
-    'rgba(245, 172, 120, 0.6)',
-    'rgba(157, 183, 245, 0.6)',
-    'rgba(167, 219, 141, 0.6)',
-    'rgba(250, 224, 120, 0.6)',
-    'rgba(188, 230, 230, 0.6)',
-    'rgba(214, 120, 115, 0.6)',
-    'rgba(193, 131, 193, 0.6)',
-    'rgba(235, 214, 157, 0.6)',
-    'rgba(198, 183, 245, 0.6)',
-    'rgba(250, 146, 178, 0.6)',
-    'rgba(198, 209, 110, 0.6)',
-    'rgba(209, 193, 125, 0.6)',
-    'rgba(162, 146, 188, 0.6)',
-    'rgba(162, 125, 250, 0.6)',
-    'rgba(209, 209, 224, 0.6)',
-    'rgba(244, 189, 201, 0.6)',
-  ];
-
+export function WholeTypeCharts({ x, y, color }) {
   const data = {
-    labels: [
-      '노말',
-      '불꽃',
-      '물',
-      '풀',
-      '전기',
-      '얼음',
-      '격투',
-      '독',
-      '땅',
-      '비행',
-      '에스퍼',
-      '벌레',
-      '바위',
-      '고스트',
-      '드래곤',
-      '강철',
-      '페어리',
-    ],
+    labels: x,
     datasets: [
       {
         label: '포켓몬 수',
         data: y,
-        borderColor: ColorList,
-        backgroundColor: ColorList,
+        borderColor: color,
+        backgroundColor: color,
       },
     ],
   };
