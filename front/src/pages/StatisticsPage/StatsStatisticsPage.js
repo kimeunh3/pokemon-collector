@@ -8,6 +8,7 @@ import {
   BarPokemonLow15,
 } from './components/StatisticsCharts/StatsStatisticsCharts';
 import StatsDrawerComponents from './components/DrawerComponents/StatsDrawerComponents';
+import COLORLIST from '../../core/ColorList/ColorList';
 
 import * as Api from '../../api';
 
@@ -80,9 +81,7 @@ function statsStatistics(
   pokemonsStatsLow15,
   setPokemonsStatsLow15,
   setPokemonsStatsTop15List,
-  setPokemonsStatsLow15List,
-  setPokemonsStatsTop15Colors,
-  setPokemonsStatsLow15Colors
+  setPokemonsStatsLow15List
 ) {
   // 평균값 구하는 함수
   const average = (arr) => arr.reduce((p, c) => p + c, 0) / arr.length;
@@ -240,33 +239,21 @@ function statsStatistics(
   useEffect(() => {
     const newPokemonsStatsTop15List = [];
     const newPokemonsStatsLow15List = [];
-    const newPokemonsStatsTop15Colors = [];
-    const newPokemonsStatsLow15Colors = [];
 
-    let i = 0;
     pokemonsStatsTop15.slice(0, 15).forEach((pokemon) => {
       newPokemonsStatsTop15List.push(y.pokemonsStats[pokemon]);
-      newPokemonsStatsTop15Colors.push(typeColors[i]);
-      i += 1;
     });
 
-    i = 16;
     pokemonsStatsLow15.slice(1, 16).forEach((pokemon) => {
       newPokemonsStatsLow15List.push(y.pokemonsStats[pokemon]);
-      newPokemonsStatsLow15Colors.push(typeColors[i]);
-      i -= 1;
     });
 
     // 상위 10%, 하위 10% 포켓몬 순위 차트에 평균값 넣기
     newPokemonsStatsTop15List.push(statsMean);
     newPokemonsStatsLow15List.unshift(statsMean);
-    newPokemonsStatsTop15Colors.push('rgba(0, 0, 0, 0.5)');
-    newPokemonsStatsLow15Colors.unshift('rgba(0, 0, 0, 0.5)');
 
     setPokemonsStatsTop15List(newPokemonsStatsTop15List);
     setPokemonsStatsLow15List(newPokemonsStatsLow15List);
-    setPokemonsStatsTop15Colors(newPokemonsStatsTop15Colors);
-    setPokemonsStatsLow15Colors(newPokemonsStatsLow15Colors);
   }, [pokemonsStatsTop15, pokemonsStatsLow15]);
 }
 
@@ -295,8 +282,10 @@ function StatsStatisticsPage() {
   const [pokemonsStatsLow15, setPokemonsStatsLow15] = useState([]);
   const [pokemonsStatsTop15List, setPokemonsStatsTop15List] = useState([]);
   const [pokemonsStatsLow15List, setPokemonsStatsLow15List] = useState([]);
-  const [pokemonsStatsTop15Colors, setPokemonsStatsTop15Colors] = useState([]);
-  const [pokemonsStatsLow15Colors, setPokemonsStatsLow15Colors] = useState([]);
+
+  const COLOR_GRADATION = COLORLIST[stats];
+
+  const COLOR_GRADATION_REVERSE = [...COLOR_GRADATION].reverse();
 
   statsStatistics(
     engStats,
@@ -323,9 +312,7 @@ function StatsStatisticsPage() {
     pokemonsStatsLow15,
     setPokemonsStatsLow15,
     setPokemonsStatsTop15List,
-    setPokemonsStatsLow15List,
-    setPokemonsStatsTop15Colors,
-    setPokemonsStatsLow15Colors
+    setPokemonsStatsLow15List
   );
 
   return (
@@ -361,7 +348,7 @@ function StatsStatisticsPage() {
           <BarPokemonTop15
             x={pokemonsStatsTop15}
             y={pokemonsStatsTop15List}
-            colors={pokemonsStatsTop15Colors}
+            colors={COLOR_GRADATION}
             stats={stats}
           />
         )}
@@ -369,7 +356,7 @@ function StatsStatisticsPage() {
           <BarPokemonLow15
             x={pokemonsStatsLow15}
             y={pokemonsStatsLow15List}
-            colors={pokemonsStatsLow15Colors}
+            colors={COLOR_GRADATION_REVERSE}
             stats={stats}
           />
         )}
