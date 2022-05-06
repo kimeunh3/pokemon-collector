@@ -137,7 +137,7 @@ function PurposeSection() {
 					<Grid item xs={3} md={3}>
 						<CardMedia component='img' image='purpose8.png' />
 						<Typography variant='h5'>
-							개인의 욕구 해소와 <br />더 나아가서는 사회 문제 완화까지
+							개인의 욕구 해소와 더 나아가서는 사회 문제 완화까지
 						</Typography>
 					</Grid>
 				</Grid>
