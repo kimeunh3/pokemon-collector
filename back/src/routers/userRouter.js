@@ -335,7 +335,6 @@ userAuthRouter.put(
         });
       }
       res.status(200).json({ currentUserInfo });
-      console.log(currentUserInfo.errorMessage);
     } catch (error) {
       next(error);
     }
