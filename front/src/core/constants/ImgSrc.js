@@ -1,17 +1,19 @@
 const ImgSrc = {
-	pokeballImg: 'https://d31z0g5vo6ghmg.cloudfront.net/pokemons/pokeball.png',
-	pokeballIco: 'https://d31z0g5vo6ghmg.cloudfront.net/front/pokeball.ico',
-	quizImg1: 'https://d31z0g5vo6ghmg.cloudfront.net/front/quizImg1.jpg',
-	QuizPageGif: 'https://d31z0g5vo6ghmg.cloudfront.net/front/QuizPageImg.gif',
-	typeColorImg: 'https://d31z0g5vo6ghmg.cloudfront.net/front/typeColor.png',
-	navIconImg: 'https://d31z0g5vo6ghmg.cloudfront.net/front/nav-icon.png',
-	posterImg: 'https://d31z0g5vo6ghmg.cloudfront.net/front/poster.png',
-	logoImg: 'https://d31z0g5vo6ghmg.cloudfront.net/front/logo.png',
-	loadingGif: 'https://d31z0g5vo6ghmg.cloudfront.net/front/loading.gif',
-	loginBackgroundImg:
-		'https://d31z0g5vo6ghmg.cloudfront.net/front/loginBackground.png',
+  pokeballImg: `${process.env.REACT_APP_CLOUDFRONT_URL}pokemons/pokeball.png`,
+  pokeballIco: `${process.env.REACT_APP_CLOUDFRONT_URL}front/pokeball.ico`,
+  quizImg1: `${process.env.REACT_APP_CLOUDFRONT_URL}front/quizImg1.jpg`,
+  QuizPageGif: `${process.env.REACT_APP_CLOUDFRONT_URL}front/QuizPageImg.gif`,
+  typeColorImg: `${process.env.REACT_APP_CLOUDFRONT_URL}front/typeColor.png`,
+  navIconImg: `${process.env.REACT_APP_CLOUDFRONT_URL}front/nav-icon.png`,
+  posterImg: `${process.env.REACT_APP_CLOUDFRONT_URL}front/poster.png`,
+  logoImg: `${process.env.REACT_APP_CLOUDFRONT_URL}front/logo.png`,
+  loadingGif: `${process.env.REACT_APP_CLOUDFRONT_URL}front/loading.gif`,
+  loginBackgroundImg: `${process.env.REACT_APP_CLOUDFRONT_URL}front/loginBackground.png`,
+  getPokemon: `${process.env.REACT_APP_CLOUDFRONT_URL}front/getPokemon.gif`,
 };
 
-export const pokemonURL = 'https://d31z0g5vo6ghmg.cloudfront.net/pokemons';
+export const pokemonURL = `${process.env.REACT_APP_CLOUDFRONT_URL}pokemons`;
+
+export const homeURL = `${process.env.REACT_APP_CLOUDFRONT_URL}front/home/`;
 
 export default ImgSrc;
