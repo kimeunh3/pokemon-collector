@@ -201,6 +201,14 @@ class User {
     );
     return updatedUser;
   }
+
+  static async addAchivements({ id }) {
+    return await UserModel.updateMany(
+      {},
+      { $push: { achievements: { id, status: 0 } } },
+      { new: true }
+    );
+  }
 }
 
 export { User };

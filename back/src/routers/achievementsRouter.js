@@ -27,4 +27,16 @@ achievementsRouter.get('/userAchievementList', async (req, res, next) => {
   }
 });
 
+achievementsRouter.post('/addAchievements', async (req, res, next) => {
+  try {
+    const newAchievements = req.body;
+    const updatedAchievements =
+      achievementsService.uploadAchievements(newAchievements);
+
+    res.status(200).json(updatedAchievements);
+  } catch (error) {
+    next(error);
+  }
+});
+
 export { achievementsRouter };
