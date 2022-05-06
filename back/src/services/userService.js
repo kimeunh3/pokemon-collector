@@ -100,11 +100,6 @@ class userAuthService {
     return loginUser;
   }
 
-  static async getUsers() {
-    const users = await User.findAll();
-    return users;
-  }
-
   static async setUser({ userId, toUpdate, nickname }) {
     let user = await User.findById({ userId });
 
@@ -206,6 +201,15 @@ class userAuthService {
     createdNewUser.errorMessage = null;
 
     return createdNewUser;
+  }
+
+  static async attendancePoint({ userId }) {
+    const user = await User.findById({ userId });
+
+    const point = currentUserInfo.point + 1000;
+    const attendance = new Date();
+    const toUpdate = { point, attendance, isPointGiven };
+    return user;
   }
 }
 
