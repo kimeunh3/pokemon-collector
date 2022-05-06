@@ -172,10 +172,10 @@ function StatsDrawerComponents({
         style={{ width: '20vw', marginLeft: '2vw', marginTop: '5vh' }}
       >
         <CardContent>
-          <Typography gutterBottom variant='h6' component='div'>
+          <Typography gutterBottom variant='h5' component='div'>
             {stats} 개요
           </Typography>
-          <Typography variant='body2'>
+          <Typography variant='body1'>
             전체 포켓몬 수: 151
             <br />
             전체 속성 수: 17
