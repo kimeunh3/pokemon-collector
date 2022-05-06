@@ -102,7 +102,11 @@ function RankingUserBox({ i, user, IsRankPoint }) {
       >
         <DialogContent style={{ display: 'flex' }}>
           {user.stickers.map((pokemon) => (
-            <RankingStickers id={pokemon.id} name={pokemon.name} />
+            <RankingStickers
+              key={pokemon.id}
+              id={pokemon.id}
+              name={pokemon.name}
+            />
           ))}
         </DialogContent>
         <DialogActions>
