@@ -56,7 +56,92 @@ pokemonDragonDataAuthRouter.use(loginRequired);
 pokemonFlyingDataAuthRouter.use(loginRequired);
 pokemonSteelDataAuthRouter.use(loginRequired);
 
-// 풀 포켓몬
+/**
+ * @swagger
+ * paths:
+ *   /pokemonTypeData/{type}:
+ *     get:
+ *       tags:
+ *       - pokemonTypeData
+ *       summary: scaling 된 속성 별 모든 포켓몬 데이터
+ *       description: MinMaxScaling한 속성 별 모든 포켓몬 데이터를 모두 가져오는 API
+ *       parameters:
+ *        - in: path
+ *          name: type
+ *          required: true
+ *          type: string
+ *          schema:
+ *            type: string
+ *            enum: [grass, fire, water, bug, normal, poison, electric, ground, fairy,
+ *              fight, psychic, rock, ghost, ice, dragon, flying, steel]
+ *       responses:
+ *         '200':
+ *           description: 속성 별 모든 포켓몬 데이터 정보를 불러옴
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     _id:
+ *                       type: string
+ *                     id:
+ *                       type: number
+ *                     name:
+ *                       type: string
+ *                     typeOne:
+ *                       type: string
+ *                     typeTwo:
+ *                       type: string
+ *                     height:
+ *                       type: number
+ *                     weight:
+ *                       type: number
+ *                     totalPoints:
+ *                       type: number
+ *                     hp:
+ *                       type: number
+ *                     attack:
+ *                       type: number
+ *                     defense:
+ *                       type: number
+ *                     spAttack:
+ *                       type: number
+ *                     spDefense:
+ *                       type: number
+ *                     speed:
+ *                       type: number
+ *               example:
+ *                 - _id: 627104bb0455dcafe79e648f
+ *                   id: 81
+ *                   name: 코일
+ *                   typeOne: 전기
+ *                   typeTwo: 강철
+ *                   height: 0
+ *                   weight: 0
+ *                   totalPoints: 0
+ *                   hp: 0
+ *                   attack: 0
+ *                   defense: 0
+ *                   spAttack: 0
+ *                   spDefense: 0
+ *                   speed: 0
+ *                 - _id: 627104bb0455dcafe79e6490
+ *                   id: 82
+ *                   name: 레어코일
+ *                   typeOne: 전기
+ *                   typeTwo: 강철
+ *                   height: 100
+ *                   weight: 100
+ *                   totalPoints: 100.00000000000003
+ *                   hp: 100
+ *                   attack: 100
+ *                   defense: 100
+ *                   spAttack: 100
+ *                   spDefense: 100
+ *                   speed: 100
+ */
 pokemonGrassDataAuthRouter.get(
   '/pokemonTypeData/grass',
   async (req, res, next) => {
@@ -75,6 +160,44 @@ pokemonGrassDataAuthRouter.get(
   }
 );
 
+/**
+ * @swagger
+ * paths:
+ *   /pokemonTypeData/{type}/total:
+ *     get:
+ *       tags:
+ *       - pokemonTypeData
+ *       summary: scaling 된 속성 별 모든 포켓몬의 총 능력치 데이터
+ *       description: MinMaxScaling한 속성 별 모든 포켓몬의 총 능력치 데이터를 모두 가져오는 API
+ *       parameters:
+ *        - in: path
+ *          name: type
+ *          required: true
+ *          type: string
+ *          schema:
+ *            type: string
+ *            enum: [grass, fire, water, bug, normal, poison, electric, ground, fairy,
+ *              fight, psychic, rock, ghost, ice, dragon, flying, steel]
+ *       responses:
+ *         '200':
+ *           description: 속성 별 평균 데이터의 속성 이름과 총 능력치 정보를 불러옴
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     name:
+ *                       type: string
+ *                     totalPoints:
+ *                       type: number
+ *               example:
+ *                 - name: 코일
+ *                   totalPoints: 0
+ *                 - type: 레어코일
+ *                   totalPoints: 100.00000000000003
+ */
 pokemonGrassDataAuthRouter.get(
   '/pokemonTypeData/grass/total',
   async (req, res, next) => {
