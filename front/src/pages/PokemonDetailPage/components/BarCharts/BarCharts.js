@@ -47,7 +47,6 @@ function BarCharts({ id }) {
 				'pokemonMeanData',
 				changeToEng[response.data.typeOne]
 			);
-			console.log(changeToEng[response.data.typeOne]);
 			setTypeData(res.data);
 		};
 		const fetchDataAll = async () => {

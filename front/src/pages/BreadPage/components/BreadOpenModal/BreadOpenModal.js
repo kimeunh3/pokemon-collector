@@ -12,7 +12,6 @@ function BreadOpenModal({ isModalOpen, setIsModalOpen, drawnPokemon }) {
 
 	setTimeout(() => {
 		setButtonUp(true);
-		console.log(buttonUp);
 	}, 3000);
 
 	const navigate = useNavigate();
