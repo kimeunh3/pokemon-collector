@@ -139,11 +139,8 @@ achievementsRouter.get('/userAchievementList', async (req, res, next) => {
       await achievementsService.getSortedUserAchievements({
         userId,
       });
-    if (userAchievementsList.errorMessage) {
-      return res.status(400).json({
-        status: 'error',
-        error: userAchievementsList.errorMessage,
-      });
+    if (achievementsService.errorMessage) {
+      throw new Error(achievementsService.errorMessage);
     }
     res.status(200).json(userAchievementsList);
   } catch (error) {

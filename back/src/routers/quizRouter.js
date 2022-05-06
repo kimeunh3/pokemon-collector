@@ -44,10 +44,7 @@ quizRouter.get('/quiz', async function (req, res, next) {
     const userId = req.currentUserId;
     const quiz = await quizService.getQuiz({ userId });
     if (quiz.errorMessage) {
-      return res.status(400).json({
-        status: 'error',
-        error: quiz.errorMessage,
-      });
+      throw new Error(quiz.errorMessage);
     }
     res.status(200).json(quiz);
   } catch (error) {
@@ -98,10 +95,7 @@ quizRouter.get('/succeedQuiz/:opportunity', async function (req, res, next) {
     const { opportunity } = req.params;
     let updatedPint = await quizService.addPoint({ userId, opportunity });
     if (updatedPint.errorMessage) {
-      return res.status(400).json({
-        status: 'error',
-        error: updatedPint.errorMessage,
-      });
+      throw new Error(updatedPint.errorMessage);
     }
     if ((opportunity != 'first') & (opportunity != 'second')) {
       updatedPint = { errorMessage: 'params 확인 필요 (first or second)' };
