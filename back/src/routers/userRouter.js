@@ -72,10 +72,6 @@ userAuthRouter.post('/user/register', async function (req, res, next) {
 
     if (newUser.errorMessage) {
       throw new Error(newUser.errorMessage);
-      // return res.status(400).json({
-      //   status: 'error',
-      //   error: newUser.errorMessage,
-      // });
     }
 
     res.status(200).json(newUser);
@@ -121,10 +117,6 @@ userAuthRouter.post('/user/login', async function (req, res, next) {
 
     if (user.errorMessage) {
       throw new Error(user.errorMessage);
-      // return res.status(400).json({
-      //   status: 'error',
-      //   error: user.errorMessage,
-      // });
     }
 
     res.status(200).json(user);
@@ -331,10 +323,6 @@ userAuthRouter.put(
       });
       if (currentUserInfo.errorMessage) {
         throw new Error(currentUserInfo.errorMessage);
-        // return res.status(400).json({
-        //   status: 'error',
-        //   error: currentUserInfo.errorMessage,
-        // });
       }
       res.status(200).json({ currentUserInfo });
     } catch (error) {
