@@ -3,31 +3,17 @@ import { useMediaQuery } from '@material-ui/core';
 
 import QuizEntry from './components/QuizEntry';
 import QuizComponent from './components/QuizComponent';
-import ImgSrc from '../../core/constants/ImgSrc';
+import ImgSrc, { pokemonURL } from '../../core/constants/ImgSrc';
 import RankingButton from '../../components/commons/RankingButton';
 
 import * as Api from '../../api';
 
 function QuizPage() {
-  const [isEntry, setIsEntry] = useState(true);
-  const [isQuizEx1, setIsQuizEx1] = useState(false);
-  const [isQuizEx2, setIsQuizEx2] = useState(false);
-  const [isQuizEx3, setIsQuizEx3] = useState(false);
-  const [isQuizEx4, setIsQuizEx4] = useState(false);
-  const [isQuizEx5, setIsQuizEx5] = useState(false);
-  const [isQuizEx6, setIsQuizEx6] = useState(false);
-  const [isQuizStart, setIsQuizStart] = useState(false);
-  const [isQuizIng, setIsQuizIng] = useState(false);
-  const [isCorrect, setIsCorrect] = useState(false);
-  const [isFirstCorrect, setIsFirstCorrect] = useState(false);
-  const [isFirstInCorrect, setIsFirstInCorrect] = useState(false);
-  const [isRetry, setIsRetry] = useState(false);
-  const [isInCorrect, setIsInCorrect] = useState(false);
-  const [isContinue, setIsContinue] = useState(false);
+  const [stage, setStage] = useState('entry');
+  // stage: entry, quizEx1~6, quizStart, quizIng, correct, firstCorrect, incorrect, firstIncorrect, retry, continue, noChance
   const [chance, setChance] = useState(3);
   const [pokemonName, setPokemonName] = useState();
   const [pokemonId, setPokemonId] = useState();
-  const [isNoChance, setIsNoChance] = useState(false);
   const [pokemonImg, setPokemonImg] = useState();
 
   const isMobile = useMediaQuery('(max-width: 900px)');
@@ -38,30 +24,26 @@ function QuizPage() {
       setChance(res.data.reminingChance);
       setPokemonName(res.data.quiz.name);
       setPokemonId(res.data.quiz.id);
-      setPokemonImg(
-        `https://d31z0g5vo6ghmg.cloudfront.net/pokemons/${res.data.quiz.id}.png`
-      );
+      setPokemonImg(`${pokemonURL}/${res.data.quiz.id}.png`);
     } catch (err) {
-      setIsQuizStart(false);
-      setIsNoChance(true);
+      setStage('noChance');
     }
   };
 
   useEffect(() => {
-    if (isQuizStart) {
+    if (stage === 'quizStart') {
       fetchUserInfo();
     }
-  }, [isQuizStart]);
+  }, [stage]);
 
   return (
     <div style={{ paddingTop: '170px' }}>
-      {!isMobile && isEntry && (
-        <QuizEntry setIsEntry={setIsEntry} setIsQuizEx1={setIsQuizEx1} />
-      )}
-      {!isMobile && isQuizEx1 && (
+      {!isMobile && stage === 'entry' && <QuizEntry setStage={setStage} />}
+      {!isMobile && stage === 'quizEx1' && (
         <QuizComponent
-          set1={setIsQuizEx1}
-          set2={setIsQuizEx2}
+          stage={stage}
+          setStage={setStage}
+          nextStage='quizEx2'
           text={[
             '포켓몬 퀴즈에 온 걸 환영한다!',
             <br />,
@@ -69,10 +51,11 @@ function QuizPage() {
           ]}
         />
       )}
-      {!isMobile && isQuizEx2 && (
+      {!isMobile && stage === 'quizEx2' && (
         <QuizComponent
-          set1={setIsQuizEx2}
-          set2={setIsQuizEx3}
+          stage={stage}
+          setStage={setStage}
+          nextStage='quizEx3'
           text={[
             '포켓몬의 실루엣을 보여줄테니',
             <br />,
@@ -80,17 +63,19 @@ function QuizPage() {
           ]}
         />
       )}
-      {!isMobile && isQuizEx3 && (
+      {!isMobile && stage === 'quizEx3' && (
         <QuizComponent
-          set1={setIsQuizEx3}
-          set2={setIsQuizEx4}
+          stage={stage}
+          setStage={setStage}
+          nextStage='quizEx4'
           text='정답을 맞추면 1000포인트를 받을 수 있지.'
         />
       )}
-      {!isMobile && isQuizEx4 && (
+      {!isMobile && stage === 'quizEx4' && (
         <QuizComponent
-          set1={setIsQuizEx4}
-          set2={setIsQuizEx5}
+          stage={stage}
+          setStage={setStage}
+          nextStage='quizEx5'
           text={[
             '틀리면 더 쉽게 문제를 내줄테니 걱정말거라.',
             <br />,
@@ -98,53 +83,47 @@ function QuizPage() {
           ]}
         />
       )}
-      {!isMobile && isQuizEx5 && (
+      {!isMobile && stage === 'quizEx5' && (
         <QuizComponent
-          set1={setIsQuizEx5}
-          set2={setIsQuizEx6}
+          stage={stage}
+          setStage={setStage}
+          nextStage='quizEx6'
           text={['기회는 3번!', <br />, '어려우면 힌트를 받거나 패스를 하렴.']}
         />
       )}
-      {!isMobile && isQuizEx6 && (
+      {!isMobile && stage === 'quizEx6' && (
         <QuizComponent
-          set1={setIsQuizEx6}
-          set2={setIsQuizStart}
+          stage={stage}
+          setStage={setStage}
+          nextStage='quizStart'
           text='자, 그럼 시작한다!'
         />
       )}
-      {!isMobile && isQuizStart && (
+      {!isMobile && stage === 'quizStart' && (
         <QuizComponent
           chance={chance}
           img={ImgSrc.pokeballImg}
-          set1={setIsQuizStart}
-          set2={setIsQuizIng}
+          stage={stage}
+          setStage={setStage}
+          nextStage='quizIng'
           text='야생의 포켓몬이 나타났다!'
-          isQuiz
         />
       )}
-      {!isMobile && (isQuizIng || isRetry) && (
+      {!isMobile && (stage === 'quizIng' || stage === 'retry') && (
         <QuizComponent
           pokemonId={pokemonId}
           pokemonName={pokemonName}
           img={pokemonImg}
           chance={chance}
-          isQuiz
-          isQuizIng
-          setIsQuizIng={setIsQuizIng}
-          setIsEntry={setIsEntry}
-          setIsQuizStart={setIsQuizStart}
-          setIsCorrect={setIsCorrect}
-          setIsInCorrect={setIsInCorrect}
-          isRetry={isRetry}
-          setIsRetry={setIsRetry}
-          setIsFirstCorrect={setIsFirstCorrect}
-          setIsFirstInCorrect={setIsFirstInCorrect}
+          stage={stage}
+          setStage={setStage}
         />
       )}
-      {!isMobile && isNoChance && (
+      {!isMobile && stage === 'noChance' && (
         <QuizComponent
-          set1={setIsNoChance}
-          set2={setIsEntry}
+          stage={stage}
+          setStage={setStage}
+          nextStage='entry'
           text={[
             '기회를 모두 다 썼구나!',
             <br />,
@@ -152,11 +131,12 @@ function QuizPage() {
           ]}
         />
       )}
-      {!isMobile && isFirstCorrect && (
+      {!isMobile && stage === 'firstCorrect' && (
         <QuizComponent
           img={pokemonImg}
-          set1={setIsFirstCorrect}
-          set2={setIsContinue}
+          stage={stage}
+          setStage={setStage}
+          nextStage='continue'
           text={[
             '정답! 1000포인트 획득!',
             <br />,
@@ -164,11 +144,12 @@ function QuizPage() {
           ]}
         />
       )}
-      {!isMobile && isCorrect && (
+      {!isMobile && stage === 'correct' && (
         <QuizComponent
           img={pokemonImg}
-          set1={setIsCorrect}
-          set2={setIsContinue}
+          stage={stage}
+          setStage={setStage}
+          nextStage='continue'
           text={[
             '정답! 500포인트 획득!',
             <br />,
@@ -176,10 +157,11 @@ function QuizPage() {
           ]}
         />
       )}
-      {!isMobile && isFirstInCorrect && (
+      {!isMobile && stage === 'firstIncorrect' && (
         <QuizComponent
-          set1={setIsFirstInCorrect}
-          set2={setIsRetry}
+          stage={stage}
+          setStage={setStage}
+          nextStage='retry'
           text={[
             '틀렸단다! 어려워 보이는구나.',
             <br />,
@@ -187,22 +169,21 @@ function QuizPage() {
           ]}
         />
       )}
-      {!isMobile && isInCorrect && (
+      {!isMobile && stage === 'incorrect' && (
         <QuizComponent
           img={pokemonImg}
-          set1={setIsInCorrect}
-          set2={setIsContinue}
+          stage={stage}
+          setStage={setStage}
+          nextStage='continue'
           text={['오답...!', <br />, `정답은 ${pokemonName}!`]}
         />
       )}
-      {!isMobile && isContinue && (
+      {!isMobile && stage === 'continue' && (
         <QuizComponent
           isQuiz
-          isContinue
           chance={chance}
-          setIsEntry={setIsEntry}
-          setIsContinue={setIsContinue}
-          setIsQuizStart={setIsQuizStart}
+          stage={stage}
+          setStage={setStage}
           text='퀴즈를 계속 진행하겠니?'
         />
       )}

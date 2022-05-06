@@ -96,7 +96,12 @@ function PokemonRadar({ radarDataOne }) {
 		},
 	};
 	return (
-		<Container sx={{ backgroundColor: '#FFFFFF' }}>
+		<Container
+			sx={{
+				backgroundColor: 'rgba(255, 255, 255, 0.5)',
+				borderRadius: '10px',
+			}}
+		>
 			<Radar data={data} options={options} height={400} />
 		</Container>
 	);

@@ -163,11 +163,7 @@ function RegisterPage({ setLogin }) {
 							sx={{ minWidth: '300px' }}
 						>
 							<FormControlLabel value='male' control={<Radio />} label='남성' />
-							<FormControlLabel
-								value='female'
-								control={<Radio />}
-								label='여성'
-							/>
+							<FormControlLabel value='female' control={<Radio />} label='여성' />
 						</RadioGroup>
 					</FormControl>
 				</Grid>
@@ -216,7 +212,7 @@ function RegisterPage({ setLogin }) {
 							onChange={onChange}
 						>
 							{types.map((type) => (
-								<MenuItem value={type}>
+								<MenuItem key={type} value={type}>
 									<Typography sx={IconObj[type].Color}>
 										{IconObj[type].Icon} {type}
 									</Typography>

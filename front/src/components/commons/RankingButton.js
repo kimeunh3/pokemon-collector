@@ -19,7 +19,6 @@ function RankingButton() {
   const [rankPointUsers, setRankPointUsers] = useState();
   const [stickersUsers, setStickersUsers] = useState();
   const [IsRankPoint, setIsRankPoint] = useState('랭크포인트');
-  const [alignment, setAlignment] = useState('랭크포인트');
   const [loginDialogOpen, setLoginDialogOpen] = useState(false);
 
   const userState = useContext(UserStateContext);
@@ -28,9 +27,10 @@ function RankingButton() {
   const handleClose = () => {
     setIsOpen(false);
   };
-  const handleChange = (event, newAlignment) => {
-    setAlignment(newAlignment);
-    setIsRankPoint(newAlignment);
+  const handleChange = (event, newValue) => {
+    if (newValue) {
+      setIsRankPoint(newValue);
+    }
   };
 
   const handleLoginDialogClose = () => {
@@ -41,6 +41,7 @@ function RankingButton() {
     if (isClick && isLogin) {
       Api.get('ranking/rankPoint/20').then((res) => {
         const newUser = [];
+        let idNum = 0;
         res.data.forEach((user) => {
           newUser.push({
             nickname: user.nickname,
@@ -48,13 +49,15 @@ function RankingButton() {
             rankPoint: user.rankPoint,
             likeType: user.likeType,
             stickers: user.stickers,
+            id: idNum,
           });
+          idNum += 1;
         });
         setRankPointUsers(newUser);
       });
       Api.get('ranking/stickers/20').then((res) => {
         const newUser = [];
-        console.log(res.data);
+        let idNum = 0;
         res.data.forEach((user) => {
           newUser.push({
             nickname: user.nickname,
@@ -62,7 +65,9 @@ function RankingButton() {
             stickersCount: user.stickersCount,
             likeType: user.likeType,
             stickers: user.stickers,
+            id: idNum,
           });
+          idNum += 1;
         });
         setStickersUsers(newUser);
       });
@@ -110,25 +115,35 @@ function RankingButton() {
         </DialogTitle>
         <ToggleButtonGroup
           color='primary'
-          value={alignment}
           exclusive
+          value={IsRankPoint}
           onChange={handleChange}
-          style={{ justifyContent: 'center' }}
+          style={{ justifyContent: 'center', margin: '15px 0 15px 0' }}
         >
           <ToggleButton value='랭크포인트'>랭크포인트</ToggleButton>
           <ToggleButton value='스티커 수'>스티커 수</ToggleButton>
         </ToggleButtonGroup>
         {rankPointUsers && IsRankPoint === '랭크포인트' && (
-          <DialogContent>
+          <DialogContent style={{ paddingTop: 0 }}>
             {rankPointUsers.map((user, i) => (
-              <RankingUserBox i={i} user={user} IsRankPoint={IsRankPoint} />
+              <RankingUserBox
+                key={user.id}
+                i={i}
+                user={user}
+                IsRankPoint={IsRankPoint}
+              />
             ))}
           </DialogContent>
         )}
         {IsRankPoint === '스티커 수' && (
-          <DialogContent>
+          <DialogContent style={{ paddingTop: 0 }}>
             {stickersUsers.map((user, i) => (
-              <RankingUserBox i={i} user={user} IsRankPoint={IsRankPoint} />
+              <RankingUserBox
+                key={user.id}
+                i={i}
+                user={user}
+                IsRankPoint={IsRankPoint}
+              />
             ))}
           </DialogContent>
         )}

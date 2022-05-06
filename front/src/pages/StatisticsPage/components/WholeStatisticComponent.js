@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import { Grid } from '@material-ui/core';
 import {
   WholeStatsStatisticsCharts,
   WholeTypeCharts,
@@ -7,7 +6,7 @@ import {
 
 import * as Api from '../../../api';
 
-const TypeToNum = {
+const TYPE_TO_NUM = {
   노말: 0,
   불꽃: 1,
   물: 2,
@@ -27,10 +26,33 @@ const TypeToNum = {
   페어리: 16,
 };
 
-function WholeStatisticComponent() {
-  const [pokemons, setPokemons] = useState([]);
-  const [y, setY] = useState();
+const ENG_TYPE = [
+  'normal',
+  'fire',
+  'water',
+  'grass',
+  'electric',
+  'ice',
+  'fight',
+  'poison',
+  'ground',
+  'flying',
+  'psychic',
+  'bug',
+  'rock',
+  'ghost',
+  'dragon',
+  'steel',
+  'fairy',
+];
 
+function wholeStatistic(
+  pokemons,
+  setPokemons,
+  setY,
+  pokemonTotalInfo,
+  setPokemonTotalInfo
+) {
   useEffect(() => {
     Api.get('pokemonList').then((res) => {
       setPokemons(res.data);
@@ -38,61 +60,86 @@ function WholeStatisticComponent() {
   }, []);
 
   useEffect(() => {
-    const newY = {
-      attack: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      defense: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      hp: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      spAttack: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      spDefense: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      speed: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      totalPoints: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      typesCnt: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      attackMeans: [],
-      defenseMeans: [],
-      hpMeans: [],
-      spAttackMeans: [],
-      spDefenseMeans: [],
-      speedMeans: [],
-      totalPointsMeans: [],
-    };
-    pokemons.forEach((pokemon) => {
-      newY.attack[TypeToNum[pokemon.typeOne]] += pokemon.attack;
-      newY.attack[TypeToNum[pokemon.typeTwo]] += pokemon.attack;
-      newY.defense[TypeToNum[pokemon.typeOne]] += pokemon.defense;
-      newY.defense[TypeToNum[pokemon.typeTwo]] += pokemon.defense;
-      newY.hp[TypeToNum[pokemon.typeOne]] += pokemon.hp;
-      newY.hp[TypeToNum[pokemon.typeTwo]] += pokemon.hp;
-      newY.spAttack[TypeToNum[pokemon.typeOne]] += pokemon.spAttack;
-      newY.spAttack[TypeToNum[pokemon.typeTwo]] += pokemon.spAttack;
-      newY.spDefense[TypeToNum[pokemon.typeOne]] += pokemon.spDefense;
-      newY.spDefense[TypeToNum[pokemon.typeTwo]] += pokemon.spDefense;
-      newY.speed[TypeToNum[pokemon.typeOne]] += pokemon.speed;
-      newY.speed[TypeToNum[pokemon.typeTwo]] += pokemon.speed;
-      newY.totalPoints[TypeToNum[pokemon.typeOne]] += pokemon.totalPoints;
-      newY.totalPoints[TypeToNum[pokemon.typeTwo]] += pokemon.totalPoints;
-      newY.typesCnt[TypeToNum[pokemon.typeOne]] += 1;
-      newY.typesCnt[TypeToNum[pokemon.typeTwo]] += 1;
+    Api.get('pokemonScaledMeanData/total').then((res) => {
+      const newPokemonTotalInfo = {};
+      res.data.forEach((pokemon) => {
+        newPokemonTotalInfo[pokemon.type] = pokemon.totalPoints;
+      });
+      setPokemonTotalInfo(newPokemonTotalInfo);
     });
+  }, []);
 
-    for (let i = 0; i < 17; i += 1) {
-      const attackMean = newY.attack[i] / newY.typesCnt[i];
-      newY.attackMeans.push(attackMean.toFixed(1));
-      const defenseMean = newY.defense[i] / newY.typesCnt[i];
-      newY.defenseMeans.push(defenseMean.toFixed(1));
-      const hpMean = newY.hp[i] / newY.typesCnt[i];
-      newY.hpMeans.push(hpMean.toFixed(1));
-      const spAttackMean = newY.spAttack[i] / newY.typesCnt[i];
-      newY.spAttackMeans.push(spAttackMean.toFixed(1));
-      const spDefenseMean = newY.spDefense[i] / newY.typesCnt[i];
-      newY.spDefenseMeans.push(spDefenseMean.toFixed(1));
-      const speedMean = newY.speed[i] / newY.typesCnt[i];
-      newY.speedMeans.push(speedMean.toFixed(1));
-      const totalPointsMean = newY.totalPoints[i] / newY.typesCnt[i];
-      newY.totalPointsMeans.push(totalPointsMean.toFixed(1));
+  useEffect(() => {
+    if (pokemonTotalInfo) {
+      const newY = {
+        attack: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        defense: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        hp: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        spAttack: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        spDefense: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        speed: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        typesCnt: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        attackMeans: [],
+        defenseMeans: [],
+        hpMeans: [],
+        spAttackMeans: [],
+        spDefenseMeans: [],
+        speedMeans: [],
+        totalPointsMeans: [],
+      };
+      pokemons.forEach((pokemon) => {
+        newY.attack[TYPE_TO_NUM[pokemon.typeOne]] += pokemon.attack;
+        newY.attack[TYPE_TO_NUM[pokemon.typeTwo]] += pokemon.attack;
+        newY.defense[TYPE_TO_NUM[pokemon.typeOne]] += pokemon.defense;
+        newY.defense[TYPE_TO_NUM[pokemon.typeTwo]] += pokemon.defense;
+        newY.hp[TYPE_TO_NUM[pokemon.typeOne]] += pokemon.hp;
+        newY.hp[TYPE_TO_NUM[pokemon.typeTwo]] += pokemon.hp;
+        newY.spAttack[TYPE_TO_NUM[pokemon.typeOne]] += pokemon.spAttack;
+        newY.spAttack[TYPE_TO_NUM[pokemon.typeTwo]] += pokemon.spAttack;
+        newY.spDefense[TYPE_TO_NUM[pokemon.typeOne]] += pokemon.spDefense;
+        newY.spDefense[TYPE_TO_NUM[pokemon.typeTwo]] += pokemon.spDefense;
+        newY.speed[TYPE_TO_NUM[pokemon.typeOne]] += pokemon.speed;
+        newY.speed[TYPE_TO_NUM[pokemon.typeTwo]] += pokemon.speed;
+        newY.typesCnt[TYPE_TO_NUM[pokemon.typeOne]] += 1;
+        newY.typesCnt[TYPE_TO_NUM[pokemon.typeTwo]] += 1;
+      });
+
+      for (let i = 0; i < 17; i += 1) {
+        const attackMean = newY.attack[i] / newY.typesCnt[i];
+        newY.attackMeans.push(attackMean.toFixed(1));
+        const defenseMean = newY.defense[i] / newY.typesCnt[i];
+        newY.defenseMeans.push(defenseMean.toFixed(1));
+        const hpMean = newY.hp[i] / newY.typesCnt[i];
+        newY.hpMeans.push(hpMean.toFixed(1));
+        const spAttackMean = newY.spAttack[i] / newY.typesCnt[i];
+        newY.spAttackMeans.push(spAttackMean.toFixed(1));
+        const spDefenseMean = newY.spDefense[i] / newY.typesCnt[i];
+        newY.spDefenseMeans.push(spDefenseMean.toFixed(1));
+        const speedMean = newY.speed[i] / newY.typesCnt[i];
+        newY.speedMeans.push(speedMean.toFixed(1));
+      }
+
+      ENG_TYPE.forEach((type) => {
+        newY.totalPointsMeans.push(pokemonTotalInfo[type].toFixed(1));
+      });
+
+      setY(newY);
     }
+  }, [pokemons, pokemonTotalInfo]);
+}
 
-    setY(newY);
-  }, [pokemons]);
+function WholeStatisticComponent() {
+  const [pokemons, setPokemons] = useState([]);
+  const [y, setY] = useState();
+  const [pokemonTotalInfo, setPokemonTotalInfo] = useState();
+
+  wholeStatistic(
+    pokemons,
+    setPokemons,
+    setY,
+    pokemonTotalInfo,
+    setPokemonTotalInfo
+  );
 
   if (!y) return null;
 
@@ -103,7 +150,7 @@ function WholeStatisticComponent() {
           display: 'grid',
           width: '70vw',
           justifyItems: 'center',
-          backgroundColor: 'rgba(255, 255, 255, 0.5)',
+          backgroundColor: 'rgba(255, 255, 255, 1)',
           borderRadius: '10px',
           marginBottom: '100px',
           minWidth: '700px',
@@ -118,7 +165,7 @@ function WholeStatisticComponent() {
           display: 'grid',
           width: '70vw',
           justifyItems: 'center',
-          backgroundColor: 'rgba(255, 255, 255, 0.5)',
+          backgroundColor: 'rgba(255, 255, 255, 1)',
           borderRadius: '10px',
           marginBottom: '100px',
           minWidth: '700px',
