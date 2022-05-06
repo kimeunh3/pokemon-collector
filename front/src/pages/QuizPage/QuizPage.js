@@ -3,7 +3,7 @@ import { useMediaQuery } from '@material-ui/core';
 
 import QuizEntry from './components/QuizEntry';
 import QuizComponent from './components/QuizComponent';
-import ImgSrc from '../../core/constants/ImgSrc';
+import ImgSrc, { pokemonURL } from '../../core/constants/ImgSrc';
 import RankingButton from '../../components/commons/RankingButton';
 
 import * as Api from '../../api';
@@ -24,9 +24,7 @@ function QuizPage() {
       setChance(res.data.reminingChance);
       setPokemonName(res.data.quiz.name);
       setPokemonId(res.data.quiz.id);
-      setPokemonImg(
-        `https://d31z0g5vo6ghmg.cloudfront.net/pokemons/${res.data.quiz.id}.png`
-      );
+      setPokemonImg(`${pokemonURL}/${res.data.quiz.id}.png`);
     } catch (err) {
       setStage('noChance');
     }
