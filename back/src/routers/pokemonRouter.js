@@ -468,10 +468,7 @@ pokemonAuthRouter.get('/drawPokemon', async (req, res, next) => {
     //pokemon 이름 가져오기
     let drawResult = await PokemonAuthService.getDrewResult({ userId });
     if (drawResult.errorMessage) {
-      return res.status(400).json({
-        status: 'error',
-        error: drawResult.errorMessage,
-      });
+      throw new Error(drawResult.errorMessage);
     }
 
     if (drawResult.status) {
