@@ -41,6 +41,7 @@ function RankingButton() {
     if (isClick && isLogin) {
       Api.get('ranking/rankPoint/20').then((res) => {
         const newUser = [];
+        let idNum = 0;
         res.data.forEach((user) => {
           newUser.push({
             nickname: user.nickname,
@@ -48,12 +49,15 @@ function RankingButton() {
             rankPoint: user.rankPoint,
             likeType: user.likeType,
             stickers: user.stickers,
+            id: idNum,
           });
+          idNum += 1;
         });
         setRankPointUsers(newUser);
       });
       Api.get('ranking/stickers/20').then((res) => {
         const newUser = [];
+        let idNum = 0;
         res.data.forEach((user) => {
           newUser.push({
             nickname: user.nickname,
@@ -61,7 +65,9 @@ function RankingButton() {
             stickersCount: user.stickersCount,
             likeType: user.likeType,
             stickers: user.stickers,
+            id: idNum,
           });
+          idNum += 1;
         });
         setStickersUsers(newUser);
       });
@@ -120,14 +126,24 @@ function RankingButton() {
         {rankPointUsers && IsRankPoint === '랭크포인트' && (
           <DialogContent style={{ paddingTop: 0 }}>
             {rankPointUsers.map((user, i) => (
-              <RankingUserBox i={i} user={user} IsRankPoint={IsRankPoint} />
+              <RankingUserBox
+                key={user.id}
+                i={i}
+                user={user}
+                IsRankPoint={IsRankPoint}
+              />
             ))}
           </DialogContent>
         )}
         {IsRankPoint === '스티커 수' && (
           <DialogContent style={{ paddingTop: 0 }}>
             {stickersUsers.map((user, i) => (
-              <RankingUserBox i={i} user={user} IsRankPoint={IsRankPoint} />
+              <RankingUserBox
+                key={user.id}
+                i={i}
+                user={user}
+                IsRankPoint={IsRankPoint}
+              />
             ))}
           </DialogContent>
         )}
