@@ -11,7 +11,8 @@ import {
 function ServiceSectionCard({
   imgSrc,
   title,
-  text,
+  text1,
+  text2,
   handleClick,
   buttonText,
   isRanking = false,
@@ -32,7 +33,10 @@ function ServiceSectionCard({
           {title}
         </Typography>
         <Typography variant='body2' color='text.secondary'>
-          {text}
+          {text1}
+          <br />
+          <br />
+          {text2}
         </Typography>
       </CardContent>
       <CardActions>
