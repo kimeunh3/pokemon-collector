@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
 	Card,
 	Avatar,
-	IconButton,
 	CardActions,
 	CardHeader,
 	CardMedia,
@@ -12,7 +11,6 @@ import {
 	Button,
 	Grid,
 } from '@mui/material';
-import { Favorite, Share } from '@mui/icons-material';
 import IconObj from '../../../../core/Icon';
 import { pokemonURL } from '../../../../core/constants/ImgSrc';
 import * as Api from '../../../../api';
@@ -25,10 +23,10 @@ function UserCard({ userState, fetchUserInfo, userPokemonList }) {
 	const [attdFailModalOpen, setAttdFailModalOpen] = useState(false);
 	const [attdSuccModalOpen, setAttdSuccModalOpen] = useState(true);
 	const [isEdit, setIsEdit] = useState(false);
-	const { email, nickname, likeType, point, profileImg } = userState;
+	const { email, nickname, likeType, rankPoint, point, profileImg } = userState;
 
 	const fetchIsPointGiven = async () => {
-		const res = await Api.put('user/attendanceCheck'); // false면 성공 true면 실패
+		const res = await Api.put('user/attendanceCheck');
 		setAttdFailModalOpen(res.data.isPointGiven);
 		setAttdSuccModalOpen(res.data.isPointGiven);
 	};
@@ -60,7 +58,6 @@ function UserCard({ userState, fetchUserInfo, userPokemonList }) {
 										{IconObj[likeType].Icon}
 									</Avatar>
 								}
-								action={<IconButton aria-label='settings' />}
 								title={email}
 								sx={{ paddingBottom: '0' }}
 							/>
@@ -74,16 +71,17 @@ function UserCard({ userState, fetchUserInfo, userPokemonList }) {
 								paddingBottom: '2px',
 							}}
 						>
-							<Button
-								variant='contained'
-								color='success'
-								onClick={handleAttendance}
-							>
+							<Button variant='contained' color='success' onClick={handleAttendance}>
 								출석체크
 							</Button>
 						</Grid>
 					</Grid>
-					<Box sx={{ width: '90%', margin: '0' }}>
+					<Box
+						sx={{
+							width: '100%',
+							margin: '0',
+						}}
+					>
 						<hr />
 					</Box>
 					<CardMedia
@@ -95,29 +93,21 @@ function UserCard({ userState, fetchUserInfo, userPokemonList }) {
 					<CardContent>
 						<Typography variant='h5'>포켓몬 트레이너 {nickname}님</Typography>
 						<Typography>포인트 {point}</Typography>
+						<Typography>랭크 포인트 {rankPoint}</Typography>
 					</CardContent>
 					<CardActions disableSpacing>
-						<Grid container>
-							<Grid item xs={3} md={8}>
-								<IconButton aria-label='add to favorites'>
-									<Favorite />
-								</IconButton>
-								<IconButton aria-label='share'>
-									<Share />
-								</IconButton>
-							</Grid>
-							<Grid item xs={9} md={4}>
-								<Button
-									variant='contained'
-									sx={{ minWidth: '110px' }}
-									onClick={() => {
-										setIsEdit(true);
-									}}
-								>
-									프로필 변경
-								</Button>
-							</Grid>
-						</Grid>
+						<Button
+							variant='contained'
+							sx={{
+								minWidth: '110px',
+								margin: 'auto',
+							}}
+							onClick={() => {
+								setIsEdit(true);
+							}}
+						>
+							프로필 변경
+						</Button>
 					</CardActions>
 					{attdFailModalOpen && (
 						<AttendanceFailModal

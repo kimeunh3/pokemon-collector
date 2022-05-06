@@ -5,12 +5,13 @@ import Container from '@mui/material/Container';
 
 import PokemonCard from './components/PokemonCard/PokemonCard';
 import PokemonRadar from './components/PokemonRadar/PokemonRadar';
+import BarCharts from './components/BarCharts/BarCharts';
 
 import * as Api from '../../api';
 import IconObj from '../../core/Icon';
 
 function PokemonDetailPage() {
-	const [pokemon, setPokemon] = useState({});
+	const [pokemon, setPokemon] = useState([]);
 	const [radarDataOne, setRadarDataOne] = useState(null);
 	const params = useParams();
 
@@ -23,6 +24,7 @@ function PokemonDetailPage() {
 			const response = await Api.get('pokemonData', params.pokemonId);
 			setRadarDataOne(response.data);
 		};
+
 		fetchPokemonOne();
 		fetchRadarData();
 	}, []);
@@ -36,7 +38,7 @@ function PokemonDetailPage() {
 
 	return (
 		<Container sx={{ marginTop: '165px', width: '100%' }}>
-			<Grid container>
+			<Grid container spacing={2}>
 				<Grid item xs={6} md={6}>
 					{pokemon && (
 						<PokemonCard
@@ -52,6 +54,7 @@ function PokemonDetailPage() {
 					{radarDataOne && <PokemonRadar radarDataOne={radarDataOne} />}
 				</Grid>
 			</Grid>
+			<BarCharts id={params.pokemonId} />
 		</Container>
 	);
 }
