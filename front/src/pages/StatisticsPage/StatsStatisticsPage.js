@@ -173,8 +173,8 @@ function statsStatistics(
     const newTypesMeansLow5 = sortTypeMeans.slice(-5);
 
     // 상위 30%, 하위 30% 속성 순위 차트에 평균값 넣기
-    newTypesMeansTop5.push('평균');
-    newTypesMeansLow5.unshift('평균');
+    newTypesMeansTop5.push('전체평균');
+    newTypesMeansLow5.unshift('전체평균');
 
     setTypesMeansTop5(newTypesMeansTop5);
     setTypesMeansLow5(newTypesMeansLow5);
@@ -187,8 +187,8 @@ function statsStatistics(
     const newPokemonsStatsLow15 = sortPokemonsStats.slice(-15);
 
     // 상위 10%, 하위 10% 포켓몬 순위 차트에 평균값 넣기
-    newPokemonsStatsTop15.push('평균');
-    newPokemonsStatsLow15.unshift('평균');
+    newPokemonsStatsTop15.push('전체평균');
+    newPokemonsStatsLow15.unshift('전체평균');
 
     setPokemonsStatsTop15(newPokemonsStatsTop15);
     setPokemonsStatsLow15(newPokemonsStatsLow15);
