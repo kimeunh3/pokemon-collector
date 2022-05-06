@@ -327,7 +327,7 @@ userAuthRouter.put(
       if (currentUserInfo.errorMessage) {
         throw new Error(currentUserInfo.errorMessage);
       }
-      res.status(200).json({ point: currentUserInfo });
+      res.status(200).json({ currentUserInfo });
     } catch (error) {
       next(error);
     }
