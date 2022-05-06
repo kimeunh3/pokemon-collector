@@ -72,7 +72,7 @@ function IllustratedBookPage() {
   };
 
   return (
-    <div style={{ paddingTop: '170px', paddingBottom: '50px' }}>
+    <div style={{ marginTop: '25vh', marginBottom: '20vh' }}>
       <FormControl
         style={{ width: '200px', marginLeft: '40px', backgroundColor: 'white' }}
       >
