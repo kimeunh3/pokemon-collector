@@ -1,66 +1,28 @@
 import React from 'react';
 import {
-	Container,
-	Box,
 	Card,
 	Grid,
-	CardMedia,
 	CardContent,
+	CardMedia,
 	Typography,
-	Divider,
+	Container,
+	Box,
 } from '@mui/material';
 
-import ImgSrc from '../../../../../core/constants/ImgSrc';
-
-function InfoSection() {
+function PurposeSection() {
 	return (
-		<Container sx={{ width: '100%', height: '100%', padding: '3%' }}>
-			<Grid container>
-				<Grid item xs={6} md={6}>
-					<Card sx={{ maxWidth: 300, margin: 'auto', marginTop: '40px' }}>
-						<CardMedia component='img' image={ImgSrc.posterImg} />
-					</Card>
-				</Grid>
-				<Grid
-					item
-					xs={6}
-					md={6}
-					sx={{
-						marginTop: '40px',
-					}}
-				>
-					<Box
-						sx={{
-							backgroundColor: '#EEF2FF',
-							borderRadius: '10px',
-							padding: '20px',
-							position: 'relative',
-							top: '20%',
-						}}
-					>
-						<Typography variant='h3' sx={{ fontWeight: 'bold' }}>
-							포켓몬 스티커를 <br />
-							모아보세요!
-						</Typography>
-						<Typography variant='body1' sx={{ marginTop: '30px' }}>
-							포인트로 빵을 구매하고 포켓몬 스티커를 모아보세요! <br />
-							출석체크와 오박사의 퀴즈를 풀어 포인트를 얻을 수 있습니다.
-						</Typography>
-					</Box>
-				</Grid>
-			</Grid>
+		<Container sx={{ marginTop: 20 }}>
 			<Grid container spacing={3}>
 				<Grid
 					item
 					xs={12}
 					md={12}
-					sx={{ display: 'flex', justifyContent: 'center', marginTop: '100px' }}
+					sx={{ display: 'flex', justifyContent: 'center' }}
 				>
-					<Typography variant='h5'>서비스 취지 & 목적</Typography>
+					<Typography variant='h5' color='primary'>
+						식지 않는 포켓몬 빵 열풍
+					</Typography>
 				</Grid>
-
-				<Divider sx={{ width: '100%' }} />
-
 				<Grid item xs={4} md={4}>
 					<Card>
 						<CardMedia
@@ -102,6 +64,11 @@ function InfoSection() {
 							</Typography>
 						</CardContent>
 					</Card>
+				</Grid>
+				<Grid item xs={12} md={12} sx={{ marginTop: '50px' }}>
+					<Typography variant='h5' color='error' sx={{ textAlign: 'center' }}>
+						부작용으로 발생하는 사회 문제들
+					</Typography>
 				</Grid>
 				<Grid item xs={4} md={4}>
 					<Card>
@@ -146,8 +113,37 @@ function InfoSection() {
 					</Card>
 				</Grid>
 			</Grid>
+			<Box mt={23} sx={{ marginBottom: '50px' }}>
+				<Grid container spacing={5}>
+					<Grid item xs={3} md={3}>
+						<CardMedia component='img' image='purpose7.png' />
+						<Typography variant='h5'>
+							포켓몬 빵을 구매하지 못한 소비자들에게
+						</Typography>
+					</Grid>
+					<Grid item xs={1.5} md={1.5} sx={{ margin: 'auto' }}>
+						<CardMedia component='img' image='arrow.png' />
+					</Grid>
+					<Grid item xs={3} md={3}>
+						<CardMedia component='img' image='pokemonCollector.png' />
+						<Typography variant='h5'>
+							대리만족과 재밌는 <br />
+							서비스를 제공
+						</Typography>
+					</Grid>
+					<Grid item xs={1.5} md={1.5} sx={{ margin: 'auto' }}>
+						<CardMedia component='img' image='arrow.png' />
+					</Grid>
+					<Grid item xs={3} md={3}>
+						<CardMedia component='img' image='purpose8.png' />
+						<Typography variant='h5'>
+							개인의 욕구 해소와 <br />더 나아가서는 사회 문제 완화까지
+						</Typography>
+					</Grid>
+				</Grid>
+			</Box>
 		</Container>
 	);
 }
 
-export default InfoSection;
+export default PurposeSection;
