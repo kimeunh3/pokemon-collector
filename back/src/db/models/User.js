@@ -16,6 +16,11 @@ class User {
     return user;
   }
 
+  static async findByNickname({ nickname }) {
+    const user = await UserModel.findOne({ nickname });
+    return user;
+  }
+
   static async findAll() {
     const users = await UserModel.find({});
     return users;

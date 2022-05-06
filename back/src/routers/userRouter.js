@@ -327,11 +327,18 @@ userAuthRouter.put(
 
       const toUpdate = { nickname, likeType, profileImg, interest };
 
-      currentUserInfo = await userAuthService.setUser({ userId, toUpdate });
+      currentUserInfo = await userAuthService.setUser({
+        userId,
+        toUpdate,
+        nickname,
+      });
       if (currentUserInfo.errorMessage) {
-        throw new Error(currentUserInfo.errorMessage);
+        return res.status(400).json({
+          status: 'error',
+          error: currentUserInfo.errorMessage,
+        });
       }
-      res.status(200).json({ point: currentUserInfo });
+      res.status(200).json({ currentUserInfo });
     } catch (error) {
       next(error);
     }
