@@ -58,7 +58,7 @@ function UserCard({ userState, fetchUserInfo, userPokemonList }) {
 										{IconObj[likeType].Icon}
 									</Avatar>
 								}
-								title={email}
+								title={<Typography variant='h6'>{email}</Typography>}
 								sx={{ paddingBottom: '0' }}
 							/>
 						</Grid>
