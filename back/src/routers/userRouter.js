@@ -120,10 +120,11 @@ userAuthRouter.post('/user/login', async function (req, res, next) {
     const user = await userAuthService.getUser({ email, password });
 
     if (user.errorMessage) {
-      return res.status(400).json({
-        status: 'error',
-        error: user.errorMessage,
-      });
+      throw new Error(user.errorMessage);
+      // return res.status(400).json({
+      //   status: 'error',
+      //   error: user.errorMessage,
+      // });
     }
 
     res.status(200).json(user);
@@ -329,10 +330,11 @@ userAuthRouter.put(
         nickname,
       });
       if (currentUserInfo.errorMessage) {
-        return res.status(400).json({
-          status: 'error',
-          error: currentUserInfo.errorMessage,
-        });
+        throw new Error(currentUserInfo.errorMessage);
+        // return res.status(400).json({
+        //   status: 'error',
+        //   error: currentUserInfo.errorMessage,
+        // });
       }
       res.status(200).json({ currentUserInfo });
     } catch (error) {
