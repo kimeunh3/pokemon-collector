@@ -238,7 +238,7 @@ function WholeStatisticComponent() {
       <div
         style={{
           display: 'grid',
-          width: '70vw',
+          width: '65vw',
           justifyItems: 'center',
           backgroundColor: 'rgba(255, 255, 255, 1)',
           borderRadius: '10px',
@@ -260,7 +260,7 @@ function WholeStatisticComponent() {
       <div
         style={{
           display: 'grid',
-          width: '70vw',
+          width: '65vw',
           justifyItems: 'center',
           backgroundColor: 'rgba(255, 255, 255, 1)',
           borderRadius: '10px',
