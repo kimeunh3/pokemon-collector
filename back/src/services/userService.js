@@ -202,15 +202,6 @@ class userAuthService {
 
     return createdNewUser;
   }
-
-  static async attendancePoint({ userId }) {
-    const user = await User.findById({ userId });
-
-    const point = currentUserInfo.point + 1000;
-    const attendance = new Date();
-    const toUpdate = { point, attendance, isPointGiven };
-    return user;
-  }
 }
 
 export { userAuthService };

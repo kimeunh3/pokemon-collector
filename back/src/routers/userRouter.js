@@ -71,11 +71,11 @@ userAuthRouter.post('/user/register', async function (req, res, next) {
     });
 
     if (newUser.errorMessage) {
-      // throw new Error(newUser.errorMessage);
-      return res.status(400).json({
-        status: 'error',
-        error: newUser.errorMessage,
-      });
+      throw new Error(newUser.errorMessage);
+      // return res.status(400).json({
+      //   status: 'error',
+      //   error: newUser.errorMessage,
+      // });
     }
 
     res.status(200).json(newUser);
