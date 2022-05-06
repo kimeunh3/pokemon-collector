@@ -15,7 +15,6 @@ import TypeStatisticsPage from './pages/StatisticsPage/TypeStatisticsPage';
 import StatsStatisticsPage from './pages/StatisticsPage/StatsStatisticsPage';
 import MyPage from './pages/MyPage/MyPage';
 import QuizPage from './pages/QuizPage/QuizPage';
-import Footer from './Footer';
 
 import { UserStateContext, DispatchContext } from './Context';
 import './App.css';
@@ -87,7 +86,6 @@ function App() {
 						<Route path='/myPage' element={<MyPage userState={userState} />} />
 						<Route path='/quizPage' element={<QuizPage />} />
 					</Routes>
-					<Footer />
 				</Router>
 			</UserStateContext.Provider>
 		</DispatchContext.Provider>

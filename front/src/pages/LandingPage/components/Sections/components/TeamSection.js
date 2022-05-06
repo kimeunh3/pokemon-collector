@@ -16,7 +16,7 @@ function TeamSection() {
 			name: 'BE: 김은혜(팀장)',
 			gitHubURL: 'https://github.com/kimeunh3',
 			Img: 'kimeunh3.png',
-			favAtt: '땅',
+			favAtt: '에스퍼',
 			description:
 				'많은 애정을 담아 만들었습니다! 꼭 모든 포켓몬을 다 모으시길 바랄게요!',
 		},
@@ -24,7 +24,7 @@ function TeamSection() {
 			name: 'BE: 장소영',
 			gitHubURL: 'https://github.com/Ssoyoung-J',
 			Img: 'Ssoyoung-J.png',
-			favAtt: '땅',
+			favAtt: '전기',
 			description: '저희의 귀여운 포켓몬 서비스를 재밌게 즐겨주세요!',
 		},
 		{
@@ -32,8 +32,7 @@ function TeamSection() {
 			gitHubURL: 'https://github.com/bgeun',
 			Img: 'bgeun.png',
 			favAtt: '드래곤',
-			description:
-				'재밌는 기능이 많으니 한 번씩 해보시고 꼭 전설 포켓몬 뽑아보세요! 저는 뽑았답니다 :)',
+			description: `재밌는 기능이 많으니 한 번씩 해보시고 꼭 전설 포켓몬 뽑아보세요! 저는 뽑았답니다 :)`,
 		},
 		{
 			name: 'FE: 신가현',
