@@ -37,7 +37,7 @@ function QuizPage() {
   }, [stage]);
 
   return (
-    <div style={{ paddingTop: '170px' }}>
+    <div style={{ marginTop: '25vh' }}>
       {!isMobile && stage === 'entry' && <QuizEntry setStage={setStage} />}
       {!isMobile && stage === 'quizEx1' && (
         <QuizComponent
