@@ -323,7 +323,6 @@ userAuthRouter.put(
       currentUserInfo = await userAuthService.setUser({
         userId,
         toUpdate,
-        nickname,
       });
       if (currentUserInfo.errorMessage) {
         throw new Error(currentUserInfo.errorMessage);

@@ -65,10 +65,14 @@ function UserEditCard({
 	};
 
 	const handleEdit = async () => {
-		setInputs({ ...inputs, profileImg: `${selected}.png` });
-		await Api.put('user/profileModify', inputs);
-		fetchUserInfo();
-		setIsEdit(false);
+		setInputs({ ...inputs, profileImg: `${selected}` });
+		const res = await Api.put('user/profileModify', inputs);
+		if (res.status === 200) {
+			fetchUserInfo();
+			setIsEdit(false);
+		} else {
+			alert(res);
+		}
 	};
 
 	return (
