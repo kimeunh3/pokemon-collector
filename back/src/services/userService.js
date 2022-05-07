@@ -108,7 +108,7 @@ class userAuthService {
       return { errorMessage };
     }
 
-    if (user) {
+    if (toUpdate.nickname === user.nickname) {
       const errorMessage =
         '이 닉네임은 현재 사용중입니다. 다른 닉네임을 입력해주세요.';
       return { errorMessage };
