@@ -13,6 +13,8 @@ pokemonScaledMeanDataAuthRouter.use(loginRequired);
  *     get:
  *       tags:
  *       - pokemonScaledMeanData
+ *       security:
+ *         - Authorization: []
  *       summary: scaling 된 속성 별 평균 데이터
  *       description: MinMaxScaling한 속성 별 평균 데이터를 모두 가져오는 API
  *       responses:
@@ -105,6 +107,8 @@ pokemonScaledMeanDataAuthRouter.get(
  * paths:
  *   /pokemonScaledMeanData/total:
  *     get:
+ *       security:
+ *         - Authorization: []
  *       tags:
  *       - pokemonScaledMeanData
  *       summary: scaling 된 속성 별 평균 총 능력치 데이터
