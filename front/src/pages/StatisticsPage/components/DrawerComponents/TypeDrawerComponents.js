@@ -147,10 +147,10 @@ function TypeDrawerComponents({
         style={{ width: '20vw', marginLeft: '2vw', marginTop: '5vh' }}
       >
         <CardContent>
-          <Typography gutterBottom variant='h6' component='div'>
+          <Typography gutterBottom variant='h5' component='div'>
             {type} 속성 개요
           </Typography>
-          <Typography variant='body2'>
+          <Typography variant='body1'>
             {type} 포켓몬 수: {pokemonInfo.pokemonCnt}
             <br />
             공격력 평균: {pokemonInfo.attackMean}
