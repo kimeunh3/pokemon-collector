@@ -280,24 +280,24 @@ userAuthRouter.put(
  *       tags:
  *       - user
  *       requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               nickname:
- *                 type: string
- *                 example: 태초마을 관장
- *               likeType:
- *                 type: string
- *                 example: 불꽃
- *               profileImg:
- *                 type: string
- *                 example: 117.png
- *               interest:
- *                 type: number
- *                 example: 5
+ *         required: true
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 nickname:
+ *                   type: string
+ *                   example: 태초마을 관장
+ *                 likeType:
+ *                   type: string
+ *                   example: 불꽃
+ *                 profileImg:
+ *                   type: string
+ *                   example: 117.png
+ *                 interest:
+ *                   type: number
+ *                   example: 5
  *       summary: 유저의 프로필 변경
  *       description: 유저의 프로필 변경 API
  *       security:
