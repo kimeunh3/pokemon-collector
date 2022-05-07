@@ -12,6 +12,8 @@ pokemonRadarChartDataAuthRouter.use(loginRequired);
  *     get:
  *       tags:
  *       - pokemonRadarChartData
+ *       security:
+ *         - Authorization: []
  *       summary: 포켓몬 별 radar chart 데이터
  *       description: MinMaxScaling한 포켓몬 별 radar chart 데이터를 가져오는 API
  *       parameters:

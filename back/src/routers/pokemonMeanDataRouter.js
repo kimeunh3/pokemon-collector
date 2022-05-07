@@ -12,6 +12,8 @@ pokemonMeanDataAuthRouter.use(loginRequired);
  *     get:
  *       tags:
  *       - pokemonMeanData
+ *       security:
+ *         - Authorization: []
  *       summary: 속성 별 또는 전체 평균 데이터
  *       description: 속성 별 또는 전체 평균 데이터를 가져오는 API
  *       parameters:
