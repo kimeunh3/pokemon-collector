@@ -148,6 +148,44 @@ achievementsRouter.get('/userAchievementList', async (req, res, next) => {
   }
 });
 
+/**
+ * @swagger
+ * /addAchievements:
+ *  get:
+ *    summary: 새로운 업적을 생성
+ *    description: >
+ *      새로운 업적을 생성해 업적 db에 추가 및 유저 db업적 필드에 적용<br>
+ *      ( ⭐**주의**⭐ 모든 업적 db와 모든 유저 db를 수정하게 되니 매우 신중하게 사용하고 테스트는 하지 말 것)
+ *    tags: [achievements]
+ *    security:
+ *      - Authorization: []
+ *    requestBody:
+ *      description: 업적의 정보를 입력
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            properties:
+ *              id:
+ *                type: number
+ *              name:
+ *                type: string
+ *              description:
+ *                type: string
+ *              condition:
+ *                type: array
+ *                items:
+ *                  type: number
+ *          example:
+ *            - id: 22
+ *              name: 이브이 컬렉터
+ *              discription: 이브이와 이브이의 3가지 진화형을 다 모았다!
+ *              condition: [133, 134, 135, 136]
+ *    responses:
+ *      '200':
+ *        description: 업적 db에 새로운 업적 추가, 유저 업적 목록에 새로운 업적의 id와 달성도 추가 완료
+ */
 achievementsRouter.post('/addAchievements', async (req, res, next) => {
   try {
     const newAchievements = req.body;
