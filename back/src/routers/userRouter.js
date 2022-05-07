@@ -12,6 +12,32 @@ const userAuthRouter = Router();
  *     post:
  *       requestBody:
  *         required: true
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 nickname:
+ *                   type: string
+ *                   example: 포켓몬 트레이너
+ *                 email:
+ *                   type: string
+ *                   example: a@naver.com
+ *                 password:
+ *                   type: string
+ *                   example: 1234
+ *                 sex:
+ *                   type: string
+ *                   example: Male
+ *                 birth:
+ *                   type: string
+ *                   example: 1990-12-03
+ *                 interest:
+ *                   type: number
+ *                   example: 3
+ *                 likeType:
+ *                   type: string
+ *                   example: 격투
  *       tags:
  *       - user
  *       summary: 회원가입
@@ -21,32 +47,6 @@ const userAuthRouter = Router();
  *           description: 회원가입 성공
  *         '400':
  *           description: Content-Type application/json으로 설정X
- *           content:
- *             application/json:
- *               schema:
- *                 type: object
- *                 properties:
- *                   nickname:
- *                     type: string
- *                     example: 포켓몬 트레이너
- *                   email:
- *                     type: string
- *                     example: a@naver.com
- *                   password:
- *                     type: string
- *                     example: 1234
- *                   sex:
- *                     type: string
- *                     example: Male
- *                   birth:
- *                     type: string
- *                     example: 1990-12-03
- *                   interest:
- *                     type: number
- *                     example: 3
- *                   likeType:
- *                     type: string
- *                     example: 격투
  */
 
 userAuthRouter.post('/user/register', async function (req, res, next) {
@@ -87,6 +87,17 @@ userAuthRouter.post('/user/register', async function (req, res, next) {
  *     post:
  *       requestBody:
  *         required: true
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 email:
+ *                   type: string
+ *                   example: a@naver.com
+ *                 password:
+ *                   type: string
+ *                   example: 1234
  *       tags:
  *       - user
  *       summary: 로그인
@@ -96,17 +107,6 @@ userAuthRouter.post('/user/register', async function (req, res, next) {
  *           description: 로그인 성공
  *         '400':
  *           description: 가입 내역이 없는 이메일이므로 로그인 실패
- *           content:
- *             application/json:
- *               schema:
- *                 type: object
- *                 properties:
- *                   email:
- *                     type: string
- *                     example: a@naver.com
- *                   password:
- *                     type: string
- *                     example: 1234
  */
 
 userAuthRouter.post('/user/login', async function (req, res, next) {
@@ -280,7 +280,24 @@ userAuthRouter.put(
  *       tags:
  *       - user
  *       requestBody:
- *         required: true
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               nickname:
+ *                 type: string
+ *                 example: 태초마을 관장
+ *               likeType:
+ *                 type: string
+ *                 example: 불꽃
+ *               profileImg:
+ *                 type: string
+ *                 example: 117.png
+ *               interest:
+ *                 type: number
+ *                 example: 5
  *       summary: 유저의 프로필 변경
  *       description: 유저의 프로필 변경 API
  *       security:
@@ -288,23 +305,6 @@ userAuthRouter.put(
  *       responses:
  *         '200':
  *           description: 유저 프로필 변경 성공
- *           content:
- *             application/json:
- *               schema:
- *                 type: object
- *                 properties:
- *                   nickname:
- *                     type: string
- *                     example: 태초마을 관장
- *                   likeType:
- *                     type: string
- *                     example: 불꽃
- *                   profileImg:
- *                     type: string
- *                     example: 117.png
- *                   interest:
- *                     type: number
- *                     example: 5
  */
 userAuthRouter.put(
   '/user/profileModify',
@@ -341,6 +341,15 @@ userAuthRouter.put(
  *     post:
  *       requestBody:
  *         required: true
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 password:
+ *                   type: string
+ *                   example: 1234
+ *
  *       tags:
  *       - user
  *       summary: 비밀번호 변경
@@ -352,14 +361,6 @@ userAuthRouter.put(
  *           description: 비밀번호 변경 성공
  *         '400':
  *           description: 변경할 패스워드 입력 X
- *           content:
- *             application/json:
- *               schema:
- *                 type: object
- *                 properties:
- *                   password:
- *                     type: string
- *                     example: 12345
  */
 userAuthRouter.post(
   '/user/changePassword',
