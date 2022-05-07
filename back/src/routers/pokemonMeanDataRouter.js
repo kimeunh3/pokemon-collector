@@ -99,6 +99,8 @@ pokemonMeanDataAuthRouter.get(
  *     get:
  *       tags:
  *       - pokemonMeanData
+ *       security:
+ *         - Authorization: []
  *       summary: 속성 별, 전체 평균 데이터
  *       description: 속성 별, 전체 평균 데이터를 모두 가져오는 API
  *       responses:
