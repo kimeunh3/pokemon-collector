@@ -108,20 +108,15 @@ class userAuthService {
       return { errorMessage };
     }
 
-    // if (toUpdate.nickname === user.nickname) {
-    //   const errorMessage =
-    //     '이 닉네임은 현재 사용중입니다. 다른 닉네임을 입력해주세요.';
-    //   return { errorMessage };
-    // }
-    if (user) {
-      const errorMessage =
-        '이 닉네임은 현재 사용중입니다. 다른 닉네임을 입력해주세요.';
-      return { errorMessage };
-    }
-
     if (toUpdate.nickname !== user.nickname) {
       const fieldToUpdate = 'nickname';
       const newValue = toUpdate.nickname;
+      const overlapNickname = await User.findByNickname({ nickname: newValue });
+      if (overlapNickname) {
+        const errorMessage =
+          '이 닉네임은 현재 사용중입니다. 다른 닉네임을 입력해주세요.';
+        return { errorMessage };
+      }
       user = await User.update({ userId, fieldToUpdate, newValue });
     }
 
