@@ -23,7 +23,6 @@ function GridCards({ bread, breadImg }) {
 		} else {
 			alert(response);
 		}
-		console.log(response);
 	};
 
 	const breadImgSrc = `${process.env.REACT_APP_CLOUDFRONT_URL}front/bread/${breadImg}.png`;
