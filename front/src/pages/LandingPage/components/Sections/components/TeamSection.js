@@ -49,7 +49,7 @@ function TeamSection() {
 				<Grid container spacing={3}>
 					{teamObj &&
 						teamObj.map((v) => (
-							<Grid item xs={4} md={4} sx={{ margin: 'auto' }}>
+							<Grid item xs={4} md={4} sx={{ margin: 'auto' }} key={v.name}>
 								<React.Fragment key='v.name'>
 									<TeamCard v={v} />
 								</React.Fragment>

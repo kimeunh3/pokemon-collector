@@ -30,8 +30,7 @@ function InfoSection() {
 							}}
 						>
 							<Typography variant='h3' sx={{ fontWeight: 'bold' }}>
-								포켓몬 스티커를 <br />
-								모아보세요!
+								포켓몬 스티커를 모아보세요!
 							</Typography>
 							<Typography variant='body1' sx={{ marginTop: '30px' }}>
 								포인트로 빵을 구매하고 포켓몬 스티커를 모아보세요! <br />
@@ -41,7 +40,12 @@ function InfoSection() {
 								<Grid
 									container
 									spacing={0.7}
-									sx={{ marginTop: '30px', marginBottom: '30px' }}
+									sx={{
+										marginTop: '30px',
+										marginBottom: '30px',
+										display: 'flex',
+										justifyContent: 'center',
+									}}
 								>
 									<Grid item xs={3} md={3}>
 										<CardMedia component='img' image='attendance.png' />
