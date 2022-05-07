@@ -42,16 +42,28 @@ class achievementsService {
     return DetailedUserAchievList;
   }
 
-  // 달성도 순으로 오름차순 정렬
+  // 달성도 100인 업적은 뒤로 빼고 나머지는 id순으로 정렬
   static async getSortedUserAchievements({ userId }) {
-    const userAchievementsSortedList =
-      await User.findAchievementsSortedListById({
-        userId,
-      });
-    if (!userAchievementsSortedList) {
+    const userAchievementsList = await User.findAchievementsListById({
+      userId,
+    });
+    if (!userAchievementsList) {
       const errorMessage = '유저의 업적 정보를 가져오지 못했습니다.';
       return { errorMessage };
     }
+
+    let yet = []; // 아직 달성 못한 업적
+    let end = []; // 달성한 업적
+    // 달성도 100인 업적 거르기
+    userAchievementsList.forEach((userAchievements) => {
+      if (userAchievements.status == 100) {
+        end.push(userAchievements);
+      } else {
+        yet.push(userAchievements);
+      }
+    });
+    const userAchievementsSortedList = yet.concat(end);
+
     const achievementsList = await Achievements.findAll();
     if (!achievementsList) {
       const errorMessage = '전체 업적 정보를 가져오지 못했습니다.';
@@ -111,6 +123,13 @@ class achievementsService {
       }
     });
     return succeeded;
+  }
+
+  static async uploadAchievements(newAchievements) {
+    const updatedAchievements = await Achievements.create({ newAchievements });
+    await User.addAchivements({ id: newAchievements.id });
+
+    return updatedAchievements;
   }
 }
 

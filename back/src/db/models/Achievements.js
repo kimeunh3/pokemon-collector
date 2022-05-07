@@ -9,6 +9,13 @@ class Achievements {
     const achievements = await AchievementsModel.find({ type });
     return achievements;
   }
+
+  static async create({ newAchievements }) {
+    const createdNewAchievements = await AchievementsModel.create(
+      newAchievements
+    );
+    return createdNewAchievements;
+  }
 }
 
 export { Achievements };
