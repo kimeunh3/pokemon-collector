@@ -37,7 +37,7 @@ function PokemonDetailPage() {
 	const typeTwoColor = IconObj[typeTwo] ? IconObj[typeTwo].Color.color : '';
 
 	return (
-		<Container sx={{ marginTop: '165px', width: '100%' }}>
+		<Container sx={{ marginTop: '25vh', width: '100%' }}>
 			<Grid container spacing={2}>
 				<Grid item xs={6} md={6}>
 					{pokemon && (
