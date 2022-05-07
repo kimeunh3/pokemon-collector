@@ -19,7 +19,6 @@ class userAuthService {
         '이 이메일은 현재 사용중입니다. 다른 이메일을 입력해 주세요.';
       return { errorMessage };
     }
-    // user = await User.findByNickname({ nickname });
     if (user === user.nickname) {
       const errorMessage =
         '이 닉네임은 현재 사용중입니다. 다른 닉네임을 입력해주세요.';
