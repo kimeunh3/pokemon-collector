@@ -65,6 +65,8 @@ pokemonSteelDataAuthRouter.use(loginRequired);
  *       - pokemonTypeData
  *       summary: scaling 된 속성 별 모든 포켓몬 데이터
  *       description: MinMaxScaling한 속성 별 모든 포켓몬 데이터를 모두 가져오는 API
+ *       security:
+ *         - Authorization: []
  *       parameters:
  *        - in: path
  *          name: type
@@ -169,6 +171,8 @@ pokemonGrassDataAuthRouter.get(
  *       - pokemonTypeData
  *       summary: scaling 된 속성 별 모든 포켓몬의 총 능력치 데이터
  *       description: MinMaxScaling한 속성 별 모든 포켓몬의 총 능력치 데이터를 모두 가져오는 API
+ *       security:
+ *         - Authorization: []
  *       parameters:
  *        - in: path
  *          name: type
