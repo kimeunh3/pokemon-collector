@@ -10,19 +10,18 @@ import * as Api from '../../../../api';
 
 import BreadOpenModal from '../BreadOpenModal/BreadOpenModal';
 
-function GridCards({ bread, breadImg, setPoint }) {
+function GridCards({ bread, breadImg }) {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [drawnPokemon, setDrawnPokemon] = useState(null);
 
 	const handleClick = async () => {
-		try {
-			const response = await Api.get('drawPokemon');
+		const response = await Api.get('drawPokemon');
+
+		if (response.data) {
 			setIsModalOpen(true);
-			setPoint(response.userPoint);
 			setDrawnPokemon(response.data);
-		} catch (err) {
-			// alert(err.message);
-			console.err(err);
+		} else {
+			alert(response);
 		}
 	};
 
