@@ -21,8 +21,9 @@ function GridCards({ bread, breadImg, setPoint }) {
 			setPoint(response.userPoint);
 			setDrawnPokemon(response.data);
 		} catch (err) {
-			alert(err.message);
-			console.log(err);
+			// alert(err.message);
+			console.err(err);
+			console.log(11);
 		}
 	};
 

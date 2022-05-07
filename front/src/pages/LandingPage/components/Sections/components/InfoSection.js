@@ -12,7 +12,7 @@ function InfoSection() {
 				backgroundColor: '#FFFFFF',
 			}}
 		>
-			<Box sx={{ marginTop: '50px' }}>
+			<Box sx={{ marginTop: '10vh' }}>
 				<Grid container spacing={3}>
 					<Grid item xs={5} md={5}>
 						<Card sx={{ width: 380, margin: 'auto' }}>
