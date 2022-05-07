@@ -23,7 +23,6 @@ function GridCards({ bread, breadImg, setPoint }) {
 		} catch (err) {
 			// alert(err.message);
 			console.err(err);
-			console.log(11);
 		}
 	};
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Card, Grid, CardMedia, Typography } from '@mui/material';
 
-import ImgSrc from '../../../../../core/constants/ImgSrc';
+import ImgSrc, { homeURL } from '../../../../../core/constants/ImgSrc';
 
 function InfoSection() {
 	return (
@@ -48,15 +48,15 @@ function InfoSection() {
 									}}
 								>
 									<Grid item xs={3} md={3}>
-										<CardMedia component='img' image='attendance.png' />
+										<CardMedia component='img' image={`${homeURL}attendance.png`} />
 									</Grid>
 
 									<Grid item xs={3} md={3} sx={{ marginLeft: '10px' }}>
-										<CardMedia component='img' image='quiz.png' />
+										<CardMedia component='img' image={`${homeURL}quiz.png`} />
 									</Grid>
 
 									<Grid item xs={3} md={3} sx={{ marginLeft: '10px' }}>
-										<CardMedia component='img' image='pikachu.png' />
+										<CardMedia component='img' image={`${homeURL}pikachu.png`} />
 									</Grid>
 								</Grid>
 							</Box>
