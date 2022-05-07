@@ -5,7 +5,9 @@ import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
-function QuizEntry({ setIsEntry, setIsQuizEx1 }) {
+import ImgSrc from '../../../core/constants/ImgSrc';
+
+function QuizEntry({ setStage }) {
   return (
     <Box
       className='QuizEntry'
@@ -24,7 +26,7 @@ function QuizEntry({ setIsEntry, setIsQuizEx1 }) {
       >
         <CardMedia
           component='img'
-          image='/images/QuizPageImg.gif'
+          image={ImgSrc.QuizPageGif}
           alt='퀴즈입장이미지'
         />
       </Card>
@@ -33,8 +35,7 @@ function QuizEntry({ setIsEntry, setIsQuizEx1 }) {
         variant='contained'
         color='error'
         onClick={() => {
-          setIsEntry(false);
-          setIsQuizEx1(true);
+          setStage('quizEx1');
         }}
         sx={{
           position: 'absolute',

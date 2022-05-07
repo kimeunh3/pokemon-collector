@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { CatchingPokemon } from '@mui/icons-material';
 import GridCards from './components/BreadGridCard/BreadGridCards';
+import RankingButton from '../../components/commons/RankingButton';
 
 import * as Api from '../../api';
 
@@ -29,7 +30,7 @@ function BreadPage() {
 	];
 
 	return (
-		<Container fixed sx={{ marginTop: '135px' }}>
+		<Container fixed sx={{ marginTop: '25vh' }}>
 			<Typography
 				component='h6'
 				variant='h6'
@@ -49,6 +50,7 @@ function BreadPage() {
 					</React.Fragment>
 				))}
 			</Grid>
+			<RankingButton />
 		</Container>
 	);
 }

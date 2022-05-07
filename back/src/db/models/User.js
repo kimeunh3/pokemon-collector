@@ -11,6 +11,11 @@ class User {
     return user;
   }
 
+  static async findByNickname({ nickname }) {
+    const user = await UserModel.findOne({ nickname });
+    return user;
+  }
+
   static async findById({ userId }) {
     const user = await UserModel.findOne({ id: userId });
     return user;
@@ -39,9 +44,18 @@ class User {
   static async findAchievementsListById({ userId }) {
     const { achievements } = await UserModel.findOne(
       { id: userId },
-      { _id: 0, achievements: 1 }
+      { _id: 0 }
     );
     return achievements;
+  }
+
+  static async findAchievementsSortedListById({ userId }) {
+    const { achievements } = await UserModel.findOne(
+      { id: userId },
+      { _id: 0 }
+    );
+    const sortedAchievements = achievements.sort((a, b) => a.status - b.status);
+    return sortedAchievements;
   }
 
   static async findAchievementsIdListById({ userId }) {
@@ -68,12 +82,25 @@ class User {
   }
 
   static async findRankPointRanking({ count }) {
-    const rankingList = await UserModel.find(
-      {},
-      { achievements: 0, stickers: 0 }
-    )
-      .sort({ rankPoint: -1 })
-      .limit(count);
+    const rankingList = await UserModel.aggregate([
+      {
+        $project: {
+          id: 1,
+          email: 1,
+          nickname: 1,
+          profileImg: 1,
+          rankPoint: 1,
+          likeType: 1,
+          stickers: 1,
+        },
+      },
+      {
+        $sort: { rankPoint: -1 },
+      },
+      {
+        $limit: Number(count),
+      },
+    ]);
     return rankingList;
   }
 
@@ -84,21 +111,17 @@ class User {
           id: 1,
           email: 1,
           nickname: 1,
-          sex: 1,
-          age: 1,
-          interest: 1,
-          likeType: 1,
-          point: 1,
           profileImg: 1,
-          rankPoint: 1,
+          likeType: 1,
           stickersCount: { $size: '$stickers' },
+          stickers: 1,
         },
       },
       {
         $sort: { stickersCount: -1 },
       },
       {
-        $limit: count,
+        $limit: Number(count),
       },
     ]);
     return rankingList;
@@ -175,6 +198,27 @@ class User {
       { new: true }
     );
     return quizChance;
+  }
+
+  static async changePassword({ userId, password }) {
+    const filter = { id: userId };
+    const update = { password: password };
+    const option = { returnOriginal: false };
+
+    const updatedUser = await UserModel.findOneAndUpdate(
+      filter,
+      update,
+      option
+    );
+    return updatedUser;
+  }
+
+  static async addAchivements({ id }) {
+    return await UserModel.updateMany(
+      {},
+      { $push: { achievements: { id, status: 0 } } },
+      { new: true }
+    );
   }
 }
 

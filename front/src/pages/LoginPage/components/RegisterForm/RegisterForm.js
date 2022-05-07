@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import dayjs from 'dayjs';
 import {
 	Box,
 	Button,
@@ -34,6 +33,7 @@ function RegisterPage({ setLogin }) {
 		sex: 'male',
 		interest: 3,
 		likeType: '',
+		birth: '',
 	});
 	const types = [
 		'노말',
@@ -80,21 +80,18 @@ function RegisterPage({ setLogin }) {
 
 		setInputs({
 			...inputs,
-			birth: new Date(dayjs(birth).format('YYYY-MM-DD')),
+			birth: Date(birth),
 		});
 
-		try {
-			// "user/register" 엔드포인트로 post요청함.
-			await Api.post('user/register', inputs);
-
+		// "user/register" 엔드포인트로 post요청함.
+		const res = await Api.post('user/register', inputs);
+		if (res.status === 200) {
 			// 로그인 페이지로 이동함.
 			setLogin(true);
-		} catch (err) {
-			console.log('회원가입에 실패하였습니다.', err);
+		} else {
+			alert(res);
 		}
 	};
-
-	console.log(inputs);
 
 	return (
 		<Box
@@ -165,11 +162,7 @@ function RegisterPage({ setLogin }) {
 							sx={{ minWidth: '300px' }}
 						>
 							<FormControlLabel value='male' control={<Radio />} label='남성' />
-							<FormControlLabel
-								value='female'
-								control={<Radio />}
-								label='여성'
-							/>
+							<FormControlLabel value='female' control={<Radio />} label='여성' />
 						</RadioGroup>
 					</FormControl>
 				</Grid>
@@ -183,6 +176,10 @@ function RegisterPage({ setLogin }) {
 							mask='____-__-__'
 							onChange={(newValue) => {
 								setBirth(newValue);
+								setInputs({
+									...inputs,
+									birth: Date(birth),
+								});
 							}}
 							// eslint-disable-next-line react/jsx-props-no-spreading
 							renderInput={(params) => <TextField {...params} />}
@@ -214,7 +211,7 @@ function RegisterPage({ setLogin }) {
 							onChange={onChange}
 						>
 							{types.map((type) => (
-								<MenuItem value={type}>
+								<MenuItem key={type} value={type}>
 									<Typography sx={IconObj[type].Color}>
 										{IconObj[type].Icon} {type}
 									</Typography>

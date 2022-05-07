@@ -9,7 +9,7 @@ function StatisticsButton({ imgSrc, text, bColor, kind, type, stats }) {
 
   const styles = {
     paperContainer: {
-      backgroundImage: `url(https://d31z0g5vo6ghmg.cloudfront.net/${imgSrc}.png)`,
+      backgroundImage: `url(${process.env.REACT_APP_CLOUDFRONT_URL}${imgSrc}.png)`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backgroundBlendMode: 'multiply',
@@ -30,8 +30,8 @@ function StatisticsButton({ imgSrc, text, bColor, kind, type, stats }) {
       style={styles.paperContainer}
       onClick={() =>
         kind === 'type'
-          ? navigate(`/StatisticsPage/TypeStatisticsPage/${type}`)
-          : navigate(`/StatisticsPage/StatsStatisticsPage/${stats}`)
+          ? navigate(`/statisticsPage/typeStatisticsPage/${type}`)
+          : navigate(`/statisticsPage/statsStatisticsPage/${stats}`)
       }
     >
       <div

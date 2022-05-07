@@ -19,14 +19,8 @@ function TypeDrawerComponents({
   type,
   typeColor,
   pokemonInfo,
-  isBarStats,
-  isDoughnutType,
-  isBarWeightHeight,
-  isBarTotal,
-  setIsBarStats,
-  setIsDoughnutType,
-  setIsBarWeightHeight,
-  setIsBarTotal,
+  select,
+  setSelect,
 }) {
   const drawerWidth = '24vw';
   const theme = useTheme();
@@ -51,7 +45,7 @@ function TypeDrawerComponents({
       style={{ zIndex: '1200' }}
     >
       <DrawerHeader>
-        <IconButton onClick={() => navigate('/StatisticsPage')}>
+        <IconButton onClick={() => navigate('/statisticsPage')}>
           {theme.direction === 'rtl' ? (
             <span className='material-symbols-outlined'>menu</span>
           ) : (
@@ -67,48 +61,8 @@ function TypeDrawerComponents({
             &nbsp;{type} 속성 통계
           </div>
         </ListItem>
-        <ListItem style={isBarStats ? { backgroundColor: typeColor } : {}}>
-          <span
-            className='material-symbols-outlined'
-            style={{ fontSize: '18px' }}
-          >
-            arrow_right
-          </span>
-          <Button
-            color='inherit'
-            style={{ fontSize: '12px' }}
-            onClick={() => {
-              setIsBarStats(true);
-              setIsDoughnutType(false);
-              setIsBarWeightHeight(false);
-              setIsBarTotal(false);
-            }}
-          >
-            능력치 통계
-          </Button>
-        </ListItem>
-        <ListItem style={isDoughnutType ? { backgroundColor: typeColor } : {}}>
-          <span
-            className='material-symbols-outlined'
-            style={{ fontSize: '18px' }}
-          >
-            arrow_right
-          </span>
-          <Button
-            color='inherit'
-            style={{ fontSize: '12px' }}
-            onClick={() => {
-              setIsBarStats(false);
-              setIsDoughnutType(true);
-              setIsBarWeightHeight(false);
-              setIsBarTotal(false);
-            }}
-          >
-            속성 통계
-          </Button>
-        </ListItem>
         <ListItem
-          style={isBarWeightHeight ? { backgroundColor: typeColor } : {}}
+          style={select === 'barStats' ? { backgroundColor: typeColor } : {}}
         >
           <span
             className='material-symbols-outlined'
@@ -120,16 +74,17 @@ function TypeDrawerComponents({
             color='inherit'
             style={{ fontSize: '12px' }}
             onClick={() => {
-              setIsBarStats(false);
-              setIsDoughnutType(false);
-              setIsBarWeightHeight(true);
-              setIsBarTotal(false);
+              setSelect('barStats');
             }}
           >
-            키/몸무게 통계
+            능력치 통계
           </Button>
         </ListItem>
-        <ListItem style={isBarTotal ? { backgroundColor: typeColor } : {}}>
+        <ListItem
+          style={
+            select === 'doughnutType' ? { backgroundColor: typeColor } : {}
+          }
+        >
           <span
             className='material-symbols-outlined'
             style={{ fontSize: '18px' }}
@@ -140,10 +95,47 @@ function TypeDrawerComponents({
             color='inherit'
             style={{ fontSize: '12px' }}
             onClick={() => {
-              setIsBarStats(false);
-              setIsDoughnutType(false);
-              setIsBarWeightHeight(false);
-              setIsBarTotal(true);
+              setSelect('doughnutType');
+            }}
+          >
+            속성 통계
+          </Button>
+        </ListItem>
+        <ListItem
+          style={
+            select === 'barWeightHeight' ? { backgroundColor: typeColor } : {}
+          }
+        >
+          <span
+            className='material-symbols-outlined'
+            style={{ fontSize: '18px' }}
+          >
+            arrow_right
+          </span>
+          <Button
+            color='inherit'
+            style={{ fontSize: '12px' }}
+            onClick={() => {
+              setSelect('barWeightHeight');
+            }}
+          >
+            키/몸무게 통계
+          </Button>
+        </ListItem>
+        <ListItem
+          style={select === 'barTotal' ? { backgroundColor: typeColor } : {}}
+        >
+          <span
+            className='material-symbols-outlined'
+            style={{ fontSize: '18px' }}
+          >
+            arrow_right
+          </span>
+          <Button
+            color='inherit'
+            style={{ fontSize: '12px' }}
+            onClick={() => {
+              setSelect('barTotal');
             }}
           >
             종합 능력치 통계
@@ -155,10 +147,10 @@ function TypeDrawerComponents({
         style={{ width: '20vw', marginLeft: '2vw', marginTop: '5vh' }}
       >
         <CardContent>
-          <Typography gutterBottom variant='h6' component='div'>
+          <Typography gutterBottom variant='h5' component='div'>
             {type} 속성 개요
           </Typography>
-          <Typography variant='body2'>
+          <Typography variant='body1'>
             {type} 포켓몬 수: {pokemonInfo.pokemonCnt}
             <br />
             공격력 평균: {pokemonInfo.attackMean}

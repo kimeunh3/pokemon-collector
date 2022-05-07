@@ -12,14 +12,17 @@ class userAuthService {
     birth,
     interest,
     likeType,
-    point,
-    profileImg,
-    stickers,
   }) {
-    const user = await User.findByEmail({ email });
+    let user = await User.findByEmail({ email });
     if (user) {
       const errorMessage =
         '이 이메일은 현재 사용중입니다. 다른 이메일을 입력해 주세요.';
+      return { errorMessage };
+    }
+    user = await User.findByNickname({ nickname });
+    if (user) {
+      const errorMessage =
+        '이 닉네임은 현재 사용중입니다. 다른 닉네임을 입력해주세요.';
       return { errorMessage };
     }
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -34,9 +37,6 @@ class userAuthService {
       birth,
       interest,
       likeType,
-      point,
-      profileImg,
-      stickers,
     };
 
     const createdNewUser = await User.create({ newUser });
@@ -100,16 +100,17 @@ class userAuthService {
     return loginUser;
   }
 
-  static async getUsers() {
-    const users = await User.findAll();
-    return users;
-  }
-
   static async setUser({ userId, toUpdate }) {
     let user = await User.findById({ userId });
 
     if (!user) {
       const errorMessage = '가입 내역이 없습니다. 다시 한 번 확인해 주세요.';
+      return { errorMessage };
+    }
+
+    if (toUpdate.nickname === user.nickname) {
+      const errorMessage =
+        '이 닉네임은 현재 사용중입니다. 다른 닉네임을 입력해주세요.';
       return { errorMessage };
     }
 
@@ -161,6 +162,12 @@ class userAuthService {
       user = await User.update({ userId, fieldToUpdate, newValue });
     }
 
+    if (toUpdate.profileImg) {
+      const fieldToUpdate = 'profileImg';
+      const newValue = toUpdate.profileImg;
+      user = await User.update({ userId, fieldToUpdate, newValue });
+    }
+
     return user;
   }
 
@@ -174,6 +181,27 @@ class userAuthService {
     }
 
     return user;
+  }
+
+  static async changePassword({ userId, password }) {
+    const user = await User.findById({ userId });
+
+    if (!user) {
+      const errorMessage =
+        '해당 이메일은 가입 내역이 없습니다. 비밀번호 변경에 실패했습니다.';
+      return { errorMessage };
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const createdNewUser = await User.changePassword({
+      userId,
+      password: hashedPassword,
+    });
+
+    createdNewUser.errorMessage = null;
+
+    return createdNewUser;
   }
 }
 

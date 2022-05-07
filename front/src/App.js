@@ -18,6 +18,7 @@ import QuizPage from './pages/QuizPage/QuizPage';
 
 import { UserStateContext, DispatchContext } from './Context';
 import './App.css';
+import ImgSrc from './core/constants/ImgSrc';
 
 function App() {
 	// useReducer 훅을 통해 userState 상태와 dispatch함수를 생성함.
@@ -57,11 +58,7 @@ function App() {
 	if (!isFetchCompleted) {
 		return (
 			<div id='loading'>
-				<img
-					id='loading-image'
-					src='https://d31z0g5vo6ghmg.cloudfront.net/front/loading.gif'
-					alt='Loading...'
-				/>
+				<img id='loading-image' src={ImgSrc.loadingGif} alt='Loading...' />
 			</div>
 		);
 	}
@@ -72,23 +69,22 @@ function App() {
 				<Router>
 					<NavBar />
 					<Routes>
-						<Route path='/home' element={<LandingPage />} />
+						<Route path='/' exact element={<LandingPage />} />
 						<Route path='/login' element={<LoginPage />} />
+						<Route path='/bread' element={<BreadPage userState={userState} />} />
+						<Route path='/pokemonDetail/:pokemonId' element={<PokemonDetailPage />} />
+						<Route path='/illustratedBook' element={<IllustratedBookPage />} />
+						<Route path='/statisticsPage' element={<StatisticsPage />} />
 						<Route
-							path='/bread'
-							element={<BreadPage userState={userState} />}
+							path='/statisticsPage/typeStatisticsPage/:type'
+							element={<TypeStatisticsPage />}
 						/>
 						<Route
-							path='/pokemonDetail/:pokemonId'
-							element={<PokemonDetailPage />}
+							path='/statisticsPage/statsStatisticsPage/:stats'
+							element={<StatsStatisticsPage />}
 						/>
-						<Route path='/IllustratedBook' element={<IllustratedBookPage />} />
-						<Route path='/StatisticsPage' element={<StatisticsPage />} />
-						<Route path='/StatisticsPage/TypeStatisticsPage/:type' element={<TypeStatisticsPage />} />
-						<Route path='/StatisticsPage/StatsStatisticsPage/:stats' element={<StatsStatisticsPage />} />
-						<Route path='/MyPage' element={<MyPage userState={userState} />} />
-						<Route path='/QuizPage' element={<QuizPage />} />
-						<Route path='/MyPage' element={<MyPage />} />;
+						<Route path='/myPage' element={<MyPage userState={userState} />} />
+						<Route path='/quizPage' element={<QuizPage />} />
 					</Routes>
 				</Router>
 			</UserStateContext.Provider>

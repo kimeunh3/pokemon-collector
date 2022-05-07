@@ -26,9 +26,8 @@ function AttendanceSuccModal({
 	};
 
 	const handleGetPoint = async () => {
-		const res = await Api.put('user/checkIn');
+		await Api.put('user/checkIn');
 		fetchUserInfo();
-		console.log(res);
 		setAttdSuccModalOpen(true);
 	};
 

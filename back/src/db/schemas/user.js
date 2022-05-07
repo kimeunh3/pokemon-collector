@@ -1,24 +1,3 @@
-/**
- * @swagger
- *  components:
- *     schemas:
- *        user:
- *          type: object
- *          required:
- *            - id
- *            - email
- *            - password
- *            - nickname
- *            - sex
- *            - birth
- *            - interest
- *            - likeType
- *          properties:
- *             nickname:
- *               type: string
- *
- */
-
 import { Schema, model } from 'mongoose';
 
 const UserSchema = new Schema(
@@ -62,16 +41,20 @@ const UserSchema = new Schema(
     },
     profileImg: {
       type: String,
-      default: 'pockeball.png',
+      default: 'pokeball.png',
       required: false,
     },
-    stickers: [
-      {
-        id: Number,
-        name: String,
-        count: Number,
-      },
-    ],
+    stickers: {
+      type: [
+        {
+          id: Number,
+          name: String,
+          count: Number,
+        },
+      ],
+      default: [],
+      required: false,
+    },
     attendance: {
       type: Date,
       required: false,
@@ -84,7 +67,7 @@ const UserSchema = new Schema(
     },
     quizChance: {
       type: Number,
-      required: true,
+      required: false,
       default: 3,
     },
     rankPoint: {
@@ -97,7 +80,7 @@ const UserSchema = new Schema(
       default: [
         {
           id: 1,
-          status: 0,
+          status: 100,
         },
         {
           id: 2,
@@ -171,8 +154,17 @@ const UserSchema = new Schema(
           id: 19,
           status: 0,
         },
+        {
+          id: 20,
+          status: 0,
+        },
+        {
+          id: 21,
+          status: 0,
+        },
       ],
     },
+    required: false,
   },
   {
     timestamps: true,

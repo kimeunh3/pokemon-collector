@@ -19,16 +19,8 @@ function StatsDrawerComponents({
   stats,
   statsColor,
   statsInfo,
-  isBarStats,
-  isBarTypeTop5,
-  isBarTypeLow5,
-  isBarPokemonTop15,
-  isBarPokemonLow15,
-  setIsBarStats,
-  setIsBarTypeTop5,
-  setIsBarTypeLow5,
-  setIsBarPokemonTop15,
-  setIsBarPokemonLow15,
+  select,
+  setSelect,
 }) {
   const drawerWidth = '24vw';
   const theme = useTheme();
@@ -69,7 +61,11 @@ function StatsDrawerComponents({
             &nbsp;{stats} 통계
           </div>
         </ListItem>
-        <ListItem style={isBarStats ? { backgroundColor: statsColor } : {}}>
+        <ListItem
+          style={
+            select === 'barTypeStats' ? { backgroundColor: statsColor } : {}
+          }
+        >
           <span
             className='material-symbols-outlined'
             style={{ fontSize: '18px' }}
@@ -80,17 +76,17 @@ function StatsDrawerComponents({
             color='inherit'
             style={{ fontSize: '12px' }}
             onClick={() => {
-              setIsBarStats(true);
-              setIsBarTypeTop5(false);
-              setIsBarTypeLow5(false);
-              setIsBarPokemonTop15(false);
-              setIsBarPokemonLow15(false);
+              setSelect('barTypeStats');
             }}
           >
             속성별 통계
           </Button>
         </ListItem>
-        <ListItem style={isBarTypeTop5 ? { backgroundColor: statsColor } : {}}>
+        <ListItem
+          style={
+            select === 'barTypeTop5' ? { backgroundColor: statsColor } : {}
+          }
+        >
           <span
             className='material-symbols-outlined'
             style={{ fontSize: '18px' }}
@@ -101,17 +97,17 @@ function StatsDrawerComponents({
             color='inherit'
             style={{ fontSize: '12px' }}
             onClick={() => {
-              setIsBarStats(false);
-              setIsBarTypeTop5(true);
-              setIsBarTypeLow5(false);
-              setIsBarPokemonTop15(false);
-              setIsBarPokemonLow15(false);
+              setSelect('barTypeTop5');
             }}
           >
             속성 순위 (상위 30%)
           </Button>
         </ListItem>
-        <ListItem style={isBarTypeLow5 ? { backgroundColor: statsColor } : {}}>
+        <ListItem
+          style={
+            select === 'barTypeLow5' ? { backgroundColor: statsColor } : {}
+          }
+        >
           <span
             className='material-symbols-outlined'
             style={{ fontSize: '18px' }}
@@ -122,18 +118,16 @@ function StatsDrawerComponents({
             color='inherit'
             style={{ fontSize: '12px' }}
             onClick={() => {
-              setIsBarStats(false);
-              setIsBarTypeTop5(false);
-              setIsBarTypeLow5(true);
-              setIsBarPokemonTop15(false);
-              setIsBarPokemonLow15(false);
+              setSelect('barTypeLow5');
             }}
           >
             속성 순위 (하위 30%)
           </Button>
         </ListItem>
         <ListItem
-          style={isBarPokemonTop15 ? { backgroundColor: statsColor } : {}}
+          style={
+            select === 'barPokemonTop15' ? { backgroundColor: statsColor } : {}
+          }
         >
           <span
             className='material-symbols-outlined'
@@ -145,18 +139,16 @@ function StatsDrawerComponents({
             color='inherit'
             style={{ fontSize: '12px' }}
             onClick={() => {
-              setIsBarStats(false);
-              setIsBarTypeTop5(false);
-              setIsBarTypeLow5(false);
-              setIsBarPokemonTop15(true);
-              setIsBarPokemonLow15(false);
+              setSelect('barPokemonTop15');
             }}
           >
             포켓몬 순위 (상위 10%)
           </Button>
         </ListItem>
         <ListItem
-          style={isBarPokemonLow15 ? { backgroundColor: statsColor } : {}}
+          style={
+            select === 'barPokemonLow15' ? { backgroundColor: statsColor } : {}
+          }
         >
           <span
             className='material-symbols-outlined'
@@ -168,11 +160,7 @@ function StatsDrawerComponents({
             color='inherit'
             style={{ fontSize: '12px' }}
             onClick={() => {
-              setIsBarStats(false);
-              setIsBarTypeTop5(false);
-              setIsBarTypeLow5(false);
-              setIsBarPokemonTop15(false);
-              setIsBarPokemonLow15(true);
+              setSelect('barPokemonLow15');
             }}
           >
             포켓몬 순위 (하위 10%)
@@ -184,10 +172,10 @@ function StatsDrawerComponents({
         style={{ width: '20vw', marginLeft: '2vw', marginTop: '5vh' }}
       >
         <CardContent>
-          <Typography gutterBottom variant='h6' component='div'>
+          <Typography gutterBottom variant='h5' component='div'>
             {stats} 개요
           </Typography>
-          <Typography variant='body2'>
+          <Typography variant='body1'>
             전체 포켓몬 수: 151
             <br />
             전체 속성 수: 17

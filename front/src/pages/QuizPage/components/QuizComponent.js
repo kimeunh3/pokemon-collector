@@ -12,13 +12,12 @@ import {
 } from '@mui/material';
 import { ArrowDropDown, HelpOutlineOutlined } from '@mui/icons-material';
 
-import {
-  QuizText,
-  QuizSelect,
-  QuizAnswerSubmit,
-  QuizYesOrNo,
-} from './QuizItems/QuizItems';
+import QuizText from './QuizItems/QuizText';
+import QuizAnswerSubmit from './QuizItems/QuizAnswerSubmit';
+import QuizSelect from './QuizItems/QuizSelect';
+import QuizYesOrNo from './QuizItems/QuizYesOrNo';
 import './QuizComponent.css';
+import ImgSrc from '../../../core/constants/ImgSrc';
 
 import * as Api from '../../../api';
 
@@ -26,20 +25,12 @@ function QuizComponent({
   pokemonId,
   pokemonName,
   chance,
-  set1,
-  set2,
   text,
-  img = '/images/quizImg1.jpg',
-  isQuiz = false,
-  isQuizIng = false,
-  setIsQuizIng,
-  setIsEntry,
-  setIsQuizStart,
-  setIsCorrect,
-  setIsInCorrect,
-  isContinue,
-  setIsContinue,
+  img = ImgSrc.quizImg1,
   isMobile,
+  stage,
+  nextStage,
+  setStage,
 }) {
   const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [isAnswer, setIsAnswer] = useState(false);
@@ -67,44 +58,45 @@ function QuizComponent({
   };
 
   const checkAnswer = () => {
-    if (pokemonName === useAnswer) {
-      Api.get('succeedQuiz');
-      setIsQuizIng(false);
-      setIsCorrect(true);
+    // 처음에 정답 맞춤 -> 1000포인트
+    if (pokemonName === useAnswer && stage !== 'retry') {
+      Api.get('succeedQuiz/first');
+      setStage('firstCorrect');
+      // 재도전에 정답 맞춤 -> 500포인트
+    } else if (pokemonName === useAnswer) {
+      Api.get('succeedQuiz/second');
+      setStage('correct');
+      // 처음에 틀림 -> 재도전
+    } else if (stage !== 'retry') {
+      setStage('firstIncorrect');
+      // 재도전에 틀림 -> 땡
     } else {
-      setIsQuizIng(false);
-      setIsInCorrect(true);
+      setStage('incorrect');
     }
   };
 
   const onClickYesPass = () => {
-    setIsQuizIng(false);
-    setIsQuizStart(true);
     setIsPass(false);
+    setStage('quizStart');
   };
   const onClickNoPass = () => {
     setIsPass(false);
   };
 
   const onClickYesStop = () => {
-    setIsQuizIng(false);
-    setIsEntry(true);
     setIsStop(false);
+    setStage('entry');
   };
   const onClickNoStop = () => {
     setIsStop(false);
   };
 
   const onClickYesContinue = () => {
-    setIsContinue(false);
-    setIsQuizStart(true);
+    setStage('quizStart');
   };
   const onClickNoContinue = () => {
-    setIsContinue(false);
-    setIsEntry(true);
+    setStage('entry');
   };
-
-  console.log(pokemonName);
 
   return (
     <Card
@@ -132,17 +124,21 @@ function QuizComponent({
           marginLeft: '50%',
           marginTop: '10px',
           transform: 'translateX(-50%)',
+          filter: stage === 'quizIng' ? 'brightness(0%)' : 'none',
         }}
       />
-      {!isQuizIng && <QuizText text={text} />}
-      {isQuizIng && !isAnswer && !isPass && !isStop && (
-        <QuizSelect
-          setIsAnswer={setIsAnswer}
-          setIsHint={setIsHint}
-          setIsPass={setIsPass}
-          setIsStop={setIsStop}
-        />
-      )}
+      {stage !== 'quizIng' && stage !== 'retry' && <QuizText text={text} />}
+      {(stage === 'quizIng' || stage === 'retry') &&
+        !isAnswer &&
+        !isPass &&
+        !isStop && (
+          <QuizSelect
+            setIsAnswer={setIsAnswer}
+            setIsHint={setIsHint}
+            setIsPass={setIsPass}
+            setIsStop={setIsStop}
+          />
+        )}
       {isAnswer && (
         <QuizAnswerSubmit
           setUserAnswer={setUserAnswer}
@@ -158,30 +154,35 @@ function QuizComponent({
       {isStop && (
         <QuizYesOrNo onClickYes={onClickYesStop} onClickNo={onClickNoStop} />
       )}
-      {isContinue && (
+      {stage === 'continue' && (
         <QuizYesOrNo
           onClickYes={onClickYesContinue}
           onClickNo={onClickNoContinue}
         />
       )}
-      {!isQuizIng && !isContinue && !isMobile && (
-        <IconButton
-          onClick={() => {
-            set1(false);
-            set2(true);
-          }}
-          sx={{
-            position: 'absolute',
-            bottom: '20px',
-            right: '20px',
-          }}
-        >
-          <ArrowDropDown style={{ fontSize: '50px', color: 'black' }} />
-        </IconButton>
-      )}
-      {isQuiz && (
+      {stage !== 'quizIng' &&
+        stage !== 'retry' &&
+        stage !== 'continue' &&
+        !isMobile && (
+          <IconButton
+            onClick={() => {
+              setStage(nextStage);
+            }}
+            sx={{
+              position: 'absolute',
+              bottom: '20px',
+              right: '20px',
+            }}
+          >
+            <ArrowDropDown style={{ fontSize: '50px', color: 'black' }} />
+          </IconButton>
+        )}
+      {(stage === 'quizStart' ||
+        stage === 'quizIng' ||
+        stage === 'retry' ||
+        stage === 'continue') && (
         <img
-          src='https://d31z0g5vo6ghmg.cloudfront.net/front/pokeball.ico'
+          src={ImgSrc.pokeballIco}
           alt='남은기회'
           style={{
             position: 'absolute',
@@ -191,7 +192,10 @@ function QuizComponent({
           }}
         />
       )}
-      {isQuiz && (
+      {(stage === 'quizStart' ||
+        stage === 'quizIng' ||
+        stage === 'retry' ||
+        stage === 'continue') && (
         <div
           style={{
             position: 'absolute',
@@ -203,7 +207,10 @@ function QuizComponent({
           X {chance}
         </div>
       )}
-      {isQuiz && (
+      {(stage === 'quizStart' ||
+        stage === 'quizIng' ||
+        stage === 'retry' ||
+        stage === 'continue') && (
         <IconButton
           onClick={() => {
             setIsHelpOpen(true);
@@ -227,7 +234,13 @@ function QuizComponent({
           포켓몬 퀴즈는 포켓몬의 실루엣 이미지를 보고 해당하는 포켓몬의 이름을
           맞추는 게임입니다.
           <br />
-          하루에 총 3번의 기회가 주어지며, 정답을 맞추면 500포인트가 지급됩니다.
+          하루에 총 3번의 기회가 주어지며, 정답을 맞추면 1000포인트가
+          지급됩니다.
+          <br />
+          틀리면 재도전의 기회가 주어지고, 재도전에서는 실루엣 이미지가 아닌
+          원본 이미지를 보여줍니다.
+          <br />
+          재도전에서 정답을 맞출 경우 500포인트가 지급됩니다.
           <br />
           게임을 시작하면 랜덤 포켓몬의 실루엣 이미지가 나타나고
           <br />
@@ -257,7 +270,7 @@ function QuizComponent({
         <DialogContent style={{ textAlign: 'center' }}>
           <img
             alt='오박사'
-            src='/images/quizImg1.jpg'
+            src={ImgSrc.quizImg1}
             style={{ maxWidth: '400px' }}
           />
           <Typography variant='h5'>

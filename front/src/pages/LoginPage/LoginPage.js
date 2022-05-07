@@ -11,6 +11,7 @@ import LoginModal from './components/LoginFailModal/LoginFailModal';
 import { DispatchContext } from '../../Context';
 
 import RegisterForm from './components/RegisterForm/RegisterForm';
+import ImgSrc from '../../core/constants/ImgSrc';
 
 function LoginPage() {
 	const [Login, setLogin] = useState(true);
@@ -63,7 +64,7 @@ function LoginPage() {
 			});
 
 			// 기본 페이지로 이동함.
-			navigate('/home', { replace: true });
+			navigate('/', { replace: true });
 		} catch (err) {
 			setLoginFailModal(true);
 			console.log('로그인에 실패하였습니다.\n', err);
@@ -76,8 +77,7 @@ function LoginPage() {
 			maxWidth='Infinity'
 			sx={{
 				height: '100vh',
-				backgroundImage:
-					'url(https://d31z0g5vo6ghmg.cloudfront.net/front/loginBackground.png)',
+				backgroundImage: `url(${ImgSrc.loginBackgroundImg})`,
 				backgroundPosition: 'center',
 				backgroundSize: '100% 100%',
 				minHeight: '740px',
@@ -100,20 +100,12 @@ function LoginPage() {
 				marginRight={10}
 			>
 				<Container>
-					<img
-						src='https://d31z0g5vo6ghmg.cloudfront.net/front/logo.png'
-						alt='Logo'
-						width='300px'
-						height='100px'
-					/>
+					<img src={ImgSrc.logoImg} alt='Logo' width='300vw' height='90vh' />
 					<Typography component='h4' variant='h4' mt={4} marginLeft={5} mb={4}>
 						환영합니다!
 					</Typography>
 					{Login ? (
-						<Box
-							component='form'
-							sx={{ display: 'flex', flexDirection: 'column' }}
-						>
+						<Box component='form' sx={{ display: 'flex', flexDirection: 'column' }}>
 							<TextField
 								margin='normal'
 								required
@@ -181,10 +173,7 @@ function LoginPage() {
 				</Container>
 			</Box>
 			{loginFailModal && (
-				<LoginModal
-					openModal={loginFailModal}
-					setOpenModal={setLoginFailModal}
-				/>
+				<LoginModal openModal={loginFailModal} setOpenModal={setLoginFailModal} />
 			)}
 		</Container>
 	);

@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import { AppBar, Toolbar, Button, Grid } from '@material-ui/core';
 import StatisticsButton from './components/StatisticsButton';
 import ScrollUpButton from '../../components/commons/ScrollUpButton';
+import WholeStatisticComponent from './components/WholeStatisticComponent';
+import RankingButton from '../../components/commons/RankingButton';
 
 function StatisticsPage() {
-  const [isAll, setIsAll] = useState(true);
-  const [isType, setIsType] = useState(true);
-  const [isStats, setIsStats] = useState(true);
+  const [isType, setIsType] = useState(false);
+  const [isStats, setIsStats] = useState(false);
 
   return (
-    <div style={{ paddingTop: '180px', paddingBottom: '50px' }}>
+    <div style={{ marginTop: '25vh' }}>
+      <WholeStatisticComponent />
       <AppBar
         position='static'
         style={{
@@ -25,24 +27,10 @@ function StatisticsPage() {
             id='menu'
             style={{ textAlign: 'center', alignItems: 'center' }}
           >
-            <Grid item xs={4}>
+            <Grid item xs={6}>
               <Button
                 color='inherit'
                 onClick={() => {
-                  setIsAll(true);
-                  setIsType(true);
-                  setIsStats(true);
-                }}
-                style={{ fontSize: '1.5vw', fontWeight: 'bolder' }}
-              >
-                전체통계
-              </Button>
-            </Grid>
-            <Grid item xs={4}>
-              <Button
-                color='inherit'
-                onClick={() => {
-                  setIsAll(false);
                   setIsType(true);
                   setIsStats(false);
                 }}
@@ -51,11 +39,10 @@ function StatisticsPage() {
                 속성통계
               </Button>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={6}>
               <Button
                 color='inherit'
                 onClick={() => {
-                  setIsAll(false);
                   setIsType(false);
                   setIsStats(true);
                 }}
@@ -76,13 +63,6 @@ function StatisticsPage() {
           margin: '50px 5vw 0 5vw',
         }}
       >
-        {isAll && (
-          <StatisticsButton
-            imgSrc='pokemons/151'
-            text='전체 개요'
-            bColor='white'
-          />
-        )}
         {isType && (
           <>
             <StatisticsButton
@@ -266,6 +246,7 @@ function StatisticsPage() {
         )}
       </div>
       <ScrollUpButton />
+      <RankingButton />
     </div>
   );
 }

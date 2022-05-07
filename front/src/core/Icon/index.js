@@ -26,12 +26,16 @@ import {
 	FileUpload,
 	Download,
 	Mediation,
+	CatchingPokemonRounded,
+	Stars,
+	Diamond,
+	Flare,
 } from '@mui/icons-material';
 
 const IconObj = {
 	노말: {
 		Icon: <Adjust sx={{ color: '#6D6D4E' }} />,
-		Color: '#A8A878',
+		Color: { color: '#A8A878' },
 	},
 	불꽃: {
 		Icon: <LocalFireDepartment sx={{ color: '#F08030' }} />,
@@ -123,6 +127,22 @@ const IconObj = {
 	},
 	종합점수: {
 		Icon: <Mediation sx={{ color: 'rgba(128, 128, 128, 1)' }} />,
+	},
+	포켓볼: {
+		Icon: <CatchingPokemonRounded sx={{ color: '#E02401' }} />,
+		Color: { color: '#E02401' },
+	},
+	스타트: {
+		Icon: <Stars sx={{ color: '#FFE300' }} />,
+		Color: { color: '#FFE300' },
+	},
+	전설: {
+		Icon: <Diamond sx={{ color: '#79DAE8' }} />,
+		Color: { color: '#79DAE8' },
+	},
+	환상: {
+		Icon: <Flare sx={{ color: '#FF8C32' }} />,
+		Color: { color: '#FF8C32' },
 	},
 };
 

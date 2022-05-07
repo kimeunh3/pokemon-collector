@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -6,21 +6,26 @@ import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
-import { useNavigate } from 'react-router-dom';
 import * as Api from '../../../../api';
 
-function GridCards({ bread, breadImg, setPoint }) {
-	const navigate = useNavigate();
+import BreadOpenModal from '../BreadOpenModal/BreadOpenModal';
+
+function GridCards({ bread, breadImg }) {
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [drawnPokemon, setDrawnPokemon] = useState(null);
 
 	const handleClick = async () => {
 		const response = await Api.get('drawPokemon');
 
-		alert(`${response.data.name}`);
-		setPoint(response.userPoint);
-		navigate(`/pokemonDetail/${response.data.id}`);
+		if (response.data) {
+			setIsModalOpen(true);
+			setDrawnPokemon(response.data);
+		} else {
+			alert(response);
+		}
 	};
 
-	const breadImgSrc = `https://d31z0g5vo6ghmg.cloudfront.net/front/bread/${breadImg}.png`;
+	const breadImgSrc = `${process.env.REACT_APP_CLOUDFRONT_URL}front/bread/${breadImg}.png`;
 
 	if (bread) {
 		return (
@@ -49,12 +54,7 @@ function GridCards({ bread, breadImg, setPoint }) {
 							boxShadow: 'none',
 						}}
 					>
-						<CardMedia
-							sx={{}}
-							component='img'
-							image={breadImgSrc}
-							alt={breadImg}
-						/>
+						<CardMedia sx={{}} component='img' image={breadImgSrc} alt={breadImg} />
 					</Card>
 					<Button
 						className='btn'
@@ -71,6 +71,13 @@ function GridCards({ bread, breadImg, setPoint }) {
 						<Typography>빵 구매</Typography>
 					</Button>
 				</Box>
+				{isModalOpen && (
+					<BreadOpenModal
+						isModalOpen={isModalOpen}
+						setIsModalOpen={setIsModalOpen}
+						drawnPokemon={drawnPokemon}
+					/>
+				)}
 			</Grid>
 		);
 	}
