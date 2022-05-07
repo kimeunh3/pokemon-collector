@@ -100,11 +100,6 @@ class userAuthService {
     return loginUser;
   }
 
-  static async getUsers() {
-    const users = await User.findAll();
-    return users;
-  }
-
   static async setUser({ userId, toUpdate, nickname }) {
     let user = await User.findById({ userId });
 

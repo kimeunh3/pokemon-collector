@@ -8,6 +8,17 @@ const options = {
       version: '1.0.0',
       description: 'Pokemon-Collector API 명세서입니다.',
     },
+    components: {
+      securitySchemes: {
+        Authorization: {
+          in: 'header',
+          name: 'Authorization',
+          type: 'apiKey',
+          scheme: 'bearer',
+        },
+      },
+      security: { Authorization: [] },
+    },
     servers: [
       {
         url: 'http://localhost:5000',
