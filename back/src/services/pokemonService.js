@@ -49,8 +49,8 @@ class PokemonAuthService {
 
     // 포인트 확인
     if (!draw.pointCheck(point)) {
-      const message = '포인트 부족';
-      return { status: false, message, userPoint: point };
+      const errorMessage = '포인트 부족, 현재 point : ' + point;
+      return { errorMessage };
     }
     // 확률에 따라 포켓몬 id 반환
     const id = await draw.drawPokemonid();

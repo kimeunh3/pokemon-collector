@@ -10,7 +10,13 @@ function RankingStickers({ id, name }) {
   const imgSrc = `${pokemonURL}/${id}.png`;
   return (
     <Box>
-      <Card style={{ width: '170px', marginRight: '10px' }}>
+      <Card
+        style={{
+          width: '170px',
+          margin: '0 5px 0 5px',
+          justifySelf: 'center',
+        }}
+      >
         <CardMedia style={{ textAlign: 'center' }}>
           <img alt='' src={imgSrc} style={{ width: '150px' }} />
         </CardMedia>

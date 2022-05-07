@@ -71,11 +71,7 @@ userAuthRouter.post('/user/register', async function (req, res, next) {
     });
 
     if (newUser.errorMessage) {
-      // throw new Error(newUser.errorMessage);
-      return res.status(400).json({
-        status: 'error',
-        error: newUser.errorMessage,
-      });
+      throw new Error(newUser.errorMessage);
     }
 
     res.status(200).json(newUser);
@@ -120,10 +116,7 @@ userAuthRouter.post('/user/login', async function (req, res, next) {
     const user = await userAuthService.getUser({ email, password });
 
     if (user.errorMessage) {
-      return res.status(400).json({
-        status: 'error',
-        error: user.errorMessage,
-      });
+      throw new Error(user.errorMessage);
     }
 
     res.status(200).json(user);
@@ -140,11 +133,9 @@ userAuthRouter.post('/user/login', async function (req, res, next) {
  *       tags:
  *       - user
  *       summary: 최근에 로그인한 유저 정보
+ *       security:
+ *         - Authorization: []
  *       description: 최근에 로그인한 User의 정보를 불러오는 API
- *       parameters:
- *         - in: header
- *           name: Authorization
- *           required: true
  *       responses:
  *         '200':
  *           description: 최근에 로그인한 유저 정보 불러옴
@@ -186,6 +177,8 @@ userAuthRouter.get(
  *       - user
  *       summary: 유저의 마지막 로그인 시간으로부터 24시간 경과 확인
  *       description: 유저의 마지막 로그인 시간으로부터 24시간 경과 확인 -> 포인트 지급 여부 업데이트 API
+ *       security:
+ *         - Authorization: []
  *       responses:
  *         '200':
  *           description: 출석체크 시간, 포인트 지급 여부 업데이트
@@ -237,6 +230,8 @@ userAuthRouter.put(
  *       - user
  *       summary: 기존 포인트 + 1000
  *       description: 기존 포인트 + 1000, 포인트 지급 여부 업데이트 API
+ *       security:
+ *         - Authorization: []
  *       responses:
  *         '200':
  *           description: 포인트, 포인트 지급 여부 업데이트
@@ -288,6 +283,8 @@ userAuthRouter.put(
  *         required: true
  *       summary: 유저의 프로필 변경
  *       description: 유저의 프로필 변경 API
+ *       security:
+ *         - Authorization: []
  *       responses:
  *         '200':
  *           description: 유저 프로필 변경 성공
@@ -329,10 +326,7 @@ userAuthRouter.put(
         nickname,
       });
       if (currentUserInfo.errorMessage) {
-        return res.status(400).json({
-          status: 'error',
-          error: currentUserInfo.errorMessage,
-        });
+        throw new Error(currentUserInfo.errorMessage);
       }
       res.status(200).json({ currentUserInfo });
     } catch (error) {
@@ -351,6 +345,8 @@ userAuthRouter.put(
  *       - user
  *       summary: 비밀번호 변경
  *       description: User의 비밀번호 변경 API
+ *       security:
+ *         - Authorization: []
  *       responses:
  *         '200':
  *           description: 비밀번호 변경 성공

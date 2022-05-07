@@ -8,7 +8,7 @@ function HeaderMenu({
   isLogin,
   handleDialogOpen,
   logout,
-  fontSize = '2vw',
+  fontSize = '1.5vw',
   isLanding = false,
 }) {
   const navigate = useNavigate();
@@ -75,7 +75,7 @@ function HeaderMenu({
           <Button
             color='inherit'
             onClick={handleClickBreadButton}
-            style={{ fontSize }}
+            style={{ fontSize, minWidth: '90px' }}
           >
             포켓몬빵
           </Button>
@@ -84,7 +84,7 @@ function HeaderMenu({
           <Button
             color='inherit'
             onClick={handleClickQuizButton}
-            style={{ fontSize }}
+            style={{ fontSize, minWidth: '90px' }}
           >
             퀴즈
           </Button>
@@ -93,7 +93,7 @@ function HeaderMenu({
           <Button
             color='inherit'
             onClick={handleClickIllustratedBookButton}
-            style={{ fontSize }}
+            style={{ fontSize, minWidth: '90px' }}
           >
             도감
           </Button>
@@ -102,7 +102,7 @@ function HeaderMenu({
           <Button
             color='inherit'
             onClick={handleClickStatisticsButton}
-            style={{ fontSize }}
+            style={{ fontSize, minWidth: '90px' }}
           >
             통계
           </Button>
@@ -111,7 +111,7 @@ function HeaderMenu({
           <Button
             color='inherit'
             onClick={handleClickMyPageButton}
-            style={{ fontSize }}
+            style={{ fontSize, minWidth: '90px' }}
           >
             마이페이지
           </Button>
@@ -120,7 +120,7 @@ function HeaderMenu({
           <Button
             color='primary'
             onClick={handleClickLogInOutButton}
-            style={{ fontSize }}
+            style={{ fontSize, color: '#4682b4', minWidth: '90px' }}
           >
             {isLogin ? '로그아웃' : '로그인'}
           </Button>
