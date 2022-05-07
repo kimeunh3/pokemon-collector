@@ -27,12 +27,15 @@ async function post(endpoint, data) {
 	console.log(`%cPOST 요청: ${serverUrl + endpoint}`, 'color: #296aba;');
 	console.log(`%cPOST 요청 데이터: ${bodyData}`, 'color: #296aba;');
 
-	return axios.post(serverUrl + endpoint, bodyData, {
-		headers: {
-			'Content-Type': 'application/json',
-			Authorization: `Bearer ${sessionStorage.getItem('userToken')}`,
-		},
-	});
+	return axios
+		.post(serverUrl + endpoint, bodyData, {
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${sessionStorage.getItem('userToken')}`,
+			},
+		})
+		.then((res) => res)
+		.catch((error) => error.response.data);
 }
 
 async function put(endpoint, data) {
@@ -42,12 +45,15 @@ async function put(endpoint, data) {
 	console.log(`%cPUT 요청: ${serverUrl + endpoint}`, 'color: #059c4b;');
 	console.log(`%cPUT 요청 데이터: ${bodyData}`, 'color: #059c4b;');
 
-	return axios.put(serverUrl + endpoint, bodyData, {
-		headers: {
-			'Content-Type': 'application/json',
-			Authorization: `Bearer ${sessionStorage.getItem('userToken')}`,
-		},
-	});
+	return axios
+		.put(serverUrl + endpoint, bodyData, {
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${sessionStorage.getItem('userToken')}`,
+			},
+		})
+		.then((res) => res)
+		.catch((error) => error.response.data);
 }
 
 // 아래 함수명에 관해, delete 단어는 자바스크립트의 reserved 단어이기에,
