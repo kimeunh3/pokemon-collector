@@ -20,8 +20,12 @@ function MyPage() {
 	};
 
 	const fetchAchievements = async () => {
-		const res = await Api.get('userAchievementList');
-		setUserAchievements(res.data);
+		try {
+			const res = await Api.get('userAchievementList');
+			setUserAchievements(res.data);
+		} catch (err) {
+			console.err(err);
+		}
 	};
 
 	useEffect(() => {
@@ -30,7 +34,7 @@ function MyPage() {
 	}, []);
 
 	return (
-		<Container fixed sx={{ marginTop: '165px', width: '100%' }}>
+		<Container fixed sx={{ marginTop: '25vh', width: '100%' }}>
 			<Grid container spacing={2}>
 				<Grid item xs={4.5} md={4.5}>
 					{userState && (

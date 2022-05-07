@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Card, Grid, CardMedia, Typography } from '@mui/material';
 
-import ImgSrc from '../../../../../core/constants/ImgSrc';
+import ImgSrc, { homeURL } from '../../../../../core/constants/ImgSrc';
 
 function InfoSection() {
 	return (
@@ -12,7 +12,7 @@ function InfoSection() {
 				backgroundColor: '#FFFFFF',
 			}}
 		>
-			<Box sx={{ marginTop: '50px' }}>
+			<Box sx={{ marginTop: '10vh' }}>
 				<Grid container spacing={3}>
 					<Grid item xs={5} md={5}>
 						<Card sx={{ width: 380, margin: 'auto' }}>
@@ -30,8 +30,7 @@ function InfoSection() {
 							}}
 						>
 							<Typography variant='h3' sx={{ fontWeight: 'bold' }}>
-								포켓몬 스티커를 <br />
-								모아보세요!
+								포켓몬 스티커를 모아보세요!
 							</Typography>
 							<Typography variant='body1' sx={{ marginTop: '30px' }}>
 								포인트로 빵을 구매하고 포켓몬 스티커를 모아보세요! <br />
@@ -41,18 +40,23 @@ function InfoSection() {
 								<Grid
 									container
 									spacing={0.7}
-									sx={{ marginTop: '30px', marginBottom: '30px' }}
+									sx={{
+										marginTop: '30px',
+										marginBottom: '30px',
+										display: 'flex',
+										justifyContent: 'center',
+									}}
 								>
 									<Grid item xs={3} md={3}>
-										<CardMedia component='img' image='attendance.png' />
+										<CardMedia component='img' image={`${homeURL}attendance.png`} />
 									</Grid>
 
 									<Grid item xs={3} md={3} sx={{ marginLeft: '10px' }}>
-										<CardMedia component='img' image='quiz.png' />
+										<CardMedia component='img' image={`${homeURL}quiz.png`} />
 									</Grid>
 
 									<Grid item xs={3} md={3} sx={{ marginLeft: '10px' }}>
-										<CardMedia component='img' image='pikachu.png' />
+										<CardMedia component='img' image={`${homeURL}pikachu.png`} />
 									</Grid>
 								</Grid>
 							</Box>

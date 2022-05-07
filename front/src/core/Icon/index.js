@@ -28,6 +28,8 @@ import {
 	Mediation,
 	CatchingPokemonRounded,
 	Stars,
+	Diamond,
+	Flare,
 } from '@mui/icons-material';
 
 const IconObj = {
@@ -133,6 +135,14 @@ const IconObj = {
 	스타트: {
 		Icon: <Stars sx={{ color: '#FFE300' }} />,
 		Color: { color: '#FFE300' },
+	},
+	전설: {
+		Icon: <Diamond sx={{ color: '#79DAE8' }} />,
+		Color: { color: '#79DAE8' },
+	},
+	환상: {
+		Icon: <Flare sx={{ color: '#FF8C32' }} />,
+		Color: { color: '#FF8C32' },
 	},
 };
 
