@@ -36,6 +36,8 @@ function Achievement({ userAchievement }) {
 		17: '드래곤',
 		18: '강철',
 		19: '페어리',
+		20: '전설',
+		21: '환상',
 	};
 
 	return (

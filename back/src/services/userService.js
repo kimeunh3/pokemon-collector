@@ -100,22 +100,23 @@ class userAuthService {
     return loginUser;
   }
 
-  static async setUser({ userId, toUpdate, nickname }) {
+  static async setUser({ userId, toUpdate }) {
     let user = await User.findById({ userId });
 
     if (!user) {
       const errorMessage = '가입 내역이 없습니다. 다시 한 번 확인해 주세요.';
       return { errorMessage };
     }
-    user = await User.findByNickname({ nickname });
-    if (user) {
-      const errorMessage =
-        '이 닉네임은 현재 사용중입니다. 다른 닉네임을 입력해주세요.';
-      return { errorMessage };
-    }
-    if (toUpdate.nickname) {
+
+    if (toUpdate.nickname !== user.nickname) {
       const fieldToUpdate = 'nickname';
       const newValue = toUpdate.nickname;
+      const overlapNickname = await User.findByNickname({ nickname: newValue });
+      if (overlapNickname) {
+        const errorMessage =
+          '이 닉네임은 현재 사용중입니다. 다른 닉네임을 입력해주세요.';
+        return { errorMessage };
+      }
       user = await User.update({ userId, fieldToUpdate, newValue });
     }
 

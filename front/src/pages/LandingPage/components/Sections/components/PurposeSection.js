@@ -9,6 +9,8 @@ import {
 	Box,
 } from '@mui/material';
 
+import { homeURL } from '../../../../../core/constants/ImgSrc';
+
 function PurposeSection() {
 	return (
 		<Container sx={{ marginTop: 20 }}>
@@ -28,7 +30,7 @@ function PurposeSection() {
 						<CardMedia
 							sx={{ height: '180px' }}
 							component='img'
-							image='purpose1.jpg'
+							image={`${homeURL}purpose1.jpg`}
 						/>
 						<CardContent>
 							<Typography variant='body1'>
@@ -42,7 +44,7 @@ function PurposeSection() {
 						<CardMedia
 							sx={{ height: '180px' }}
 							component='img'
-							image='purpose2.png'
+							image={`${homeURL}purpose2.png`}
 						/>
 						<CardContent sx={{ backgroundColor: '#EEF2FF' }}>
 							<Typography variant='body1'>
@@ -56,7 +58,7 @@ function PurposeSection() {
 						<CardMedia
 							sx={{ height: '180px' }}
 							component='img'
-							image='purpose3.jpg'
+							image={`${homeURL}purpose3.jpg`}
 						/>
 						<CardContent sx={{ backgroundColor: '#FFFFFF' }}>
 							<Typography variant='body1'>
@@ -75,7 +77,7 @@ function PurposeSection() {
 						<CardMedia
 							sx={{ height: '180px' }}
 							component='img'
-							image='purpose4.jpg'
+							image={`${homeURL}purpose4.jpg`}
 						/>
 						<CardContent sx={{ backgroundColor: '#EEF2FF' }}>
 							<Typography variant='body1'>
@@ -89,7 +91,7 @@ function PurposeSection() {
 						<CardMedia
 							sx={{ height: '180px' }}
 							component='img'
-							image='purpose5.jpg'
+							image={`${homeURL}purpose5.jpg`}
 						/>
 						<CardContent sx={{ backgroundColor: '#FFFFFF' }}>
 							<Typography variant='body1'>
@@ -103,7 +105,7 @@ function PurposeSection() {
 						<CardMedia
 							sx={{ height: '180px' }}
 							component='img'
-							image='purpose6.png'
+							image={`${homeURL}purpose6.png`}
 						/>
 						<CardContent sx={{ backgroundColor: '#EEF2FF' }}>
 							<Typography variant='body1'>
@@ -116,28 +118,29 @@ function PurposeSection() {
 			<Box mt={23} sx={{ marginBottom: '50px' }}>
 				<Grid container spacing={5}>
 					<Grid item xs={3} md={3}>
-						<CardMedia component='img' image='purpose7.png' />
+						<CardMedia component='img' image={`${homeURL}purpose7.png`} />
 						<Typography variant='h5'>
 							포켓몬 빵을 구매하지 못한 소비자들에게
 						</Typography>
 					</Grid>
 					<Grid item xs={1.5} md={1.5} sx={{ margin: 'auto' }}>
-						<CardMedia component='img' image='arrow.png' />
+						<CardMedia component='img' image={`${homeURL}arrow.png`} />
 					</Grid>
 					<Grid item xs={3} md={3}>
-						<CardMedia component='img' image='pokemonCollector.png' />
+						<CardMedia component='img' image={`${homeURL}pokemonCollector.png`} />
 						<Typography variant='h5'>
 							대리만족과 재밌는 <br />
 							서비스를 제공
 						</Typography>
 					</Grid>
 					<Grid item xs={1.5} md={1.5} sx={{ margin: 'auto' }}>
-						<CardMedia component='img' image='arrow.png' />
+						<CardMedia component='img' image={`${homeURL}arrow.png`} />
 					</Grid>
 					<Grid item xs={3} md={3}>
-						<CardMedia component='img' image='purpose8.png' />
+						<CardMedia component='img' image={`${homeURL}purpose8.png`} />
 						<Typography variant='h5'>
-							개인의 욕구 해소와 더 나아가서는 사회 문제 완화까지
+							<br />
+							개인의 욕구 해소와 더 나아가 사회 문제 완화까지
 						</Typography>
 					</Grid>
 				</Grid>

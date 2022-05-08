@@ -154,6 +154,14 @@ const UserSchema = new Schema(
           id: 19,
           status: 0,
         },
+        {
+          id: 20,
+          status: 0,
+        },
+        {
+          id: 21,
+          status: 0,
+        },
       ],
     },
     required: false,

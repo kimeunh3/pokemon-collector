@@ -10,7 +10,7 @@ function StatisticsPage() {
   const [isStats, setIsStats] = useState(false);
 
   return (
-    <div style={{ paddingTop: '170px', paddingBottom: '50px' }}>
+    <div style={{ marginTop: '25vh' }}>
       <WholeStatisticComponent />
       <AppBar
         position='static'
