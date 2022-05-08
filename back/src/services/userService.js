@@ -120,17 +120,17 @@ class userAuthService {
       user = await User.update({ userId, fieldToUpdate, newValue });
     }
 
-    // if (toUpdate.email) {
-    //   const fieldToUpdate = 'email';
-    //   const newValue = toUpdate.email;
-    //   user = await User.update({ userId, fieldToUpdate, newValue });
-    // }
+    if (toUpdate.email) {
+      const fieldToUpdate = 'email';
+      const newValue = toUpdate.email;
+      user = await User.update({ userId, fieldToUpdate, newValue });
+    }
 
-    // if (toUpdate.password) {
-    //   const fieldToUpdate = 'password';
-    //   const newValue = toUpdate.password;
-    //   user = await User.update({ userId, fieldToUpdate, newValue });
-    // }
+    if (toUpdate.password) {
+      const fieldToUpdate = 'password';
+      const newValue = toUpdate.password;
+      user = await User.update({ userId, fieldToUpdate, newValue });
+    }
 
     if (toUpdate.interest) {
       const fieldToUpdate = 'interest';
