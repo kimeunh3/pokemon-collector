@@ -83,14 +83,13 @@ function RegisterPage({ setLogin }) {
 			birth: Date(birth),
 		});
 
-		try {
-			// "user/register" 엔드포인트로 post요청함.
-			await Api.post('user/register', inputs);
-
+		// "user/register" 엔드포인트로 post요청함.
+		const res = await Api.post('user/register', inputs);
+		if (res.status === 200) {
 			// 로그인 페이지로 이동함.
 			setLogin(true);
-		} catch (err) {
-			console.log('회원가입에 실패하였습니다.', err);
+		} else {
+			alert(res);
 		}
 	};
 
