@@ -1,38 +1,27 @@
 # 포켓몬 띠부띠부 씰 콜렉터 온라인 서비스
 - 포켓몬 빵을 개봉하여 스티커를 모을 수 있는 웹 서비스
 
-
-## 프로젝트 구성 안내
-
-* `bullet point 에 적힌 내용을 수정해 주시면 됩니다.`
-
-* `초기 기획은 언제든 수정될 수 있으니 웹서비스 결과를 내는데 초점을 두시기 바랍니다.`
-
 ## 1. 프로젝트 소개
-
-**어떠한 데이터셋와 도구 및 기술을 사용했는지에 대한 설명과 엔드유저에게 보이는 웹서비스에 대한 소개**
-
-  - 사용하려는 데이터(제안된 데이터 중 하나 또는 선택한 다른 데이터 세트)를 명시, 이에 대한 설명
-  - 기술 스택 (python, d3, pandas, jupyter, javascript, MySQL 등)
-  - 사용된 라이브러리 (numpy, matplotlib, wordcloud 등)
+  - 사용하려는 데이터
+    - [포켓몬 데이터 셋](https://www.kaggle.com/datasets/mariotormo/complete-pokemon-dataset-updated-090420)  
+    - [포켓몬 이미지 데이터 셋](https://www.kaggle.com/datasets/kvpratama/pokemon-images-dataset)  
+  - 기술 스택
+  ![image](https://user-images.githubusercontent.com/59808674/167365484-88fffc37-fb63-4d53-b059-6214ed251032.png)
   - 웹서비스에 대한 자세한 개요
 
 ## 2. 프로젝트 목표
 
-**데이터 분석 결과로 도출되는 인사이트와 웹서비스의 해결과제에 대한 논의 (50자 이상)**
-  - 프로젝트 아이디어 동기
-  - 문제를 해결하기 위한 특정 질문 명시
-  - 데이터를 통해 탐색하려는 문제를 구체적으로 작성
+![image](https://user-images.githubusercontent.com/59808674/167366005-18745c26-6675-4d2d-bc03-b0b1767ceea7.png)
+![image](https://user-images.githubusercontent.com/59808674/167366037-9d0b19b0-d5d1-4b47-a214-ea13a4e2f0e4.png)
 
 
 ## 3. 프로젝트 기능 설명
 
-**웹서비스의 유용성, 편의성 및 시각화의 실용성에 대한 설명**
-  - 주요 기능 (주된 활용성) 및 서브 기능
-  - 프로젝트만의 차별점, 기대 효과
+![image](https://user-images.githubusercontent.com/59808674/167366167-814a029e-8c8d-41c6-a883-fff60a2e521a.png)
+![image](https://user-images.githubusercontent.com/59808674/167366195-1561142b-c45c-47ce-ada4-41b6112904d0.png)
 
 ## 4. 프로젝트 구성도
-  - 와이어프레임/스토리보드 추가
+  - [피그마](https://www.figma.com/file/KxuyTZvDXDt8biG9m71Fg4/Untitled?node-id=0%3A1)
 
 ## 5. 프로젝트 팀원 역할 분담
 |  이름  |    역할    |
